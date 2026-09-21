@@ -7,12 +7,11 @@ authors:
     given-names: Benjamin Stanley
     alias: "@BenFrohman"
 repository-code: "https://github.com/BenFrohman/HODGE"
-license: MIT
+license: Apache-2.0
 date-released: "2026-09-21"
 abstract: >
-  Lean 4 encoding of the Hodge sentence for fourfolds, classical island
-  constructions, and a guarded axiom for the open extra-class case.
-  Does not prove the Hodge conjecture.
+  Lean 4 encoding of the Hodge sentence for fourfolds and classical island
+  constructions. Does not prove the Hodge conjecture.
 keywords:
   - Hodge conjecture
   - Lean 4

@@ -2,6 +2,9 @@
 
 **Author:** Benjamin Stanley Frohman (@BenFrohman)
 
+Copyright (c) 2026 Benjamin Stanley Frohman. Apache-2.0.
+See `LICENSE` and `NOTICE.md`. Attribution to the author is required.
+
 ## What is proved
 
 ```lean
@@ -18,7 +21,8 @@ Proof: `CycleSection`, then `HodgeConjecture.of_section`.
 Expected `#print axioms`: `propext`, `Quot.sound`.
 
 There is no Lean name `general_fourfold`.
+This repository does not prove the Hodge conjecture.
 
 ## License
 
-MIT.
+Apache License 2.0.
