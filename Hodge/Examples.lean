@@ -6,15 +6,16 @@ import Hodge.Known
 import Hodge.Integral
 
 /-!
-# Two formal instantiations and an axiom audit
+# Two formal instantiations and a consistency check
 
 The first example is a datum on which the obstruction is zero, so every
 class is Hodge and the conjecture reduces to surjectivity of `cl`.
 The second example is a datum on which `cl` is zero, so the conjecture
 fails.
 
-Neither example is a fourfold. Neither example constructs surfaces from
-an arbitrary Hodge class of codimension two.
+The second example is the bug detector: an axiom asserting HodgeConjecture
+for every `Datum` of codimension at least two is false, because it would
+prove `zeroCycle.HodgeConjecture` and `¬ zeroCycle.HodgeConjecture`.
 -/
 
 namespace Hodge
@@ -28,7 +29,6 @@ def trivialObstruction : Datum ℚ ℚ ℚ where
   cl := LinearMap.id
   cl_isHodge := by intro _; rfl
 
-/-- On that datum `cl` is the identity, so the conjecture holds by inspection. -/
 instance : CycleConstructor trivialObstruction :=
   ⟨fun v _ => ⟨v, rfl⟩⟩
 
@@ -53,6 +53,16 @@ theorem zeroCycle_not_hodge :
   have h1 := h this
   rcases h1 with ⟨z, hz⟩
   exact one_ne_zero (by simpa using hz)
+
+/-- The universal axiom is inconsistent with this example.
+A claim that every datum of codimension at least two satisfies the
+conjecture is false as a statement about `Datum`, because `zeroCycle`
+is such a datum. -/
+theorem not_every_codim_ge_two :
+    ¬ (∀ D : Datum ℚ ℚ ℚ, 2 ≤ D.codim → D.HodgeConjecture) := by
+  intro h
+  have : 2 ≤ zeroCycle.codim := by simp [zeroCycle]
+  exact zeroCycle_not_hodge (h zeroCycle this)
 
 end Examples
 
