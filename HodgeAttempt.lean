@@ -12,3 +12,4 @@ import Hodge.Attempt.ClayStatement
 import Hodge.Attempt.ParameterLocus
 import Hodge.Attempt.GenericObstructed
 import Hodge.Attempt.Grading
+import Hodge.Attempt.IntersectionInvariants

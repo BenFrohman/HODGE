@@ -2,56 +2,49 @@
 Copyright (c) 2026 Benjamin Stanley Frohman (@BenFrohman). Apache-2.0.
 Authors: Benjamin Stanley Frohman (@BenFrohman)
 
-Numerical isolation of [Pi] from Q · h^2 on a special sextic fourfold in P^5.
-Not a Chow-ring theorem. Not a CycleSection. Not general_fourfold.
-Not imported by Hodge.lean.
+Arithmetic of the extra-class isolation on a linear plane in a degree-6
+hypersurface fourfold in P^5. Not a Chow ring. Not a CycleSection.
+Not imported by Hodge.lean. `HodgeConjecture.general_fourfold` stays a Prop.
 -/
-import Mathlib.Data.Rat.Defs
+import Mathlib.Data.Rat.Init
 import Mathlib.Tactic.NormNum
+import Mathlib.Tactic.Ring
 
 /-!
-# Intersection arithmetic for a linear plane on a degree-d fourfold
+# Intersection arithmetic (numbers only)
 
-Geometric input, recorded as comments, not as Lean geometry:
+Geometry recorded in `docs/EXTRA_CLASS_SEXTIC.md` §6:
 
-* `h^4 = d` on a degree-`d` hypersurface fourfold in `P^5`.
-* `[Pi] · h^2 = 1` for a linear plane `Pi ≅ P^2`.
-* `[Pi]^2 = d^2 - 3d + 3` from the normal-bundle sequence
-  `0 → N_{Pi/X} → O(1)^{\oplus 3} → O(d)|_Pi → 0`.
+    h^4 = 6,    [Pi] · h^2 = 1,    [Pi]^2 = d^2 - 3d + 3.
 
-At `d = 6` that polynomial is `21`. If `[Pi] = c · h^2` then
-`c = 1/6` from the restriction and the predicted self-intersection is
-`1/6`. The integers `21` and `1/6` are not equal.
+The last identity is c2 of the normal sequence
+`0 → N_{Pi/X} → O(1)^3 → O(d) → 0` on `Pi ≅ P^2`.
+That sequence is **not** a theorem in this file.
+
+This file proves only:
+* the integer evaluation at `d = 6` is 21;
+* if `[Pi] = (1/6) h^2` then the predicted self-intersection is `1/6`;
+* `21 ≠ 1/6`.
 -/
 
-namespace Hodge.Attempt
+namespace Hodge.Attempt.IntersectionInvariants
 
-/-- Integer polynomial `d^2 - 3d + 3`. Evaluation only. -/
-def planeSelfIntersection (d : ℤ) : ℤ :=
-  d ^ 2 - 3 * d + 3
+/-- Chern-arithmetic formula, as an integer polynomial. -/
+def planeSelfIx (d : Int) : Int := d ^ 2 - 3 * d + 3
 
-theorem planeSelfIntersection_sextic :
-    planeSelfIntersection 6 = 21 := by
+@[simp] theorem planeSelfIx_six : planeSelfIx 6 = 21 := by
   decide
 
-/-- Ambient prediction: `(1/6)^2 * 6 = 1/6`. -/
-theorem ambient_selfIntersection_prediction :
-    ((1 / 6 : ℚ) * (1 / 6)) * 6 = 1 / 6 := by
+theorem predicted_ambient_self :
+    ((1 : Rat) / 6) ^ 2 * 6 = 1 / 6 := by
   norm_num
 
-/-- Isolation: `21 ≠ 1/6`. -/
-theorem extra_class_not_ambient_multiple :
-    (21 : ℚ) ≠ 1 / 6 := by
+theorem extra_class_mismatch : (21 : Rat) ≠ (1 : Rat) / 6 := by
   norm_num
 
-/-- Combined: no rational `c` satisfies both ambient identities at these numbers. -/
-theorem no_rational_ambient_coefficient :
-    ¬ ∃ c : ℚ, c * 6 = 1 ∧ c * c * 6 = 21 := by
-  rintro ⟨c, h1, h2⟩
-  have hc : c = 1 / 6 := by
-    have : c * 6 - 1 = 0 := by linear_combination h1
-    have : (c - 1 / 6) * 6 = 0 := by
-      linear_combination this
-    have h6 : (6 : ℚ) ≠ 0 := by norm_num
-    exact eq_of_sub_eq_zero (eq_zero_of_mul_eq_zero_right this h6?)
-```
+/-- Isolation: the two numbers that would have to agree if `[Pi] = c h^2`. -/
+theorem isolation_not_ambient :
+    planeSelfIx 6 ≠ 1 := by
+  decide
+
+end Hodge.Attempt.IntersectionInvariants
