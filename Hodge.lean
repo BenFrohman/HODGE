@@ -1,5 +1,5 @@
 /-
-Core library. Do not import Hodge.Attempt.* here.
+Core library. Do not pull sketches from the Attempt folder here.
 Fermat planes and other sketches do not discharge
 HodgeConjecture.general_fourfold.
 -/
