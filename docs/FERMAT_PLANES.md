@@ -1,61 +1,50 @@
-# Fermat quartic fourfold — planes with ζ^4 = -1
+# Fermat planes containment and remainder identity
 
 Author of the repository record: Benjamin Stanley Frohman (@BenFrohman).
 
-This is the easy arrow on a special host. It lives in `Hodge/Attempt/`.
-It is not imported by `Hodge.lean`. It does not discharge
-`HodgeConjecture.general_fourfold`.
+Easy arrow on a special host. Not imported by `Hodge.lean`.
+Does not discharge `HodgeConjecture.general_fourfold`.
 
-Lean identities: `Hodge/Attempt/FermatIdentities.lean`.
-Lean planes: `Hodge/Attempt/FermatPlanes.lean`.
+Lean: `Hodge/Attempt/FermatIdentities.lean`, `Hodge/Attempt/FermatPlanes.lean`.
+Standalone: [BenFrohman/FermatPlanes](https://github.com/BenFrohman/FermatPlanes).
+NL sibling: [BenFrohman/NoetherLefschetz](https://github.com/BenFrohman/NoetherLefschetz).
 
-## Host
+## 1. Unconditional identity
 
-    X : z₀^4 + z₁^4 + z₂^4 + z₃^4 + z₄^4 + z₅^4 = 0  ⊂ ℙ^5.
-
-A smooth Fermat quartic fourfold. Special in moduli: extra planes exist.
-A very general high-degree fourfold has no extra class; that sentence is
-Noether–Lefschetz, recorded in [BenFrohman/NoetherLefschetz](https://github.com/BenFrohman/NoetherLefschetz), not here.
-
-## Remainder identity (any commutative ring)
+For any commutative ring and any ζ:
 
     z^4 + w^4
       = (z - ζ w)(z^3 + ζ z^2 w + ζ^2 z w^2 + ζ^3 w^3)
         + (1 + ζ^4) w^4.
 
-This holds without assuming ζ^4 = -1. When ζ^4 = -1 the remainder is 0,
-so z^4 + w^4 lies in the principal ideal (z - ζ w).
+Expansion: (z - ζ w)(…) = z^4 - ζ^4 w^4. Adding the remainder:
 
-## Planes that lie on X
+    z^4 - ζ^4 w^4 + (1 + ζ^4) w^4 = z^4 + w^4.
 
-Let ζ ∈ ℂ satisfy ζ^4 = -1 (an eighth root of unity, not i; i^4 = 1).
+## 2. Root ζ^4 = -1
 
-    Z₁ = V(z₀ - ζ z₁, z₂ - ζ z₃, z₄ - ζ z₅) ≅ ℙ^2,
-    Z₂ = V(z₀ + ζ z₁, z₂ - ζ z₃, z₄ - ζ z₅) ≅ ℙ^2.
+Remainder = (1 + (-1)) w^4 = 0. Then each pair of fourth powers lies in the
+principal ideal of its linear factor:
 
-Three pairs for Z₁:
+    z_{2k}^4 + z_{2k+1}^4 ∈ (z_{2k} - ζ z_{2k+1}).
+
+(ζ is an 8th root of unity. Not i; i^4 = 1.)
+
+## 3. Three pairs
+
+Host F = ∑_{i=0}^5 z_i^4.
+
+Z₁ = V(z₀ - ζ z₁, z₂ - ζ z₃, z₄ - ζ z₅):
 
     F = (z₀ - ζ z₁)(…) + (z₂ - ζ z₃)(…) + (z₄ - ζ z₅)(…).
 
-So F ∈ I(Z₁). For Z₂ the first pair uses -ζ.
+Z₂ = V(z₀ + ζ z₁, z₂ - ζ z₃, z₄ - ζ z₅), first pair at -ζ:
 
-Substitution check: (ζ z)^4 + z^4 = -z^4 + z^4 = 0.
+    F = (z₀ + ζ z₁)(z₀^3 - ζ z₀^2 z₁ + ζ^2 z₀ z₁^2 - ζ^3 z₁^3)
+      + (z₂ - ζ z₃)(…) + (z₄ - ζ z₅)(…).
 
-## Easy arrow
+## 4. Boundaries
 
-Each plane is an algebraic surface on X, so its class is Hodge:
-
-    γ₁ = [Z₁] = 1 · [Z₁].
-
-The surface was written into the linear equations, then checked against F.
-That does not take an abstract vector in H^4(X, ℚ) ∩ H^{2,2} and return planes.
-
-The earlier annihilator attempt with P = z₀ z₁ + z₂ z₃ + z₄ z₅ and i = √(-1)
-failed because i^4 = 1, so that plane is not on X, and J : (P) contains J.
-
-## What this is not
-
-- Not a uniform constructor on a general fourfold.
-- Not Path 2 (a rational Hodge counterexample).
-- Not Noether–Lefschetz (no extra classes on a very general high-degree host).
-- Not a discharge of `HodgeConjecture.general_fourfold`.
+- Easy arrow: [Z_i] is Hodge because Z_i is algebraic.
+- A very general high-degree fourfold in ℙ^5 has no extra class (NL, other repo).
+- A special host such as Fermat can have extra planes; that does not prove Hodge in general.
