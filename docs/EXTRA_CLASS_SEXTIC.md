@@ -124,7 +124,7 @@ then `Pi subset X` by writing. Literature intersection numbers on that host:
 
 So `gamma := [Pi]` is not a multiple of `h^2`, and `gamma = 1 * [Pi]`. That is the
 easy arrow on this one plane. It is not a constructor for every extra
-`(2,2)` class on every degree->=-6 fourfold.
+`(2,2)` class on every degree >= 6 fourfold.
 
 This host is not `sum z_i^6 = 0`. Do not mix the two sextics.
 
@@ -135,3 +135,23 @@ This host is not `sum z_i^6 = 0`. Do not mix the two sextics.
 - `general_fourfold` stays a `Prop`.
 - No axiom `construct_of_codim_ge_two`.
 - Clay is open.
+
+## 5. Global Epilogue and Mathematical Status
+
+The local ideal membership `F in <x3, x4, x5>` verified herein represents a
+structural identity on a specialized host. It does not provide an abstract
+mapping mechanism for an arbitrary variety.
+
+To bridge the foundational gap to the global conjecture, the codebase lacks
+and strictly requires one of three explicit structural pieces:
+
+* A universal `CycleSection` constructor valid for a generic `general_fourfold`.
+* A certified `CycleSection` tracking an extra class on a special degree-`>= 6`
+  variety written explicitly as a collection of algebraic surfaces.
+* A formal counterexample pair `(X, gamma)` establishing that a specific Hodge
+  class is topologically blocked from receiving an algebraic cycle representation.
+
+Without these explicit signatures, `classical_fourfolds` functions purely as a
+skeleton tracking the three classical configurations where the cycle class map
+is already historically known to be onto. Grothendieck's Conjecture B remains
+unimplied, and the Clay Millennium Problem remains completely open.
