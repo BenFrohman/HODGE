@@ -1,26 +1,39 @@
 # Authors
 
 **Benjamin Stanley Frohman** (@BenFrohman) is the author of this repository:
-core library, `Hodge/Attempt/`, and `docs/`.
+core library `Hodge`, sandbox `HodgeAttempt`, and `docs/`.
 
-Copyright (c) 2026 Benjamin Stanley Frohman. See LICENSE (MIT on this repo).
+Copyright (c) 2026 Benjamin Stanley Frohman.
+License: MIT (see `LICENSE`). Copies and derivatives must keep that notice.
+
 Sister repos FermatPlanes, NoetherLefschetz, CubicFourfold: same author,
-Apache-2.0 there.
+Apache-2.0 on those repos.
 
-Credit for the encoding is independent of whether Clay is discharged.
-It is not discharged.
+This encoding is independent of whether the Hodge conjecture is discharged.
+It is not discharged. Cite as a skeleton, not as a Clay proof.
 
-## Frohman encoding (core and sandbox)
+## Frohman encoding (this repo)
 
-- `Datum`, `HodgeConjecture`, `CycleConstructor`, `CycleSection`, `IsVariety`
-- Guarded axiom `construct_of_codim_ge_two`
+- `Datum`, `HodgeConjecture`, `CycleConstructor`, `CycleSection`
+- Three-island terms `classical_fourfolds` / `ClassicalFourfolds`
+- Island constructions (`constructP4`, Klein pair, `constructProduct`)
 - `zeroCycle` / `not_every_codim_ge_two`
-- Island `CycleSection` terms using `cl := LinearMap.id` as a linear shadow
-- Fermat remainder / planes (also BenFrohman/FermatPlanes)
-- Lake target `HodgeAttempt`
+- Named Fermat quartic datum (`Hodge/Fermat.lean`)
+- Lake target `HodgeAttempt` and the notes in `docs/`
 
-## Not Frohman theorems
+## Shoulders (not Frohman theorems)
 
-- Mathlib (`LinearMap.id`)
-- Schubert calculus of Gr(2,4)
-- Lefschetz (1,1), Noether–Lefschetz, Zucker on cubics, Voisin integral Hodge
+Mathematics this skeleton names but does not prove:
+
+- W. V. D. Hodge — the conjecture
+- S. Lefschetz — (1,1) theorem; hard Lefschetz
+- M. Noether — Noether–Lefschetz on high-degree hypersurfaces
+- H. Schubert — Schubert calculus on `Gr(2,4)` / the Klein quadric
+- S. Zucker — Hodge for cubic fourfolds (citation in CubicFourfold)
+- T. Shioda, Z. Ran, Aljovín–Movasati–Villaflor — Fermat Hodge cycles
+- C. Voisin — surveys and integral Hodge questions
+
+Software this repo is built with:
+
+- Lean 4 (Lean FRO / Microsoft Research and contributors)
+- mathlib4 (Leanprover community; Apache-2.0 — see `NOTICE`)
