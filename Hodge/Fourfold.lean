@@ -7,11 +7,24 @@ import Hodge.Classical
 import Hodge.Construct
 
 /-!
-# Discharged theorem: `classical_fourfolds`
+# Easy arrow, hard arrow, discharged term
 
-Use this theorem for the three islands. Proved by `CycleSection`.
-`HodgeConjecture.general_fourfold` is a `Prop`. Specializing it to
-P^4, Q^4, or P^2 x P^2 is not a proof for a general fourfold.
+Easy arrow (theorem, `Datum.cl_isHodge`):
+  a subvariety Z of codimension k gives
+  [Z] ∈ H^{2k}(X,Q) ∩ H^{k,k}(X).
+
+Hard arrow (the conjecture, `Datum.HodgeConjecture`):
+  every such class is a finite rational combination of subvarieties,
+  γ = ∑ a_i [Z_i].
+
+On a fourfold the first open case is k = 2: surfaces.
+That identity is the statement. It is not a proof that the statement is true.
+
+Discharged term: `HodgeConjecture.classical_fourfolds`.
+Proved by `CycleSection` / `of_section` on P^4, Q^4, P^2 × P^2 only.
+
+`HodgeConjecture.general_fourfold` is a `Prop`. No term for unspecified D.
+Specializing it to P^4, Q^4, or P^2 × P^2 is not a proof for a general fourfold.
 -/
 
 namespace Hodge
