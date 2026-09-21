@@ -4,10 +4,11 @@
 core library `Hodge`, sandbox `HodgeAttempt`, and `docs/`.
 
 Copyright (c) 2026 Benjamin Stanley Frohman.
-License: MIT (see `LICENSE`). Copies and derivatives must keep that notice.
+License: Apache License 2.0 (see `LICENSE` and `NOTICE.md`).
+Copies and derivatives must keep that notice and attribution.
 
 Sister repos FermatPlanes, NoetherLefschetz, CubicFourfold: same author,
-Apache-2.0 on those repos.
+Apache-2.0.
 
 This encoding is independent of whether the Hodge conjecture is discharged.
 It is not discharged. Cite as a skeleton, not as a Clay proof.
@@ -23,8 +24,6 @@ It is not discharged. Cite as a skeleton, not as a Clay proof.
 
 ## Shoulders (not Frohman theorems)
 
-Mathematics this skeleton names but does not prove:
-
 - W. V. D. Hodge — the conjecture
 - S. Lefschetz — (1,1) theorem; hard Lefschetz
 - M. Noether — Noether–Lefschetz on high-degree hypersurfaces
@@ -32,8 +31,4 @@ Mathematics this skeleton names but does not prove:
 - S. Zucker — Hodge for cubic fourfolds (citation in CubicFourfold)
 - T. Shioda, Z. Ran, Aljovín–Movasati–Villaflor — Fermat Hodge cycles
 - C. Voisin — surveys and integral Hodge questions
-
-Software this repo is built with:
-
-- Lean 4 (Lean FRO / Microsoft Research and contributors)
-- mathlib4 (Leanprover community; Apache-2.0 — see `NOTICE`)
+- Lean 4 and mathlib4 (Apache-2.0; see `NOTICE.md`)
