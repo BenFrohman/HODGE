@@ -1,0 +1,19 @@
+cff-version: 1.2.0
+title: "HODGE — Lean 4 skeleton of the Hodge conjecture"
+message: "Cite this repository as a formal skeleton, not as a proof of the Hodge conjecture."
+type: software
+authors:
+  - family-names: Frohman
+    given-names: Benjamin Stanley
+    alias: "@BenFrohman"
+repository-code: "https://github.com/BenFrohman/HODGE"
+license: MIT
+date-released: "2026-09-21"
+abstract: >
+  Lean 4 encoding of the Hodge sentence for fourfolds, classical island
+  constructions, and a guarded axiom for the open extra-class case.
+  Does not prove the Hodge conjecture.
+keywords:
+  - Hodge conjecture
+  - Lean 4
+  - algebraic geometry
