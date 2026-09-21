@@ -22,6 +22,35 @@ Pieri's name for their sum is the hyperplane class:
 Do not use the nickname "σ-plane" as if it meant σ_{1,1}. That is the pun
 already excluded.
 
+## Both identities, both languages
+
+The constructor uses two identities. They have a math writing and a physics
+writing. The writings are equivalent under the dictionary above. Use both.
+Do not bind the constructor to one community's names.
+
+Identity A — the two rulings sum to the hyperplane square.
+
+| Math | Physics |
+|---|---|
+| h^2 = [Π] + [Π'] | the two families of null 2-planes span the conformal class |
+| σ_1^2 = σ_2 + σ_{1,1} | an α-plane and a β-plane through a point give the light cone |
+
+Identity B — the intersection form on the two-plane basis.
+
+| Math | Physics |
+|---|---|
+| [Π]² = [Π']² = 1, [Π]·[Π'] = 0 | two α-planes meet in a point; α meets β in a line or not at all |
+| σ_2·σ_2 = σ_{1,1}·σ_{1,1} = 1, σ_2·σ_{1,1} = 0 | same-family planes meet in a Minkowski point; opposite families meet in a light ray |
+
+Basis expansion, valid in either language:
+
+    γ = (γ · [Π]) [Π] + (γ · [Π']) [Π']
+        = (γ · σ_2) σ_2 + (γ · σ_{1,1}) σ_{1,1}.
+
+That expansion covers every class in H^4(Q, Q) = Hdg^2(Q). It does not
+cover a general fourfold, and it does not cover a general amplituhedron
+A_{n,k,m}. Those are different spaces.
+
 ## Correspondence objects, with the point/line row unswapped
 
 Identify Q = Gr(2,4) ⊂ P^5 with compactified complexified Minkowski space
