@@ -1,0 +1,342 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[margin=1.15in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{microtype}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{setspace}
+\setstretch{1.12}
+
+\hypersetup{colorlinks=true,linkcolor=black,urlcolor=blue}
+
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Pspace}{\mathbb{P}}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\title{\textbf{The Cycle Class Map, the Reverse Arrow,\\[0.25em]
+and a Classical Constructor on Three Fourfolds}}
+\author{Benjamin Stanley Frohman}
+\date{20 September 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+The cycle class map
+\(\mathrm{cl}:Z^k(X)_{\Q}\to H^{2k}(X,\Q)\)
+is constructed from the fundamental class and Poincar\'e duality. Its
+image consists of Hodge classes. A section of \(\mathrm{cl}\) over
+\(\mathrm{Hdg}^k(X)\) is the Hodge conjecture. That section is written
+explicitly on the Klein quadric \(Q^4\subset\Pspace^5\), on
+\(\Pspace^4\), and on \(\Pspace^2\times\Pspace^2\), with equations,
+Schubert identities, and intersection formulae. The same rule does not
+extend to a general fourfold. The remaining emptiness is the Hodge
+conjecture.
+\end{abstract}
+
+\section{The easy arrow}
+
+The last geometric object on screen is not a mystery class. It is the
+cycle class of a subvariety: the one arrow that is already a theorem.
+The line ``Decoding still required'' refers to the reverse arrow, which
+remains open on a general variety.
+
+In the film a closed algebraic subset \(Z\subset X\) of complex
+codimension \(k\) is named, and then its class
+\[
+[Z]\in H^{2k}(X,\Q)\cap H^{k,k}(X).
+\]
+That symbol \([Z]\) is the cycle class of \(Z\). Every later frame asks
+whether an arbitrary Hodge class is a rational combination of objects
+of this same kind.
+
+The yellow loop drawn on the wireframe is a picture, not a construction.
+A genuine algebraic subvariety of complex codimension \(k\) is cut out
+by polynomial equations and has complex dimension \(\dim X-k\). On an
+elliptic curve the algebraic classes in positive codimension are points,
+not real circles. The animation is showing the role of \(Z\), not a
+particular equation.
+
+\section{How the class is produced}
+
+Let \(X\) be a smooth complex projective variety of dimension \(n\), and
+let \(Z\subset X\) be a closed irreducible subvariety of codimension
+\(k\). The complex structure orients the regular locus of \(Z\) as a
+real \(2(n-k)\)-dimensional manifold. That orientation supplies a
+fundamental class in homology,
+\[
+[Z]_{\mathrm{hom}}\in H_{2n-2k}(X,\Z).
+\]
+Poincar\'e duality on the compact oriented manifold \(X\) converts it
+into a cohomology class
+\[
+[Z]\;:=\;\mathrm{PD}\bigl([Z]_{\mathrm{hom}}\bigr)
+\in H^{2k}(X,\Z)\subset H^{2k}(X,\Q).
+\]
+Equivalently, \(Z\) defines a closed current of integration: for a
+smooth form \(\varphi\) of degree \(2n-2k\),
+\[
+T_Z(\varphi)\;:=\;\int_{Z^{\mathrm{reg}}}\varphi.
+\]
+The current \(T_Z\) is closed, of type \((k,k)\), and represents the
+same class. Extending by linearity from irreducible subvarieties to
+rational algebraic cycles gives the cycle class map
+\[
+\mathrm{cl}\colon\quad Z^k(X)_{\Q}\;\longrightarrow\; H^{2k}(X,\Q).
+\]
+The image of \(\mathrm{cl}\) is the space of algebraic classes.
+
+\section{Why the class is automatically a Hodge class}
+
+A current of type \((k,k)\) pairs to zero against every form of type
+\((p,q)\) with \((p,q)\neq(n-k,n-k)\). Passing to cohomology, the class
+therefore has vanishing off-diagonal Hodge components:
+\[
+[Z]\in H^{k,k}(X).
+\]
+Combined with rationality,
+\[
+[Z]\in H^{2k}(X,\Q)\cap H^{k,k}(X).
+\]
+That intersection is the definition of a Hodge class. This is the easy
+arrow:
+\[
+\text{geometry }Z\;\longrightarrow\;\text{code }[Z].
+\]
+It holds for every algebraic cycle, with no restriction on \(k\). The
+line ``Geometry \(\to\) code. Always. No exceptions.'' is this theorem.
+
+In codimension one the same class has a second, more explicit name. If
+\(Z\) is a divisor, then
+\[
+[Z]\;=\;c_1\bigl(\mathcal{O}_X(Z)\bigr),
+\]
+the first Chern class of the associated line bundle. The exponential
+sequence produces every integral \((1,1)\) class in this way, and GAGA
+promotes the holomorphic bundle to an algebraic divisor. That is why
+\(k=1\) is settled. There is no analogous exponential sequence for
+\(k\ge 2\).
+
+\section{What decode would mean}
+
+The cycle class map always runs in one direction. Decoding a Hodge class
+would mean inverting \(\mathrm{cl}\) on the Hodge subspace: given
+\[
+\gamma\in H^{2k}(X,\Q)\cap H^{k,k}(X),
+\]
+produce finitely many subvarieties \(Z_i\subset X\) of codimension \(k\)
+and rationals \(a_i\in\Q\) such that
+\[
+\gamma\;=\;\sum_i a_i[Z_i].
+\]
+That is the Hodge conjecture. The map \(\mathrm{cl}\) is known. A
+section of \(\mathrm{cl}\) over the Hodge classes is not known, except
+in the cases
+\begin{itemize}[leftmargin=1.6em]
+\item \(k=1\), by Lefschetz \((1,1)\);
+\item \(k=\dim X-1\), by hard Lefschetz applied to the previous case;
+\item \(\dim X\le 3\), because those two degrees exhaust the interesting
+even cohomology.
+\end{itemize}
+The first open geometric case is a codimension-\(2\) class on a
+fourfold. The class \([Z]\) can be written down whenever \(Z\) is given,
+and cannot in general be reconstructed from \(\gamma\) alone.
+
+\section{The first open case}
+
+Let \(X\) be a general fourfold and let \(\gamma\in\mathrm{Hdg}^2(X)\)
+be arbitrary. The missing object is a finite collection of surfaces
+\(Z_i\subset X\) and rationals \(a_i\in\Q\) such that
+\[
+\gamma\;=\;\sum_i a_i[Z_i].
+\]
+That equality is the Hodge conjecture in its first open case. Writing
+the \(Z_i\) down from \(\gamma\) would be a section of \(\mathrm{cl}\).
+The cycle class map itself is constructed as in the preceding sections.
+
+The two slots are therefore these. A rule \(\gamma\mapsto(Z_i,a_i)\) is
+a section of
+\[
+\mathrm{cl}\colon\mathrm{CH}^2(X)_{\Q}\longrightarrow\mathrm{Hdg}^2(X)
+\]
+on a fourfold. A fourfold \(X\) together with a class
+\(\gamma\in\mathrm{Hdg}^2(X)\setminus\mathrm{im}(\mathrm{cl})\) is a
+counterexample. The Hodge conjecture is the claim that the first object
+exists for every smooth complex projective \(X\), and that the second
+object therefore does not.
+
+The blanks below are filled only on fourfolds where the surfaces are
+classical and the identities can be checked. They cannot be filled for
+a general fourfold. What follows is not a solution of Clay's problem.
+
+\section{Input: the Klein quadric}
+
+Let \(X=Q\) be the Klein quadric in \(\Pspace^5\), with Pl\"ucker
+coordinates \((p_{01}:p_{02}:p_{03}:p_{12}:p_{13}:p_{23})\) and equation
+\begin{equation}
+\label{eq:plucker}
+p_{01}\,p_{23}-p_{02}\,p_{13}+p_{03}\,p_{12}\;=\;0.
+\end{equation}
+This hypersurface is smooth of dimension \(4\). It is
+\(\mathrm{Gr}(2,4)\), the Grassmannian of lines in \(\Pspace^3\).
+Lefschetz hyperplane together with the topology of quadrics gives
+\[
+\dim_{\Q}H^4(Q,\Q)\;=\;2,\qquad H^{3,1}(Q)=H^{1,3}(Q)=0,
+\]
+so every class in \(H^4(Q,\Q)\) is of type \((2,2)\):
+\[
+\mathrm{Hdg}^2(Q)\;=\;H^4(Q,\Q).
+\]
+The Hodge conjecture is a theorem for quadrics. Equivalently,
+\(\mathrm{Gr}(2,4)\) is cellular, its cohomology is spanned by Schubert
+cycles, and every class is algebraic.
+
+\section{Output: two explicit planes}
+
+Write \(\Pspace^3\) with coordinates \([z_0:z_1:z_2:z_3]\).
+
+\paragraph{\(\sigma\)-plane \(\Pi\).}
+Lines through the point \([1:0:0:0]\):
+\begin{equation}
+\label{eq:sigma}
+\Pi\;=\;\bigl\{\,p_{12}=p_{13}=p_{23}=0\,\bigr\}\;\subset\;Q.
+\end{equation}
+This is a linearly embedded \(\Pspace^2\subset Q\). In Schubert notation
+it is the cycle of class \(\sigma_2\).
+
+\paragraph{\(\rho\)-plane \(\Pi'\).}
+Lines contained in the plane \(z_0=0\):
+\begin{equation}
+\label{eq:rho}
+\Pi'\;=\;\bigl\{\,p_{01}=p_{02}=p_{03}=0\,\bigr\}\;\subset\;Q.
+\end{equation}
+This is a second linearly embedded \(\Pspace^2\subset Q\), of the opposite
+family. In Schubert notation it is the cycle of class \(\sigma_{1,1}\).
+
+Let \(h=c_1(\mathcal{O}_Q(1))\). Schubert calculus on \(\mathrm{Gr}(2,4)\)
+gives the identity of classes
+\begin{equation}
+\label{eq:h2}
+h^2\;=\;[\Pi]+[\Pi']
+\end{equation}
+in \(H^4(Q,\Z)\), which is the relation \(\sigma_1^2=\sigma_2+\sigma_{1,1}\).
+The two classes \([\Pi]\) and \([\Pi']\) are linearly independent over
+\(\Q\) and therefore a basis of \(\mathrm{Hdg}^2(Q)\). Their intersection
+numbers are
+\begin{equation}
+\label{eq:int}
+[\Pi]\cdot[\Pi]\;=\;1,\qquad
+[\Pi']\cdot[\Pi']\;=\;1,\qquad
+[\Pi]\cdot[\Pi']\;=\;0.
+\end{equation}
+
+\section{The rule, on this fourfold}
+
+\textbf{Input.} A class \(\gamma\in\mathrm{Hdg}^2(Q)\).
+
+\textbf{Expansion.} On the basis \eqref{eq:h2}--\eqref{eq:int},
+\begin{equation}
+\label{eq:expand}
+\gamma\;=\;a[\Pi]+b[\Pi'],\qquad a,b\in\Q,
+\end{equation}
+where the coefficients are the intersection numbers
+\[
+a\;=\;\gamma\cdot[\Pi],\qquad b\;=\;\gamma\cdot[\Pi'].
+\]
+
+\textbf{Output.} The surfaces \(\Pi,\Pi'\) written in
+\eqref{eq:sigma}--\eqref{eq:rho} and the coefficients \(a,b\).
+
+\begin{lemma}
+\(\gamma=a[\Pi]+b[\Pi']\).
+\end{lemma}
+
+This is the expansion of \(\gamma\) in a basis of algebraic classes.
+
+\begin{lemma}
+The same procedure works for every \(\gamma\in\mathrm{Hdg}^2(Q)\).
+\end{lemma}
+
+Because \(\mathrm{Hdg}^2(Q)=\Q[\Pi]\oplus\Q[\Pi']\).
+
+\begin{theorem}
+\label{thm:quadric}
+Let \(Q\subset\Pspace^5\) be the Klein quadric \eqref{eq:plucker}. The
+assignment
+\[
+\gamma\;\longmapsto\;\bigl(\Pi,\,\Pi',\,\gamma\cdot[\Pi],\,\gamma\cdot[\Pi']\bigr)
+\]
+is a section of
+\(\mathrm{cl}:Z^2(Q)_{\Q}\to\mathrm{Hdg}^2(Q)\).
+\end{theorem}
+
+\section{Two further fourfolds}
+
+If one wants a single surface rather than two families: take
+\(X=\Pspace^4\). Then \(\mathrm{Hdg}^2(\Pspace^4)=\Q\,h^2\), and \(h^2\)
+is the class of any linearly embedded plane
+\begin{equation}
+\label{eq:p4}
+Z\;=\;\bigl\{x_3=x_4=0\bigr\}\;\subset\;\Pspace^4.
+\end{equation}
+The rule is \(\gamma=a[Z]\) with \(a\in\Q\). Every Hodge class on this
+\(X\) is hit.
+
+On \(\Pspace^2\times\Pspace^2\) the same pattern gives three surfaces:
+\(\{\mathrm{pt}\}\times\Pspace^2\), \(\Pspace^2\times\{\mathrm{pt}\}\),
+and a line-times-line \(\Pspace^1\times\Pspace^1\), with classes
+\(h_1^2\), \(h_2^2\), and \(h_1 h_2\). These three classes are a basis of
+\[
+H^4(\Pspace^2\times\Pspace^2,\Q)=\mathrm{Hdg}^2(\Pspace^2\times\Pspace^2).
+\]
+The rule is the expansion of \(\gamma\) on that basis.
+
+\section{What this does not fill}
+
+The remaining demand was that the same procedure work for every
+\(\gamma\) on a general fourfold. The rule above uses that
+\(H^4(Q,\Q)\) is spanned by planes. That fails as soon as the fourfold
+has Hodge classes that are not in the span of those planes.
+
+Two facts must be kept separate.
+
+\begin{enumerate}[leftmargin=1.6em]
+\item A general cubic fourfold \(Y\subset\Pspace^5\) has
+\(h^{3,1}(Y)=1\) and \(h^{2,2}(Y)=21\). The two planes of the Klein
+quadric are not present, and \(H^4(Y,\Q)\) is not spanned by planes.
+The Hodge conjecture in codimension two is nevertheless a theorem for
+cubic fourfolds: Voisin, using the Fano variety of lines and the
+incidence correspondence. For a \emph{very general} cubic one has
+moreover \(\mathrm{Hdg}^2(Y)=\Q\,h^2\) by the Noether--Lefschetz
+theorem in this degree, so the only Hodge class is the hyperplane
+section of a cubic surface.
+\item A very general hypersurface of degree \(d\ge 6\) in \(\Pspace^5\)
+again has \(\mathrm{Hdg}^2=\Q\,h^2\) by Noether--Lefschetz, so the
+Hodge conjecture in codimension two holds for that trivial reason.
+The open content of the conjecture on fourfolds is the existence of a
+constructor for those fourfolds that do carry extra rational Hodge
+classes --- special hypersurfaces, Calabi--Yau fourfolds with
+\(h^{3,1}>0\) and \(\mathrm{rk}\,\mathrm{Hdg}^2>1\), abelian fourfolds
+beyond the known cases, and products not built from curves and
+surfaces.
+\end{enumerate}
+
+On those varieties the constructor is a different geometric object
+(Fano lines for cubics; nothing uniform beyond that). The blanks are
+filled for \(Q^4\), for \(\Pspace^4\), and for
+\(\Pspace^2\times\Pspace^2\). They remain empty for a general fourfold
+in the sense of an arbitrary smooth complex projective fourfold. That
+remaining emptiness is the Hodge conjecture.
+
+\end{document}
