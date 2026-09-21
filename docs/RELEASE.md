@@ -1,28 +1,30 @@
-# Release: the open fourfold sentence
+# Release: classical_fourfolds
 
-Author: Benjamin Stanley Frohman (@BenFrohman).
+Author: Benjamin Stanley Frohman (@BenFrohman). Apache-2.0.
 
-Published claim in `Hodge/Fourfold.lean`:
+The Hodge sentence is discharged on three specified fourfolds X.
 
-```lean
-def HodgeConjecture.general_fourfold
-    (D : Datum Z V N) [IsVariety D] (_h : D.codim = 2) : Prop :=
-  D.HodgeConjecture
-```
+## Specified X
 
-This is the Hodge conjecture in the first open case: every Hodge class
-on a tagged fourfold of codimension 2 is algebraic.
+| X | T_F |
+|---|---|
+| P^4 | T_F(a) = a [Z], Z = {x3 = x4 = 0} |
+| Q^4 subset P^5 | T_F(a,b) = a [Pi] + b [Pi'], Pi = sigma_2, Pi' = sigma_{1,1} |
+| P^2 x P^2 | T_F(a,b,c) = a h1^2 + b h2^2 + c h1 h2 |
 
-It is a `Prop`. It is not a theorem. There is no general `CycleSection`.
-There is no axiom `construct_of_codim_ge_two` on this release.
+Lean term:
 
-## Released as theorems (not the general sentence)
+    HodgeConjecture.classical_fourfolds
 
-- `HodgeConjecture.classical_fourfolds`
-- `CycleSection` on `P^4`, `Q^4`, `P^2 × P^2`
-- `KleinPairing`: numerical Identity B on `Rat × Rat`
+#print axioms: propext, Quot.sound.
 
-## Not released as proved
+On each of these X, every Hodge class in the model is algebraic:
 
-A map `s` sending an arbitrary extra class on an arbitrary fourfold to
-surfaces. That remains the missing term.
+    gamma = sum a_i [Z_i].
+
+That is Hodge for these three specified X.
+
+## Not in this release
+
+An unspecified fourfold is not one of these X.
+This is not a Clay close.
