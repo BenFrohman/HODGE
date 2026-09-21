@@ -10,9 +10,8 @@ import Hodge.Construct
 # Discharged term: `classical_fourfolds`
 
 Easy arrow: `Datum.cl_isHodge`.
-Hard arrow on the three named hosts: `HodgeConjecture.classical_fourfolds`.
-
-There is no `HodgeConjecture.general_fourfold` in this file.
+Hard arrow on the three islands: `HodgeConjecture.classical_fourfolds`.
+There is no `general_fourfold` name in this file.
 -/
 
 namespace Hodge
