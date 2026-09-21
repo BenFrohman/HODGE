@@ -7,3 +7,4 @@ import Hodge.Fourfold
 import Hodge.Classical
 import Hodge.Klein
 import Hodge.Geometry
+import Hodge.Construct
