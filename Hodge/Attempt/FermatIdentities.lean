@@ -25,9 +25,14 @@ theorem fermat_pair_with_remainder (z w ζ : R) :
 theorem fermat_pair_vanishing (z w ζ : R) (hζ : ζ ^ 4 = -1) :
     (z - ζ * w) * (z ^ 3 + ζ * z ^ 2 * w + ζ ^ 2 * z * w ^ 2 + ζ ^ 3 * w ^ 3) =
       z ^ 4 + w ^ 4 := by
-  have h := fermat_pair_with_remainder z w ζ
-  simp [hζ] at h
-  linarith
+  calc
+    (z - ζ * w) * (z ^ 3 + ζ * z ^ 2 * w + ζ ^ 2 * z * w ^ 2 + ζ ^ 3 * w ^ 3) =
+        (z - ζ * w) * (z ^ 3 + ζ * z ^ 2 * w + ζ ^ 2 * z * w ^ 2 + ζ ^ 3 * w ^ 3) +
+          (1 + ζ ^ 4) * w ^ 4 - (1 + ζ ^ 4) * w ^ 4 := by ring
+    _ = z ^ 4 + w ^ 4 - (1 + ζ ^ 4) * w ^ 4 := by
+        rw [← fermat_pair_with_remainder]
+    _ = z ^ 4 + w ^ 4 - (1 + (-1)) * w ^ 4 := by rw [hζ]
+    _ = z ^ 4 + w ^ 4 := by ring
 
 theorem fermat_quartic_contains_Z1 (z0 z1 z2 z3 z4 z5 ζ : R) (hζ : ζ ^ 4 = -1) :
     z0 ^ 4 + z1 ^ 4 + z2 ^ 4 + z3 ^ 4 + z4 ^ 4 + z5 ^ 4 =
