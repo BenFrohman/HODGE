@@ -7,11 +7,12 @@ import Hodge.Classical
 import Hodge.Construct
 
 /-!
-# First open case, as a proposition
+# Discharged theorem: `classical_fourfolds`
 
-No axiom `construct_of_codim_ge_two`.
-`HodgeConjecture.general_fourfold` is a `Prop`. It has no proof term.
-The three classical islands are theorems via `CycleSection`.
+Use this theorem for the three islands. It is proved by `CycleSection`.
+`#print axioms HodgeConjecture.classical_fourfolds` is `propext` and `Quot.sound`.
+
+`HodgeConjecture.general_fourfold` remains a `Prop` with no term.
 -/
 
 namespace Hodge
@@ -50,11 +51,37 @@ theorem HodgeConjecture.classical_fourfolds :
     HodgeConjecture.of_section _,
     HodgeConjecture.of_section _⟩
 
+theorem HodgeConjecture.p4 :
+    Classical.projectiveFourSpace.HodgeConjecture :=
+  HodgeConjecture.classical_fourfolds.1
+
+theorem HodgeConjecture.klein :
+    Classical.kleinQuadric.HodgeConjecture :=
+  HodgeConjecture.classical_fourfolds.2.1
+
+theorem HodgeConjecture.product :
+    Classical.productOfPlanes.HodgeConjecture :=
+  HodgeConjecture.classical_fourfolds.2.2
+
+theorem HodgeConjecture.p4_isVariety :
+    HodgeConjecture.general_fourfold
+      (D := Classical.projectiveFourSpace) (by rfl) :=
+  HodgeConjecture.p4
+
+theorem HodgeConjecture.klein_isVariety :
+    HodgeConjecture.general_fourfold
+      (D := Classical.kleinQuadric) (by rfl) :=
+  HodgeConjecture.klein
+
+theorem HodgeConjecture.product_isVariety :
+    HodgeConjecture.general_fourfold
+      (D := Classical.productOfPlanes) (by rfl) :=
+  HodgeConjecture.product
+
 theorem codim_two_ge_two (D : Datum Z V N) (h : D.codim = 2) :
     2 ≤ D.codim :=
   h ▸ Nat.le_refl 2
 
-/-- Open sentence. Not a theorem. Not an axiom. -/
 def HodgeConjecture.general_fourfold
     (D : Datum Z V N) [IsVariety D] (_h : D.codim = 2) : Prop :=
   D.HodgeConjecture
