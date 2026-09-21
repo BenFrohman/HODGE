@@ -5,28 +5,21 @@ Authors: Ben Frohman (@BenFrohman)
 import Hodge.Basic
 
 /-!
-# The first open case, as a type — not as an axiom
+# Binders for the Hodge conjecture
 
-The source note states the first open case as follows.
+The geometric sentence is:
 
-Let `X` be a general fourfold and let `γ ∈ Hdg²(X)` be arbitrary. The
-missing object is a finite collection of surfaces `Zᵢ ⊂ X` and rationals
-`aᵢ ∈ ℚ` such that `γ = ∑ aᵢ [Zᵢ]`. Writing the `Zᵢ` down from `γ` would
-be a section of `cl`.
+  for every smooth projective complex variety X,
+  for every natural number k,
+  for every class γ in H^{2k}(X, ℚ) ∩ H^{k,k}(X),
+  there exist finitely many codimension-k subvarieties Z_i of X
+  and rationals a_i with γ = ∑ a_i [Z_i].
 
-That paragraph specifies the *type* of `CycleConstructor.construct` on a
-datum of codimension `2`. It does not supply a *term* of that type.
+This file writes that sentence in the only language the skeleton has.
+It does not prove it. It does not assume it.
 
-An earlier version of this file recorded the missing term as
-`axiom construct_of_codim_ge_two`, quantified over every `Datum` with
-`2 ≤ D.codim`. That statement is not the Hodge conjecture. It is false
-as linear algebra: `Examples.zeroCycle` has `codim = 2`, `cl = 0`, and
-`¬ HodgeConjecture`. The axiom plus that example proved `False`.
-
-The correction is to keep the type and drop the assertion. Known cases
-(`Classical.projectiveFourSpace`, `Classical.kleinQuadric`,
-`Classical.productOfPlanes`) still carry `CycleConstructor` instances.
-A general fourfold does not.
+`axiom construct_of_codim_ge_two` is not restored. That axiom said the
+sentence is true for every `Datum`. `Examples.zeroCycle` shows it is not.
 -/
 
 namespace Hodge
@@ -36,24 +29,30 @@ variable {Z V N : Type*}
     [AddCommGroup V] [Module ℚ V]
     [AddCommGroup N] [Module ℚ N]
 
-/-- The open problem, as a proposition on a datum of codimension at least two.
-This is not an axiom and not a theorem. No term is supplied. -/
+/-- One variety, one degree: every Hodge class of `D` is algebraic. -/
 def constructOfCodimGeTwo (D : Datum Z V N) (_h : 2 ≤ D.codim) : Prop :=
   ∀ v ∈ D.hodgeClasses, v ∈ D.algebraicClasses
 
-/-- That proposition is exactly `HodgeConjecture` on the same datum. -/
 theorem constructOfCodimGeTwo_iff (D : Datum Z V N) (h : 2 ≤ D.codim) :
     constructOfCodimGeTwo D h ↔ D.HodgeConjecture :=
   Iff.rfl
 
-/-- If a constructor exists, the conjecture holds. This is the easy direction
-already in `Basic`. It does not produce the constructor. -/
+/-- Same sentence, every degree and every object of an incoming type
+`Variety`. The skeleton does not construct varieties. `datum k X` is
+the caller's packaging of X in degree k as a `Datum`. -/
+def HodgeConjecture.forAll
+    (Variety : Type*)
+    (datum : ℕ → Variety → Datum Z V N) : Prop :=
+  ∀ k X, (datum k X).HodgeConjecture
+
+/-- `CycleConstructor D` is the same sentence restricted to one `D`.
+An instance is a proof for that `D` only. -/
 theorem HodgeConjecture.of_constructor (D : Datum Z V N)
     [CycleConstructor D] : D.HodgeConjecture :=
   hodgeConjecture_of_constructor D
 
-/-- Specialisation to the first open geometric case named in the source note:
-a datum of codimension two. Still a proposition, not a proof. -/
+/-- The three classical toys prove `HodgeConjecture` for those three
+`Datum` values. They are not terms of `HodgeConjecture.forAll`. -/
 def HodgeConjecture.codimTwo (D : Datum Z V N) (_h : D.codim = 2) : Prop :=
   D.HodgeConjecture
 
@@ -61,7 +60,6 @@ theorem HodgeConjecture.codimTwo_iff (D : Datum Z V N) (h : D.codim = 2) :
     HodgeConjecture.codimTwo D h ↔ D.HodgeConjecture :=
   Iff.rfl
 
-/-- From `codim = 2` one has `2 ≤ D.codim` by rewriting. No `omega`. -/
 theorem codim_two_ge_two (D : Datum Z V N) (h : D.codim = 2) :
     2 ≤ D.codim :=
   h ▸ Nat.le_refl 2
