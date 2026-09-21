@@ -22,34 +22,47 @@ Pieri's name for their sum is the hyperplane class:
 Do not use the nickname "σ-plane" as if it meant σ_{1,1}. That is the pun
 already excluded.
 
-## Both identities, both languages
+## Bilingual card: same two identities, two writings
 
-The constructor uses two identities. They have a math writing and a physics
-writing. The writings are equivalent under the dictionary above. Use both.
-Do not bind the constructor to one community's names.
+Use both writings. They are the same two identities on Q^4, not two theorems.
+Do not bind the constructor to one column's names.
+Dictionary: Π = σ_2 = α = star, Π' = σ_{1,1} = β = ruled.
 
-Identity A — the two rulings sum to the hyperplane square.
+**Identity A — the rulings sum to the hyperplane square**
 
-| Math | Physics |
+| Math (constructor) | Physics / Schubert |
 |---|---|
-| h^2 = [Π] + [Π'] | the two families of null 2-planes span the conformal class |
-| σ_1^2 = σ_2 + σ_{1,1} | an α-plane and a β-plane through a point give the light cone |
+| h^2 = [Π] + [Π'] | σ_1^2 = σ_2 + σ_{1,1} |
+| two algebraic planes span H^{2,2} | an α-plane and a β-plane through a point give the light cone |
 
-Identity B — the intersection form on the two-plane basis.
+**Identity B — the intersection form**
 
-| Math | Physics |
+| Math (constructor) | Physics / Schubert |
 |---|---|
-| [Π]² = [Π']² = 1, [Π]·[Π'] = 0 | two α-planes meet in a point; α meets β in a line or not at all |
-| σ_2·σ_2 = σ_{1,1}·σ_{1,1} = 1, σ_2·σ_{1,1} = 0 | same-family planes meet in a Minkowski point; opposite families meet in a light ray |
+| [Π]^2 = [Π']^2 = 1, [Π]·[Π'] = 0 | σ_2·σ_2 = σ_{1,1}·σ_{1,1} = 1, σ_2·σ_{1,1} = 0 |
+| orthogonal Q-basis of Hdg^2(Q) | same family meets in a Minkowski point; opposite families meet in a light ray |
 
-Basis expansion, valid in either language:
+## Both bases
+
+The orthogonal ruling basis both communities already use:
 
     γ = (γ · [Π]) [Π] + (γ · [Π']) [Π']
-        = (γ · σ_2) σ_2 + (γ · σ_{1,1}) σ_{1,1}.
+      = (γ · σ_2) σ_2 + (γ · σ_{1,1}) σ_{1,1}.
 
-That expansion covers every class in H^4(Q, Q) = Hdg^2(Q). It does not
-cover a general fourfold, and it does not cover a general amplituhedron
-A_{n,k,m}. Those are different spaces.
+The duality-adapted basis both communities also use, writing a = γ · [Π]
+and b = γ · [Π']:
+
+    { h^2 , [Π] − [Π'] },
+    γ = ((a+b)/2) h^2 + ((a-b)/2) ([Π] − [Π']).
+
+The first basis is what the constructor writes down. The second is what you
+use when you want a class even under point–plane duality and a class odd
+under it. Together they cover every vector in H^4(Q, Q) = Hdg^2(Q).
+
+That is the whole middle cohomology of this one fourfold. It is not a
+general fourfold, and it is not a general amplituhedron A_{n,k,m}.
+Physics constructions still do not rename the rulings.
+Constructor identities remain incidence-free in docs/CLASSICAL_FOURFOLDS.md.
 
 ## Correspondence objects, with the point/line row unswapped
 
