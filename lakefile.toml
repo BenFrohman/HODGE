@@ -1,6 +1,8 @@
 name = "HODGE"
 defaultTargets = ["Hodge"]
 
+# PIN: do not change these two lines without a matching lean-toolchain bump.
+# Lean 4.22.0  +  mathlib v4.22.0. Not master.
 [[require]]
 name = "mathlib"
 git = "https://github.com/leanprover-community/mathlib4.git"
