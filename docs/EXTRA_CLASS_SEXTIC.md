@@ -1,93 +1,137 @@
-# Extra class on a special non-Fermat sextic
+# Extra class on a special sextic fourfold: verified codimension framework
 
 Author: Benjamin Stanley Frohman (@BenFrohman). Apache-2.0.
 
-Permanent record of the verified *codimension* framework for one
-named plane on one special sextic fourfold in ℙ⁵. This is the easy
-arrow: a plane written into the equation of X. It is not a
-`CycleSection` on an unnamed fourfold. It is not the Fermat sextic.
+Permanent record of the linear-plane count. Not a `CycleSection` on an
+unnamed fourfold. Not a proof of Hodge.
+
 `HodgeConjecture.general_fourfold` stays a `Prop`.
 
-## Verified dimension count in ℙ⁵
+## Ambient dimension
 
-Ambient: ℙ⁵ with coordinates `[x₀ : x₁ : x₂ : x₃ : x₄ : x₅]`.
+Host: a hypersurface fourfold
 
-A linear subspace cut by *r* independent linear forms has dimension
-`5 − r`.
+    X = V(F) ⊂ ℕ^5,    deg F = 6,    dim X = 4.
 
-| Independent linear forms | Locus in ℙ⁵ | Dimension | On a fourfold X ⊂ ℙ⁵ |
-|---|---|---|---|
-| 1 | hyperplane ℙ⁴ | 4 | a threefold if it meets X properly |
-| 2 | linear ℙ³ | 3 | **not a surface**. Two forms do not cut a plane. |
-| 3 | linear ℙ² | 2 | a plane. A surface on X if and only if the plane lies on X. |
-| 4 | line ℙ¹ | 1 | a curve, not a (2,2) cycle |
+Coordinates `[x₀ : x₁ : x₂ : x₃ : x₄ : x₅]`.
 
-A linear plane on X ⊂ ℙ⁵ is **three** independent linear forms whose
-common zero locus Π ≅ ℙ² is contained in X. Two forms cut a ℙ³ in
-ℙ⁵, not a surface on X.
+A linear subspace of dimension `k` in `ℕ^5` is the vanishing of
+`5 − k` independent linear forms.
 
-## The named plane
+| Object in `ℕ^5` | Independent linear forms | Dimension |
+|---|---|---|
+| hyperplane `ℕ^4` | 1 | 4 |
+| `ℕ^3` | 2 | 3 |
+| linear plane `ℕ^2` | **3** | 2 |
+| line `ℕ^1` | 4 | 1 |
+| point | 5 | 0 |
 
-```text
-Π = { x₃ = x₄ = x₅ = 0 } ≅ ℙ²
-I(Π) = ⟨x₃, x₄, x₅⟩
-```
+## Verified count: a linear plane on `X`
 
-Three independent linear forms. No twelfth root. No ζ. No η.
+A **linear plane** `Π ⊂ X` is a linearly embedded `ℕ^2` contained in `X`.
+In the ambient space that means three independent linear forms:
 
-## Structural membership (easy arrow)
+    I(Π) = ⟨L₁, L₂, L₃⟩,    dim Π = 5 − 3 = 2.
 
-Write a degree-6 form that already lies in the plane ideal:
+Containment `Π ⊂ X` is ideal membership `F ∈ I(Π)`, i.e.
 
-```text
-F = x₃ A + x₄ B + x₅ C,    deg A, B, C = 5.
-```
+    F = L₁ A + L₂ B + L₃ C
 
-Then `F ∈ I(Π)` by writing. For a general smooth F of this shape,
-`X = V(F)` is a smooth sextic fourfold containing Π. The class
+with `deg A,B,C = 5`. That identity lives in
+[BenFrohman/FermatPlanes](https://github.com/BenFrohman/FermatPlanes)
+(`Membership.lean` for the quartic host; the same count for a special
+non-Fermat sextic is the writing `F = x₃ A + x₄ B + x₅ C` below).
 
-```text
-γ := [Π] ∈ H⁴(X, ℚ) ∩ H²,²(X)
-```
+Standard coordinate plane used as the extra-class example:
 
-is algebraic by the easy arrow: the plane is in the equation of X.
+    Π = { x₃ = x₄ = x₅ = 0 } ≅ ℕ^2,
+    I(Π) = ⟨x₃, x₄, x₅⟩.
 
-Recorded intersection numbers on this host (geometric note, not a
-Lean Chow-ring theorem):
+No twelfth root is required for this plane. Do not put `ζ` in `I(Π)`.
 
-```text
-[Π] · h² = 1,    h⁴ = 6,    [Π]² = 21 ≠ 1/6.
-```
+## Two forms are not a linear plane
 
-So γ is not a multiple of `h²`. The coefficient is `a = 1`: `γ = 1 · [Π]`.
+Two independent linear forms cut
 
-This host is **not** `∑ z_i⁶ = 0`. Do not put ζ in `I(Π)`.
+    V(L₁, L₂) ≅ ℕ^3 ⊂ ℕ^5.
 
-## What the univariate sextic identity is not
+That is a linear threefold in the ambient space, not a surface on `X`.
 
-`BenFrohman/FermatPlanes/SexticPair.lean` factors one binomial
+`X ∩ ℕ^3` is a degree-6 surface in that `ℕ^3` when the intersection is
+proper. It is **not** a linear plane. Calling that complete intersection
+`Π` is a dimension error.
 
-```text
-z⁶ + w⁶ = (z − ζ w) · cofactor₆ + (1 + ζ⁶) w⁶.
-```
+One univariate factor `z − ζ w` is one form. Two such factors are two
+forms. Neither count is three. The factorization therefore cannot name `Π`.
 
-That identity **terminates** at one linear factor in two variables.
-It does not produce three independent linear forms. It does not cut
-Π. Vanishing at `ζ⁶ = −1` is pair membership on the Fermat sextic
-host only. Ideal membership for planes stays in FermatPlanes.
+## What `Z₁ ⊔ Z₂` is not
 
-## Firewall (do not upgrade)
+On the **Fermat quartic** host, `Z₁` and `Z₂` are two named linear planes
+(`FermatPlanes/LinearPlanes.lean`). Their disjoint union is two algebraic
+cycles. Easy arrow: each `[Z_i]` is Hodge because each `Z_i` is algebraic.
 
-- `Z₁ ⊔ Z₂` is a pair of labeled planes on the cited Fermat *quartic*
-  (`LinearPlanes.lean`, `ζ⁴ = −1`). It is not a `CycleSection`.
-  Disjoint union of two planes is not a section of `cl` on any unnamed
-  fourfold.
-- Invertibility of `1 − ζη` is a ring identity. It does not upgrade
-  `Z₁`, `Z₂`, `Π`, or `SexticPair` to Hodge. It does not produce a
-  term of `HodgeConjecture.general_fourfold`.
-- `CycleSection` in `BenFrohman/HODGE` stays on the named hosts only:
-  `ℙ⁴`, `Q⁴`, `ℙ² × ℙ²`, and the cited Fermat quartic in
-  `Hodge/Fermat.lean`. No instance for this special sextic datum.
-- Membership of F in a plane ideal stays in `BenFrohman/FermatPlanes`.
-- `HodgeConjecture.general_fourfold` stays a `Prop`. No axiom
-  `construct_of_codim_ge_two`.
+`Z₁ ⊔ Z₂` is **not**:
+
+- a `CycleSection` for an arbitrary Hodge class `γ`,
+- a constructor on a general fourfold,
+- a section of `cl` on `HodgeConjecture.general_fourfold`.
+
+`CycleSection` in this repository exists only on named hosts:
+
+- `ℕ^4` — `constructP4`
+- `Q^4` — `construct` (`Π = σ₂`, `Π' = σ_{1,1}`)
+- `ℕ² × ℕ²` — `constructProduct`
+- cited Fermat quartic datum — `Hodge/Fermat.lean` (`cl = id` packaging
+  the Shioda / Aljovin–Movasati–Villaflor spanning statement; coefficients
+  not expanded)
+
+## Invertibility of `1 − ζη` does not upgrade to Hodge
+
+A unit in the coefficient ring (or invertibility of a remainder prefactor)
+is an algebraic identity condition. It does not:
+
+- produce three independent linear forms,
+- prove a class is of type `(2,2)`,
+- supply a `CycleSection`,
+- discharge `HodgeConjecture.general_fourfold`.
+
+## Univariate factorization: termination boundary
+
+Recorded in `FermatPlanes/SexticPair.lean` for the Fermat sextic host
+`∑ z_i^6 = 0`:
+
+    z^6 + w^6
+      = (z − ζ w) · cofactor₆(z,w,ζ) + (1 + ζ^6) w^6.
+
+At `ζ^6 = −1` the remainder vanishes and **one pair** of sixth powers lies
+in the principal ideal `(z − ζ w)`.
+
+**Termination.** That identity factors one pair. It names one linear form.
+It does not name `I(Π)`. It does not glue to a surface. It does not map
+to a splitting rule `s(X, γ)`.
+
+The same boundary for degree 4 is `FermatIdentities.lean` /
+`docs/REMAINDER_CORRECTION.md`: remainder `(1 + ζ^4) w^4` tracks whether
+one named pair lies on the Fermat quartic. It does not track other surfaces
+on other fourfolds.
+
+## Special non-Fermat sextic (easy arrow only)
+
+If `F = x₃ A + x₄ B + x₅ C` with `deg A,B,C = 5` and `X = V(F)` smooth,
+then `Π ⊂ X` by writing. Literature intersection numbers on that host:
+
+    [Π] · h² = 1,    h^4 = 6,    [Π]² = 21 ≠ 1/6.
+
+So `γ := [Π]` is not a multiple of `h²`, and `γ = 1 · [Π]`. That is the
+easy arrow on this one plane. It is not a constructor for every extra
+`(2,2)` class on every degree-≥-6 fourfold.
+
+This host is not `∑ z_i^6 = 0`. Do not mix the two sextics.
+
+## Firewall
+
+- Ideal membership stays in FermatPlanes.
+- `CycleSection` stays on the named hosts listed above.
+- `general_fourfold` stays a `Prop`.
+- No axiom `construct_of_codim_ge_two`.
+- Clay is open.
