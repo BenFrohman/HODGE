@@ -65,3 +65,29 @@ the cycles.
 Not needed for a proof: the axiom. It replaces the missing term with a
 claim. Theorems that use it list `construct_of_codim_ge_two` under
 `#print axioms`.
+
+## Category fix (do not mix these two objects)
+
+Two objects live in two different categories. Renaming does not move
+one into the other.
+
+| Object | What it is | What it can prove | What it cannot prove |
+|---|---|---|---|
+| `Examples.zeroCycle` | A `Datum` with `cl = 0`, `obstruction = 0`, `codim = 2` | `¬ zeroCycle.HodgeConjecture`. Hence `¬ (∀ D, 2 ≤ D.codim → D.HodgeConjecture)`. | Anything about a fourfold. It is not a point of the moduli space of hypersurfaces in `ℝ^5`. |
+| A fourfold `X ⊂ ℝ^5` of degree `d` | A smooth hypersurface, a point of `|ℳ(d)|` | Geometry: Hodge numbers, Noether–Lefschetz, known cases (cubic, uniruled, Fermat, …) | That `zeroCycle` is `X`. |
+
+Correct uses of `zeroCycle`:
+
+- Sentinel for the *skeleton*: do not axiom `HodgeConjecture` for every `Datum`.
+- Consistency check: the guard `IsVariety` must not be placed on `zeroCycle`.
+
+Incorrect uses of `zeroCycle`:
+
+- Call it a general fourfold.
+- Call it a point of the moduli space of `X_d ⊂ ℝ^5`.
+- Conclude `¬ CycleConstructor X` for a geometric fourfold.
+- Treat `(1+ζ^4)w^4` plus `zeroCycle` as a Clay counterexample.
+
+A geometric counterexample would be a specific fourfold `X`, a specific
+class `γ ∈ H^4(X, ℚ) ∩ H^{2,2}(X)` that is not a rational combination of
+surfaces. `zeroCycle` supplies none of those three ingredients.
