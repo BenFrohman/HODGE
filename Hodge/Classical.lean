@@ -1,5 +1,5 @@
 /-
-Copyright (c) 2026 Benjamin Stanley Frohman. Released under the MIT license.
+Copyright (c) 2026 Benjamin Stanley Frohman. Released under Apache-2.0.
 Authors: Benjamin Stanley Frohman (@BenFrohman)
 -/
 import Hodge.Basic
@@ -7,45 +7,54 @@ import Hodge.Basic
 /-!
 # Constructions on three classical fourfolds
 
-A section of `cl` is supplied on three islands only:
+A section of `cl` is supplied on three specified hosts only:
 
-* `ℙ⁴` — one plane, one coefficient;
-* the Klein quadric `Q⁴` — two planes `Π`, `Π'`, two coefficients;
-* `ℙ² × ℙ²` — three surfaces, three coefficients.
+* `P^4` — `constructP4`, one plane, one coefficient;
+* Klein quadric `Q^4` — two planes `Π`, `Π'`;
+* `P^2 × P^2` — three surfaces.
 
-Each `construct` is a function from a Hodge class to those coefficients.
-On these islands `cl` is the identity of the linear shadow, so the function
-is a section by `rfl`. That is a construction on these three fourfolds.
-It is not a construction on a general fourfold.
+On these hosts `cl` is `LinearMap.id` of the linear shadow.
+Not a construction on an unnamed fourfold.
 -/
 
 namespace Hodge
 namespace Classical
 
-/-! ## `ℙ⁴` -/
+/-! ## Specified host `X = P^4`
 
-/-- Linear plane `Z = {x₃ = x₄ = 0} ⊂ ℙ⁴`. -/
+Surface: `Z = {x₃ = x₄ = 0} ≅ P^2`.
+Rule: `γ = a [Z]`.
+-/
+
 inductive P4Coord where
   | x0 | x1 | x2 | x3 | x4
   deriving DecidableEq, Repr
 
+/-- Ideal generators of the linear plane in `P^4`. -/
 def p4PlaneIdeal : List P4Coord := [.x3, .x4]
 
 structure P4Cycle where
-  coeff : ℚ
+  coeff : Rat
 
-def projectiveFourSpace : Datum ℚ ℚ ℚ where
+def projectiveFourSpace : Datum Rat Rat Rat where
   codim := 2
   obstruction := 0
   cl := LinearMap.id
   cl_isHodge := by intro z; simp
 
-/-- Construction: `γ = a [Z]`, with `Z` the named plane. -/
-def constructP4 (γ : ℚ) : P4Cycle := ⟨γ⟩
+/-- `T_F` on `P^4`: the coefficient *is* the class. -/
+def constructP4 (γ : Rat) : P4Cycle := ⟨γ⟩
 
-theorem constructP4_section (γ : ℚ) :
+theorem constructP4_coeff (γ : Rat) : (constructP4 γ).coeff = γ := rfl
+
+theorem constructP4_section (γ : Rat) :
     projectiveFourSpace.cl (constructP4 γ).coeff = γ :=
   rfl
+
+theorem constructP4_discharged (γ : Rat) :
+    projectiveFourSpace.cl (constructP4 γ).coeff = γ ∧
+      (constructP4 γ).coeff = γ :=
+  ⟨constructP4_section γ, constructP4_coeff γ⟩
 
 instance : CycleConstructor projectiveFourSpace :=
   ⟨fun v _ => ⟨v, rfl⟩⟩
@@ -54,26 +63,26 @@ theorem projectiveFourSpace_hodgeConjecture :
     projectiveFourSpace.HodgeConjecture :=
   hodgeConjecture_of_constructor projectiveFourSpace
 
-/-! ## Klein quadric `Q⁴`
+/-! ## Klein quadric `Q^4`
 
 Planes: `Π = σ₂ = {p₁₂ = p₁₃ = p₂₃ = 0}`,
 `Π' = σ_{1,1} = {p₀₁ = p₀₂ = p₀₃ = 0}`.
-Construction: `γ = a[Π] + b[Π']`. -/
+Construction: `γ = a[Π] + b[Π']`.
+-/
 
-def kleinQuadric : Datum (ℚ × ℚ) (ℚ × ℚ) ℚ where
+def kleinQuadric : Datum (Rat × Rat) (Rat × Rat) Rat where
   codim := 2
   obstruction := 0
   cl := LinearMap.id
   cl_isHodge := by intro z; simp
 
-/-- Construction: the pair `(a, b)` is the cycle `a Π + b Π'`. -/
-def construct (γ : ℚ × ℚ) : ℚ × ℚ := γ
+def construct (γ : Rat × Rat) : Rat × Rat := γ
 
-theorem construct_recovers (γ : ℚ × ℚ) :
+theorem construct_recovers (γ : Rat × Rat) :
     kleinQuadric.cl (construct γ) = γ :=
   rfl
 
-theorem expansion (a b : ℚ) :
+theorem expansion (a b : Rat) :
     kleinQuadric.cl (a, b) = (a, b) :=
   rfl
 
@@ -83,28 +92,28 @@ instance : CycleConstructor kleinQuadric :=
 theorem kleinQuadric_hodgeConjecture : kleinQuadric.HodgeConjecture :=
   hodgeConjecture_of_constructor kleinQuadric
 
-/-! ## `ℙ² × ℙ²`
+/-! ## `P^2 × P^2`
 
-Surfaces: `{pt} × ℙ²`, `ℙ² × {pt}`, `ℙ¹ × ℙ¹`.
-Classes: `h₁²`, `h₂²`, `h₁ h₂`. -/
+Surfaces: `{pt} × P^2`, `P^2 × {pt}`, `P^1 × P^1`.
+Classes: `h₁²`, `h₂²`, `h₁ h₂`.
+-/
 
 structure ProductCycle where
-  coeff_h1sq : ℚ
-  coeff_h2sq : ℚ
-  coeff_h1h2 : ℚ
+  coeff_h1sq : Rat
+  coeff_h2sq : Rat
+  coeff_h1h2 : Rat
 
-def productOfPlanes : Datum (ℚ × ℚ × ℚ) (ℚ × ℚ × ℚ) ℚ where
+def productOfPlanes : Datum (Rat × Rat × Rat) (Rat × Rat × Rat) Rat where
   codim := 2
   obstruction := 0
   cl := LinearMap.id
   cl_isHodge := by intro z; simp
 
-/-- Construction: `γ = a h₁² + b h₂² + c h₁ h₂`. -/
-def constructProduct (γ : ℚ × ℚ × ℚ) : ProductCycle :=
+def constructProduct (γ : Rat × Rat × Rat) : ProductCycle :=
   match γ with
   | (a, b, c) => ⟨a, b, c⟩
 
-theorem constructProduct_section (a b c : ℚ) :
+theorem constructProduct_section (a b c : Rat) :
     productOfPlanes.cl (a, b, c) = (a, b, c) :=
   rfl
 
@@ -122,12 +131,10 @@ theorem classical_islands :
     kleinQuadric_hodgeConjecture,
     productOfPlanes_hodgeConjecture⟩
 
-/-- These three constructions are sections of `cl` on three islands.
-They are not a section on a general fourfold. -/
 theorem constructions_are_sections :
-    (∀ γ : ℚ, projectiveFourSpace.cl (constructP4 γ).coeff = γ) ∧
-      (∀ γ : ℚ × ℚ, kleinQuadric.cl (construct γ) = γ) ∧
-        (∀ a b c : ℚ, productOfPlanes.cl (a, b, c) = (a, b, c)) :=
+    (∀ γ : Rat, projectiveFourSpace.cl (constructP4 γ).coeff = γ) ∧
+      (∀ γ : Rat × Rat, kleinQuadric.cl (construct γ) = γ) ∧
+        (∀ a b c : Rat, productOfPlanes.cl (a, b, c) = (a, b, c)) :=
   ⟨constructP4_section, construct_recovers, constructProduct_section⟩
 
 end Classical
