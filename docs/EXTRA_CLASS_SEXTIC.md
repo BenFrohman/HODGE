@@ -54,10 +54,21 @@ itself:
 That is the easy arrow: the surface was written into the equation of `X`.
 It is not a decode of an abstract period class.
 
+## Remainder parametrization: not used here
+
+The Fermat identity
+
+    z^4 + w^4 = (z - ζ w)(…) + (1 + ζ^4) w^4
+
+is a fourth-power factorization on a Fermat host. The sextic plane does not
+use it. Membership is linear:
+
+    F ∈ (x₃, x₄, x₅)
+
+because F was written as x₃ A + x₄ B + x₅ C. There is no ζ and no remainder
+term to match. Do not import the Fermat parametrization into this note.
+
 ## What this is not
 
 It is not a uniform rule that takes an arbitrary `γ ∈ Hdg²(X)` on an
-arbitrary (or even an arbitrary special) fourfold and returns surfaces.
-If `γ` is presented only as a Hodge class — a vector in `H⁴`, not as the
-class of a known subvariety — writing `Z_i` with `γ = ∑ a_i [Z_i]` is
-the Hodge conjecture for that `X`. That constructor is not supplied.
+arbitrary fourfold and returns surfaces. That constructor is not supplied.
