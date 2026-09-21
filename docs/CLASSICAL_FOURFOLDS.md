@@ -14,16 +14,16 @@ Hodge space is declared to be spanned by explicit algebraic generators. It does
 
 ## 1. Projective four-space
 
-Let `X = ℝ⁴` with homogeneous coordinates `[x₀ : x₁ : x₂ : x₃ : x₄]`.
-Then `H⁴(X, ℚ) = ℚ · h²` with `h = c₁(ᵊ_X(1))`, and every class is of type `(2,2)`.
+Let `X = ℙ⁴` with homogeneous coordinates `[x₀ : x₁ : x₂ : x₃ : x₄]`.
+Then `H⁴(X, ℚ) = ℚ · h²` with `h = c₁(O_X(1))`, and every class is of type `(2,2)`.
 
 **Surface.** The linearly embedded plane
 
 ```
-Z = { x₃ = x₄ = 0 } ⊂ ℝ⁴.
+Z = { x₃ = x₄ = 0 } ⊂ ℙ⁴.
 ```
 
-**Rule.** Input `γ ∈ Hdg²(ℝ⁴)`. Write `γ = a [Z]` with `a ∈ ℚ`.
+**Rule.** Input `γ ∈ Hdg²(ℙ⁴)`. Write `γ = a [Z]` with `a ∈ ℚ`.
 Output the single surface `Z` and the coefficient `a`.
 
 **Lemma.** `[Z] = h²`, so `γ = a [Z]`.
@@ -31,9 +31,9 @@ Output the single surface `Z` and the coefficient `a`.
 
 ---
 
-## 2. The Klein quadric `Q⁴ ⊂ ℝ⁵`
+## 2. The Klein quadric `Q⁴ ⊂ ℙ⁵`
 
-Let `X = Q` be the Grassmannian `Gr(2,4)` of lines in `ℝ³`, embedded by Plücker
+Let `X = Q` be the Grassmannian `Gr(2,4)` of lines in `ℙ³`, embedded by Plücker
 coordinates `(p₀₁ : p₀₂ : p₀₃ : p₁₂ : p₁₃ : p₂₃)` as the quadric
 
 ```
@@ -43,50 +43,52 @@ p₀₁ p₂₃ − p₀₂ p₁₃ + p₀₃ p₁₂ = 0.
 This is a smooth Fano fourfold. It is cellular, so `H^{p,q}(Q) = 0` for `p ≠ q`,
 and `dim_ℚ H⁴(Q, ℚ) = 2`. Hence `Hdg²(Q) = H⁴(Q, ℚ)`.
 
-Write `ℝ³` with coordinates `[z₀ : z₁ : z₂ : z₃]`.
+Write `ℙ³` with coordinates `[z₀ : z₁ : z₂ : z₃]`.
 
-**σ-plane** `Π` — lines through the point `[1:0:0:0]`:
+**σ-plane** `Π` — lines through the point `[1:0:0:0]`, Schubert class `σ₂`:
 
 ```
 Π = { p₁₂ = p₁₃ = p₂₃ = 0 } ⊂ Q.
 ```
 
-**ρ-plane** `Π'` — lines contained in the plane `z₀ = 0`:
+**ρ-plane** `Π'` — lines contained in the plane `z₀ = 0`, Schubert class `σ₁₁`:
 
 ```
 Π' = { p₀₁ = p₀₂ = p₀₃ = 0 } ⊂ Q.
 ```
 
-Both are linearly embedded `ℝ² ⊂ Q`, of opposite families. Schubert calculus gives
+Both are linearly embedded `ℙ² ⊂ Q`, of opposite families. Schubert calculus gives
 
 ```
-h² = [Π] + [Π']
+h² = [Π] + [Π'] = σ₂ + σ₁₁
 ```
 
 in `H⁴(Q, ℤ)`, and `{[Π], [Π']}` is a `ℚ`-basis of `Hdg²(Q)`.
+Intersection numbers: `[Π]² = 1`, `[Π']² = 1`, `[Π] · [Π'] = 0`.
 
-**Rule.** Input `γ ∈ Hdg²(Q)`. Expand `γ = a [Π] + b [Π']` with `a, b ∈ ℚ`.
+**Rule.** Input `γ ∈ Hdg²(Q)`. Expand `γ = a [Π] + b [Π']` with
+`a = γ · [Π]`, `b = γ · [Π']`.
 Output the surfaces `Π`, `Π'` and the coefficients `a`, `b`.
 
 **Lemma.** `γ = a [Π] + b [Π']` by the basis expansion.
 **Lemma.** The same procedure works for every Hodge class on this `X`.
 
-Intersection numbers used in the expansion: `[Π]² = 1`, `[Π']² = 1`,
-`[Π] · [Π'] = 0`, and `h⁴ = 2`.
+In Lean this is `Hodge.Classical.construct` and `Hodge.Classical.expansion`
+on the datum `kleinQuadric`.
 
 ---
 
-## 3. The product `ℝ² × ℝ²`
+## 3. The product `ℙ² × ℙ²`
 
-Let `X = ℝ² × ℝ²` with Künneth generators `h₁`, `h₂`.
+Let `X = ℙ² × ℙ²` with Künneth generators `h₁`, `h₂`.
 Then `Hdg²(X) = ℚ h₁² ⊕ ℚ h₂² ⊕ ℚ h₁ h₂`.
 
 **Surfaces.**
 
 ```
-Z₁ = {pt} × ℝ²     (class h₁²)
-Z₂ = ℝ² × {pt}     (class h₂²)
-Z₃ = ℝ¹ × ℝ¹       (class h₁ h₂)
+Z₁ = {pt} × ℙ²     (class h₁²)
+Z₂ = ℙ² × {pt}     (class h₂²)
+Z₃ = ℙ¹ × ℙ¹       (class h₁ h₂)
 ```
 
 **Rule.** Input `γ`. Write `γ = a [Z₁] + b [Z₂] + c [Z₃]`.
@@ -104,8 +106,9 @@ These rules fill the template
 * lemma: the procedure works for every Hodge class on **this** `X`
 
 on three cellular fourfolds. They do **not** fill the same template on a
-general fourfold. A general hypersurface of degree `≥ 6` in `ℝ⁵` has a
-nontrivial primitive `(3,1)` piece; the two-plane basis above does not exist
-there. That remaining case is the Hodge conjecture.
+general fourfold. A very general hypersurface of degree `≥ 6` in `ℙ⁵` has
+`Hdg² = ℚ h²` by Noether–Lefschetz, so the Hodge conjecture holds there for a
+trivial reason; a special fourfold with extra rational Hodge classes is the
+open content. That remaining case is the Hodge conjecture.
 
 `construct_of_codim_ge_two` in `Hodge/Fourfold.lean` remains an axiom.
