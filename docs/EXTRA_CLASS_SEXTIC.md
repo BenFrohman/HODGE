@@ -11,81 +11,81 @@ unnamed fourfold. Not a proof of Hodge.
 
 Host: a hypersurface fourfold
 
-    X = V(F) ⊂ ℕ^5,    deg F = 6,    dim X = 4.
+    X = V(F) subset P^5,    deg F = 6,    dim X = 4.
 
-Coordinates `[x₀ : x₁ : x₂ : x₃ : x₄ : x₅]`.
+Coordinates `[x0 : x1 : x2 : x3 : x4 : x5]`.
 
-A linear subspace of dimension `k` in `ℕ^5` is the vanishing of
-`5 − k` independent linear forms.
+A linear subspace of dimension `k` in `P^5` is the vanishing of
+`5 - k` independent linear forms.
 
-| Object in `ℕ^5` | Independent linear forms | Dimension |
+| Object in `P^5` | Independent linear forms | Dimension |
 |---|---|---|
-| hyperplane `ℕ^4` | 1 | 4 |
-| `ℕ^3` | 2 | 3 |
-| linear plane `ℕ^2` | **3** | 2 |
-| line `ℕ^1` | 4 | 1 |
+| hyperplane `P^4` | 1 | 4 |
+| `P^3` | 2 | 3 |
+| linear plane `P^2` | **3** | 2 |
+| line `P^1` | 4 | 1 |
 | point | 5 | 0 |
 
 ## Verified count: a linear plane on `X`
 
-A **linear plane** `Π ⊂ X` is a linearly embedded `ℕ^2` contained in `X`.
+A **linear plane** `Pi subset X` is a linearly embedded `P^2` contained in `X`.
 In the ambient space that means three independent linear forms:
 
-    I(Π) = ⟨L₁, L₂, L₃⟩,    dim Π = 5 − 3 = 2.
+    I(Pi) = <L1, L2, L3>,    dim Pi = 5 - 3 = 2.
 
-Containment `Π ⊂ X` is ideal membership `F ∈ I(Π)`, i.e.
+Containment `Pi subset X` is ideal membership `F in I(Pi)`, i.e.
 
-    F = L₁ A + L₂ B + L₃ C
+    F = L1 A + L2 B + L3 C
 
 with `deg A,B,C = 5`. That identity lives in
 [BenFrohman/FermatPlanes](https://github.com/BenFrohman/FermatPlanes)
 (`Membership.lean` for the quartic host; the same count for a special
-non-Fermat sextic is the writing `F = x₃ A + x₄ B + x₅ C` below).
+non-Fermat sextic is the writing `F = x3 A + x4 B + x5 C` below).
 
 Standard coordinate plane used as the extra-class example:
 
-    Π = { x₃ = x₄ = x₅ = 0 } ≅ ℕ^2,
-    I(Π) = ⟨x₃, x₄, x₅⟩.
+    Pi = { x3 = x4 = x5 = 0 } isomorphic to P^2,
+    I(Pi) = <x3, x4, x5>.
 
-No twelfth root is required for this plane. Do not put `ζ` in `I(Π)`.
+No twelfth root is required for this plane. Do not put `zeta` in `I(Pi)`.
 
 ## Two forms are not a linear plane
 
 Two independent linear forms cut
 
-    V(L₁, L₂) ≅ ℕ^3 ⊂ ℕ^5.
+    V(L1, L2) isomorphic to P^3 subset P^5.
 
 That is a linear threefold in the ambient space, not a surface on `X`.
 
-`X ∩ ℕ^3` is a degree-6 surface in that `ℕ^3` when the intersection is
+`X cap P^3` is a degree-6 surface in that `P^3` when the intersection is
 proper. It is **not** a linear plane. Calling that complete intersection
-`Π` is a dimension error.
+`Pi` is a dimension error.
 
-One univariate factor `z − ζ w` is one form. Two such factors are two
-forms. Neither count is three. The factorization therefore cannot name `Π`.
+One univariate factor `z - zeta w` is one form. Two such factors are two
+forms. Neither count is three. The factorization therefore cannot name `Pi`.
 
-## What `Z₁ ⊔ Z₂` is not
+## What `Z1 sqcup Z2` is not
 
-On the **Fermat quartic** host, `Z₁` and `Z₂` are two named linear planes
+On the **Fermat quartic** host, `Z1` and `Z2` are two named linear planes
 (`FermatPlanes/LinearPlanes.lean`). Their disjoint union is two algebraic
-cycles. Easy arrow: each `[Z_i]` is Hodge because each `Z_i` is algebraic.
+cycles. Easy arrow: each `[Zi]` is Hodge because each `Zi` is algebraic.
 
-`Z₁ ⊔ Z₂` is **not**:
+`Z1 sqcup Z2` is **not**:
 
-- a `CycleSection` for an arbitrary Hodge class `γ`,
+- a `CycleSection` for an arbitrary Hodge class `gamma`,
 - a constructor on a general fourfold,
 - a section of `cl` on `HodgeConjecture.general_fourfold`.
 
 `CycleSection` in this repository exists only on named hosts:
 
-- `ℕ^4` — `constructP4`
-- `Q^4` — `construct` (`Π = σ₂`, `Π' = σ_{1,1}`)
-- `ℕ² × ℕ²` — `constructProduct`
-- cited Fermat quartic datum — `Hodge/Fermat.lean` (`cl = id` packaging
-  the Shioda / Aljovin–Movasati–Villaflor spanning statement; coefficients
+- `P^4` -- `constructP4`
+- `Q^4` -- `construct` (`Pi = sigma_2`, `Pi' = sigma_{1,1}`)
+- `P^2 x P^2` -- `constructProduct`
+- cited Fermat quartic datum -- `Hodge/Fermat.lean` (`cl = id` packaging
+  the Shioda / Aljovin-Movasati-Villaflor spanning statement; coefficients
   not expanded)
 
-## Invertibility of `1 − ζη` does not upgrade to Hodge
+## Invertibility of `1 - zeta eta` does not upgrade to Hodge
 
 A unit in the coefficient ring (or invertibility of a remainder prefactor)
 is an algebraic identity condition. It does not:
@@ -98,35 +98,35 @@ is an algebraic identity condition. It does not:
 ## Univariate factorization: termination boundary
 
 Recorded in `FermatPlanes/SexticPair.lean` for the Fermat sextic host
-`∑ z_i^6 = 0`:
+`sum z_i^6 = 0` in `P^5`:
 
     z^6 + w^6
-      = (z − ζ w) · cofactor₆(z,w,ζ) + (1 + ζ^6) w^6.
+      = (z - zeta w) * cofactor6(z,w,zeta) + (1 + zeta^6) w^6.
 
-At `ζ^6 = −1` the remainder vanishes and **one pair** of sixth powers lies
-in the principal ideal `(z − ζ w)`.
+At `zeta^6 = -1` the remainder vanishes and **one pair** of sixth powers lies
+in the principal ideal `(z - zeta w)`.
 
 **Termination.** That identity factors one pair. It names one linear form.
-It does not name `I(Π)`. It does not glue to a surface. It does not map
-to a splitting rule `s(X, γ)`.
+It does not name `I(Pi)`. It does not glue to a surface. It does not map
+to a splitting rule `s(X, gamma)`.
 
 The same boundary for degree 4 is `FermatIdentities.lean` /
-`docs/REMAINDER_CORRECTION.md`: remainder `(1 + ζ^4) w^4` tracks whether
+`docs/REMAINDER_CORRECTION.md`: remainder `(1 + zeta^4) w^4` tracks whether
 one named pair lies on the Fermat quartic. It does not track other surfaces
 on other fourfolds.
 
 ## Special non-Fermat sextic (easy arrow only)
 
-If `F = x₃ A + x₄ B + x₅ C` with `deg A,B,C = 5` and `X = V(F)` smooth,
-then `Π ⊂ X` by writing. Literature intersection numbers on that host:
+If `F = x3 A + x4 B + x5 C` with `deg A,B,C = 5` and `X = V(F)` smooth,
+then `Pi subset X` by writing. Literature intersection numbers on that host:
 
-    [Π] · h² = 1,    h^4 = 6,    [Π]² = 21 ≠ 1/6.
+    [Pi] . h^2 = 1,    h^4 = 6,    [Pi]^2 = 21 != 1/6.
 
-So `γ := [Π]` is not a multiple of `h²`, and `γ = 1 · [Π]`. That is the
+So `gamma := [Pi]` is not a multiple of `h^2`, and `gamma = 1 * [Pi]`. That is the
 easy arrow on this one plane. It is not a constructor for every extra
-`(2,2)` class on every degree-≥-6 fourfold.
+`(2,2)` class on every degree->=-6 fourfold.
 
-This host is not `∑ z_i^6 = 0`. Do not mix the two sextics.
+This host is not `sum z_i^6 = 0`. Do not mix the two sextics.
 
 ## Firewall
 
