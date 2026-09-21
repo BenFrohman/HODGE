@@ -42,19 +42,24 @@ A restored axiom `construct_of_codim_ge_two` exists only under the flag
 - A rule `γ ↦ (Z_i, a_i)` on a general fourfold.
 - A Chow ring of `Gr(2,4)` in which `[Π]² = 1` is a theorem.
 
-## Side notes (not the center)
+## Sister repos (notes, not Lean imports)
 
-These are secondary documents, not a proof of the conjecture.
+These are **not** imported by `Hodge.lean`. They do not supply the missing
+general constructor.
+
+- [BenFrohman/FermatPlanes](https://github.com/BenFrohman/FermatPlanes) — easy arrow on the Fermat quartic; remainder identity `(1+ζ^4)w^4`.
+- [BenFrohman/NoetherLefschetz](https://github.com/BenFrohman/NoetherLefschetz) — very general high-degree hosts have no extra Hodge class.
+
+Copies of the Fermat Lean sit under `Hodge/Attempt/` for reading only.
+
+## Side notes (not the center)
 
 - `docs/NAMING.md` — dictionary for the two planes on `Q⁴`
 - `docs/CLASSICAL_FOURFOLDS.md` — constructor identities on the three islands
-- `docs/AMPLITUHEDRON.md` — positive Grassmannians; not a renaming of `Π`, `Π'`
+- `docs/FERMAT_PLANES.md` — remainder identity; Fermat is a special host
+- `docs/EXTRA_CLASS_SEXTIC.md` — special sextic containing a plane
 - `docs/STATUS.md` — what is complete and what is not
-- `docs/FOURFOLD_CLAIM.md` — the guarded axiom
-
-A log-concavity inventory citing Huh, Adiprasito–Huh–Katz, Brändén–Huh, and
-others is a separate exposition. Those theorems are theirs. They are not a
-Hodge proof.
+- `docs/CLOSING_RECORD.md` — inventory of constructors that exist
 
 ## Layout
 
@@ -67,6 +72,7 @@ Hodge/Examples.lean    zeroCycle counter-model
 Hodge/Frontier.lean    Lefschetz (1,1) as hypothesis
 Hodge/Known.lean       scoreboard of known cases
 Hodge/Integral.lean    rational vs integral
+Hodge/Attempt/         sandboxed sketches, not imported
 docs/                  dictionaries and status
 ```
 
