@@ -7,24 +7,25 @@ See `LICENSE` and `NOTICE.md`.
 
 ## Release
 
-Hodge is discharged on three specified fourfolds X.
+```lean
+instance : CycleSection projectiveFourSpace
+instance : CycleSection kleinQuadric
+instance : CycleSection productOfPlanes
+
+theorem HodgeConjecture.classical_fourfolds :
+    HodgeConjecture.ClassicalFourfolds :=
+  ⟨of_section _, of_section _, of_section _⟩
+```
+
+Specified X: `P^4`, `Q^4`, `P^2 × P^2`.
 
 ```lean
 #print axioms Hodge.HodgeConjecture.classical_fourfolds
 ```
 
-| Specified X | Constructor |
-|---|---|
-| `P^4` | `constructP4` |
-| `Q^4` | `construct` (`Pi = sigma_2`, `Pi' = sigma_{1,1}`) |
-| `P^2 x P^2` | `constructProduct` |
+Expected: `propext`, `Quot.sound`.
 
-Proof: `CycleSection`, then `of_section`.
-Expected `#print axioms`: `propext`, `Quot.sound`.
-
-Details: `docs/RELEASE.md`.
-
-An unspecified fourfold is not in this release.
+An unspecified fourfold is not in this conjunction.
 
 ## License
 
