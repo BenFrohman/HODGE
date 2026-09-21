@@ -2,34 +2,13 @@
 
 Author of the repository record: Benjamin Stanley Frohman (@BenFrohman).
 
-These repos supply material that this project uses as *notes*.
-They are not imported by `Hodge.lean`. They do not discharge
-`HodgeConjecture.general_fourfold`.
+Not imported by `Hodge.lean`. Not a discharge of `HodgeConjecture.general_fourfold`.
 
-## [BenFrohman/FermatPlanes](https://github.com/BenFrohman/FermatPlanes)
+| Repo | Subject |
+|---|---|
+| [FermatPlanes](https://github.com/BenFrohman/FermatPlanes) | Easy arrow + remainder on Fermat quartic |
+| [NoetherLefschetz](https://github.com/BenFrohman/NoetherLefschetz) | Very general d ≥ 6 in P^5: Hdg² = Q h² |
+| [CubicFourfold](https://github.com/BenFrohman/CubicFourfold) | d = 3, h^{2,2}=21; Hodge on this family is Zucker 1977 |
 
-What it supplies: the remainder identity
-
-    z^4 + w^4 = (z - ζ w)(…) + (1 + ζ^4) w^4
-
-and the planes Z₁, Z₂ on the Fermat quartic when ζ^4 = -1.
-
-What it does not supply: a CycleSection for a general extra class.
-
-Copies already live in this repo under `Hodge/Attempt/` and
-`docs/FERMAT_PLANES.md`. Leave them there. Do not `import Hodge.Attempt.*`
-in `Hodge.lean`.
-
-## [BenFrohman/NoetherLefschetz](https://github.com/BenFrohman/NoetherLefschetz)
-
-What it supplies: the theorem that a very general *high-degree*
-hypersurface has Hdg² = ℚ h², so the extra-class problem is empty there.
-
-What it does not supply: Hodge on a fourfold that still has extra (2,2)
-classes. Do not replace `construct_of_codim_ge_two` by “rank 1”.
-
-## Why they stay out of Hodge.lean
-
-Fermat is a special host. NL is a different locus. Importing either as a
-module into the core library would look like a discharge of the general
-fourfold sentence. That discharge is not valid.
+Colon ideals, four-factor expansions, ParameterLocus tags stay in FermatPlanes / Attempt.
+No tag `v1.0.0-verified` as a Clay close.
