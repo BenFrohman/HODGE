@@ -1,5 +1,5 @@
 /-
-Copyright (c) 2026 Benjamin Stanley Frohman. Released under Apache-2.0.
+Copyright (c) 2026 Benjamin Stanley Frohman (@BenFrohman). MIT license.
 Authors: Benjamin Stanley Frohman (@BenFrohman)
 -/
 import Hodge.Basic
@@ -7,28 +7,33 @@ import Hodge.Classical
 import Hodge.Construct
 
 /-!
-# First open case, as a proposition
+# Named hypothesis for the first open case
 
-There is no axiom `construct_of_codim_ge_two`.
-The open sentence is `HodgeConjecture.general_fourfold` : Prop.
-It has no proof term. `#print axioms` therefore cannot list an extra axiom
-for it, because it is not a theorem.
+`construct_of_codim_ge_two` is a guarded axiom: `[IsVariety D]` and `2 ≤ D.codim`.
+`#print axioms HodgeConjecture.general_fourfold` lists that axiom.
 
-The three classical islands are theorems via `CycleSection`.
+It is not a `CycleSection`. The unguarded form over every `Datum` is false
+(`Examples.zeroCycle`).
 -/
 
 namespace Hodge
 
 variable {Z V N : Type*}
-    [AddCommGroup Z] [Module Rat Z]
-    [AddCommGroup V] [Module Rat V]
-    [AddCommGroup N] [Module Rat N]
+    [AddCommGroup Z] [Module ℚ Z]
+    [AddCommGroup V] [Module ℚ V]
+    [AddCommGroup N] [Module ℚ N]
 
+/-- A gadget packaged as coming from a variety. Not a scheme. -/
 class IsVariety (D : Datum Z V N) : Prop
 
 instance : IsVariety Classical.projectiveFourSpace := {}
 instance : IsVariety Classical.kleinQuadric := {}
 instance : IsVariety Classical.productOfPlanes := {}
+
+/-- Named hypothesis. Guarded by `IsVariety`. Not a function to cycles. -/
+axiom construct_of_codim_ge_two
+    (D : Datum Z V N) [IsVariety D] (_h : 2 ≤ D.codim) :
+    CycleConstructor D
 
 def constructOfCodimGeTwo (D : Datum Z V N) (_h : 2 ≤ D.codim) : Prop :=
   ∀ v ∈ D.hodgeClasses, v ∈ D.algebraicClasses
@@ -45,6 +50,11 @@ theorem HodgeConjecture.of_section (D : Datum Z V N) [CycleSection D] :
     D.HodgeConjecture :=
   hodgeConjecture_of_constructor D
 
+theorem HodgeConjecture.of_variety_codim_ge_two
+    (D : Datum Z V N) [IsVariety D] (h : 2 ≤ D.codim) :
+    D.HodgeConjecture :=
+  hodgeConjecture_of_constructor D (inst := construct_of_codim_ge_two D h)
+
 theorem HodgeConjecture.classical_fourfolds :
     Classical.projectiveFourSpace.HodgeConjecture ∧
       Classical.kleinQuadric.HodgeConjecture ∧
@@ -57,14 +67,10 @@ theorem codim_two_ge_two (D : Datum Z V N) (h : D.codim = 2) :
     2 ≤ D.codim :=
   h ▸ Nat.le_refl 2
 
-/-- Open sentence. Not a theorem. Not an axiom. -/
-def HodgeConjecture.general_fourfold
-    (D : Datum Z V N) [IsVariety D] (_h : D.codim = 2) : Prop :=
-  D.HodgeConjecture
-
-theorem HodgeConjecture.general_fourfold_iff
+/-- `#print axioms` on this theorem lists `construct_of_codim_ge_two`. -/
+theorem HodgeConjecture.general_fourfold
     (D : Datum Z V N) [IsVariety D] (h : D.codim = 2) :
-    HodgeConjecture.general_fourfold D h ↔ D.HodgeConjecture :=
-  Iff.rfl
+    D.HodgeConjecture :=
+  HodgeConjecture.of_variety_codim_ge_two D (codim_two_ge_two D h)
 
 end Hodge
