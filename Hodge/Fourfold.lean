@@ -7,16 +7,14 @@ import Hodge.Classical
 import Hodge.Construct
 
 /-!
-# Open case, no axiom
+# First open case, as a proposition
 
-`construct_of_codim_ge_two` is not an axiom. The sentence is a `Prop`.
-There is no term of that `Prop` for a general fourfold.
+There is no axiom `construct_of_codim_ge_two`.
+The open sentence is `HodgeConjecture.general_fourfold` : Prop.
+It has no proof term. `#print axioms` therefore cannot list an extra axiom
+for it, because it is not a theorem.
 
-`#print axioms HodgeConjecture.classical_fourfolds` does not list a
-project axiom: the three islands have `CycleSection` instances.
-
-`HodgeConjecture.general_fourfold` is the same sentence as a definition.
-It is not a theorem. `#print axioms` is not run on a definition.
+The three classical islands are theorems via `CycleSection`.
 -/
 
 namespace Hodge
@@ -32,7 +30,6 @@ instance : IsVariety Classical.projectiveFourSpace := {}
 instance : IsVariety Classical.kleinQuadric := {}
 instance : IsVariety Classical.productOfPlanes := {}
 
-/-- Open sentence. Not an axiom. Not a theorem. -/
 def constructOfCodimGeTwo (D : Datum Z V N) (_h : 2 ≤ D.codim) : Prop :=
   ∀ v ∈ D.hodgeClasses, v ∈ D.algebraicClasses
 
@@ -60,9 +57,9 @@ theorem codim_two_ge_two (D : Datum Z V N) (h : D.codim = 2) :
     2 ≤ D.codim :=
   h ▸ Nat.le_refl 2
 
-/-- The open case, as a proposition. No axiom. No proof. -/
+/-- Open sentence. Not a theorem. Not an axiom. -/
 def HodgeConjecture.general_fourfold
-    (D : Datum Z V N) [IsVariety D] (h : D.codim = 2) : Prop :=
+    (D : Datum Z V N) [IsVariety D] (_h : D.codim = 2) : Prop :=
   D.HodgeConjecture
 
 theorem HodgeConjecture.general_fourfold_iff

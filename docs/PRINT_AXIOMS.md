@@ -1,23 +1,19 @@
-# What `#print axioms` will actually list
+# What `#print axioms` lists
 
-Author: Benjamin Stanley Frohman (@BenFrohman).
+Author: Benjamin Stanley Frohman. Apache-2.0.
 
-Do not import `NoetherLefschetz` from this repo. Sister project.
-There is no `lefschetz_one_one_theorem` and no `noether_lefschetz_vacuous_locus`.
-
-After `lake build`, in a file that imports `Hodge.Fourfold`:
-
-    #print axioms Hodge.HodgeConjecture.general_fourfold
-
-Expected: `construct_of_codim_ge_two` (and standard logic axioms).
-That is Row 2: a promise, not a construction.
+`construct_of_codim_ge_two` is deleted. It is not an axiom and not a theorem.
 
     #print axioms Hodge.HodgeConjecture.classical_fourfolds
 
-Expected: no `construct_of_codim_ge_two` if the islands go through `CycleSection`.
+Expected: no extra axiom. Proof goes through `CycleSection` on the three
+islands.
 
-Codim 1: `#print axioms Hodge.hodgeConjecture_codim_one` lists whatever
-`LefschetzOneOne` used — that class is a hypothesis in `Hodge/Frontier.lean`.
+    #print axioms Hodge.HodgeConjecture.general_fourfold
 
-NL (other repo): `#print axioms NoetherLefschetz.no_extra_on_nl_locus`
-lists `noether_lefschetz`.
+This is a `def` of type `Prop`, not a theorem. Lean will not print a
+proof-axiom list for a definition of a proposition. There is no term to
+discharge.
+
+That is not a proof of the Hodge conjecture. It is the removal of a
+hypothesis that was standing in for a missing constructor.
