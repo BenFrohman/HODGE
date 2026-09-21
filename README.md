@@ -1,122 +1,74 @@
 # HODGE
 
-**Author and code owner:** Ben Frohman (@BenFrohman)
+**Author:** Benjamin Stanley Frohman (@BenFrohman)
 
-A Lean 4 formalization of the **statement** of the Hodge conjecture, and of the
-exact point where the standard argument stops generalizing.
+## Center: the open problem
 
-> **Verification status: UNVERIFIED AT AUTHORING TIME.**
-> This code was written in an environment with no Lean toolchain and no network
-> access. It has never been compiled. The first CI run on push is the
-> verification event, and it may fail on Mathlib API drift. Do not cite anything
-> here until the `verify` workflow is green. See
-> [`certificates/CLAIMS.md`](certificates/CLAIMS.md).
+Let `X` be a general fourfold and let `γ ∈ Hdg²(X)` be arbitrary. The missing
+object is a finite collection of surfaces `Z_i ⊂ X` and rationals `a_i ∈ ℚ`
+such that
 
-## The claim, in one line
-
-Let `X` be a smooth projective complex variety. Every Hodge class in
-`H^{2k}(X, ℚ) ∩ H^{k,k}(X)` is a `ℚ`-linear combination of classes of algebraic
-subvarieties of codimension `k`.
-
-## Video companion
-
-The explainer video stops at the statement and the scoreboard of known cases.
-[`docs/VIDEO_EXPLANATION.md`](docs/VIDEO_EXPLANATION.md) finishes it:
-
-- Step 06 — implications (motives, standard conjectures, periods)
-- Step 07 — why \(k=1\), \(k=\dim X-1\), and \(\dim X\le 3\) actually work
-- Step 08 — the versions that fail (integral, original form, non-projective Kähler)
-- Step 09 — resolution status: **open**. No proof. No counterexample.
-- Step 10 — dictionary from the video to the Lean interface
-
-Nothing in that document, and nothing in this repository, proves the conjecture.
-
-## What this repository actually does
-
-It builds a minimal interface — `Hodge.Datum` — carrying exactly the data needed
-to state that claim:
-
-```lean
-structure Datum (Z V N : Type*) [...] where
-  codim       : ℕ                  -- the k in H^{2k}
-  obstruction : V →ₗ[ℚ] N          -- projection onto the off-diagonal Hodge pieces
-  cl          : Z →ₗ[ℚ] V          -- the cycle class map
-  cl_isHodge  : ∀ z, obstruction (cl z) = 0   -- geometry ⇒ Hodge class
+```
+γ = ∑ a_i [Z_i].
 ```
 
-`hodgeClasses = ker obstruction`, `algebraicClasses = range cl`, and
+That equality is the Hodge conjecture in its first open case. Writing the
+`Z_i` down from `γ` would be a section of `cl`. That section is not in this
+repository. There is no general Hodge proof here.
+
+Lean records the sentence as a proposition, not as a theorem:
 
 ```lean
-def HodgeConjecture : Prop := D.hodgeClasses ≤ D.algebraicClasses
+def constructOfCodimGeTwo (D : Datum Z V N) (_h : 2 ≤ D.codim) : Prop :=
+  ∀ v ∈ D.hodgeClasses, v ∈ D.algebraicClasses
 ```
 
-Then it proves every formal consequence — and only those. The whole
-mathematical content is quarantined in one class with no instance:
+A restored axiom `construct_of_codim_ge_two` exists only under the flag
+`IsVariety`. That is a hypothesis. It is not a construction of the surfaces.
 
-```lean
-class CycleConstructor (D : Datum Z V N) : Prop where
-  construct : ∀ v ∈ D.hodgeClasses, v ∈ D.algebraicClasses
-```
+## What is proved here
 
-`hodgeConjecture_of_constructor` proves the conjecture from it in three lines.
-`constructor_of_hodgeConjecture` proves the converse, so the quarantine is
-faithful: the hypothesis is equivalent to the conjecture, not stronger than it.
-For `codim = 1` an instance exists in real mathematics (Lefschetz (1,1), 1924).
-For `codim ≥ 2` no instance is known to anyone. That gap is the Millennium
-problem, and here it is a slot in a typeclass.
+- The easy arrow: algebraic classes are Hodge classes (`cl_isHodge`).
+- A section of `cl` on three classical fourfolds only:
+  `ℙ⁴`, `Q⁴ = Gr(2,4)`, and `ℙ² × ℙ²` (`Hodge/Classical.lean`).
+- On `Q⁴`, the section is `γ = (γ · [Π])[Π] + (γ · [Π'])[Π']`
+  with `Π = σ₂` and `Π' = σ_{1,1}`.
+- `Examples.zeroCycle` shows that the same sentence on an arbitrary `Datum`
+  of codimension 2 is false as linear algebra.
 
-The sharpest formal observation in the repository is
-`hodgeConjecture_codim_blind`: no proof in the skeleton ever uses `codim`. The
-linear algebra cannot tell the solved case from the open one. Whatever solves
-this will not be soft.
+## What is not proved here
+
+- The Hodge conjecture.
+- A rule `γ ↦ (Z_i, a_i)` on a general fourfold.
+- A Chow ring of `Gr(2,4)` in which `[Π]² = 1` is a theorem.
+
+## Side notes (not the center)
+
+These are secondary documents, not a proof of the conjecture.
+
+- `docs/NAMING.md` — dictionary for the two planes on `Q⁴`
+- `docs/CLASSICAL_FOURFOLDS.md` — constructor identities on the three islands
+- `docs/AMPLITUHEDRON.md` — positive Grassmannians; not a renaming of `Π`, `Π'`
+- `docs/STATUS.md` — what is complete and what is not
+- `docs/FOURFOLD_CLAIM.md` — the guarded axiom
+
+A log-concavity inventory citing Huh, Adiprasito–Huh–Katz, Brändén–Huh, and
+others is a separate exposition. Those theorems are theirs. They are not a
+Hodge proof.
 
 ## Layout
 
 ```
-Hodge/Basic.lean      interface, Hodge classes, cycle classes, the statement
-Hodge/Frontier.lean   the missing input, isolated; Lefschetz (1,1) as hypothesis
-Hodge/Known.lean      hard Lefschetz + dim ≤ 3 as hypotheses; scoreboard of known cases
-Hodge/Integral.lean   rational vs integral separated in a toy model
-Hodge/Examples.lean   two instantiations + axiom audit (#print axioms)
-docs/VIDEO_EXPLANATION.md  companion to the explainer video: implications and resolution
-scripts/              bootstrap, sorry-check, certificate generation, push
-certificates/         provenance hashes, claims, CI build certificate
+Hodge/Basic.lean       statement interface
+Hodge/Fourfold.lean    open case, guarded axiom, IsVariety
+Hodge/Classical.lean   constructions on three islands
+Hodge/Klein.lean       named Plücker data
+Hodge/Examples.lean    zeroCycle counter-model
+Hodge/Frontier.lean    Lefschetz (1,1) as hypothesis
+Hodge/Known.lean       scoreboard of known cases
+Hodge/Integral.lean    rational vs integral
+docs/                  dictionaries and status
 ```
-
-## Build
-
-```bash
-bash scripts/bootstrap.sh   # pins the toolchain to Mathlib master, fetches cache
-lake build
-bash scripts/certify.sh     # writes certificates/BUILD_CERTIFICATE.md
-```
-
-`lean-toolchain` as committed is a **placeholder guess**. `bootstrap.sh`
-overwrites it with whatever Mathlib master currently requires; run it first or
-the build will fail for uninteresting reasons.
-
-## Certificates
-
-Two kinds, deliberately distinguished:
-
-- **Provenance** (`certificates/PROVENANCE.json`) — SHA-256 of every source file
-  at authoring time. Generated offline. Certifies *what was written*, nothing more.
-- **Build certificate** (`certificates/BUILD_CERTIFICATE.md`) — generated by CI
-  after a successful `lake build`. Records the toolchain, the Mathlib revision,
-  the absence of `sorry` / `admit` / `native_decide`, and the axiom audit. A
-  clean audit shows only `propext`, `Classical.choice`, `Quot.sound`.
-
-A green certificate means: *the implications are checked from nothing but logic.*
-It does not mean any hypothesis is true. The interesting one never is.
-
-## Honest assessment
-
-This is a statement-level formalization. It is worth roughly what a precise
-problem specification is worth: it prevents equivocation, it makes the gap
-explicit and machine-visible, and it gives any future attempt a place to land.
-It contributes zero mathematics toward the conjecture. Formalizing the
-codimension-one case for real — exponential sequence, GAGA, divisors — is a
-multi-year project against a Mathlib that does not yet have the prerequisites.
 
 ## License
 
