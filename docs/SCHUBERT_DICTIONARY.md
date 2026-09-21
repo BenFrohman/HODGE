@@ -47,6 +47,26 @@ Those identities are symmetric in `Π` and `Π'`. Coefficients
 the Lean datum is therefore blind to the labels. Only the incidence conditions
 distinguish them.
 
+**Index conventions.** Some authors index Schubert varieties by strictly
+increasing pairs `1 ≤ a1 < a2 ≤ 4` rather than by partitions in a `2×2` box.
+On `Gr(2,4)` the conversion is
+
+```
+λ_i = (n-k) + i - a_i
+```
+
+which sends
+
+```
+(1,4)  →  (2,0)  = σ_2
+(2,3)  →  (1,1)  = σ_{1,1}
+```
+
+The same pairs written 0-based (`0 ≤ b1 < b2 ≤ 3`) are `(0,3)` and `(1,2)`.
+Getting that line backwards, mixing a 0-based pair with a 1-based pair, or
+converting with `λ_i = a_i - i` instead of `λ_i = (n-k)+i-a_i`, swaps the two
+middle classes again. It is another naming map, not another identity.
+
 ## How to check, every time
 
 Ignore the letter in front of "plane." Ask one question: what does a general
