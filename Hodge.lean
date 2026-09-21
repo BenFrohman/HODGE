@@ -1,3 +1,8 @@
+/-
+Core library. Do not import Hodge.Attempt.* here.
+Fermat planes and other sketches do not discharge
+HodgeConjecture.general_fourfold.
+-/
 import Hodge.Basic
 import Hodge.Frontier
 import Hodge.Integral
