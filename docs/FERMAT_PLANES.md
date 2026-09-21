@@ -46,5 +46,7 @@ Z₂ = V(z₀ + ζ z₁, z₂ - ζ z₃, z₄ - ζ z₅), first pair at -ζ:
 ## 4. Boundaries
 
 - Easy arrow: [Z_i] is Hodge because Z_i is algebraic.
-- A very general high-degree fourfold in ℙ^5 has no extra class (NL, other repo).
-- A special host such as Fermat can have extra planes; that does not prove Hodge in general.
+- Noether–Lefschetz is recorded as a theorem about a *very general high-degree*
+  hypersurface, not as “a very general quartic.”
+- Fermat is the special host where these planes exist.
+- A special host with extra planes does not prove Hodge on a general fourfold.
