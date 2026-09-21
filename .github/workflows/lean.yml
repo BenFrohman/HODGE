@@ -1,0 +1,21 @@
+name: Lean
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+# Typechecks Hodge.lean. Does not prove the Hodge conjecture.
+# Attempt/ sketches are not imported and are not this job's target.
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build Hodge
+        uses: leanprover/lean-action@v1
+        with:
+          use-mathlib-cache: true
+          test: false
+          build-args: Hodge
