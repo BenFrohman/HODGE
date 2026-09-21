@@ -5,18 +5,22 @@ Authors: Benjamin Stanley Frohman (@BenFrohman)
 import Hodge.Basic
 
 /-!
-# The variety quantifier
+# The variety quantifier, and the restored axiom
 
-The Hodge conjecture, as this skeleton can write it:
+The unrestricted claim
 
-  for every gadget `D` that is a variety, `D.HodgeConjecture`.
+  ∀ D, 2 ≤ D.codim → CycleConstructor D
 
-That is not "for every gadget." `Examples.zeroCycle` is a gadget and the
-sentence fails on it. The deleted axiom said the sentence for every gadget.
-That axiom is not restored.
+was deleted because it is false: `Examples.zeroCycle` has `codim = 2`,
+`cl = 0`, and `¬ HodgeConjecture`. That axiom plus that example proved
+`False`.
 
+The name `construct_of_codim_ge_two` is restored under a guard.
 `IsVariety D` is a flag the caller attaches to a `Datum` that is supposed
 to come from a smooth projective complex variety. The flag is not a scheme.
+`zeroCycle` does not receive the flag, so the axiom does not apply to it.
+
+This is still an axiom, not a construction of surfaces from a Hodge class.
 -/
 
 namespace Hodge
@@ -37,10 +41,21 @@ theorem constructOfCodimGeTwo_iff (D : Datum Z V N) (h : 2 ≤ D.codim) :
     constructOfCodimGeTwo D h ↔ D.HodgeConjecture :=
   Iff.rfl
 
-/-- Correct quantifier: every *variety*-gadget satisfies the sentence.
-Not every gadget. No axiom. No term. -/
+/-- Restored axiom: every *variety*-gadget of codimension at least two
+has a `CycleConstructor`. Not every gadget. `zeroCycle` is not a variety. -/
+axiom construct_of_codim_ge_two
+    (D : Datum Z V N) [IsVariety D] (h : 2 ≤ D.codim) :
+    CycleConstructor D
+
+/-- Correct quantifier, now discharged by the guarded axiom. -/
+theorem HodgeConjecture.forVarieties_of_codim_ge_two
+    (D : Datum Z V N) [IsVariety D] (h : 2 ≤ D.codim) :
+    D.HodgeConjecture :=
+  hodgeConjecture_of_constructor D
+
+/-- Same sentence without the codimension lower bound: still only varieties. -/
 def HodgeConjecture.forVarieties : Prop :=
-  ∀ (D : Datum Z V N), IsVariety D → D.HodgeConjecture
+  ∀ (D : Datum Z V N), [IsVariety D] → D.HodgeConjecture
 
 /-- Same sentence over an incoming type the caller calls `Variety`. -/
 def HodgeConjecture.forAll
@@ -48,8 +63,6 @@ def HodgeConjecture.forAll
     (datum : ℕ → Variety → Datum Z V N) : Prop :=
   ∀ k X, (datum k X).HodgeConjecture
 
-/-- If `D` is flagged as a variety and has a constructor, the sentence holds.
-The constructor is still the missing term. -/
 theorem HodgeConjecture.of_variety_constructor
     (D : Datum Z V N) [IsVariety D] [CycleConstructor D] :
     D.HodgeConjecture :=
