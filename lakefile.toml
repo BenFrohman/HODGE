@@ -8,3 +8,7 @@ rev = "master"
 
 [[lean_lib]]
 name = "Hodge"
+
+# Sandbox. Not the Clay sentence. Build with: lake build HodgeAttempt
+[[lean_lib]]
+name = "HodgeAttempt"
