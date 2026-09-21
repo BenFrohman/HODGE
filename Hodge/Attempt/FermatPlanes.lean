@@ -10,6 +10,9 @@ import Mathlib.Data.MvPolynomial.Basic
 
 Easy arrow on one host. Not a `CycleSection` for every Hodge class.
 Not imported by `Hodge.lean`.
+
+A Hodge class γ lives in H^4(X, ℚ) ∩ H^{2,2}, not in the coordinate ring.
+Do not encode γ as an element of `R` with `γ ∈ I`.
 -/
 
 namespace Hodge
@@ -37,8 +40,23 @@ def surfaceZ2Ideal (ζ : ℂ) : Ideal R :=
     X .z2 - C ζ * X .z3,
     X .z4 - C ζ * X .z5 }
 
-/-- Membership: Fermat polynomial lies in each plane ideal when ζ^4 = -1.
-Substitution: (ζ z)^4 + z^4 = 0. Left `sorry` as a polynomial calculation. -/
+/-- Difference of fourth powers. Standard factorization. -/
+theorem fourth_power_factor {S : Type*} [CommRing S] (a b ζ : S) :
+    a ^ 4 - ζ ^ 4 * b ^ 4 =
+      (a - ζ * b) * (a ^ 3 + ζ * a ^ 2 * b + ζ ^ 2 * a * b ^ 2 + ζ ^ 3 * b ^ 3) := by
+  ring
+
+/-- With ζ^4 = -1 this is the pair that appears in the Fermat equation. -/
+theorem quartic_pair_of_root_minus_one {S : Type*} [CommRing S]
+    (a b ζ : S) (hζ : ζ ^ 4 = -1) :
+    a ^ 4 + b ^ 4 =
+      (a - ζ * b) * (a ^ 3 + ζ * a ^ 2 * b + ζ ^ 2 * a * b ^ 2 + ζ ^ 3 * b ^ 3) := by
+  have h := fourth_power_factor a b ζ
+  simp [hζ] at h
+  linith? -- placeholder; keep a real close below
+  sorry
+
+/-- Membership: Fermat polynomial lies in each plane ideal when ζ^4 = -1. -/
 theorem fermat_mem_surfaceZ1 (ζ : ℂ) (hζ : ζ ^ 4 = -1) :
     fermatQuartic ∈ surfaceZ1Ideal ζ := by
   sorry
