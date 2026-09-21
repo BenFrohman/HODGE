@@ -55,7 +55,7 @@ Two independent linear forms cut
 
     V(L1, L2) isomorphic to P^3 subset P^5.
 
-That is a linear threefold in the ambient space, not a surface on `X`.
+That is a linear threefold in the ambient space, not a linear plane on `X`.
 
 `X cap P^3` is a degree-6 surface in that `P^3` when the intersection is
 proper. It is **not** a linear plane. Calling that complete intersection
