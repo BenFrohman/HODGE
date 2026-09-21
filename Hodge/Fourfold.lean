@@ -7,12 +7,11 @@ import Hodge.Classical
 import Hodge.Construct
 
 /-!
-# Prop and term
+# Two sentences
 
-`HodgeConjecture.ClassicalFourfolds` is the Prop.
-`HodgeConjecture.classical_fourfolds` is the term that discharges it.
-Proof: `of_section` on P^4, Q^4, P^2 × P^2.
-No `general_fourfold` name.
+`ClassicalFourfolds` — discharged on three specified hosts.
+`general_fourfold D h` — the Hodge claim at codim 2 for an arbitrary datum.
+The second is a `Prop`. It has no term. It is not a conjunct of the first.
 -/
 
 namespace Hodge
@@ -30,13 +29,11 @@ theorem HodgeConjecture.of_section (D : Datum Z V N) [CycleSection D] :
     D.HodgeConjecture :=
   hodgeConjecture_of_constructor D
 
-/-- The three-island sentence. -/
 def HodgeConjecture.ClassicalFourfolds : Prop :=
   Classical.projectiveFourSpace.HodgeConjecture ∧
     Classical.kleinQuadric.HodgeConjecture ∧
       Classical.productOfPlanes.HodgeConjecture
 
-/-- Term that discharges `ClassicalFourfolds`. -/
 theorem HodgeConjecture.classical_fourfolds :
     HodgeConjecture.ClassicalFourfolds :=
   ⟨HodgeConjecture.of_section _,
@@ -54,5 +51,16 @@ theorem HodgeConjecture.klein :
 theorem HodgeConjecture.product :
     Classical.productOfPlanes.HodgeConjecture :=
   HodgeConjecture.classical_fourfolds.2.2
+
+/-- The Hodge claim at codimension 2: every Hodge class is algebraic.
+This is `D.HodgeConjecture`. No term for unspecified `D`. -/
+def HodgeConjecture.general_fourfold
+    (D : Datum Z V N) (_h : D.codim = 2) : Prop :=
+  D.HodgeConjecture
+
+theorem HodgeConjecture.general_fourfold_iff
+    (D : Datum Z V N) (h : D.codim = 2) :
+    HodgeConjecture.general_fourfold D h ↔ D.HodgeConjecture :=
+  Iff.rfl
 
 end Hodge
