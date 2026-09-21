@@ -14,4 +14,5 @@ import Hodge.Classical
 import Hodge.Klein
 import Hodge.Geometry
 import Hodge.Construct
+import Hodge.Fermat
 import Hodge.Verify
