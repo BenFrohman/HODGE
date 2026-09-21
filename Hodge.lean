@@ -4,3 +4,4 @@ import Hodge.Integral
 import Hodge.Known
 import Hodge.Examples
 import Hodge.Fourfold
+import Hodge.Classical
