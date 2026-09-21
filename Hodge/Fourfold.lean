@@ -7,11 +7,12 @@ import Hodge.Classical
 import Hodge.Construct
 
 /-!
-# Discharged term: `classical_fourfolds`
+# Prop and term
 
-Easy arrow: `Datum.cl_isHodge`.
-Hard arrow on the three islands: `HodgeConjecture.classical_fourfolds`.
-There is no `general_fourfold` name in this file.
+`HodgeConjecture.ClassicalFourfolds` is the Prop.
+`HodgeConjecture.classical_fourfolds` is the term that discharges it.
+Proof: `of_section` on P^4, Q^4, P^2 × P^2.
+No `general_fourfold` name.
 -/
 
 namespace Hodge
@@ -29,10 +30,15 @@ theorem HodgeConjecture.of_section (D : Datum Z V N) [CycleSection D] :
     D.HodgeConjecture :=
   hodgeConjecture_of_constructor D
 
+/-- The three-island sentence. -/
+def HodgeConjecture.ClassicalFourfolds : Prop :=
+  Classical.projectiveFourSpace.HodgeConjecture ∧
+    Classical.kleinQuadric.HodgeConjecture ∧
+      Classical.productOfPlanes.HodgeConjecture
+
+/-- Term that discharges `ClassicalFourfolds`. -/
 theorem HodgeConjecture.classical_fourfolds :
-    Classical.projectiveFourSpace.HodgeConjecture ∧
-      Classical.kleinQuadric.HodgeConjecture ∧
-        Classical.productOfPlanes.HodgeConjecture :=
+    HodgeConjecture.ClassicalFourfolds :=
   ⟨HodgeConjecture.of_section _,
     HodgeConjecture.of_section _,
     HodgeConjecture.of_section _⟩
