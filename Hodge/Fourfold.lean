@@ -1,25 +1,22 @@
 /-
-Copyright (c) 2026 Ben Frohman (@BenFrohman). Released under the MIT license.
-Authors: Ben Frohman (@BenFrohman)
+Copyright (c) 2026 Benjamin Stanley Frohman. Released under Apache-2.0.
+Authors: Benjamin Stanley Frohman (@BenFrohman)
 -/
 import Hodge.Basic
 
 /-!
-# Binders for the Hodge conjecture
+# The variety quantifier
 
-The geometric sentence is:
+The Hodge conjecture, as this skeleton can write it:
 
-  for every smooth projective complex variety X,
-  for every natural number k,
-  for every class γ in H^{2k}(X, ℚ) ∩ H^{k,k}(X),
-  there exist finitely many codimension-k subvarieties Z_i of X
-  and rationals a_i with γ = ∑ a_i [Z_i].
+  for every gadget `D` that is a variety, `D.HodgeConjecture`.
 
-This file writes that sentence in the only language the skeleton has.
-It does not prove it. It does not assume it.
+That is not "for every gadget." `Examples.zeroCycle` is a gadget and the
+sentence fails on it. The deleted axiom said the sentence for every gadget.
+That axiom is not restored.
 
-`axiom construct_of_codim_ge_two` is not restored. That axiom said the
-sentence is true for every `Datum`. `Examples.zeroCycle` shows it is not.
+`IsVariety D` is a flag the caller attaches to a `Datum` that is supposed
+to come from a smooth projective complex variety. The flag is not a scheme.
 -/
 
 namespace Hodge
@@ -29,7 +26,10 @@ variable {Z V N : Type*}
     [AddCommGroup V] [Module ℚ V]
     [AddCommGroup N] [Module ℚ N]
 
-/-- One variety, one degree: every Hodge class of `D` is algebraic. -/
+/-- A gadget packaged as coming from a variety. Not a scheme. -/
+class IsVariety (D : Datum Z V N) : Prop
+
+/-- One gadget, codimension at least two: every Hodge class is algebraic. -/
 def constructOfCodimGeTwo (D : Datum Z V N) (_h : 2 ≤ D.codim) : Prop :=
   ∀ v ∈ D.hodgeClasses, v ∈ D.algebraicClasses
 
@@ -37,22 +37,28 @@ theorem constructOfCodimGeTwo_iff (D : Datum Z V N) (h : 2 ≤ D.codim) :
     constructOfCodimGeTwo D h ↔ D.HodgeConjecture :=
   Iff.rfl
 
-/-- Same sentence, every degree and every object of an incoming type
-`Variety`. The skeleton does not construct varieties. `datum k X` is
-the caller's packaging of X in degree k as a `Datum`. -/
+/-- Correct quantifier: every *variety*-gadget satisfies the sentence.
+Not every gadget. No axiom. No term. -/
+def HodgeConjecture.forVarieties : Prop :=
+  ∀ (D : Datum Z V N), IsVariety D → D.HodgeConjecture
+
+/-- Same sentence over an incoming type the caller calls `Variety`. -/
 def HodgeConjecture.forAll
     (Variety : Type*)
     (datum : ℕ → Variety → Datum Z V N) : Prop :=
   ∀ k X, (datum k X).HodgeConjecture
 
-/-- `CycleConstructor D` is the same sentence restricted to one `D`.
-An instance is a proof for that `D` only. -/
+/-- If `D` is flagged as a variety and has a constructor, the sentence holds.
+The constructor is still the missing term. -/
+theorem HodgeConjecture.of_variety_constructor
+    (D : Datum Z V N) [IsVariety D] [CycleConstructor D] :
+    D.HodgeConjecture :=
+  hodgeConjecture_of_constructor D
+
 theorem HodgeConjecture.of_constructor (D : Datum Z V N)
     [CycleConstructor D] : D.HodgeConjecture :=
   hodgeConjecture_of_constructor D
 
-/-- The three classical toys prove `HodgeConjecture` for those three
-`Datum` values. They are not terms of `HodgeConjecture.forAll`. -/
 def HodgeConjecture.codimTwo (D : Datum Z V N) (_h : D.codim = 2) : Prop :=
   D.HodgeConjecture
 
