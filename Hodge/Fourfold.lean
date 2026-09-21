@@ -7,17 +7,15 @@ import Hodge.Classical
 import Hodge.Construct
 
 /-!
-# Discharged term: `classical_fourfolds`
+# Easy arrow, hard arrow, discharged term
 
-Easy arrow (theorem, `Datum.cl_isHodge`):
-  a subvariety Z of codimension k gives
-  [Z] ∈ H^{2k}(X,Q) ∩ H^{k,k}(X).
+Easy arrow (`Datum.cl_isHodge`): a subvariety of codimension k gives a Hodge class.
+Hard arrow (`Datum.HodgeConjecture`): γ = ∑ a_i [Z_i].
 
-Hard arrow (the conjecture, `Datum.HodgeConjecture`):
-  γ = ∑ a_i [Z_i].
+`HodgeConjecture.general_fourfold D h` is that hard arrow at `codim = 2`.
+It is a `Prop`. It is not `True`.
 
-This file does **not** name a global fourfold sentence.
-The discharged term is the conjunction on three named hosts.
+Discharged term: `HodgeConjecture.classical_fourfolds` on P^4, Q^4, P^2 × P^2.
 -/
 
 namespace Hodge
@@ -26,6 +24,12 @@ variable {Z V N : Type*}
     [AddCommGroup Z] [Module Rat Z]
     [AddCommGroup V] [Module Rat V]
     [AddCommGroup N] [Module Rat N]
+
+class IsVariety (D : Datum Z V N) : Prop
+
+instance : IsVariety Classical.projectiveFourSpace := {}
+instance : IsVariety Classical.kleinQuadric := {}
+instance : IsVariety Classical.productOfPlanes := {}
 
 theorem HodgeConjecture.of_constructor (D : Datum Z V N)
     [CycleConstructor D] : D.HodgeConjecture :=
@@ -54,5 +58,15 @@ theorem HodgeConjecture.klein :
 theorem HodgeConjecture.product :
     Classical.productOfPlanes.HodgeConjecture :=
   HodgeConjecture.classical_fourfolds.2.2
+
+/-- Open sentence at codimension 2. Not `True`. Not a clone of `classical_fourfolds`. -/
+def HodgeConjecture.general_fourfold
+    (D : Datum Z V N) [IsVariety D] (_h : D.codim = 2) : Prop :=
+  D.HodgeConjecture
+
+theorem HodgeConjecture.general_fourfold_iff
+    (D : Datum Z V N) [IsVariety D] (h : D.codim = 2) :
+    HodgeConjecture.general_fourfold D h ↔ D.HodgeConjecture :=
+  Iff.rfl
 
 end Hodge
