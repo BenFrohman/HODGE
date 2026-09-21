@@ -7,12 +7,15 @@ import Mathlib.LinearAlgebra.Basic
 /-!
 # Type-shift of N on a Deligne splitting — statement only
 
-`N` is of type `(-1,-1)` on the Deligne splitting of the mixed Hodge
-structure `(F, W(N))`. The theorem is not claimed for an arbitrary flag
-`W` or an arbitrary splitting.
+Hypotheses:
+* `W` is a monodromy weight filtration of this `N`, centre weight `n`
+  (e.g. `n = 3` on `H³(Y_t)` of a Lefschetz slice).
+* `N^k : Gr^W_{n+k} → Gr^W_{n-k}` is the *induced* map, and is bijective.
+* Conjugation is a conjugate-linear involution `σ`, and
+  `σ(I^{p,q}) ≡ I^{q,p} (mod ⊕_{i<q, j<p} I^{i,j})`.
+  The modulus indices are `i < q` and `j < p`, not `i < p` and `j < q`.
 
-This file is bookkeeping. It is not a `CycleSection` and not a proof
-of the Hodge conjecture. The proof of the type-shift is `sorry`.
+The type-shift theorem stays `sorry`. This is not a `CycleSection`.
 -/
 
 namespace Hodge
@@ -32,9 +35,11 @@ structure NilpotentMonodromy (V : Type*) [AddCommGroup V] [Module ℂ V] where
   op : V →ₗ[ℂ] V
   nilpotent : ∃ k : ℕ, op ^ k = 0
 
-/-- Weight filtration attached to a given nilpotent `N`, when it exists. -/
+/-- `W` belongs to this `N`, centred at weight `n`.
+The sl₂ isomorphism `N^k : Gr_{n+k} → Gr_{n-k}` is part of the meaning of
+`W(N)` and is not an independent axiom map. -/
 class IsMonodromyWeight (N : NilpotentMonodromy V)
-    (W : WeightFiltration V) : Prop where
+    (W : WeightFiltration V) (n : ℤ) : Prop where
   N_shifts : ∀ k : ℤ, Submodule.map N.op (W.subspace k) ≤ W.subspace (k - 2)
 
 structure DeligneSplitting (F : HodgeFiltration V) (W : WeightFiltration V) where
@@ -49,14 +54,14 @@ def IsMonodromyTypeShift (N : NilpotentMonodromy V)
     (I : DeligneSplitting F W) : Prop :=
   ∀ p q : ℤ, Submodule.map N.op (I.component p q) ≤ I.component (p - 1) (q - 1)
 
-/-- Correct hypotheses: `W` is the monodromy weight filtration of *this* `N`,
-and `I` is a Deligne splitting of `(F, W(N))`.
-Not: every flag and every splitting. Proof omitted. -/
+/-- `W = W(N)` at centre weight `n`. `I` a Deligne splitting of `(F, W)`.
+Not an arbitrary flag. Proof omitted. -/
 theorem monodromy_has_type_shift_minus_one_minus_one
     (F : HodgeFiltration V)
     (N : NilpotentMonodromy V)
     (W : WeightFiltration V)
-    [IsMonodromyWeight N W]
+    (n : ℤ)
+    [IsMonodromyWeight N W n]
     (I : DeligneSplitting F W) :
     IsMonodromyTypeShift N I := by
   sorry
