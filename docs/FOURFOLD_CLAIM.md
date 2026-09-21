@@ -1,33 +1,15 @@
-# Fourfold claim
+# Fourfold claim — the axiom is gone
 
-`Hodge/Fourfold.lean` restores `axiom construct_of_codim_ge_two`.
+`axiom construct_of_codim_ge_two` has been removed from `Hodge/Fourfold.lean`.
 
-The unrestricted form
+It was a named assumption, not a map from Hodge classes to cycles. The actual
+terms in the repository are the `CycleSection` instances on `ℕ⁴`, `Q⁴`, and
+`ℕ² × ℕ²` (`Hodge/Construct.lean`). Those are constructions on those three
+fourfolds.
 
-```lean
-axiom construct_of_codim_ge_two
-    (D : Datum Z V N) (h : 2 ≤ D.codim) : CycleConstructor D
-```
+`HodgeConjecture.general_fourfold` is now a proposition, not a theorem.
+`#print axioms` is a diagnostic: after a build, run it on the island sections.
+It will not invent a `CycleSection` for a general fourfold.
 
-is **not** restored. Together with `Examples.zeroCycle` it proved `False`.
-
-The restored form is guarded:
-
-```lean
-axiom construct_of_codim_ge_two
-    (D : Datum Z V N) [IsVariety D] (h : 2 ≤ D.codim) :
-    CycleConstructor D
-```
-
-`IsVariety` is a flag, not a scheme. The classical islands carry it.
-`zeroCycle` does not. After a successful build:
-
-```lean
-#print axioms Hodge.HodgeConjecture.general_fourfold
-```
-
-is expected to list `construct_of_codim_ge_two` together with the standard
-logical axioms.
-
-This packages the claim. It does not construct surfaces from a Hodge class
-on a general fourfold.
+Needed for a proof: a `CycleSection` on that fourfold.
+Not needed: an axiom that replaces the missing term with a claim.

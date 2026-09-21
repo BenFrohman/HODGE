@@ -6,18 +6,18 @@ import Hodge.Basic
 import Hodge.Classical
 
 /-!
-# construct_of_codim_ge_two
+# The first open case, as a type — not as an axiom
 
-Restored axiom, with the guard that was missing when the unrestricted
-version proved `False`.
+`axiom construct_of_codim_ge_two` has been removed.
 
-`Examples.zeroCycle` has `codim = 2` and `¬ HodgeConjecture`. An axiom
-quantified over every `Datum` of codimension at least two is therefore
-false as linear algebra. That version is not restored.
+That axiom asserted a `CycleConstructor` for every `IsVariety` gadget of
+codimension at least two. It did not return a cycle. Replacing it with an
+actual `CycleSection` on a general fourfold would be the Hodge conjecture.
+That term is not supplied.
 
-This file restores the name as an axiom on data flagged `IsVariety`.
-The flag is not a scheme. `zeroCycle` does not carry it. The three
-classical islands do.
+The real terms in the repository are the `CycleSection` instances on the
+three classical islands (`Hodge/Construct.lean`). `#print axioms` on those
+is expected to list only standard logical axioms.
 -/
 
 namespace Hodge
@@ -35,13 +35,7 @@ instance : IsVariety Classical.projectiveFourSpace := {}
 instance : IsVariety Classical.kleinQuadric := {}
 instance : IsVariety Classical.productOfPlanes := {}
 
-/-- Restored axiom. Guarded: only data flagged `IsVariety`.
-Not every `Datum` of codimension at least two. -/
-axiom construct_of_codim_ge_two
-    (D : Datum Z V N) [IsVariety D] (_h : 2 ≤ D.codim) :
-    CycleConstructor D
-
-/-- The open problem, as a proposition, without the axiom. -/
+/-- The open problem, as a proposition. No axiom. No term. -/
 def constructOfCodimGeTwo (D : Datum Z V N) (_h : 2 ≤ D.codim) : Prop :=
   ∀ v ∈ D.hodgeClasses, v ∈ D.algebraicClasses
 
@@ -49,17 +43,13 @@ theorem constructOfCodimGeTwo_iff (D : Datum Z V N) (h : 2 ≤ D.codim) :
     constructOfCodimGeTwo D h ↔ D.HodgeConjecture :=
   Iff.rfl
 
-/-- From the restored axiom: a variety-gadget of codimension at least two
-satisfies the conjecture. Depends on `construct_of_codim_ge_two`. -/
-theorem HodgeConjecture.of_variety_codim_ge_two
-    (D : Datum Z V N) [IsVariety D] (h : 2 ≤ D.codim) :
-    D.HodgeConjecture :=
-  hodgeConjecture_of_constructor D (inst := construct_of_codim_ge_two D h)
-
+/-- If a constructor exists, the conjecture holds. This does not produce
+the constructor. -/
 theorem HodgeConjecture.of_constructor (D : Datum Z V N)
     [CycleConstructor D] : D.HodgeConjecture :=
   hodgeConjecture_of_constructor D
 
+/-- Specialisation to codimension two. Still a proposition. -/
 def HodgeConjecture.codimTwo (D : Datum Z V N) (_h : D.codim = 2) : Prop :=
   D.HodgeConjecture
 
@@ -71,11 +61,10 @@ theorem codim_two_ge_two (D : Datum Z V N) (h : D.codim = 2) :
     2 ≤ D.codim :=
   h ▸ Nat.le_refl 2
 
-/-- Named packaging of the restored axiom on a variety-gadget of
-codimension two. -/
-theorem HodgeConjecture.general_fourfold
-    (D : Datum Z V N) [IsVariety D] (h : D.codim = 2) :
-    D.HodgeConjecture :=
-  HodgeConjecture.of_variety_codim_ge_two D (codim_two_ge_two D h)
+/-- The first open geometric case, as a proposition on a variety-gadget of
+codimension two. No proof is supplied. -/
+def HodgeConjecture.general_fourfold (D : Datum Z V N)
+    [IsVariety D] (_h : D.codim = 2) : Prop :=
+  D.HodgeConjecture
 
 end Hodge
