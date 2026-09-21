@@ -43,38 +43,47 @@ p₀₁ p₂₃ − p₀₂ p₁₃ + p₀₃ p₁₂ = 0.
 This is a smooth Fano fourfold. It is cellular, so `H^{p,q}(Q) = 0` for `p ≠ q`,
 and `dim_ℚ H⁴(Q, ℚ) = 2`. Hence `Hdg²(Q) = H⁴(Q, ℚ)`.
 
-Write `ℙ³` with coordinates `[z₀ : z₁ : z₂ : z₃]`.
-
-**σ-plane** `Π` — lines through the point `[1:0:0:0]`, Schubert class `σ₂`:
+Two explicit planes, cut out by linear equations on the ambient `ℙ⁵`:
 
 ```
-Π = { p₁₂ = p₁₃ = p₂₃ = 0 } ⊂ Q.
+Π  = { p₁₂ = p₁₃ = p₂₃ = 0 } ∩ Q
+Π' = { p₀₁ = p₀₂ = p₀₃ = 0 } ∩ Q
 ```
 
-**ρ-plane** `Π'` — lines contained in the plane `z₀ = 0`, Schubert class `σ₁₁`:
+These are two linearly embedded `ℙ² ⊂ Q` of opposite families. The constructor
+uses only the following identities, which do not name a Schubert class:
 
 ```
-Π' = { p₀₁ = p₀₂ = p₀₃ = 0 } ⊂ Q.
+h² = [Π] + [Π']
+[Π]² = [Π']² = 1
+[Π] · [Π'] = 0
 ```
 
-Both are linearly embedded `ℙ² ⊂ Q`, of opposite families. Schubert calculus gives
+`{[Π], [Π']}` is therefore a `ℚ`-basis of `Hdg²(Q)`, orthogonal for the
+intersection form.
+
+**Rule.** Input `γ ∈ Hdg²(Q)`. Write
 
 ```
-h² = [Π] + [Π'] = σ₂ + σ₁₁
+γ = a [Π] + b [Π']
+    a = γ · [Π]
+    b = γ · [Π']
 ```
 
-in `H⁴(Q, ℤ)`, and `{[Π], [Π']}` is a `ℚ`-basis of `Hdg²(Q)`.
-Intersection numbers: `[Π]² = 1`, `[Π']² = 1`, `[Π] · [Π'] = 0`.
-
-**Rule.** Input `γ ∈ Hdg²(Q)`. Expand `γ = a [Π] + b [Π']` with
-`a = γ · [Π]`, `b = γ · [Π']`.
 Output the surfaces `Π`, `Π'` and the coefficients `a`, `b`.
 
 **Lemma.** `γ = a [Π] + b [Π']` by the basis expansion.
 **Lemma.** The same procedure works for every Hodge class on this `X`.
 
 In Lean this is `Hodge.Classical.construct` and `Hodge.Classical.expansion`
-on the datum `kleinQuadric`.
+on the datum `kleinQuadric`. Those lemmas mention only the pair `(a, b)`.
+
+**Remark (optional dictionary).** Under the usual incidence names on `Gr(2,4)`,
+`Π` is the cycle of lines through `[1:0:0:0]` and `Π'` is the cycle of lines
+in the plane `z₀ = 0`. Those conditions are often written `σ₂` and `σ₁₁`.
+Point–plane duality of `ℙ³` interchanges the two names and leaves `h²`, the
+intersection matrix, and the rule `γ ↦ (a, b)` unchanged. The identities
+above are therefore not bound to a choice of Schubert label.
 
 ---
 
