@@ -1,22 +1,26 @@
 # Authors
 
-Reusable material in this repository is by **Benjamin Stanley Frohman**
-(@BenFrohman), unless a file header says otherwise.
+**Benjamin Stanley Frohman** (@BenFrohman) is the author of this repository:
+core library, `Hodge/Attempt/`, and `docs/`.
 
-## What is Frohman’s encoding
+Copyright (c) 2026 Benjamin Stanley Frohman. See LICENSE (MIT on this repo).
+Sister repos FermatPlanes, NoetherLefschetz, CubicFourfold: same author,
+Apache-2.0 there.
 
-- `Datum`, `HodgeConjecture`, `CycleConstructor`, `CycleSection`
-- `IsVariety` as a `Prop` tag, instances on the three classical islands
+Credit for the encoding is independent of whether Clay is discharged.
+It is not discharged.
+
+## Frohman encoding (core and sandbox)
+
+- `Datum`, `HodgeConjecture`, `CycleConstructor`, `CycleSection`, `IsVariety`
 - Guarded axiom `construct_of_codim_ge_two`
-- `zeroCycle` and `not_every_codim_ge_two`
-- The *use* of `cl := LinearMap.id` on those islands as a linear shadow
-- Fermat remainder identity and plane ideals (also BenFrohman/FermatPlanes)
-- Notes in `docs/`
+- `zeroCycle` / `not_every_codim_ge_two`
+- Island `CycleSection` terms using `cl := LinearMap.id` as a linear shadow
+- Fermat remainder / planes (also BenFrohman/FermatPlanes)
+- Lake target `HodgeAttempt`
 
-## What is not Frohman’s
+## Not Frohman theorems
 
-- `LinearMap.id` itself — Mathlib
-- Schubert calculus / Chow ring of Gr(2,4) — classical
-- Lefschetz (1,1), Noether–Lefschetz, integral Hodge counterexamples — literature
-
-PR #1 (open): same author credit. See the comment on that PR.
+- Mathlib (`LinearMap.id`)
+- Schubert calculus of Gr(2,4)
+- Lefschetz (1,1), Noether–Lefschetz, Zucker on cubics, Voisin integral Hodge
