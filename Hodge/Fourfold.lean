@@ -7,24 +7,17 @@ import Hodge.Classical
 import Hodge.Construct
 
 /-!
-# Easy arrow, hard arrow, discharged term
+# Discharged term: `classical_fourfolds`
 
-Easy arrow (theorem, `Datum.cl_isHodge`):
-  a subvariety Z of codimension k gives
-  [Z] ∈ H^{2k}(X,Q) ∩ H^{k,k}(X).
+Easy arrow (`Datum.cl_isHodge`): a subvariety Z of codimension k gives
+`[Z] ∈ H^{2k}(X,Q) ∩ H^{k,k}(X)`.
 
-Hard arrow (the conjecture, `Datum.HodgeConjecture`):
-  every such class is a finite rational combination of subvarieties,
-  γ = ∑ a_i [Z_i].
+Hard arrow (`Datum.HodgeConjecture`): γ = ∑ a_i [Z_i].
+That identity is the Hodge sentence. This file does not inhabit it for
+an unspecified fourfold.
 
-On a fourfold the first open case is k = 2: surfaces.
-That identity is the statement. It is not a proof that the statement is true.
-
-Discharged term: `HodgeConjecture.classical_fourfolds`.
-Proved by `CycleSection` / `of_section` on P^4, Q^4, P^2 × P^2 only.
-
-`HodgeConjecture.general_fourfold` is a `Prop`. No term for unspecified D.
-Specializing it to P^4, Q^4, or P^2 × P^2 is not a proof for a general fourfold.
+The discharged term is `HodgeConjecture.classical_fourfolds`:
+`CycleSection` / `of_section` on P^4, Q^4, and P^2 × P^2 only.
 -/
 
 namespace Hodge
@@ -33,12 +26,6 @@ variable {Z V N : Type*}
     [AddCommGroup Z] [Module Rat Z]
     [AddCommGroup V] [Module Rat V]
     [AddCommGroup N] [Module Rat N]
-
-class IsVariety (D : Datum Z V N) : Prop
-
-instance : IsVariety Classical.projectiveFourSpace := {}
-instance : IsVariety Classical.kleinQuadric := {}
-instance : IsVariety Classical.productOfPlanes := {}
 
 def constructOfCodimGeTwo (D : Datum Z V N) (_h : 2 ≤ D.codim) : Prop :=
   ∀ v ∈ D.hodgeClasses, v ∈ D.algebraicClasses
@@ -74,35 +61,5 @@ theorem HodgeConjecture.klein :
 theorem HodgeConjecture.product :
     Classical.productOfPlanes.HodgeConjecture :=
   HodgeConjecture.classical_fourfolds.2.2
-
-/-- Open sentence. Not a clone of `classical_fourfolds`. -/
-def HodgeConjecture.general_fourfold
-    (D : Datum Z V N) [IsVariety D] (_h : D.codim = 2) : Prop :=
-  D.HodgeConjecture
-
-theorem HodgeConjecture.general_fourfold_iff
-    (D : Datum Z V N) [IsVariety D] (h : D.codim = 2) :
-    HodgeConjecture.general_fourfold D h ↔ D.HodgeConjecture :=
-  Iff.rfl
-
-/-- The open Prop, instantiated on the three islands only. -/
-theorem HodgeConjecture.p4_isVariety :
-    HodgeConjecture.general_fourfold
-      (D := Classical.projectiveFourSpace) (by rfl) :=
-  HodgeConjecture.p4
-
-theorem HodgeConjecture.klein_isVariety :
-    HodgeConjecture.general_fourfold
-      (D := Classical.kleinQuadric) (by rfl) :=
-  HodgeConjecture.klein
-
-theorem HodgeConjecture.product_isVariety :
-    HodgeConjecture.general_fourfold
-      (D := Classical.productOfPlanes) (by rfl) :=
-  HodgeConjecture.product
-
-theorem codim_two_ge_two (D : Datum Z V N) (h : D.codim = 2) :
-    2 ≤ D.codim :=
-  h ▸ Nat.le_refl 2
 
 end Hodge
