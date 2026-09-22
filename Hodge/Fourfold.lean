@@ -10,8 +10,8 @@ import Hodge.Construct
 # Two sentences
 
 `ClassicalFourfolds` — discharged on three specified hosts.
-`general_fourfold D h` — the Hodge claim at codim 2 for an arbitrary datum.
-The second is a `Prop`. It has no term. It is not a conjunct of the first.
+`general_fourfold` / `LefschetzTwoTwo` — the same uninhabited Prop.
+`Iff.rfl` renames. It does not write z.
 -/
 
 namespace Hodge
@@ -52,15 +52,25 @@ theorem HodgeConjecture.product :
     Classical.productOfPlanes.HodgeConjecture :=
   HodgeConjecture.classical_fourfolds.2.2
 
-/-- The Hodge claim at codimension 2: every Hodge class is algebraic.
-This is `D.HodgeConjecture`. No term for unspecified `D`. -/
+/-- Hodge at codimension 2. No term for unspecified `D`. -/
 def HodgeConjecture.general_fourfold
     (D : Datum Z V N) (_h : D.codim = 2) : Prop :=
   D.HodgeConjecture
 
+/-- Official name of the same sentence. Not a proof. -/
+def HodgeConjecture.LefschetzTwoTwo
+    (D : Datum Z V N) (h : D.codim = 2) : Prop :=
+  HodgeConjecture.general_fourfold D h
+
 theorem HodgeConjecture.general_fourfold_iff
     (D : Datum Z V N) (h : D.codim = 2) :
     HodgeConjecture.general_fourfold D h ↔ D.HodgeConjecture :=
+  Iff.rfl
+
+theorem HodgeConjecture.LefschetzTwoTwo_iff
+    (D : Datum Z V N) (h : D.codim = 2) :
+    HodgeConjecture.LefschetzTwoTwo D h ↔
+      HodgeConjecture.general_fourfold D h :=
   Iff.rfl
 
 end Hodge
