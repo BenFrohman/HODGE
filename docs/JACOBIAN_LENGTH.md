@@ -17,6 +17,25 @@ construct `finrank (MvPolynomial ⁄ J_F)`.
 
 `SpecialSextic.gradient_only_origin`, `SpecialSextic.five_pow_six`.
 
+## Krull dimension 0 is not 15625
+
+Localize at the irrelevant maximal ideal: R = k[x0,...,x_{n-1}]_{(x)}.
+A regular sequence of length n drops Krull dimension by n, so the quotient
+has Krull dimension 0 and is artinian. That is finite *length as a module*,
+not the integer d^n.
+
+Mathlib's regular-sequence lemmas give that drop. They do not give:
+
+- `IsRegular` for these six partials (needs Nullstellensatz + homogeneity
+  from ∇F = 0 only at 0),
+- the Hilbert series ∏ (1-t^d)/(1-t)^n,
+- dim_k = d^n = 15625.
+
+Krull dimension 0 plus "finite as a k-module" (graded, high degrees vanish)
+says the Jacobian ring is a finite-dimensional k-algebra. The number 15625
+is the extra Macaulay / Hilbert count of a basis
+{ x^a : 0 ≤ a_i ≤ 4 }.
+
 ## Glue still missing
 
 Nullstellensatz: only-zero in A^6 ⇒ `IsRegular` over C.
