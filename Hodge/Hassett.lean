@@ -6,16 +6,23 @@ import Hodge.Fourfold
 import Hodge.Construct
 
 /-!
-# Named family: special sextic containing a linear plane
+# Named family: Hassett C_8, cubic fourfold containing a plane
 
-    X = V(F) subset P^5,    F = x3 A + x4 B + x5 C,    deg A,B,C = 5.
+    X = V(F) subset P^5,    deg F = 3,
+    F = x3 A + x4 B + x5 C,    deg A,B,C = 2,
     Pi = {x3 = x4 = x5 = 0}.
 
-T_F on the span Q h^2 + Q [Pi] only. Not general_fourfold.
+This is the Hassett divisor C_8 (cubics containing a plane).
+T_F on the span Q h^2 + Q [Pi]:
+    T_F(a, b) = a [X cap {x0 = x1 = 0}] + b [Pi].
+
+Zucker says every class on the cubic is algebraic; this file does not
+replay Zucker. It only writes T_F on this two-dimensional span.
+Not general_fourfold. Not a conjunct of classical_fourfolds.
 -/
 
 namespace Hodge
-namespace SpecialSextic
+namespace Hassett
 
 inductive P5Coord where
   | x0 | x1 | x2 | x3 | x4 | x5
@@ -43,5 +50,5 @@ instance : CycleSection planeSpan where
 theorem planeSpan_hodge : planeSpan.HodgeConjecture :=
   HodgeConjecture.of_section planeSpan
 
-end SpecialSextic
+end Hassett
 end Hodge

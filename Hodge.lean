@@ -15,4 +15,6 @@ import Hodge.Klein
 import Hodge.Geometry
 import Hodge.Construct
 import Hodge.Fermat
+import Hodge.SpecialSextic
+import Hodge.Hassett
 import Hodge.Verify
