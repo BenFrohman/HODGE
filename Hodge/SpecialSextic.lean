@@ -9,15 +9,14 @@ import Hodge.Construct
 /-!
 # Special Noether–Lefschetz sextic (plane locus)
 
-Standard name: a hypersurface in ℝ^5 that contains a linear space (ℝ²).
-Lean name stays `Hodge.SpecialSextic` so imports do not break.
+Standard name: a hypersurface in P^5 that contains a linear space (a plane).
+Lean namespace stays `Hodge.SpecialSextic` so `Hodge.lean` does not break.
 
     F = x0^5 x3 + x3^6 + x1^5 x4 + x4^6 + x2^5 x5 + x5^6
     Π = {x3 = x4 = x5 = 0},   I(Π) = ⟨x3, x4, x5⟩
 
-This F is one equation of the shape F = x3 A + x4 B + x5 C.
-It is not a newly founded polynomial. It is an example on the plane component
-of the NL locus of sextic fourfolds.
+One equation of the shape F = x3 A + x4 B + x5 C. Not a new polynomial.
+Example on the plane component of the NL locus of sextic fourfolds.
 
 Proved here: F ∈ I(Π); ∇F = 0 only at the origin (char ≠ 2,3,5);
 5^6 = 15625; Q² shadow with cl = id.
@@ -28,9 +27,6 @@ namespace Hodge
 namespace SpecialSextic
 
 variable {R : Type*} [CommRing R]
-
-/-- Literature name for this example. -/
-abbrev hypersurfaceContainingLinearSpace := F
 
 inductive P5Coord where
   | x0 | x1 | x2 | x3 | x4 | x5
