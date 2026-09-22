@@ -7,23 +7,30 @@ import Mathlib.RingTheory.Ideal.Basic
 import Hodge.Construct
 
 /-!
-# Named special sextic
+# Special Noether–Lefschetz sextic (plane locus)
+
+Standard name: a hypersurface in ℝ^5 that contains a linear space (ℝ²).
+Lean name stays `Hodge.SpecialSextic` so imports do not break.
 
     F = x0^5 x3 + x3^6 + x1^5 x4 + x4^6 + x2^5 x5 + x5^6
-    I(Π) = ⟨x3, x4, x5⟩
+    Π = {x3 = x4 = x5 = 0},   I(Π) = ⟨x3, x4, x5⟩
 
-`F_mem_plane` is the easy arrow. `gradPair_origin` shows each coupled pair
-of partials forces that pair to zero, so ∇F vanishes only at the origin
-in A^6 (char ≠ 2,3,5). That is isolated-cone smoothness, not dim R(F).
+This F is one equation of the shape F = x3 A + x4 B + x5 C.
+It is not a newly founded polynomial. It is an example on the plane component
+of the NL locus of sextic fourfolds.
 
-`dim R(F) = 5^6 = 15625` remains the classical CI formula after this vanishing.
-It is not a Lean finrank theorem. Not general_fourfold.
+Proved here: F ∈ I(Π); ∇F = 0 only at the origin (char ≠ 2,3,5);
+5^6 = 15625; Q² shadow with cl = id.
+Not dim R(F). Not general_fourfold.
 -/
 
 namespace Hodge
 namespace SpecialSextic
 
 variable {R : Type*} [CommRing R]
+
+/-- Literature name for this example. -/
+abbrev hypersurfaceContainingLinearSpace := F
 
 inductive P5Coord where
   | x0 | x1 | x2 | x3 | x4 | x5
@@ -53,7 +60,6 @@ theorem F_mem_plane (x0 x1 x2 x3 x4 x5 : R) :
   · exact Ideal.mul_mem_right _ _ (Ideal.subset_span (by simp))
   · exact Ideal.mul_mem_right _ _ (Ideal.subset_span (by simp))
 
-/-- Partials of one coupled pair: (5 x^4 y, x^5 + 6 y^5). -/
 theorem gradPair_origin [IsDomain R]
     (h5 : (5 : R) ≠ 0) (h6 : (6 : R) ≠ 0) (x y : R)
     (hxy : (5 : R) * x ^ 4 * y = 0)
@@ -72,7 +78,6 @@ theorem gradPair_origin [IsDomain R]
   · have : x ^ 5 = 0 := by simpa [hy] using hsum
     exact ⟨pow_eq_zero this, hy⟩
 
-/-- ∇F = 0 in A^6 implies the origin, if 5 and 6 are nonzero in a domain. -/
 theorem gradient_only_origin [IsDomain R]
     (h5 : (5 : R) ≠ 0) (h6 : (6 : R) ≠ 0)
     (x0 x1 x2 x3 x4 x5 : R)
