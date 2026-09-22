@@ -8,6 +8,14 @@ algebraic. `CycleSection.construct` returns the cycle.
     construct : {v // v ∈ D.hodgeClasses} → Z
     is_section : D.cl (construct γ) = γ
 
+The mathematical variables of the missing object are Z_i and a_i:
+
+    γ = ∑_i a_i [Z_i]
+
+Z_i  = finitely many codimension-k subvarieties (surfaces when k = 2)
+a_i  = rationals
+Lean `construct γ` is a stand-in for that finite list. It is not itself Z_i.
+
 Instantiated on three islands:
 
 - P^4: constructP4, one coefficient of {x3 = x4 = 0}
@@ -21,13 +29,13 @@ No instance for a general fourfold. No Chow ring.
 Hodge for (2,2) on fourfolds is
 
     ∀ smooth projective fourfolds X, ∀ γ ∈ Hdg^2(X),
-      ∃ finitely many surfaces Z_i and a_i ∈ Q with γ = ∑ a_i [Z_i].
+      ∃ Z_i, a_i with γ = ∑ a_i [Z_i].
 
 An inhabitant is one of:
 
-1. A uniform construction: from any such (X, γ), write the surfaces and rationals.
+1. A uniform construction: from any such (X, γ), write the Z_i and a_i.
    Lean: CycleSection D for every fourfold datum D.
-2. A non-constructive existence proof of those surfaces, uniform in X.
+2. A non-constructive existence proof of those Z_i, uniform in X.
    Lean: a term of HodgeConjecture / general_fourfold for every such D,
    possibly classical ∃ without a construct function.
 
