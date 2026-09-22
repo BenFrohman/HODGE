@@ -27,13 +27,17 @@ conjecture.
     construct : Hodge class → cycle
     is_section : cl (construct γ) = γ
 
-That is the section of `cl`. On `ℕ⁴`, `Q⁴`, and `ℕ²×ℕ²` it is the coefficient
+That is the section of `cl`. On P^4, Q^4, and P^2×P^2 it is the coefficient
 rule already written. On a general fourfold it is missing. Supplying it for
 every Hodge class on every smooth projective fourfold is the Hodge conjecture
 in that degree.
 
 Hodge classes are `ker(obstruction)`. The map in question is a section of `cl`
 over that kernel. Not "Hodge identically."
+
+See docs/CORRESPONDENCES.md for the product/correspondence cut:
+L = cup h is already algebraic; Λ = L^{-1} would be a correspondence on X×X;
+periods stay analytic.
 
 ## What the guarded axiom is
 
