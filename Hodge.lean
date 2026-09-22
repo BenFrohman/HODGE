@@ -18,4 +18,5 @@ import Hodge.Fermat
 import Hodge.SpecialSextic
 import Hodge.Hassett
 import Hodge.NamedFamilies
+import Hodge.SexticModuli
 import Hodge.Verify
