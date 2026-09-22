@@ -1,77 +1,38 @@
-# Architectural wall
+# Plane vs class-side form
 
-Author: Benjamin Stanley Frohman (@BenFrohman). Apache-2.0.
+Copyright (c) 2026 Benjamin Stanley Frohman. Apache-2.0.
 
-`classical_fourfolds` and `general_fourfold` are not the same instance.
-This note records that disconnect. It is not a proof of Hodge.
+## Algebraic object
 
-## Live names
+A concrete special sextic containing a plane:
 
-```lean
-theorem HodgeConjecture.classical_fourfolds :
-    Classical.projectiveFourSpace.HodgeConjecture ∧
-      Classical.kleinQuadric.HodgeConjecture ∧
-        Classical.productOfPlanes.HodgeConjecture
-```
+    F = x0^5 x3 + x3^6 + x1^5 x4 + x4^6 + x2^5 x5 + x5^6
+    X = V(F) subset P^5
+    Pi = V(x3, x4, x5)
 
-Proof: `of_section` on each. `CycleSection.is_section` is `rfl` because
-those three data have `cl = id`. The conjunction itself is not proved by
-one `rfl`.
+Every term of F is divisible by x3, x4, or x5, so F vanishes on Pi.
+`[Pi]` is an algebraic cycle. Easy arrow: `[Pi]` is Hodge.
+Self-intersection on this specialized host is the classical count `[Pi]^2 = 21`.
 
-```lean
-def HodgeConjecture.general_fourfold
-    (D : Datum Z V N) [IsVariety D] (_h : D.codim = 2) : Prop :=
-  D.HodgeConjecture
-```
+Lean: `SpecialSextic.planeSpan` is the linear shadow of `Q h^2 + Q [Pi]`, not all of Hdg^2(X).
 
-A family of propositions. No term for an unspecified `D`.
-Specializing to `P^4` is `p4_isVariety`. That is one named host.
+## Class-side form
 
-## What definitional equality is allowed to see
+A 4-form `eta` with `star eta = -eta` is a class (or a representative of a class).
+It is not `I(Pi)`. It is not `T_F`.
 
-| Object | What it is |
-|---|---|
-| `classical_fourfolds` | Theorem. Finite conjunction of three named data. |
-| `p4`, `klein`, `product` | Projections of that conjunction. |
-| `general_fourfold D h` | `Prop`. Same sentence as `D.HodgeConjecture`. |
-| `IsVariety` | Empty marker class. Not a scheme. |
-| `CycleSection` | Exists on `P^4`, `Q^4`, `P^2 x P^2`, cited Fermat quartic datum. |
+## Noether–Lefschetz wall
 
-No unification of those three data with an unnamed hypersurface in `P^5`.
+On a **very general** degree-6 hypersurface in P^5 there is no extra primitive
+(2,2) class: `Hdg^2 = Q h^2`. That is NL. A Frohmanian form cannot be an extra
+Hodge class on that general fiber.
 
-## Sketch only: an inductive tag (not imported by Hodge.lean)
+The Hodge / NL locus is the algebraic set of parameters where the Hodge group
+jumps (Cattani–Deligne–Kaplan). Special fibers may acquire extra (2,2) classes.
+Those classes still need surfaces if Hodge is to hold on that fiber.
 
-A constructor tag can name the split. It does not replace `Datum`.
-It does not encode smoothness. `P4_Space ≠ GeneralHypersurface F d` is
-constructor inequality. It is not Hodge.
+## Not identified
 
-```lean
-inductive FourfoldHost
-  | P4_Space
-  | Q4_Quadric
-  | P2_ProjProd
-  | GeneralHypersurface (deg : Nat)
-```
-
-Ambient of a hypersurface fourfold is `P^5` (six homogeneous coordinates).
-Ambient of `P^4` is `P^4`. Those are different spaces. Two linear forms
-in `P^5` cut a `P^3`, not a linear plane. A linear plane on `X subset P^5`
-is three independent linear forms.
-
-Do not import this inductive into `Hodge.lean`.
-
-## What is not claimed
-
-- `classical_fourfolds` is not proved by theorem-level `rfl`.
-- `general_fourfold` is not a Lean `∀` over every smooth projective fourfold.
-- `general_fourfold` is not “non-computable.” It is a `Prop` with no general term.
-- Constructor inequality is not Grothendieck B.
-- `Z1 ⊔ Z2` is two planes on the Fermat quartic. Not a `CycleSection`.
-- Clay is open.
-
-## Firewall
-
-1. `SexticPair.lean` / FermatPlanes stay on named Fermat hosts in `P^5`.
-2. `CycleSection` stays on the named hosts listed above.
-3. `general_fourfold` stays a `Prop`.
-4. No axiom `construct_of_codim_ge_two`.
+- `[Pi]` on the special F above ≠ a form on the general fiber
+- Zucker on cubics ≠ `general_fourfold`
+- `named_fourfolds` ≠ the `forall` sentence
