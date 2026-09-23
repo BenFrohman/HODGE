@@ -1,10 +1,34 @@
 # Authors
 
-**Canonical author (Mathlib `Authors:` line / Lean Zulip contact):**
-- Benjamin Stanley Frohman
+**Benjamin Stanley Frohman** (@BenFrohman) is the author of this repository:
+core library `Hodge`, sandbox `HodgeAttempt`, and `docs/`.
 
-**GitHub:** [@BenFrohman](https://github.com/BenFrohman)
-**X:** [Investor0x](https://x.com/Investor0x)
+Copyright (c) 2026 Benjamin Stanley Frohman.
+License: Apache License 2.0 (see `LICENSE` and `NOTICE.md`).
+Copies and derivatives must keep that notice and attribution.
 
-This repository formalizes the *statement* of the Hodge conjecture and the
-shape of the known reductions. It does not prove the conjecture.
+Sister repos FermatPlanes, NoetherLefschetz, CubicFourfold: same author,
+Apache-2.0.
+
+This encoding is independent of whether the Hodge conjecture is discharged.
+It is not discharged. Cite as a skeleton, not as a Clay proof.
+
+## Frohman encoding (this repo)
+
+- `Datum`, `HodgeConjecture`, `CycleConstructor`, `CycleSection`
+- Three-island terms `classical_fourfolds` / `ClassicalFourfolds`
+- Island constructions (`constructP4`, Klein pair, `constructProduct`)
+- `zeroCycle` / `not_every_codim_ge_two`
+- Named Fermat quartic datum (`Hodge/Fermat.lean`)
+- Lake target `HodgeAttempt` and the notes in `docs/`
+
+## Shoulders (not Frohman theorems)
+
+- W. V. D. Hodge — the conjecture
+- S. Lefschetz — (1,1) theorem; hard Lefschetz
+- M. Noether — Noether–Lefschetz on high-degree hypersurfaces
+- H. Schubert — Schubert calculus on `Gr(2,4)` / the Klein quadric
+- S. Zucker — Hodge for cubic fourfolds (citation in CubicFourfold)
+- T. Shioda, Z. Ran, Aljovín–Movasati–Villaflor — Fermat Hodge cycles
+- C. Voisin — surveys and integral Hodge questions
+- Lean 4 and mathlib4 (Apache-2.0; see `NOTICE.md`)

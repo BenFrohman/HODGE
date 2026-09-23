@@ -1,6 +1,6 @@
 /-
-Copyright (c) 2026 Ben Frohman (@BenFrohman). Released under the MIT license.
-Authors: Ben Frohman (@BenFrohman)
+Copyright (c) 2026 Benjamin Stanley Frohman (@BenFrohman). Released under Apache-2.0.
+Authors: Benjamin Stanley Frohman (@BenFrohman)
 -/
 import Mathlib.Algebra.Module.Submodule.Lattice
 import Mathlib.LinearAlgebra.Span

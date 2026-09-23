@@ -1,41 +1,60 @@
 /-
-Copyright (c) 2026 Ben Frohman (@BenFrohman). Released under the MIT license.
-Authors: Ben Frohman (@BenFrohman)
+Copyright (c) 2026 Benjamin Stanley Frohman. Released under Apache-2.0.
+Authors: Benjamin Stanley Frohman (@BenFrohman)
 -/
 import Hodge.Basic
 
 /-!
-# Classical fourfolds where a section of `cl` is known
+# Constructions on three classical fourfolds
 
-This file records three *islands* in which every Hodge class of codimension two
-is a rational combination of explicit planes. The geometry is classical:
+A section of `cl` is supplied on three specified hosts only:
 
-* `projectiveFourSpace` — `H⁴(ℝ⁴, ℚ) = ℚ · h²`, and `h²` is the class of a
-  linear plane.
-* `kleinQuadric` — `H⁴(Q, ℚ)` is two-dimensional, spanned by the classes of
-  two planes `Π`, `Π'` of opposite families, with the incidence-free identities
-  `h² = [Π] + [Π']`, `[Π]² = [Π']² = 1`, `[Π] · [Π'] = 0`.
-  The rule is `γ = a[Π] + b[Π']` with `a = γ · [Π]`, `b = γ · [Π']`.
-  Schubert names are an optional dictionary and are not used here.
-* `productOfPlanes` — Künneth: three generators `h₁²`, `h₂²`, `h₁ h₂`.
+* `P^4` — `constructP4`, one plane, one coefficient;
+* Klein quadric `Q^4` — two planes `Π`, `Π'`;
+* `P^2 × P^2` — three surfaces.
 
-The Lean content is the linear-algebraic shadow of those theorems:
-`obstruction = 0` and `cl` the identity, hence surjective. That is the *shape*
-of a known section. It is not a formalization of Grassmannians, and it does not
-instantiate `CycleConstructor` for a general fourfold.
-
-See `docs/CLASSICAL_FOURFOLDS.md` for the equations of the planes.
+On these hosts `cl` is `LinearMap.id` of the linear shadow.
+Not a construction on an unnamed fourfold.
 -/
 
 namespace Hodge
 namespace Classical
 
-/-- Projective four-space. One-dimensional Hodge space, one algebraic generator. -/
-def projectiveFourSpace : Datum ℚ ℚ ℚ where
+/-! ## Specified host `X = P^4`
+
+Surface: `Z = {x₃ = x₄ = 0} ≅ P^2`.
+Rule: `γ = a [Z]`.
+-/
+
+inductive P4Coord where
+  | x0 | x1 | x2 | x3 | x4
+  deriving DecidableEq, Repr
+
+/-- Ideal generators of the linear plane in `P^4`. -/
+def p4PlaneIdeal : List P4Coord := [.x3, .x4]
+
+structure P4Cycle where
+  coeff : Rat
+
+def projectiveFourSpace : Datum Rat Rat Rat where
   codim := 2
   obstruction := 0
   cl := LinearMap.id
   cl_isHodge := by intro z; simp
+
+/-- `T_F` on `P^4`: the coefficient *is* the class. -/
+def constructP4 (γ : Rat) : P4Cycle := ⟨γ⟩
+
+theorem constructP4_coeff (γ : Rat) : (constructP4 γ).coeff = γ := rfl
+
+theorem constructP4_section (γ : Rat) :
+    projectiveFourSpace.cl (constructP4 γ).coeff = γ :=
+  rfl
+
+theorem constructP4_discharged (γ : Rat) :
+    projectiveFourSpace.cl (constructP4 γ).coeff = γ ∧
+      (constructP4 γ).coeff = γ :=
+  ⟨constructP4_section γ, constructP4_coeff γ⟩
 
 instance : CycleConstructor projectiveFourSpace :=
   ⟨fun v _ => ⟨v, rfl⟩⟩
@@ -44,27 +63,26 @@ theorem projectiveFourSpace_hodgeConjecture :
     projectiveFourSpace.HodgeConjecture :=
   hodgeConjecture_of_constructor projectiveFourSpace
 
-/-- Klein quadric `Q⁴ ⊂ ℝ⁵`.
-Two-dimensional Hodge space. Generators are the classes of two planes of
-opposite families; the public identities are the sum-to-`h²` relation and
-the identity intersection matrix, not a Schubert label. -/
-def kleinQuadric : Datum (ℚ × ℚ) (ℚ × ℚ) ℚ where
+/-! ## Klein quadric `Q^4`
+
+Planes: `Π = σ₂ = {p₁₂ = p₁₃ = p₂₃ = 0}`,
+`Π' = σ_{1,1} = {p₀₁ = p₀₂ = p₀₃ = 0}`.
+Construction: `γ = a[Π] + b[Π']`.
+-/
+
+def kleinQuadric : Datum (Rat × Rat) (Rat × Rat) Rat where
   codim := 2
   obstruction := 0
   cl := LinearMap.id
   cl_isHodge := by intro z; simp
 
-/-- The two-plane rule: coefficients `(a, b)` are the cycle itself.
-This is the coordinate form of `γ = (γ · [Π])[Π] + (γ · [Π'])[Π']`. -/
-def construct (γ : ℚ × ℚ) : ℚ × ℚ := γ
+def construct (γ : Rat × Rat) : Rat × Rat := γ
 
-theorem construct_recovers (γ : ℚ × ℚ) :
+theorem construct_recovers (γ : Rat × Rat) :
     kleinQuadric.cl (construct γ) = γ :=
   rfl
 
-/-- Coordinate form of `γ = a[Π] + b[Π']`. The pair `(a, b)` does not
-record which family is which. -/
-theorem expansion (a b : ℚ) :
+theorem expansion (a b : Rat) :
     kleinQuadric.cl (a, b) = (a, b) :=
   rfl
 
@@ -74,12 +92,30 @@ instance : CycleConstructor kleinQuadric :=
 theorem kleinQuadric_hodgeConjecture : kleinQuadric.HodgeConjecture :=
   hodgeConjecture_of_constructor kleinQuadric
 
-/-- Product `ℝ² × ℝ²`. Three-dimensional Hodge space. -/
-def productOfPlanes : Datum (ℚ × ℚ × ℚ) (ℚ × ℚ × ℚ) ℚ where
+/-! ## `P^2 × P^2`
+
+Surfaces: `{pt} × P^2`, `P^2 × {pt}`, `P^1 × P^1`.
+Classes: `h₁²`, `h₂²`, `h₁ h₂`.
+-/
+
+structure ProductCycle where
+  coeff_h1sq : Rat
+  coeff_h2sq : Rat
+  coeff_h1h2 : Rat
+
+def productOfPlanes : Datum (Rat × Rat × Rat) (Rat × Rat × Rat) Rat where
   codim := 2
   obstruction := 0
   cl := LinearMap.id
   cl_isHodge := by intro z; simp
+
+def constructProduct (γ : Rat × Rat × Rat) : ProductCycle :=
+  match γ with
+  | (a, b, c) => ⟨a, b, c⟩
+
+theorem constructProduct_section (a b c : Rat) :
+    productOfPlanes.cl (a, b, c) = (a, b, c) :=
+  rfl
 
 instance : CycleConstructor productOfPlanes :=
   ⟨fun v _ => ⟨v, rfl⟩⟩
@@ -87,8 +123,6 @@ instance : CycleConstructor productOfPlanes :=
 theorem productOfPlanes_hodgeConjecture : productOfPlanes.HodgeConjecture :=
   hodgeConjecture_of_constructor productOfPlanes
 
-/-- All three classical islands satisfy the conjecture *as data*.
-This is not evidence for a general fourfold. -/
 theorem classical_islands :
     projectiveFourSpace.HodgeConjecture ∧
       kleinQuadric.HodgeConjecture ∧
@@ -96,6 +130,12 @@ theorem classical_islands :
   ⟨projectiveFourSpace_hodgeConjecture,
     kleinQuadric_hodgeConjecture,
     productOfPlanes_hodgeConjecture⟩
+
+theorem constructions_are_sections :
+    (∀ γ : Rat, projectiveFourSpace.cl (constructP4 γ).coeff = γ) ∧
+      (∀ γ : Rat × Rat, kleinQuadric.cl (construct γ) = γ) ∧
+        (∀ a b c : Rat, productOfPlanes.cl (a, b, c) = (a, b, c)) :=
+  ⟨constructP4_section, construct_recovers, constructProduct_section⟩
 
 end Classical
 end Hodge

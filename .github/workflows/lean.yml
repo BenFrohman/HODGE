@@ -1,0 +1,26 @@
+name: Lean
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+# Typechecks Hodge.lean. Does not prove the Hodge conjecture.
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Forbid Attempt imports in Hodge.lean
+        run: |
+          if grep -nE '^import[[:space:]]+Hodge\.Attempt' Hodge.lean; then
+            echo "ARCHITECTURE: Hodge.lean must not import Hodge.Attempt.*"
+            exit 1
+          fi
+      - name: Build Hodge
+        uses: leanprover/lean-action@v1
+        with:
+          use-mathlib-cache: true
+          test: false
+          build-args: Hodge

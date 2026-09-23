@@ -1,0 +1,5 @@
+lean-toolchain = leanprover/lean4:v4.22.0
+mathlib        = v4.22.0
+not            = master
+clay-tag       = clay-statement-open / v1.0.0-guarded
+clay-status    = OPEN

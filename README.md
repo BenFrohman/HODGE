@@ -1,123 +1,55 @@
 # HODGE
 
-**Author and code owner:** Ben Frohman (@BenFrohman)
+**Status:** Draft (finished skeleton, not a Clay close).
+**Author:** Benjamin Stanley Frohman (@BenFrohman)
 
-A Lean 4 formalization of the **statement** of the Hodge conjecture, and of the
-exact point where the standard argument stops generalizing.
+Copyright (c) 2026 Benjamin Stanley Frohman. All rights reserved under the Apache License, Version 2.0.
+See `LICENSE`, `NOTICE.md`, and `AUTHORS.md`.
 
-> **Verification status: UNVERIFIED AT AUTHORING TIME.**
-> This code was written in an environment with no Lean toolchain and no network
-> access. It has never been compiled. The first CI run on push is the
-> verification event, and it may fail on Mathlib API drift. Do not cite anything
-> here until the `verify` workflow is green. See
-> [`certificates/CLAIMS.md`](certificates/CLAIMS.md).
+This repository does **not** prove the Hodge conjecture and does **not** contain a counterexample.
+See `docs/TRICHOTOMY.md` and `docs/CLAY_TAG.md`.
 
-## The claim, in one line
+## Two sentences
 
-Let `X` be a smooth projective complex variety. Every Hodge class in
-`H^{2k}(X, ℚ) ∩ H^{k,k}(X)` is a `ℚ`-linear combination of classes of algebraic
-subvarieties of codimension `k`.
-
-## Video companion
-
-The explainer video stops at the statement and the scoreboard of known cases.
-[`docs/VIDEO_EXPLANATION.md`](docs/VIDEO_EXPLANATION.md) finishes it:
-
-- Step 06 — implications (motives, standard conjectures, periods)
-- Step 07 — why \(k=1\), \(k=\dim X-1\), and \(\dim X\le 3\) actually work
-- Step 08 — the versions that fail (integral, original form, non-projective Kähler)
-- Step 09 — resolution status: **open**. No proof. No counterexample.
-- Step 10 — dictionary from the video to the Lean interface
-
-Nothing in that document, and nothing in this repository, proves the conjecture.
-
-## What this repository actually does
-
-It builds a minimal interface — `Hodge.Datum` — carrying exactly the data needed
-to state that claim:
+**Claim** (no term for unspecified `D`):
 
 ```lean
-structure Datum (Z V N : Type*) [...] where
-  codim       : ℕ                  -- the k in H^{2k}
-  obstruction : V →ₗ[ℚ] N          -- projection onto the off-diagonal Hodge pieces
-  cl          : Z →ₗ[ℚ] V          -- the cycle class map
-  cl_isHodge  : ∀ z, obstruction (cl z) = 0   -- geometry ⇒ Hodge class
+def HodgeConjecture.general_fourfold D h : Prop := D.HodgeConjecture
 ```
 
-`hodgeClasses = ker obstruction`, `algebraicClasses = range cl`, and
+**Three-host release:**
 
 ```lean
-def HodgeConjecture : Prop := D.hodgeClasses ≤ D.algebraicClasses
+theorem HodgeConjecture.classical_fourfolds :
+    HodgeConjecture.ClassicalFourfolds
 ```
 
-Then it proves every formal consequence — and only those. The whole
-mathematical content is quarantined in one class with no instance:
+**Longer finite release** (`Hodge/NamedFamilies.lean`):
 
 ```lean
-class CycleConstructor (D : Datum Z V N) : Prop where
-  construct : ∀ v ∈ D.hodgeClasses, v ∈ D.algebraicClasses
+def HodgeConjecture.NamedFourfolds : Prop :=
+  ClassicalFourfolds ∧
+    Fermat.twoPlanes.HodgeConjecture ∧
+      SpecialSextic.planeSpan.HodgeConjecture ∧
+        Hassett.planeSpan.HodgeConjecture
+
+theorem HodgeConjecture.named_fourfolds : NamedFourfolds
 ```
 
-`hodgeConjecture_of_constructor` proves the conjecture from it in three lines.
-`constructor_of_hodgeConjecture` proves the converse, so the quarantine is
-faithful: the hypothesis is equivalent to the conjecture, not stronger than it.
-For `codim = 1` an instance exists in real mathematics (Lefschetz (1,1), 1924).
-For `codim ≥ 2` no instance is known to anyone. That gap is the Millennium
-problem, and here it is a slot in a typeclass.
+That list is six specified hosts:
 
-The sharpest formal observation in the repository is
-`hodgeConjecture_codim_blind`: no proof in the skeleton ever uses `codim`. The
-linear algebra cannot tell the solved case from the open one. Whatever solves
-this will not be soft.
+1. `P^4` — `constructP4`
+2. `Q^4` — `construct`
+3. `P^2 × P^2` — `constructProduct`
+4. Fermat quartic, planes `Z1`, `Z2`
+5. Special sextic plane span
+6. Hassett `C_8` plane span
 
-## Layout
+`named_fourfolds` is a bigger release than `classical_fourfolds` (3 hosts → 6 hosts).
+It is not a bigger statement than Hodge: Hodge is `∀ D`, a list is not `∀`.
 
-```
-Hodge/Basic.lean      interface, Hodge classes, cycle classes, the statement
-Hodge/Frontier.lean   the missing input, isolated; Lefschetz (1,1) as hypothesis
-Hodge/Known.lean      hard Lefschetz + dim ≤ 3 as hypotheses; scoreboard of known cases
-Hodge/Integral.lean   rational vs integral separated in a toy model
-Hodge/Examples.lean   two instantiations + axiom audit (#print axioms)
-docs/VIDEO_EXPLANATION.md  companion to the explainer video: implications and resolution
-scripts/              bootstrap, sorry-check, certificate generation, push
-certificates/         provenance hashes, claims, CI build certificate
-```
-
-## Build
-
-```bash
-bash scripts/bootstrap.sh   # pins the toolchain to Mathlib master, fetches cache
-lake build
-bash scripts/certify.sh     # writes certificates/BUILD_CERTIFICATE.md
-```
-
-`lean-toolchain` as committed is a **placeholder guess**. `bootstrap.sh`
-overwrites it with whatever Mathlib master currently requires; run it first or
-the build will fail for uninteresting reasons.
-
-## Certificates
-
-Two kinds, deliberately distinguished:
-
-- **Provenance** (`certificates/PROVENANCE.json`) — SHA-256 of every source file
-  at authoring time. Generated offline. Certifies *what was written*, nothing more.
-- **Build certificate** (`certificates/BUILD_CERTIFICATE.md`) — generated by CI
-  after a successful `lake build`. Records the toolchain, the Mathlib revision,
-  the absence of `sorry` / `admit` / `native_decide`, and the axiom audit. A
-  clean audit shows only `propext`, `Classical.choice`, `Quot.sound`.
-
-A green certificate means: *the implications are checked from nothing but logic.*
-It does not mean any hypothesis is true. The interesting one never is.
-
-## Honest assessment
-
-This is a statement-level formalization. It is worth roughly what a precise
-problem specification is worth: it prevents equivocation, it makes the gap
-explicit and machine-visible, and it gives any future attempt a place to land.
-It contributes zero mathematics toward the conjecture. Formalizing the
-codimension-one case for real — exponential sequence, GAGA, divisors — is a
-multi-year project against a Mathlib that does not yet have the prerequisites.
+`SpecialSexticMembership.F_mem_plane` is the easy arrow on one named sextic. Relabeling it does not prove Hodge and is not a counterexample.
 
 ## License
 
-MIT.
+Apache License 2.0. Copyright (c) 2026 Benjamin Stanley Frohman.

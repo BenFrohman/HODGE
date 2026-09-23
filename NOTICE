@@ -2,3 +2,18 @@ HODGE
 Copyright 2026 Benjamin Stanley Frohman
 
 Licensed under the Apache License, Version 2.0.
+Copyright (c) 2026 Benjamin Stanley Frohman (@BenFrohman)
+SPDX-License-Identifier: MIT
+
+This repository is original work of Benjamin Stanley Frohman.
+It depends on Lean 4 and mathlib4. Those projects keep their own licenses.
+
+mathlib4 is licensed under Apache License 2.0:
+  https://github.com/leanprover-community/mathlib4/blob/master/LICENSE
+
+Lean 4 is licensed under Apache License 2.0:
+  https://github.com/leanprover/lean4/blob/master/LICENSE
+
+Using this repository does not transfer those copyrights.
+Attribution of this repository requires keeping the MIT copyright notice
+in LICENSE and this NOTICE.
