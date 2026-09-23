@@ -1,9 +1,13 @@
 # HODGE
 
+**Status:** Draft (finished skeleton, not a Clay close).
 **Author:** Benjamin Stanley Frohman (@BenFrohman)
 
-Copyright (c) 2026 Benjamin Stanley Frohman. Apache-2.0.
-See `LICENSE` and `NOTICE.md`.
+Copyright (c) 2026 Benjamin Stanley Frohman. All rights reserved under the Apache License, Version 2.0.
+See `LICENSE`, `NOTICE.md`, and `AUTHORS.md`.
+
+This repository does **not** prove the Hodge conjecture and does **not** contain a counterexample.
+See `docs/TRICHOTOMY.md` and `docs/CLAY_TAG.md`.
 
 ## Two sentences
 
@@ -42,8 +46,10 @@ That list is six specified hosts:
 6. Hassett `C_8` plane span
 
 `named_fourfolds` is a bigger release than `classical_fourfolds` (3 hosts → 6 hosts).
-It is not a bigger statement than Hodge: Hodge is `\u2200 D`, a list is not `\u2200`.
+It is not a bigger statement than Hodge: Hodge is `∀ D`, a list is not `∀`.
+
+`SpecialSexticMembership.F_mem_plane` is the easy arrow on one named sextic. Relabeling it does not prove Hodge and is not a counterexample.
 
 ## License
 
-Apache License 2.0.
+Apache License 2.0. Copyright (c) 2026 Benjamin Stanley Frohman.
