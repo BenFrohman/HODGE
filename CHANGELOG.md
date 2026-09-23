@@ -2,6 +2,12 @@
 
 Author: Benjamin Stanley Frohman (@BenFrohman).
 
+## 2026-09-22 trichotomy
+
+- `docs/TRICHOTOMY.md`: Hodge (`∀X ∀γ ∃Z`), counterexample (`∃X ∃γ ∀Z`), missing Lean instance.
+- `F_mem_plane` stays the easy arrow on the named sextic. Not Hodge. Not a counterexample.
+- No Clay tag change. Status remains open.
+
 ## 2026-09-21 architecture snapshot
 
 - Three-row ledger: `docs/VERIFICATION.md`
