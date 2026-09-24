@@ -4,7 +4,9 @@ Copyright 2026 Benjamin Stanley Frohman (@BenFrohman).
 License: Apache-2.0.
 
 z_of is the function that turns a Hodge class into a cycle.
-z_of = CycleSection.construct.
+z_of = CycleSection.construct = T_F.
+
+See docs/TF_VS_TERM.md for the function / Prop / proof-term split.
 
 ## Mathematics
 
@@ -86,12 +88,23 @@ After the surfaces are chosen as coordinates, Z = V = Q^n and cl = id, so
 - special sextic planeSpan: (a, b) ↦ a h^2 + b[Π]
 - P^4, Q^4, P^2 × P^2: same pattern
 
+## Function vs proposition vs proof
+
+T_F / z_of is a function.
+general_fourfold D h is a proposition.
+of_section, given [CycleSection D], is a proof term of that proposition.
+
+False: “a term of general_fourfold is T_F.”
+True: if T_F exists for that D, of_section is the term.
+Named-host T_F gives named_fourfolds, not ∀ D.
+
 ## What z_of is not
 
 - not a cohomology class
 - not ⋆η = −η
 - not an eigenvalue q^2
 - not LinearMap.id on an unnamed X
+- not a proof of general_fourfold
 - not a field you can fill for variable D without writing the surfaces
 
 ## What grind unspecified D produces
@@ -103,8 +116,5 @@ After the surfaces are chosen as coordinates, Z = V = Q^n and cl = id, so
     -- ∀ γ, γ ∈ D.hodgeClasses → ∃ z, D.cl z = γ
 
 That is the functional, written as a proposition. A term of it would be
-a CycleSection instance for every such D. Main has that instance only
-for named hosts. The body stays empty. That empty body is the lock.
-
-On named hosts: z_of γ := γ because cl = id.
-On unspecified D: the type is defined; the function is not.
+of_section applied to a CycleSection instance for every such D.
+Main has that instance only for named hosts. The body of z_of stays empty.
