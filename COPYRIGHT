@@ -1,0 +1,11 @@
+Copyright 2026 Benjamin Stanley Frohman (@BenFrohman).
+
+All source, documentation, and Lean modules in this repository are
+authored by Benjamin Stanley Frohman unless a file names a cited theorem
+from another author (Zucker, Lefschetz, Deligne, Mukai, Orlov, …).
+Citations are not co-authorship.
+
+License: Apache License 2.0. See LICENSE.
+Cite: CITATION.cff.
+
+This repository does not prove the Hodge conjecture.
