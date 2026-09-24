@@ -4,6 +4,7 @@ Copyright 2026 Benjamin Stanley Frohman (@BenFrohman).
 License: Apache-2.0.
 
 z_of is the function that turns a Hodge class into a cycle.
+z_of = CycleSection.construct.
 
 ## Mathematics
 
@@ -19,35 +20,71 @@ with the recovery identity
 
     cl(z_of(γ)) = γ.
 
-That pair — the function plus the identity — is a section of cl on Hodge
-classes. It is the hard arrow.
+That pair is a section of cl on Hodge classes. It is the hard arrow.
 
-## Lean
+## Complete type on unspecified D
 
-On a datum D the same pair is the two fields of CycleSection:
+Fix Q-modules Z, V, N and a datum
 
-    z_of      : { v : V // v ∈ D.hodgeClasses } → Z
-    cl_z_eq_γ : ∀ γ, D.cl (z_of γ) = γ.val
+    D : Datum Z V N
+    h : D.codim = 2
 
-In Hodge/Construct.lean they are named
+Write
+
+    HodgeClass D := { v : V // v ∈ D.hodgeClasses }
+    Cycle      D := Z
+
+The functional is any pair
+
+    z_of      : HodgeClass D → Cycle D
+    cl_z_eq_γ : ∀ γ : HodgeClass D, D.cl (z_of γ) = γ.val
+
+Unfolded against Basic.lean:
+
+    ∀ γ : V, γ ∈ D.hodgeClasses → ∃ z : Z, D.cl z = γ
+
+plus a chosen witness z for each γ. The class packages the choice:
 
     class CycleSection (D : Datum Z V N) where
-      construct := z_of
-      is_section := cl_z_eq_γ
+      construct : HodgeClass D → Cycle D
+      is_section : ∀ γ, D.cl (construct γ) = γ.val
 
-construct is z_of. is_section is cl ∘ z_of = id.
+So the fitting functional on unspecified D is
 
-## What z_of is on the named spans
+    z_of,D : { v ∈ V | v ∈ D.hodgeClasses } → Z
+    D.cl ∘ z_of,D = id
+
+That is the complete type. Nothing is missing from the signature.
+
+## Why there is no body
+
+To write `z_of γ := …` you need data that variable D does not carry:
+
+1. equations of X (so ideals I(Z_i) can be written),
+2. a presentation of γ (a basis of Hdg^2(X), or periods),
+3. a rule taking that presentation to those ideals.
+
+Datum has cl, obstruction, and codim. It does not have a polynomial F,
+a Chow ring, or a period matrix. There is no expression in D that
+returns surfaces.
+
+The only closed-form body that type-checks for every D with
+cl = LinearMap.id and Z = V is
+
+    z_of γ := γ
+
+That identity is legal only after the surfaces are named and chosen as
+coordinates. Installing it on variable D assumes what Hodge asks you
+to prove.
+
+## Named hosts
 
 After the surfaces are chosen as coordinates, Z = V = Q^n and cl = id, so
-
-    def z_of (γ : Rat × Rat) : Rat × Rat := γ
-
-That is not a geometric algorithm. It is the coefficient list of the
-surfaces you already named:
+`z_of γ := γ` is definitional (rfl).
 
 - Fermat twoPlanes: (a, b) ↦ a[Z1] + b[Z2]
 - special sextic planeSpan: (a, b) ↦ a h^2 + b[Π]
+- P^4, Q^4, P^2 × P^2: same pattern
 
 ## What z_of is not
 
@@ -57,10 +94,17 @@ surfaces you already named:
 - not LinearMap.id on an unnamed X
 - not a field you can fill for variable D without writing the surfaces
 
-On an unnamed fourfold the type of z_of is still the line above.
-The definition body is empty. That empty body is why general_fourfold
-has no term.
+## What grind unspecified D produces
 
-Short form: z_of = CycleSection.construct.
+    def HodgeConjecture.general_fourfold
+        (D : Datum Z V N) (_h : D.codim = 2) : Prop :=
+      D.HodgeConjecture
+    -- unfolds to
+    -- ∀ γ, γ ∈ D.hodgeClasses → ∃ z, D.cl z = γ
+
+That is the functional, written as a proposition. A term of it would be
+a CycleSection instance for every such D. Main has that instance only
+for named hosts. The body stays empty. That empty body is the lock.
+
 On named hosts: z_of γ := γ because cl = id.
 On unspecified D: the type is defined; the function is not.
