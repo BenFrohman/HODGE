@@ -1,0 +1,134 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[margin=1.15in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{microtype}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{setspace}
+\setstretch{1.12}
+
+\hypersetup{colorlinks=true,linkcolor=black,urlcolor=blue}
+
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\C}{\mathbb{C}}
+
+\title{\textbf{The Cycle Class of a Subvariety\\[0.25em]
+and the Reverse Arrow of the Hodge Conjecture}}
+\author{Benjamin Stanley Frohman}
+\date{20 September 2026}
+
+\begin{document}
+\maketitle
+
+\begin{center}
+\small
+This note typesets, without omission, the author's written account of the\\
+cycle class map and of what remains open in the Hodge conjecture.\\
+It does not add a construction of the inverse.
+\end{center}
+
+\vspace{0.8em}
+
+\noindent
+The last geometric object on screen is not a mystery class. It is the cycle class of a subvariety: the one arrow that is already a theorem. The video's closing line, ``Decoding still required,'' refers to the reverse arrow, which remains open.
+
+\section*{What the final object is}
+
+In Step 05 the film names a closed algebraic subset
+\[
+Z\subset X
+\]
+of complex codimension \(k\), and then writes its class
+\[
+[Z]\in H^{2k}(X,\Q)\cap H^{k,k}(X).
+\]
+That symbol \([Z]\) is the cycle class of \(Z\). It is the source of the ``balanced signal.'' Every later frame --- the conjecture, the scoreboard, and the card ``Hodge classes \(\to\) algebraic cycles'' --- is asking whether an arbitrary Hodge class is a rational combination of objects of this same kind.
+
+The yellow loop drawn on the wireframe is a picture, not a construction. A genuine algebraic subvariety of complex codimension \(k\) is cut out by polynomial equations and has complex dimension \(\dim X-k\). On an elliptic curve the algebraic classes in positive codimension are points, not real circles. The animation is showing the role of \(Z\), not a particular equation.
+
+\section*{How the class is produced}
+
+Let \(X\) be a smooth complex projective variety of dimension \(n\), and let \(Z\subset X\) be a closed irreducible subvariety of codimension \(k\). The complex structure orients the regular locus of \(Z\) as a real \(2(n-k)\)-dimensional manifold. That orientation supplies a fundamental class in homology,
+\[
+[Z]_{\mathrm{hom}}\in H_{2n-2k}(X,\Z).
+\]
+Poincar\'e duality on the compact oriented manifold \(X\) converts it into a cohomology class
+\[
+[Z]\;:=\;\mathrm{PD}\bigl([Z]_{\mathrm{hom}}\bigr)\in H^{2k}(X,\Z)\subset H^{2k}(X,\Q).
+\]
+Equivalently, \(Z\) defines a closed current of integration: for a smooth form \(\varphi\) of degree \(2n-2k\),
+\[
+T_Z(\varphi)\;:=\;\int_{Z^{\mathrm{reg}}}\varphi.
+\]
+The current \(T_Z\) is closed, of type \((k,k)\), and represents the same class. Extending by linearity from irreducible subvarieties to rational algebraic cycles gives the cycle class map
+\[
+\mathrm{cl}\colon\quad Z^k(X)_{\Q}\;\longrightarrow\; H^{2k}(X,\Q).
+\]
+The image of \(\mathrm{cl}\) is what the video calls the algebraic classes.
+
+\section*{Why the class is automatically a Hodge class}
+
+A current of type \((k,k)\) pairs to zero against every form of type \((p,q)\) with \((p,q)\neq(n-k,n-k)\). Passing to cohomology, the class therefore has vanishing off-diagonal Hodge components:
+\[
+[Z]\in H^{k,k}(X).
+\]
+Combined with rationality,
+\[
+[Z]\in H^{2k}(X,\Q)\cap H^{k,k}(X).
+\]
+That intersection is the definition of a Hodge class. This is the easy arrow on screen:
+\[
+\text{geometry }Z\;\longrightarrow\;\text{code }[Z].
+\]
+It holds for every algebraic cycle, with no restriction on \(k\). The film's line ``Geometry \(\to\) code. Always. No exceptions.'' is this theorem.
+
+In codimension one the same class has a second, more explicit name. If \(Z\) is a divisor, then
+\[
+[Z]\;=\;c_1\bigl(\mathcal{O}_X(Z)\bigr),
+\]
+the first Chern class of the associated line bundle. The exponential sequence produces every integral \((1,1)\) class in this way, and GAGA promotes the holomorphic bundle to an algebraic divisor. That is why \(k=1\) is settled. There is no analogous exponential sequence for \(k\ge 2\).
+
+\section*{What ``decode'' would mean}
+
+The cycle class map always runs in one direction. Decoding the final class would mean inverting it on the Hodge subspace: given
+\[
+\gamma\in H^{2k}(X,\Q)\cap H^{k,k}(X),
+\]
+produce finitely many subvarieties \(Z_i\subset X\) of codimension \(k\) and rationals \(a_i\in\Q\) such that
+\[
+\gamma\;=\;\sum_i a_i[Z_i].
+\]
+That is the Hodge conjecture. The last card of the video is exactly this request:
+\[
+\text{Hodge class }\gamma\quad\longrightarrow\quad\text{algebraic cycle }Z.
+\]
+The map \(\mathrm{cl}\) is known. A section of \(\mathrm{cl}\) over the Hodge classes is not known, except in the cases already listed in the film:
+\begin{itemize}[leftmargin=1.6em]
+\item \(k=1\), by Lefschetz \((1,1)\);
+\item \(k=\dim X-1\), by hard Lefschetz applied to the previous case;
+\item \(\dim X\le 3\), because those two degrees exhaust the interesting even cohomology.
+\end{itemize}
+In every remaining case --- beginning with a codimension-\(2\) class on a fourfold --- the class \([Z]\) can be written down whenever \(Z\) is given, and cannot in general be reconstructed from \(\gamma\) alone. That is what ``Decoding still required'' refers to. It is not a missing formula for \([Z]\). It is the missing inverse.
+
+\section*{One-line decode}
+
+The final subvariety class in the video is
+\[
+[Z]\;=\;\mathrm{PD}\bigl([Z]_{\mathrm{hom}}\bigr)\;\in\;H^{2k}(X,\Q)\cap H^{k,k}(X),
+\]
+the Poincar\'e dual of the fundamental class of an algebraic cycle. It is the source of every balanced signal that geometry can produce. The open problem is not to interpret that class. The open problem is to decide whether every balanced rational signal arises in this way.
+
+\section*{The first open case}
+
+Let \(X\) be a general fourfold and let \(\gamma\in\mathrm{Hdg}^2(X)\) be arbitrary. The missing object is a finite collection of surfaces \(Z_i\subset X\) and rationals \(a_i\in\Q\) such that
+\[
+\gamma\;=\;\sum_i a_i[Z_i].
+\]
+That equality is the Hodge conjecture in its first open case. Writing the \(Z_i\) down from \(\gamma\) would be a section of \(\mathrm{cl}\). The cycle class map itself is constructed
+by taking, for each closed irreducible subvariety \(Z\subset X\) of codimension \(k\), the fundamental class \([Z]_{\mathrm{hom}}\in H_{2n-2k}(X,\Z)\), applying Poincar\'e duality to obtain \([Z]=\mathrm{PD}([Z]_{\mathrm{hom}})\), and extending \(\Q\)-linearly from irreducible subvarieties to \(Z^k(X)_{\Q}\).
+
+\end{document}
