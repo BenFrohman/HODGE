@@ -31,6 +31,25 @@ T_F is the witness map the proof uses:
 
     z_of = T_F,    cl ∘ T_F = id.
 
+T_F = CycleSection.construct (the function).
+of_section consumes an instance of that function and returns a proof of
+D.HodgeConjecture.
+Named-host T_F already gives named_fourfolds. That pipeline is finished.
+
+## Universal header
+
+A T_F for every D would be an instance of the form
+
+    instance (D) (h : D.codim = 2) : CycleSection D
+
+That is the right header for constructive Clay. It is not in the library.
+
+The header is not a license to fill the fields with
+`construct γ := γ.val` and `is_section := rfl`. Those fields need, for
+each D, surfaces Z_i and the identity cl(∑ a_i [Z_i]) = γ. Without that,
+the instance is the three-conditions dummy, not Hodge.
+See docs/THREE_CONDITIONS.md and docs/UNIVERSAL_INSTANCE.md.
+
 ## Two quantifiers
 
     named_fourfolds
