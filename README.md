@@ -9,12 +9,27 @@ See `LICENSE`, `NOTICE.md`, `AUTHORS.md`, and `docs/BRANCH_RULES.md`.
 This repository does **not** prove the Hodge conjecture and does **not** contain a counterexample.
 See `docs/TRICHOTOMY.md` and `docs/CLAY_TAG.md`.
 
-## Derived surfaces
+## Derived surfaces (`Hodge/DerivedSurfaces.lean`)
 
-`Hodge/DerivedSurfaces.lean` names the library surfaces as objects `O_Z`.
-Each listed object has `objectDim = 2` on a host of `hostDim = 4`.
-The residual quintic `S` is one of those surfaces. It is not the partner `Y`.
-`Y` and Term B stay in `docs/Y_AND_MISS.md` as named empty claims.
+Copyright (c) 2026 Benjamin Stanley Frohman. Apache-2.0. No `sorry`.
+
+Named library surfaces as objects `O_Z`. Closed numeral facts:
+
+```lean
+theorem inventory_card : inventory.length = 8
+theorem residual_is_surface : residualQuintic.objectDim = 2
+theorem residual_host_is_fourfold : residualQuintic.hostDim = 4
+theorem residual_not_partner :
+    residualQuintic.objectDim = 2 ∧ residualQuintic.objectDim ≠ 4
+theorem every_listed_object_is_a_surface :
+    inventory.all (fun s => s.objectDim == 2) = true
+theorem every_listed_host_is_a_fourfold :
+    inventory.all (fun s => s.hostDim == 4) = true
+```
+
+`S` is dimension 2 on the fourfold `V(F)`. It is not the partner `Y`.
+`Y` and Term B stay named and empty in `docs/Y_AND_MISS.md`.
+This file does not inhabit `general_fourfold` or ClayDisproofTerm.
 
 ## Two sentences
 
