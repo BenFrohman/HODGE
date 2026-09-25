@@ -3,17 +3,14 @@
 Copyright 2026 Benjamin Stanley Frohman (@BenFrohman).
 License: Apache-2.0.
 
-Notation: middle cohomology is H^4, not P^4.
+    Δ_miss(X) = (H^4(X, Q) ∩ H^{2,2}(X)) \\ im(cl_X)
+              = Hdg^2(X) \\ im(cl_X).
 
-    Δ_miss(D) := D.hodgeClasses \\ D.algebraicClasses
-               = ker(D.obstruction) \\ im(D.cl)
-
-On a geometric fourfold X:
-
-    Δ_miss(X) = (H^4(X, Q) ∩ H^{2,2}(X)) \\ im(cl_X).
+H^4 is the ambient middle cohomology. It is not the leftover summand.
+See docs/PRIMITIVE.md for P^4 / Lefschetz reduction.
 
 Clay on fourfolds at (2,2) is released by inhabiting exactly one of
-the next two terms. Not both. Not a third dummy.
+Term A or Term B. Not both. Not a header without fields.
 
 ------------------------------------------------------------------------
 TERM A — Hodge is a theorem
@@ -21,30 +18,24 @@ TERM A — Hodge is a theorem
 
 Kind: proof.
 
-Sentence:
-
     ∀ smooth complex projective fourfolds X,
-    ∀ γ ∈ H^4(X, Q) ∩ H^{2,2}(X),
+    ∀ γ ∈ Hdg^2(X),
       Δ_miss(X) = ∅.
 
-Unfolded:
+Unfolded: γ = ∑ a_i [Z_i].
 
-    ∀ X ∀ γ ∈ Hdg^2(X),  ∃ finitely many surfaces Z_i ⊂ X
-                          and a_i ∈ Q
-                          with γ = ∑ a_i [Z_i].
+Lean shape of a constructive term of A:
 
-Lean name: HodgeConjecture.general_fourfold D h
-           (= D.HodgeConjecture when D.codim = 2).
+    instance (D) (h : D.codim = 2) : CycleSection D where
+      construct := ?z_of
+      is_section := ?cl_z_eq
 
-What a term of A is:
+Then of_section is a term of general_fourfold D h.
 
-  either T_F for every such D
-    instance (D) (h : D.codim = 2) : CycleSection D
-    with construct : HodgeClass D → Z
-         is_section : ∀ γ, D.cl (construct γ) = γ.val,
-    then of_section is the proof;
-
-  or a non-constructive proof of the ∃, uniform in X.
+That header is the shape of Arrow A. It is not a term of A.
+The fields ?z_of and ?cl_z_eq are not supplied for variable D.
+Adding the instance line without those fields is not sorry-free.
+Adding construct γ := γ.val is the three-conditions dummy, not A.
 
 Status: no term. Prop only.
 
@@ -54,43 +45,20 @@ TERM B — Hodge is false
 
 Kind: proof.
 
-Sentence:
-
-    ∃ smooth complex projective fourfold X,
-    ∃ γ ∈ H^4(X, Q) ∩ H^{2,2}(X),
-      γ ∉ im(cl_X).
-
-Unfolded:
-
-    ∃ X ∃ γ ∈ Hdg^2(X),
-      ∀ surfaces Z_i ⊂ X,  ∀ a_i ∈ Q,
-        γ ≠ ∑ a_i [Z_i].
-
-Lean name (sister): a term of ClayDisproofTerm / isHodgeDisproof
-                    on a geometric host — not a linear gadget.
-
-What a term of B is: one named X, one named γ, and a proof that
-no Q-combination of surfaces equals γ.
+    ∃ X ∃ γ ∈ Hdg^2(X),  γ ∉ im(cl_X).
 
 Status: no term. Type only.
 
 ------------------------------------------------------------------------
-NOT A TERM OF A OR B
+WHAT IS FINISHED (not A, not B)
 ------------------------------------------------------------------------
 
-- named_fourfolds / cl = id shadows
-- F with γ = [Π]  (that class is algebraic)
-- NL vacuous extras
-- Zucker / Murre citations
-- missing instance (D) : CycleSection D
-- genericObstructed / cl = 0 gadget
-- construct γ := γ.val on variable D
-- sorry, axiom, Classical.choice, True.intro
+named_fourfolds: CycleSection on a finite list.
+Finite conjunction. Not ∀ D.
 
 ------------------------------------------------------------------------
 INK
 ------------------------------------------------------------------------
 
-A and B are the only two releasing terms.
-Neither is in this repository.
-clay-statement-open.
+Arrow A open. Arrow B open.
+Neither inhabited. clay-statement-open.
