@@ -19,4 +19,5 @@ import Hodge.SpecialSextic
 import Hodge.Hassett
 import Hodge.NamedFamilies
 import Hodge.SexticModuli
+import Hodge.DerivedSurfaces
 import Hodge.Verify
