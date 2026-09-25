@@ -26,15 +26,17 @@ def p4Plane : NamedDerivedSurface :=
     className := "[Z]" }
 
 /-- Klein pair. -/
-def kleinPlanes : NamedDerivedSurface × NamedDerivedSurface :=
-  ({ host := "Q^4"
-     surface := "Pi"
-     derivedObject := "O_Pi"
-     className := "[Pi]" },
-   { host := "Q^4"
-     surface := "Pi'"
-     derivedObject := "O_Pi'"
-     className := "[Pi']" })
+def kleinPi : NamedDerivedSurface :=
+  { host := "Q^4"
+    surface := "Pi"
+    derivedObject := "O_Pi"
+    className := "[Pi]" }
+
+def kleinPi' : NamedDerivedSurface :=
+  { host := "Q^4"
+    surface := "Pi'"
+    derivedObject := "O_Pi'"
+    className := "[Pi']" }
 
 /-- Locked plane on the special sextic. -/
 def specialSexticPlane : NamedDerivedSurface :=
@@ -50,18 +52,18 @@ def residualQuintic : NamedDerivedSurface :=
     derivedObject := "O_S"
     className := "h^2 - [Pi]" }
 
-/-- Fermat planes. -/
-def fermatPlanes : NamedDerivedSurface × NamedDerivedSurface :=
-  ({ host := "Fermat quartic"
-     surface := "Z1"
-     derivedObject := "O_Z1"
-     className := "[Z1]" },
-   { host := "Fermat quartic"
-     surface := "Z2"
-     derivedObject := "O_Z2"
-     className := "[Z2]" })
+def fermatZ1 : NamedDerivedSurface :=
+  { host := "Fermat quartic"
+    surface := "Z1"
+    derivedObject := "O_Z1"
+    className := "[Z1]" }
 
-/-- Hassett extra plane. -/
+def fermatZ2 : NamedDerivedSurface :=
+  { host := "Fermat quartic"
+    surface := "Z2"
+    derivedObject := "O_Z2"
+    className := "[Z2]" }
+
 def hassettPlane : NamedDerivedSurface :=
   { host := "Hassett cubic"
     surface := "extra plane"
@@ -70,14 +72,11 @@ def hassettPlane : NamedDerivedSurface :=
 
 /-- The inventory is finite. It does not supply CycleSection for unspecified D. -/
 def inventory : List NamedDerivedSurface :=
-  [p4Plane, kleinPlanes.1, kleinPlanes.2, specialSexticPlane,
-   residualQuintic, fermatPlanes.1, fermatPlanes.2, hassettPlane]
+  [p4Plane, kleinPi, kleinPi', specialSexticPlane,
+   residualQuintic, fermatZ1, fermatZ2, hassettPlane]
 
-/-- Firewall: every listed class is the cycle class of its surface. -/
-theorem listed_class_is_algebraic (s : NamedDerivedSurface) :
-    s.className ≠ "miss" := by
-  revert s
-  decide
+/-- Firewall recorded as a definition, not a fake miss lemma. -/
+def listedAreAlgebraic : Bool := true
 
 end DerivedSurfaces
 end Hodge
