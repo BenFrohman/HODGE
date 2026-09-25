@@ -1,6 +1,9 @@
 # Contributing to HODGE
 
-Copyright 2026 Benjamin Stanley Frohman. Apache-2.0.
+Copyright (c) 2026 Benjamin Stanley Frohman. Apache-2.0.
+Author: Benjamin Stanley Frohman (@BenFrohman).
+
+See `docs/BRANCH_RULES.md`.
 
 ## This repository
 
@@ -9,7 +12,9 @@ Copyright 2026 Benjamin Stanley Frohman. Apache-2.0.
    comment states that the axiom is a named hypothesis, not a theorem.
 3. Do not assert `HodgeConjecture` for every `Datum`. `Examples.zeroCycle`
    is a counterexample to that sentence.
-4. Open a pull request against `main` with a title that says what changed
+4. Do not identify the residual quintic surface `S` with the partner fourfold `Y`.
+   `S` has dimension 2. `Y`, if written, has dimension 4.
+5. Open a pull request against `main` with a title that says what changed
    and a body that says what did not change (in particular: this is not a
    proof of the Hodge conjecture).
 
@@ -22,7 +27,7 @@ Do not open a pull request against `leanprover-community/mathlib4` or
 - Mathlib style, naming, and review,
 - no unsupervised AI-authored theory PRs.
 
-This repository\u2019s `Variety` is a name plus a `Datum`. It is not Hodge theory
+This repository's `Variety` is a name plus a `Datum`. It is not Hodge theory
 in Mathlib. A PR of this file to Mathlib would be closed.
 
 If a future formalization of schemes, Hodge decomposition, or Chow rings
