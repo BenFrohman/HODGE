@@ -1,45 +1,30 @@
 # Partner Y and the miss (official, not excluded)
 
-Author: Benjamin Stanley Frohman (@BenFrohman). Apache-2.0.
+Author: Benjamin Stanley Frohman (@BenFrohman).
+Copyright (c) 2026 Benjamin Stanley Frohman. Apache-2.0.
+
 These two objects stay on the ledger. They are not S. They are not [Π].
 They are not inhabited.
 
-## Partner Y (derived claim, not Hodge)
+## Candidate table (locked)
 
-Data required:
+| Candidate | Can it be Y? | Can it be the miss? |
+|---|---|---|
+| S | No. Dimension 2, lives on X, K_S ≃ O_S(1) | No. [S] = cl_X(S) |
+| [Π] | No. A class, not a fourfold | No. [Π] = cl_X(Π) |
+| HMF^gr(F) | No. Same polynomial, not a second variety | No |
+| zeroCycle | No | No. Not a fourfold |
 
-- a smooth projective fourfold Y ≨ X = V(F)
-- ω_Y ≈ O_Y
-- E ∈ D^b(X × Y) such that Φ_E : D^b(X) → D^b(Y) is an equivalence
+## What finishing the constructions would be
 
-Not Y:
+**Y.** Equations of a fourfold, proof it is smooth and not isomorphic to V(F),
+an object E on the product, and a proof that Φ_E is an equivalence.
+Bondal–Orlov only says such a Y is allowed. Orlov gives HMF^gr(F), not Y.
+No equations for this F are written.
 
-- S_{a,b,c} (residual quintic *surface*)
-- Bl_Π X
-- HMF^gr(F) (Orlov, same polynomial)
-- O_Π, O_S, O_Δ
+**Miss (Term B).** A named fourfold (this X or another), a named class in
+H^4 ∩ H^{2,2}, and a proof it is not a Q-combination of surfaces.
+[Π] and [S] cannot be that class. Open in the literature.
 
-Status: named conjecture. I(Y) is empty. Kernel is empty.
-Bondal–Orlov permits a partner because K_X ≈ O. Permission is not Y.
-
-## Miss (Term B, Hodge)
-
-Data required:
-
-- one named smooth projective fourfold X
-- one named class γ ∈ H^4(X, Q) ∩ H^{2,2}(X)
-- proof that γ ∉ im(cl_X)
-
-Not a miss:
-
-- [Π], [S], h^2, Fermat planes, Hassett plane, Klein planes
-- zeroCycle / cl = 0
-
-Status: the type of ClayDisproofTerm. No term.
-On V(F), known classes [Π] and [S] = h^2 - [Π] are algebraic.
-
-## Relation
-
-Y does not imply a miss. A derived partner can exist while every
-rational Hodge class on X is algebraic. A miss does not produce Y.
-Keep both names. Fill neither with a substitute.
+The two constructions are independent. Writing Y does not inhabit Term B.
+Writing a miss does not produce Y.
