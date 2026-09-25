@@ -4,10 +4,17 @@
 **Author:** Benjamin Stanley Frohman (@BenFrohman)
 
 Copyright (c) 2026 Benjamin Stanley Frohman. All rights reserved under the Apache License, Version 2.0.
-See `LICENSE`, `NOTICE.md`, and `AUTHORS.md`.
+See `LICENSE`, `NOTICE.md`, `AUTHORS.md`, and `docs/BRANCH_RULES.md`.
 
 This repository does **not** prove the Hodge conjecture and does **not** contain a counterexample.
 See `docs/TRICHOTOMY.md` and `docs/CLAY_TAG.md`.
+
+## Derived surfaces
+
+`Hodge/DerivedSurfaces.lean` names the library surfaces as objects `O_Z`.
+Each listed object has `objectDim = 2` on a host of `hostDim = 4`.
+The residual quintic `S` is one of those surfaces. It is not the partner `Y`.
+`Y` and Term B stay in `docs/Y_AND_MISS.md` as named empty claims.
 
 ## Two sentences
 
