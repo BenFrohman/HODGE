@@ -7,8 +7,8 @@ Copyright (c) 2026 Benjamin Stanley Frohman.
 License: Apache License 2.0 (see `LICENSE` and `NOTICE.md`).
 Copies and derivatives must keep that notice and attribution.
 
-Sister repos FermatPlanes, NoetherLefschetz, CubicFourfold: same author,
-Apache-2.0.
+Sister repos FermatPlanes, NoetherLefschetz, CubicFourfold, DerivedCategories:
+same author, Apache-2.0.
 
 This encoding is independent of whether the Hodge conjecture is discharged.
 It is not discharged. Cite as a skeleton, not as a Clay proof.
@@ -20,6 +20,8 @@ It is not discharged. Cite as a skeleton, not as a Clay proof.
 - Island constructions (`constructP4`, Klein pair, `constructProduct`)
 - `zeroCycle` / `not_every_codim_ge_two`
 - Named Fermat quartic datum (`Hodge/Fermat.lean`)
+- Named derived surfaces (`Hodge/DerivedSurfaces.lean`): inventory of `O_Z`,
+  `residual_not_partner` (`objectDim = 2`, not a fourfold `Y`)
 - Lake target `HodgeAttempt` and the notes in `docs/`
 
 ## Shoulders (not Frohman theorems)
