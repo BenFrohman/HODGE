@@ -2,7 +2,6 @@
 Copyright (c) 2026 Benjamin Stanley Frohman (@BenFrohman). Apache-2.0.
 Authors: Benjamin Stanley Frohman (@BenFrohman)
 -/
-import Mathlib.Tactic.Decide
 import Mathlib.Data.Nat.Choose.Basic
 
 /-!
@@ -11,6 +10,7 @@ import Mathlib.Data.Nat.Choose.Basic
 Author: Benjamin Stanley Frohman (@BenFrohman).
 `milnor_number` is finished arithmetic. It does not compute `finrank` of a
 Jacobian quotient.
+`decide` is a core Lean tactic at v4.22.0; do not import Mathlib.Tactic.Decide.
 -/
 
 namespace Hodge.SexticModuli
