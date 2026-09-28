@@ -1,0 +1,14 @@
+item,value,status
+rank H^4,2606,computed from Hodge numbers
+rank primitive H^4,2605,b_4 minus 1
+rank Mon(U) invariants,1,spanned by h^2
+h^2.h^2,6,degree of X
+h^2.[Pi],1,plane cut by two hyperplanes
+[Pi].[Pi],21,c_2 of the normal bundle
+Gram determinant,125,6*21-1
+beta,h^2-6[Pi],primitive and algebraic
+beta.beta,750,6-12+36*21
+rank of orthogonal of Lambda_vis,2604,2606-2
+nodes in a generic pencil,18750,6*5^5
+diagonal automorphisms in PGL,4500,27000/6
+Mon matrix on the primitive lattice,absent,rank 2605; not computed
