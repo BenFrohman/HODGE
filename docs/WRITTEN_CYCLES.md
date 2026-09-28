@@ -4,57 +4,54 @@ Released under Apache-2.0 license as described in the file LICENSE.
 Author: Benjamin Stanley Frohman
 -->
 
-# Written cycles on V(F)
+# Written cycles on THIS host V(F)
 
 Author: Benjamin Stanley Frohman
 Copyright (c) 2026 Benjamin Stanley Frohman
 License: Apache-2.0
 
-Host:
+Host (same polynomial as Hodge/SpecialSextic.lean):
 
     F = x0^5 x3 + x3^6 + x1^5 x4 + x4^6 + x2^5 x5 + x5^6
     X = V(F) subset P^5
 
-## Cycles that are written
+## Cycle 1 -- h^2
 
-1. Hyperplane square h^2.
-   Always algebraic. Always type (2,2). Easy arrow.
+Always algebraic. Type (2,2). Easy arrow.
 
-2. Coordinate plane
+## Cycle 2 -- Pi, cut in Lean
 
-       Pi = { x3 = x4 = x5 = 0 }  isomorphic to P^2
-       I(Pi) = <x3, x4, x5>
+    I(Pi) = <x3, x4, x5>
+    Theorems: F_factors, F_mem_plane, hypersurface_contains_the_plane
+    Tactic: ring + Ideal.span
 
-   Membership, proved by ring in Hodge/SpecialSextic.lean:
+## Cycle 3 -- Pi_{-1}, cut in Lean
 
-       F = x3 (x0^5 + x3^5) + x4 (x1^5 + x4^5) + x5 (x2^5 + x5^5)
-       so F ∈ I(Pi), so Pi subset X.
+    I(Pi_{-1}) = <x0+x3, x1+x4, x2+x5>
+    Theorems: F_factors_minus1, F_mem_plane_minus1,
+              hypersurface_contains_the_sign_plane
+    Tactic: ring + Ideal.span
 
-   Then [Pi] is Hodge because Pi is a surface. Easy arrow.
-   Literature numbers on this host: [Pi] · h^2 = 1, h^4 = 6, [Pi]^2 = 21.
-   So [Pi] is not a multiple of h^2.
+{x0=x1=x2=0} is still not a plane on X.
 
-3. Lean shadow of those two classes: SpecialSextic.planeSpan, cl = id on Q^2.
-   construct gamma := gamma. Section by rfl. Named host only.
+## Shadows (named hosts only)
 
-## What is named but not cut by an ideal in that file
+    planeSpan   Q^2   h^2, [Pi]              CycleSection by rfl
+    threeSpan   Q^3   h^2, [Pi], [Pi_{-1}]    CycleSection by rfl
 
-GRAM_BOUNDS.md lists a third class [Pi_{-1}] so that the 3x3 Gram is nondegenerate.
-SpecialSextic.lean does not define I(Pi_{-1}). Until that ideal is written,
-the third generator is a name, not a cycle in the coordinate ring.
+    gram_det_numeral : 6*21*21 - 21 - 21 = 2604 := by decide
 
-{x0 = x1 = x2 = 0} is not a plane on X: substituting gives x3^6+x4^6+x5^6, not 0.
+That decide lemma is arithmetic, not an intersection theorem.
 
-## What is still missing
+## Certificate shape
 
-A cycle z for an arbitrary Hodge class gamma on this host, or on an unnamed
-fourfold, with cl(z) = gamma.
+#print axioms F_mem_plane_minus1
+#print axioms threeSpan_hodge
+#print axioms gram_det_numeral
 
-That z is the missing cycle. It is not inserted by renaming [Pi], by cl = id
-on Q^2, or by the Gram lower bound.
+Expected: propext, Quot.sound only (ring / decide / rfl / constructor packaging).
+No sorry. No axiom construct_of_codim_ge_two.
 
-    rho >= 3 (if the third Gram class is geometric)
-    dim im(cl) >= 2 from the two written surfaces (3 if Pi_{-1} is written)
-    Z uncomputed
+## Still missing
 
-Field 3 empty. Hodge open. Tate not set up on this complex host.
+A cycle for an arbitrary Hodge class. Z uncomputed. Not Z = 0.
