@@ -2,6 +2,8 @@
 Copyright (c) 2026 Benjamin Stanley Frohman (@BenFrohman). Apache-2.0.
 Authors: Benjamin Stanley Frohman (@BenFrohman)
 -/
+import Mathlib.Tactic.Decide
+import Mathlib.Data.Nat.Choose.Basic
 
 /-!
 # Sextic counts in P^5
