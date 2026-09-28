@@ -3,7 +3,7 @@ Copyright (c) 2026 Benjamin Stanley Frohman (@BenFrohman). Released under Apache
 Authors: Benjamin Stanley Frohman (@BenFrohman)
 -/
 import Mathlib.Algebra.Module.Submodule.Lattice
-import Mathlib.LinearAlgebra.Span
+import Mathlib.LinearAlgebra.Span.Basic
 
 /-!
 # Interface for the Hodge conjecture
