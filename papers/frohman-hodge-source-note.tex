@@ -19,7 +19,7 @@
 \title{\textbf{The Cycle Class of a Subvariety\\[0.25em]
 and the Reverse Arrow of the Hodge Conjecture}}
 \author{Benjamin Stanley Frohman}
-\date{20 September 2026}
+\date{20 September 2026. Integral correction: 28 September 2026.}
 
 \begin{document}
 \maketitle
@@ -28,7 +28,9 @@ and the Reverse Arrow of the Hodge Conjecture}}
 \small
 This note typesets, without omission, the author's written account of the\\
 cycle class map and of what remains open in the Hodge conjecture.\\
-It does not add a construction of the inverse.
+It does not add a construction of the inverse.\\
+The Clay statement is rational. The integral Hodge conjecture is stated\\
+separately below and is not claimed as a theorem of this note.
 \end{center}
 
 \vspace{0.8em}
@@ -68,7 +70,7 @@ The current \(T_Z\) is closed, of type \((k,k)\), and represents the same class.
 \[
 \mathrm{cl}\colon\quad Z^k(X)_{\Q}\;\longrightarrow\; H^{2k}(X,\Q).
 \]
-The image of \(\mathrm{cl}\) is what the video calls the algebraic classes.
+The image of \(\mathrm{cl}\) is what the video calls the algebraic classes. The integral cycle-class map, with values in \(H^{2k}(X,\Z)\), is the same construction before tensoring with \(\Q\).
 
 \section*{Why the class is automatically a Hodge class}
 
@@ -90,7 +92,7 @@ In codimension one the same class has a second, more explicit name. If \(Z\) is 
 \[
 [Z]\;=\;c_1\bigl(\mathcal{O}_X(Z)\bigr),
 \]
-the first Chern class of the associated line bundle. The exponential sequence produces every integral \((1,1)\) class in this way, and GAGA promotes the holomorphic bundle to an algebraic divisor. That is why \(k=1\) is settled. There is no analogous exponential sequence for \(k\ge 2\).
+the first Chern class of the associated line bundle. The exponential sequence produces every integral \((1,1)\) class in this way, and GAGA promotes the holomorphic bundle to an algebraic divisor. That is why \(k=1\) is settled over \(\Z\), not only over \(\Q\). There is no analogous exponential sequence for \(k\ge 2\).
 
 \section*{What ``decode'' would mean}
 
@@ -102,17 +104,17 @@ produce finitely many subvarieties \(Z_i\subset X\) of codimension \(k\) and rat
 \[
 \gamma\;=\;\sum_i a_i[Z_i].
 \]
-That is the Hodge conjecture. The last card of the video is exactly this request:
+That is the Hodge conjecture, the Clay statement. The coefficients are rational. The last card of the video is exactly this request:
 \[
 \text{Hodge class }\gamma\quad\longrightarrow\quad\text{algebraic cycle }Z.
 \]
 The map \(\mathrm{cl}\) is known. A section of \(\mathrm{cl}\) over the Hodge classes is not known, except in the cases already listed in the film:
 \begin{itemize}[leftmargin=1.6em]
-\item \(k=1\), by Lefschetz \((1,1)\);
+\item \(k=1\), by Lefschetz \((1,1)\), integrally;
 \item \(k=\dim X-1\), by hard Lefschetz applied to the previous case;
 \item \(\dim X\le 3\), because those two degrees exhaust the interesting even cohomology.
 \end{itemize}
-In every remaining case --- beginning with a codimension-\(2\) class on a fourfold --- the class \([Z]\) can be written down whenever \(Z\) is given, and cannot in general be reconstructed from \(\gamma\) alone. That is what ``Decoding still required'' refers to. It is not a missing formula for \([Z]\). It is the missing inverse.
+In every remaining case --- beginning with a codimension-\(2\) class on a fourfold --- the class \([Z]\) can be written down whenever \(Z\) is given, and cannot in general be reconstructed from \(\gamma\) alone. That is what ``Decoding still required'' refers to. It is not a missing formula for \([Z]\). It is the missing inverse over \(\Q\).
 
 \section*{One-line decode}
 
@@ -130,5 +132,27 @@ Let \(X\) be a general fourfold and let \(\gamma\in\mathrm{Hdg}^2(X)\) be arbitr
 \]
 That equality is the Hodge conjecture in its first open case. Writing the \(Z_i\) down from \(\gamma\) would be a section of \(\mathrm{cl}\). The cycle class map itself is constructed
 by taking, for each closed irreducible subvariety \(Z\subset X\) of codimension \(k\), the fundamental class \([Z]_{\mathrm{hom}}\in H_{2n-2k}(X,\Z)\), applying Poincar\'e duality to obtain \([Z]=\mathrm{PD}([Z]_{\mathrm{hom}})\), and extending \(\Q\)-linearly from irreducible subvarieties to \(Z^k(X)_{\Q}\).
+
+\section*{The integral conjecture is a different sentence}
+
+The integral Hodge conjecture asserts that
+\[
+\mathrm{cl}_{\Z}\colon CH^k(X)\longrightarrow H^{2k}(X,\Z)
+\]
+is surjective onto \(H^{2k}(X,\Z)\cap H^{k,k}(X)\). A class counts only if the coefficients are integers.
+
+This sentence is not the Clay problem, and it is not open in general. Atiyah--Hirzebruch produced torsion counterexamples. Koll\'ar produced non-torsion counterexamples on very general hypersurfaces in \(\mathbb{P}^4\): integral Hodge classes which become algebraic only after multiplication by an integer greater than \(1\). If \(m\gamma\) is algebraic for some \(m\neq 0\), then \(\gamma\) is algebraic over \(\Q\). Those examples do not disprove the rational conjecture.
+
+On the three-chain sextic \(X=V(F)\subset\mathbb{P}^5\), with plane \(\Pi=V(x_3,x_4,x_5)\) and residual surface \(S\) satisfying \([S]=h^2-[\Pi]\), the rational primitive projection
+\[
+\alpha=[\Pi]-\tfrac16 h^2
+\]
+lies in \(H^4(X,\Q)\), not a priori in \(H^4(X,\Z)\). The factor \(\tfrac16\) is legal for Clay and illegal as an integral class. Clearing it gives
+\[
+\beta:=6\alpha=h^2-6[\Pi]=[S]-5[\Pi].
+\]
+Then \(\langle\beta,h^2\rangle=0\) and \(\beta\) is an integral combination of two surfaces, so \(\beta\) lies in the image of \(\mathrm{cl}_{\Z}\). Neither \(\alpha\) nor \(\beta\) is a miss for either conjecture.
+
+The lattice \(\Z h^2+\Z[\Pi]\) has intersection matrix \(\bigl(\begin{smallmatrix}6&1\\1&21\end{smallmatrix}\bigr)\) and discriminant \(125\). The self-intersection \(21\) is \(c_2\) of the normal bundle of the plane. Discriminant \(125\) leaves open whether the lattice is saturated in \(H^4(X,\Z)\). An unsaturated class would be an integral question only: it would still lie in \(\Q\langle h^2,[\Pi]\rangle\), hence would be algebraic over \(\Q\). No such class is produced in this note.
 
 \end{document}
