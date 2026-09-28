@@ -3,7 +3,6 @@ Copyright (c) 2026 Benjamin Stanley Frohman (@BenFrohman). Apache-2.0.
 Authors: Benjamin Stanley Frohman (@BenFrohman)
 -/
 import Mathlib.Tactic.Ring
-import Mathlib.Tactic.Decide
 import Mathlib.RingTheory.Ideal.Basic
 import Hodge.Construct
 
