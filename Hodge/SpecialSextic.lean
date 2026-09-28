@@ -3,25 +3,20 @@ Copyright (c) 2026 Benjamin Stanley Frohman (@BenFrohman). Apache-2.0.
 Authors: Benjamin Stanley Frohman (@BenFrohman)
 -/
 import Mathlib.Tactic.Ring
+import Mathlib.Tactic.Decide
 import Mathlib.RingTheory.Ideal.Basic
 import Hodge.Construct
 
 /-!
 # Special Noether–Lefschetz sextic (plane locus)
 
-Standard name: a hypersurface in P^5 that contains a linear space (a plane).
-Lean namespace stays `Hodge.SpecialSextic` so `Hodge.lean` does not break.
-
     F = x0^5 x3 + x3^6 + x1^5 x4 + x4^6 + x2^5 x5 + x5^6
-    Π = {x3 = x4 = x5 = 0},   I(Π) = ⟨x3, x4, x5⟩
+    Π     = {x3 = x4 = x5 = 0},                 I(Π) = ⟨x3, x4, x5⟩
+    Π_{-1} = {x0+x3 = x1+x4 = x2+x5 = 0},         I(Π_{-1}) = ⟨x0+x3, x1+x4, x2+x5⟩
 
-One equation of the shape F = x3 A + x4 B + x5 C. Not a new polynomial.
-Example on the plane component of the NL locus of sextic fourfolds.
-
-Proved here: F ∈ I(Π); ∇F = 0 only at the origin (char ≠ 2,3,5);
-5^6 = 15625; Q² shadow with cl = id.
-Literature aliases below name those same theorems.
-Not dim R(F). Not general_fourfold.
+Both planes lie on V(F). `{x0=x1=x2=0}` does not.
+Gram of (h², [Π], [Π_{-1}]) has det 2604; that is a lower bound, not Hodge.
+Not general_fourfold.
 -/
 
 namespace Hodge
@@ -46,8 +41,22 @@ theorem F_factors (x0 x1 x2 x3 x4 x5 : R) :
   unfold F
   ring
 
+theorem F_factors_minus1 (x0 x1 x2 x3 x4 x5 : R) :
+    F x0 x1 x2 x3 x4 x5 =
+      x3 * (x0 + x3) *
+          (x0 ^ 4 - x0 ^ 3 * x3 + x0 ^ 2 * x3 ^ 2 - x0 * x3 ^ 3 + x3 ^ 4) +
+        x4 * (x1 + x4) *
+          (x1 ^ 4 - x1 ^ 3 * x4 + x1 ^ 2 * x4 ^ 2 - x1 * x4 ^ 3 + x4 ^ 4) +
+          x5 * (x2 + x5) *
+            (x2 ^ 4 - x2 ^ 3 * x5 + x2 ^ 2 * x5 ^ 2 - x2 * x5 ^ 3 + x5 ^ 4) := by
+  unfold F
+  ring
+
 def planeIdeal (x3 x4 x5 : R) : Ideal R :=
   Ideal.span {x3, x4, x5}
+
+def planeIdealMinus1 (x0 x1 x2 x3 x4 x5 : R) : Ideal R :=
+  Ideal.span {x0 + x3, x1 + x4, x2 + x5}
 
 theorem F_mem_plane (x0 x1 x2 x3 x4 x5 : R) :
     F x0 x1 x2 x3 x4 x5 ∈ planeIdeal x3 x4 x5 := by
@@ -57,10 +66,24 @@ theorem F_mem_plane (x0 x1 x2 x3 x4 x5 : R) :
   · exact Ideal.mul_mem_right _ _ (Ideal.subset_span (by simp))
   · exact Ideal.mul_mem_right _ _ (Ideal.subset_span (by simp))
 
-/-- Recognized statement: this hypersurface contains the coordinate plane. -/
+theorem F_mem_plane_minus1 (x0 x1 x2 x3 x4 x5 : R) :
+    F x0 x1 x2 x3 x4 x5 ∈ planeIdealMinus1 x0 x1 x2 x3 x4 x5 := by
+  rw [F_factors_minus1]
+  refine Ideal.add_mem _ (Ideal.add_mem _ ?_ ?_) ?_
+  · refine Ideal.mul_mem_right _ _ (Ideal.mul_mem_right _ _ ?_)
+    exact Ideal.subset_span (by simp)
+  · refine Ideal.mul_mem_right _ _ (Ideal.mul_mem_right _ _ ?_)
+    exact Ideal.subset_span (by simp)
+  · refine Ideal.mul_mem_right _ _ (Ideal.mul_mem_right _ _ ?_)
+    exact Ideal.subset_span (by simp)
+
 theorem hypersurface_contains_the_plane (x0 x1 x2 x3 x4 x5 : R) :
     F x0 x1 x2 x3 x4 x5 ∈ planeIdeal x3 x4 x5 :=
   F_mem_plane x0 x1 x2 x3 x4 x5
+
+theorem hypersurface_contains_the_sign_plane (x0 x1 x2 x3 x4 x5 : R) :
+    F x0 x1 x2 x3 x4 x5 ∈ planeIdealMinus1 x0 x1 x2 x3 x4 x5 :=
+  F_mem_plane_minus1 x0 x1 x2 x3 x4 x5
 
 theorem gradPair_origin [IsDomain R]
     (h5 : (5 : R) ≠ 0) (h6 : (6 : R) ≠ 0) (x y : R)
@@ -95,8 +118,6 @@ theorem gradient_only_origin [IsDomain R]
   have h25 := gradPair_origin h5 h6 x2 x5 d2 d5
   exact ⟨h03.1, h14.1, h25.1, h03.2, h14.2, h25.2⟩
 
-/-- Recognized statement: isolated singularity of the affine cone
-    (the projective sextic is smooth). -/
 theorem affine_cone_isolated_at_origin [IsDomain R]
     (h5 : (5 : R) ≠ 0) (h6 : (6 : R) ≠ 0)
     (x0 x1 x2 x3 x4 x5 : R)
@@ -111,13 +132,23 @@ theorem affine_cone_isolated_at_origin [IsDomain R]
 
 theorem five_pow_six : 5 ^ 6 = 15625 := by decide
 
+/-- Arithmetic identity for the 3×3 Gram determinant. Not an intersection proof. -/
+theorem gram_det_numeral :
+    (6 : Nat) * 21 * 21 - 21 - 21 = 2604 := by decide
+
 def planeSpan : Datum (Rat × Rat) (Rat × Rat) Rat where
   codim := 2
   obstruction := 0
   cl := LinearMap.id
   cl_isHodge := by intro z; simp
 
-/-- Coefficient shadow of [Π] and h² on this special NL host. -/
+/-- Coefficient shadow of h², [Π], [Π_{-1}] on this host. Still a shadow, not Hodge. -/
+def threeSpan : Datum (Rat × Rat × Rat) (Rat × Rat × Rat) Rat where
+  codim := 2
+  obstruction := 0
+  cl := LinearMap.id
+  cl_isHodge := by intro z; simp
+
 abbrev span_of_plane_and_hyperplane_square := planeSpan
 
 def construct (gamma : Rat × Rat) : Rat × Rat := gamma
@@ -130,10 +161,22 @@ instance : CycleSection planeSpan where
   construct := fun γ => construct γ.val
   is_section := fun γ => construct_section γ.val
 
+def constructThree (gamma : Rat × Rat × Rat) : Rat × Rat × Rat := gamma
+
+theorem constructThree_section (gamma : Rat × Rat × Rat) :
+    threeSpan.cl (constructThree gamma) = gamma :=
+  rfl
+
+instance : CycleSection threeSpan where
+  construct := fun γ => constructThree γ.val
+  is_section := fun γ => constructThree_section γ.val
+
 theorem planeSpan_hodge : planeSpan.HodgeConjecture :=
   hodgeConjecture_of_constructor planeSpan
 
-/-- Same fact under the literature name of the host. -/
+theorem threeSpan_hodge : threeSpan.HodgeConjecture :=
+  hodgeConjecture_of_constructor threeSpan
+
 theorem special_NL_sextic_coefficient_shadow :
     span_of_plane_and_hyperplane_square.HodgeConjecture :=
   planeSpan_hodge
