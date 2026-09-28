@@ -26,7 +26,31 @@ The sum is \(2605\). One more class, \(h^2\), is not primitive, so
 h^{2,2}=1751+1=1752,\qquad b_4=2606.
 \]
 
-These dimensions are the same for every smooth sextic, including \(V(F)\). They do not count rational Hodge classes. The plane class \([\Pi]\) is one rational direction inside the \(1751\)-dimensional space \(R_{12}\), not an extra dimension of it.
+## The line \(\mathbb{Q}\,h^2\)
+
+The non-primitive summand is the line \(\mathbb{Q}\,h^2\), not the single vector \(h^2\).
+
+For a smooth sextic \(X\subset\mathbb{P}^5\), Lefschetz gives \(H^2(X,\mathbb{Q})=\mathbb{Q}\,h\). The primitive part of \(H^2\) is zero, so the Lefschetz decomposition of middle cohomology collapses to
+
+\[
+H^4(X,\mathbb{Q})=P^4(X,\mathbb{Q})\oplus\mathbb{Q}\,h^2.
+\]
+
+The class \(h^2\) has type \((2,2)\). Therefore both numbers sit on the same line:
+
+\[
+\dim_{\mathbb{C}} H^{2,2}(X)=1752
+\qquad\text{and}\qquad
+\dim_{\mathbb{C}} H^{2,2}_{\mathrm{prim}}(X)=1751.
+\]
+
+The integer \(1751\) is a complex dimension of the primitive piece. It is not
+
+\[
+\dim_{\mathbb{Q}}\bigl(H^4(X,\mathbb{Q})\cap H^{2,2}(X)\bigr).
+\]
+
+These dimensions are the same for every smooth sextic, including \(V(F)\) if that sextic is smooth. They do not count rational Hodge classes. The plane class \([\Pi]\) is one rational direction inside the \(1751\)-dimensional space \(R_{12}\), not an extra dimension of it. Subtracting the rank of \(\{h^2,[\Pi]\}\) from \(1751\) is not a count of missed classes.
 
 CSV: [docs/tables/jacobian_hodge.csv](tables/jacobian_hodge.csv).
 
