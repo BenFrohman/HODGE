@@ -13,9 +13,10 @@ import Hodge.Construct
     Π     = {x3 = x4 = x5 = 0},                 I(Π) = ⟨x3, x4, x5⟩
     Π_{-1} = {x0+x3 = x1+x4 = x2+x5 = 0},         I(Π_{-1}) = ⟨x0+x3, x1+x4, x2+x5⟩
 
+Official closed theorem of this file: `contains_two_planes`.
 Both planes lie on V(F). `{x0=x1=x2=0}` does not.
 Gram of (h², [Π], [Π_{-1}]) has det 2604; that is a lower bound, not Hodge.
-Not general_fourfold.
+Not general_fourfold. Not Clay.
 -/
 
 namespace Hodge
@@ -75,6 +76,14 @@ theorem F_mem_plane_minus1 (x0 x1 x2 x3 x4 x5 : R) :
     exact Ideal.subset_span (by simp)
   · refine Ideal.mul_mem_right _ _ (Ideal.mul_mem_right _ _ ?_)
     exact Ideal.subset_span (by simp)
+
+/-- Official closed theorem of this file (Frohman, Apache-2.0).
+    Both named planes lie on V(F). Not Clay. -/
+theorem contains_two_planes (x0 x1 x2 x3 x4 x5 : R) :
+    F x0 x1 x2 x3 x4 x5 ∈ planeIdeal x3 x4 x5 ∧
+      F x0 x1 x2 x3 x4 x5 ∈ planeIdealMinus1 x0 x1 x2 x3 x4 x5 :=
+  ⟨F_mem_plane x0 x1 x2 x3 x4 x5,
+    F_mem_plane_minus1 x0 x1 x2 x3 x4 x5⟩
 
 theorem hypersurface_contains_the_plane (x0 x1 x2 x3 x4 x5 : R) :
     F x0 x1 x2 x3 x4 x5 ∈ planeIdeal x3 x4 x5 :=
