@@ -20,4 +20,7 @@ import Hodge.Hassett
 import Hodge.NamedFamilies
 import Hodge.SexticModuli
 import Hodge.DerivedSurfaces
+import Hodge.Clay
+import Hodge.Release
+import Hodge.ClayTerm
 import Hodge.Verify
