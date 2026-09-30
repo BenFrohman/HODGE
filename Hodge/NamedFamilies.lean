@@ -10,10 +10,13 @@ import Hodge.Hassett
 /-!
 # Finite conjunction of named hosts
 
-Public name of this list: **Frohman (2,2) Spans**.
-Lean name: `FrohmanTwoTwoSpans`.
+Published theorem name: **Named (2,2) spans**.
+Lean: `NamedFourfolds` / `named_fourfolds`.
 
-It is `NamedFourfolds`. It is not Lefschetz. It is not `general_fourfold`.
+`FrohmanTwoTwoSpans` is an encoding alias of the same Prop.
+It is not Lefschetz and not `general_fourfold`.
+A personal geometric name would require a uniform `γ ↦ (Z_i, a_i)`.
+That map is not in this file.
 -/
 
 namespace Hodge
@@ -25,7 +28,7 @@ def NamedFourfolds : Prop :=
       SpecialSextic.planeSpan.HodgeConjecture ∧
         Hassett.planeSpan.HodgeConjecture
 
-/-- Public name of the proved finite list. Same Prop as `NamedFourfolds`. -/
+/-- Encoding alias of `NamedFourfolds`. Not a new geometric theorem. -/
 def FrohmanTwoTwoSpans : Prop := NamedFourfolds
 
 theorem named_fourfolds : NamedFourfolds :=
