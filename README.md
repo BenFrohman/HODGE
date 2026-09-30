@@ -7,7 +7,17 @@ Copyright (c) 2026 Benjamin Stanley Frohman. All rights reserved under the Apach
 See `LICENSE`, `NOTICE.md`, `AUTHORS.md`, and `docs/BRANCH_RULES.md`.
 
 This repository does **not** prove the Hodge conjecture and does **not** contain a counterexample.
-See `docs/TRICHOTOMY.md` and `docs/CLAY_TAG.md`.
+See `docs/TRICHOTOMY.md`, `docs/CLAY_TAG.md`, and `docs/CLAIM_VS_PROOF.md`.
+
+## Official close
+
+Released terms:
+
+- `HodgeConjecture.named_fourfolds`
+- `Fermat.contains_two_planes`
+
+Not released: a term of `HodgeConjecture.general_fourfold` for unspecified `D`.
+That `def` is the name of the claim. It is not a proof.
 
 ## Derived surfaces (`Hodge/DerivedSurfaces.lean`)
 

@@ -1,18 +1,11 @@
-<!--
-Copyright (c) 2026 Benjamin Stanley Frohman. All rights reserved.
-Released under Apache-2.0 license as described in the file LICENSE.
-Author: Benjamin Stanley Frohman
--->
-
 # Claim versus proof
 
-Author: Benjamin Stanley Frohman
-License: Apache-2.0
+Author: Benjamin Stanley Frohman (@BenFrohman).
+Copyright (c) 2026 Benjamin Stanley Frohman. Apache-2.0.
 
-A definition writes a sentence. A theorem writes a proof of a sentence.
-Those are different declarations.
+This file locks the two objects that must not be identified.
 
-## The sentence
+## The sentence (Clay at codimension 2)
 
 ```lean
 def HodgeConjecture.general_fourfold
@@ -22,29 +15,28 @@ def HodgeConjecture.general_fourfold
 
 On a datum `D` with `D.codim = 2`,
 
-```
+```text
 D.HodgeConjecture
-  :↔
-  ∀ γ ∈ D.hodgeClasses, ∃ z ∈ Z, D.cl z = γ.
+  :⇔  ∀ γ ∈ D.hodgeClasses, ∃ z ∈ Z, D.cl z = γ.
 ```
 
-In geometry: every rational Hodge class of type (2,2) is a finite
+In geometry that is: every rational Hodge class of type (2,2) is a finite
 rational combination of surfaces,
 
-```
-γ = ∑ a_i [Z_i].
+```text
+γ = ∑_i a_i [Z_i].
 ```
 
-Clay is that sentence for every smooth complex projective fourfold.
+Clay is that sentence for every smooth complex projective fourfold, not for
+a finite list of named hosts.
 
-`LefschetzTwoTwo` is the same sentence. `Iff.rfl` only says the names match.
+`LefschetzTwoTwo D h` is the same Prop. `Iff.rfl` only says the names match.
+It does not write a surface, a coefficient, or a `CycleSection`.
 
 ## The type of a proof
 
-A proof is a function that, given `D` and given `γ`, returns a cycle `z`
-and the identity `cl z = γ`.
-
-That function is already a class field in `Hodge/Construct.lean`:
+A proof of the sentence is a function that, given `D` and given `γ`, returns
+the cycle `z` and the identity `cl(z) = γ`.
 
 ```lean
 class CycleSection (D : Datum Z V N) where
@@ -53,34 +45,32 @@ class CycleSection (D : Datum Z V N) where
 ```
 
 An `instance : CycleSection D` is Hodge for that `D`.
+
 The missing object is
 
+```text
+∀ D,  D.codim = 2  ⇒  CycleSection D.
 ```
-∀ D, D.codim = 2 → CycleSection D.
-```
 
-There is no such instance. Naming the hole `HodgeResolution` does not
-write `construct`.
+That instance is not in this repository. `HodgeResolution` is a name, not a
+constructor. `cl = id` is legal only after a host is named and an algebraic
+basis is taken as coordinates.
 
-## The theorem that exists
+## Official close of this repository
 
-`named_fourfolds` is Hodge on six specified spans, after those files set
-`Z = V = ℚ^n` and `cl = id`:
+Released terms:
 
-- ℝ^4
-- Q^4
-- ℝ^2 × ℝ^2
-- Fermat quartic, span ℚ[Z_1] + ℚ[Z_2]
-- special sextic, span ℚ h^2 + ℚ[Π]
-- Hassett C_8, same span
+- `HodgeConjecture.named_fourfolds` — Hodge on six specified spans
+  (`P^4`, `Q^4`, `P^2 × P^2`, Fermat two-plane span, special-sextic plane
+  span, Hassett `C_8` plane span).
+- `Fermat.contains_two_planes` — the Fermat quartic host carries two named
+  linear planes `Z1`, `Z2` and a `CycleSection` on `Q[Z1] + Q[Z2]`.
 
-`contains_two_planes` is the two named planes on the Fermat host.
+Not released:
 
-AMV / Shioda–Ran are literature for the whole Fermat quartic and quintic
-fourfolds. They are not replayed here.
+- a term of `general_fourfold D h` for unspecified `D`
+- `theorem general_fourfold_holds ...`
+- `instance (D) (_h : D.codim = 2) : CycleSection D`
 
-## Official close
-
-Released: `named_fourfolds` and `contains_two_planes`.
-
-Not released: a term of `general_fourfold D h` for unspecified `D`.
+A finite conjunction is a list. Clay is `∀ D`. Packaging the list does not
+become `∀ D`.

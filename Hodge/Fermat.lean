@@ -68,6 +68,14 @@ instance : CycleSection twoPlanes where
 theorem twoPlanes_hodge : twoPlanes.HodgeConjecture :=
   HodgeConjecture.of_section twoPlanes
 
+/-- Official-close companion: two named linear planes on this Fermat host.
+Not a `CycleSection` for unspecified `D`. -/
+theorem contains_two_planes :
+    Z1.pairing = standardPairing ∧
+      Z2.pairing = standardPairing ∧
+        twoPlanes.HodgeConjecture :=
+  ⟨Z1_pairing, Z2_pairing, twoPlanes_hodge⟩
+
 /-- Literature packaging of the full AMV span: cl = id on Q.
 Coefficients not expanded. Separate from twoPlanes. -/
 def fermatQuartic : Datum Rat Rat Rat where
