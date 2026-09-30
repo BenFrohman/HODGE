@@ -16,6 +16,7 @@ import Hodge.Geometry
 import Hodge.Construct
 import Hodge.Fermat
 import Hodge.SpecialSextic
+import Hodge.SpecialSexticJacobian
 import Hodge.Hassett
 import Hodge.NamedFamilies
 import Hodge.SexticModuli
