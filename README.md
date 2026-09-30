@@ -7,18 +7,19 @@ Copyright (c) 2026 Benjamin Stanley Frohman. All rights reserved under the Apach
 See `LICENSE`, `NOTICE.md`, `AUTHORS.md`, and `docs/BRANCH_RULES.md`.
 
 This repository does **not** prove the Hodge conjecture and does **not** contain a counterexample.
-See `docs/TRICHOTOMY.md`, `docs/CLAY_TAG.md`, `docs/CLAIM_VS_PROOF.md`, and `docs/FROHMAN_SPANS.md`.
+See `docs/TRICHOTOMY.md`, `docs/CLAY_TAG.md`, `docs/CLAIM_VS_PROOF.md`, `docs/UNIVERSAL_INSTANCE.md`, and `docs/FROHMAN_SPANS.md`.
 
 ## Official close
 
-Proved theorem name: **Frohman (2,2) Spans**.
-Lean: `HodgeConjecture.FrohmanTwoTwoSpans` (`↔ NamedFourfolds`).
+Published theorem name: **Named (2,2) spans**.
+Lean: `HodgeConjecture.named_fourfolds`.
+`FrohmanTwoTwoSpans` is an encoding alias of the same finite list.
 Not Lefschetz. Lefschetz stops at `k = 1`.
 
 Released terms:
 
-- `HodgeConjecture.frohman_two_two_spans`
 - `HodgeConjecture.named_fourfolds`
+- `HodgeConjecture.frohman_two_two_spans` (same term)
 - `Fermat.contains_two_planes`
 
 Not released: a term of `HodgeConjecture.general_fourfold` for unspecified `D`.
@@ -28,7 +29,8 @@ That `def` is the name of the open sentence
 ∀ X⁴, ∀ γ ∈ Hdg²(X),  γ = ∑ a_i [Z_i].
 ```
 
-It is not a proof.
+The holes `?z_of` and `?cl_z_eq` in `docs/UNIVERSAL_INSTANCE.md` stay empty.
+No axiom, `sorry`, or `True` gadget.
 
 ## Derived surfaces (`Hodge/DerivedSurfaces.lean`)
 
@@ -76,10 +78,7 @@ def HodgeConjecture.NamedFourfolds : Prop :=
       SpecialSextic.planeSpan.HodgeConjecture ∧
         Hassett.planeSpan.HodgeConjecture
 
-def HodgeConjecture.FrohmanTwoTwoSpans : Prop := NamedFourfolds
-
 theorem HodgeConjecture.named_fourfolds : NamedFourfolds
-theorem HodgeConjecture.frohman_two_two_spans : FrohmanTwoTwoSpans
 ```
 
 That list is six specified hosts:
@@ -94,7 +93,8 @@ That list is six specified hosts:
 `named_fourfolds` is a bigger release than `classical_fourfolds` (3 hosts → 6 hosts).
 It is not a bigger statement than Hodge: Hodge is `∀ D`, a list is not `∀`.
 
-`SpecialSexticMembership.F_mem_plane` is the easy arrow on one named sextic. Relabeling it does not prove Hodge and is not a counterexample.
+`contains_two_planes` is the easy arrow on `V(F)`: `Π, Π_{-1} ⊂ V(F)`.
+It is not the reverse arrow on every class of `V(F)`.
 
 ## License
 
