@@ -10,8 +10,10 @@ import Hodge.Hassett
 /-!
 # Finite conjunction of named hosts
 
-This extends the three-island release by the families that now have
-`CycleSection`. It is still a finite list. It is not `general_fourfold`.
+Public name of this list: **Frohman (2,2) Spans**.
+Lean name: `FrohmanTwoTwoSpans`.
+
+It is `NamedFourfolds`. It is not Lefschetz. It is not `general_fourfold`.
 -/
 
 namespace Hodge
@@ -23,11 +25,21 @@ def NamedFourfolds : Prop :=
       SpecialSextic.planeSpan.HodgeConjecture ∧
         Hassett.planeSpan.HodgeConjecture
 
+/-- Public name of the proved finite list. Same Prop as `NamedFourfolds`. -/
+def FrohmanTwoTwoSpans : Prop := NamedFourfolds
+
 theorem named_fourfolds : NamedFourfolds :=
   ⟨classical_fourfolds,
     Fermat.twoPlanes_hodge,
     SpecialSextic.planeSpan_hodge,
     Hassett.planeSpan_hodge⟩
+
+theorem frohman_two_two_spans : FrohmanTwoTwoSpans :=
+  named_fourfolds
+
+theorem frohman_two_two_spans_iff :
+    FrohmanTwoTwoSpans ↔ NamedFourfolds :=
+  Iff.rfl
 
 end HodgeConjecture
 end Hodge
