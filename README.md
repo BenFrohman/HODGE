@@ -32,6 +32,10 @@ That `def` is the name of the open sentence
 The holes `?z_of` and `?cl_z_eq` in `docs/UNIVERSAL_INSTANCE.md` stay empty.
 No axiom, `sorry`, or `True` gadget.
 
+Live construction details: `docs/CYCLESECTION_BODIES.md`.
+Named-span pairing: `docs/HODGE_RIEMANN.md`, `docs/GRAM_VALUES.md`.
+`#print axioms` on `named_fourfolds`: `propext`, `Quot.sound` (`docs/PRINT_AXIOMS.md`).
+
 ## Derived surfaces (`Hodge/DerivedSurfaces.lean`)
 
 Copyright (c) 2026 Benjamin Stanley Frohman. Apache-2.0. No `sorry`.
