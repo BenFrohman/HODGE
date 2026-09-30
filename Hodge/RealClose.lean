@@ -18,14 +18,6 @@ Lean: a `CycleSection` on a specified datum `D` with `D.codim = 2`.
 This file records that *type*. It does not inhabit it for unspecified `D`.
 
 Holes `?z_of` and `?cl_z_eq` in `docs/UNIVERSAL_INSTANCE.md` stay empty.
-
-Do not add
-
-  instance (D) (_h : D.codim = 2) : CycleSection D
-
-That unguarded instance is false on `Examples.zeroCycle`
-(`not_every_codim_ge_two`). `zeroCycle` is a linear gadget, not a
-smooth projective fourfold, and is not a Clay disproof.
 -/
 
 namespace Hodge
@@ -54,5 +46,29 @@ def HodgeConjecture.realClose_of_section
     (D : Datum Z V N) [CycleSection D] (h : D.codim = 2) :
     HodgeConjecture.RealClose D h :=
   ⟨inferInstance⟩
+
+/-- Fiber of `cl` over `γ`. -/
+def Datum.fiber (D : Datum Z V N) (γ : V) : Type _ :=
+  { z : Z // D.cl z = γ }
+
+theorem HodgeConjecture.nonempty_fiber_iff
+    (D : Datum Z V N) (γ : V) :
+    Nonempty (D.fiber γ) ↔ ∃ z, D.cl z = γ :=
+  ⟨fun ⟨⟨z, hz⟩⟩ => ⟨z, hz⟩, fun ⟨z, hz⟩ => ⟨⟨z, hz⟩⟩⟩
+
+theorem HodgeConjecture.mem_algebraicClasses_iff
+    (D : Datum Z V N) (γ : V) :
+    γ ∈ D.algebraicClasses ↔ ∃ z, D.cl z = γ :=
+  Iff.rfl
+
+/-- Unfolding only. Not a term of `general_fourfold` for unspecified `D`. -/
+theorem HodgeConjecture.iff_nonempty_fibers (D : Datum Z V N) :
+    D.HodgeConjecture ↔
+      ∀ γ ∈ D.hodgeClasses, Nonempty (D.fiber γ) := by
+  constructor
+  · intro h γ hγ
+    exact (HodgeConjecture.nonempty_fiber_iff D γ).mpr (h hγ)
+  · intro h γ hγ
+    exact (HodgeConjecture.nonempty_fiber_iff D γ).mp (h γ hγ)
 
 end Hodge
