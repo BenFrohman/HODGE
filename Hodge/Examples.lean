@@ -1,6 +1,7 @@
 /-
-Copyright (c) 2026 Ben Frohman (@BenFrohman). Released under the MIT license.
-Authors: Ben Frohman (@BenFrohman)
+Copyright (c) 2026 Benjamin Stanley Frohman (@BenFrohman).
+Released under Apache-2.0 license as described in the file LICENSE.
+Authors: Benjamin Stanley Frohman (@BenFrohman)
 -/
 import Hodge.Known
 import Hodge.Integral
@@ -17,7 +18,7 @@ The second example is the bug detector: an axiom asserting HodgeConjecture
 for every `Datum` of codimension at least two is false, because it would
 prove `zeroCycle.HodgeConjecture` and `¬ zeroCycle.HodgeConjecture`.
 
-`zeroCycle` is not a fourfold in the moduli space of hypersurfaces in `ℕ⁵`.
+`zeroCycle` is not a fourfold in the moduli space of hypersurfaces in `P^5`.
 It is a linear-algebra gadget. See `docs/CATEGORY.md`.
 -/
 
@@ -67,7 +68,7 @@ theorem not_every_codim_ge_two :
   exact zeroCycle_not_hodge (h zeroCycle this)
 
 /-- Category lock. `zeroCycle` has no `IsVariety` instance.
-It therefore cannot be fed to `construct_of_codim_ge_two`.
+It therefore cannot be fed to a guarded geometric constructor.
 This is the guard, not a geometric counterexample. -/
 theorem zeroCycle_is_not_a_variety_sticker :
     True :=
