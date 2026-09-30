@@ -10,8 +10,9 @@ import Hodge.Construct
 # Two sentences
 
 `ClassicalFourfolds` — discharged on three specified hosts.
-`general_fourfold` / `LefschetzTwoTwo` — the same uninhabited Prop.
-`Iff.rfl` renames. It does not write z.
+`general_fourfold` — Hodge at codimension 2 on unspecified `D`. No term.
+`LefschetzTwoTwo` — the same uninhabited Prop. Not a Lefschetz theorem.
+Lefschetz stops at `k = 1`. `Iff.rfl` renames. It does not write `z`.
 -/
 
 namespace Hodge
@@ -57,7 +58,7 @@ def HodgeConjecture.general_fourfold
     (D : Datum Z V N) (_h : D.codim = 2) : Prop :=
   D.HodgeConjecture
 
-/-- Official name of the same sentence. Not a proof. -/
+/-- Same sentence as `general_fourfold`. Not a Lefschetz theorem. -/
 def HodgeConjecture.LefschetzTwoTwo
     (D : Datum Z V N) (h : D.codim = 2) : Prop :=
   HodgeConjecture.general_fourfold D h
