@@ -26,8 +26,8 @@ any moduli space.
 
 ## Category B — geometry of fourfolds
 
-A fourfold in `∓O(d)∓` on `ℕ^5` is a variety. Hodge classes on that
-variety are classes in `H^4(X, ℚ) ∩ H^{2,2}(X)`.
+A fourfold that is a hypersurface of degree `d` in `P^5` is a variety.
+Hodge classes on that variety are classes in `H^4(X, Q) ∩ H^{2,2}(X)`.
 
 Nothing in Category A is a class on such an `X`. Renaming
 `zeroCycle` to `genericObstructedFourfold` does not move it into
