@@ -7,17 +7,28 @@ Copyright (c) 2026 Benjamin Stanley Frohman. All rights reserved under the Apach
 See `LICENSE`, `NOTICE.md`, `AUTHORS.md`, and `docs/BRANCH_RULES.md`.
 
 This repository does **not** prove the Hodge conjecture and does **not** contain a counterexample.
-See `docs/TRICHOTOMY.md`, `docs/CLAY_TAG.md`, and `docs/CLAIM_VS_PROOF.md`.
+See `docs/TRICHOTOMY.md`, `docs/CLAY_TAG.md`, `docs/CLAIM_VS_PROOF.md`, and `docs/FROHMAN_SPANS.md`.
 
 ## Official close
 
+Proved theorem name: **Frohman (2,2) Spans**.
+Lean: `HodgeConjecture.FrohmanTwoTwoSpans` (`↔ NamedFourfolds`).
+Not Lefschetz. Lefschetz stops at `k = 1`.
+
 Released terms:
 
+- `HodgeConjecture.frohman_two_two_spans`
 - `HodgeConjecture.named_fourfolds`
 - `Fermat.contains_two_planes`
 
 Not released: a term of `HodgeConjecture.general_fourfold` for unspecified `D`.
-That `def` is the name of the claim. It is not a proof.
+That `def` is the name of the open sentence
+
+```text
+∀ X⁴, ∀ γ ∈ Hdg²(X),  γ = ∑ a_i [Z_i].
+```
+
+It is not a proof.
 
 ## Derived surfaces (`Hodge/DerivedSurfaces.lean`)
 
@@ -65,7 +76,10 @@ def HodgeConjecture.NamedFourfolds : Prop :=
       SpecialSextic.planeSpan.HodgeConjecture ∧
         Hassett.planeSpan.HodgeConjecture
 
+def HodgeConjecture.FrohmanTwoTwoSpans : Prop := NamedFourfolds
+
 theorem HodgeConjecture.named_fourfolds : NamedFourfolds
+theorem HodgeConjecture.frohman_two_two_spans : FrohmanTwoTwoSpans
 ```
 
 That list is six specified hosts:
