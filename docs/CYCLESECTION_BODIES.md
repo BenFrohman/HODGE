@@ -58,11 +58,11 @@ reconstructed by `rfl`. They were chosen before `cl` was set to `id`.
 
 | Host | Lean construct | Geometry sitting outside the Datum |
 |---|---|---|
-| `projectiveFourSpace` | `(constructP4 γ.val).coeff`, `constructP4 γ = ⟨γ⟩` | `{x₃ = x₄ = 0} ⊂ ℝ⁴` |
-| `kleinQuadric` | `construct γ.val` with `construct γ := γ` | `σ₂`, `σ₁₁` |
-| `productOfPlanes` | `match (a,b,c) => (a,b,c)` | `h₁²`, `h₂²`, `h₁ h₂` |
-| `planeSpan` | `construct γ := γ` | `h²`, `[Π]` on `V(F)` |
-| `threeSpan` | `constructThree γ := γ` | `h²`, `[Π]`, `[Π₋₁]` |
+| `projectiveFourSpace` | `(constructP4 γ.val).coeff`, `constructP4 γ = ⟨γ⟩` | `{x_3 = x_4 = 0} ⊂ P^4` |
+| `kleinQuadric` | `construct γ.val` with `construct γ := γ` | `σ_2`, `σ_{1,1}` |
+| `productOfPlanes` | `match (a,b,c) => (a,b,c)` | `h_1^2`, `h_2^2`, `h_1 h_2` |
+| `planeSpan` | `construct γ := γ` | `h^2`, `[Π]` on `V(F)` |
+| `threeSpan` | `constructThree γ := γ` | `h^2`, `[Π]`, `[Π_{-1}]` |
 
 `contains_two_planes` is not a `CycleSection` field. It is
 
@@ -70,7 +70,7 @@ reconstructed by `rfl`. They were chosen before `cl` was set to `id`.
 F ∈ planeIdeal x3 x4 x5  ∧  F ∈ planeIdealMinus1 …
 ```
 
-That is why `Π` and `Π₋₁` were allowed into `threeSpan`.
+That is why `Π` and `Π_{-1}` were allowed into `threeSpan`.
 It does not fill `construct` on unspecified `D`.
 
 ## What is not compiled
@@ -83,6 +83,7 @@ instance (D) (_h : D.codim = 2) : CycleConstructor D
 ```
 
 is false: `zeroCycle` has `codim = 2`, `cl = 0`, and `¬ HodgeConjecture`.
+That gadget is not a smooth complex projective fourfold and is not a Clay disproof.
 
 `#print axioms Hodge.HodgeConjecture.named_fourfolds` is expected to list
 `propext` and `Quot.sound` only. See `docs/PRINT_AXIOMS.md`.
