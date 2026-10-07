@@ -19,7 +19,8 @@ is recorded only to be rejected: Euler - 5G = -5 ∏ x_i.
 G does not define a projective hypersurface in P^5.
 
 Not T_F (that name is CycleSection.construct).
-Not general_fourfold. Not a miss. AMV already closes Hodge on this host.
+Not RationalHodge. Not general_fourfold. Not a miss.
+AMV already closes Hodge on this host.
 -/
 
 namespace Hodge
@@ -69,7 +70,7 @@ theorem affine_cone_isolated_at_origin [IsDomain R]
     hx x4 (by simpa [dF5_dx4] using d4),
     hx x5 (by simpa [dF5_dx5] using d5)⟩
 
-/-- The requested Dwork-in-six-variables polynomial. Not homogeneous. -/
+/-- Requested six-variable deformation. Not homogeneous. Not a host. -/
 def G_inhomogeneous (x0 x1 x2 x3 x4 x5 : R) : R :=
   F5 x0 x1 x2 x3 x4 x5 - (5 : R) * x0 * x1 * x2 * x3 * x4 * x5
 
