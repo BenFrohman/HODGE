@@ -29,10 +29,12 @@ structure Datum (Z V N : Type*)
     [AddCommGroup N] [Module ℚ N] where
   /-- The integer `k` in `H^{2k}`. -/
   codim : ℕ
-  /-- Projection onto the off-diagonal Hodge pieces. -/
-  obstruction : LinearMap ℚ V N
+  /-- Projection onto the off-diagonal Hodge pieces.
+  `LinearMap` in mathlib v4.22.0 takes the ring hom, not the ring.
+  `M →ₑ[R] M₂` is `LinearMap (RingHom.id R)`. -/
+  obstruction : LinearMap (RingHom.id ℚ) V N
   /-- The cycle class map. -/
-  cl : LinearMap ℚ Z V
+  cl : LinearMap (RingHom.id ℚ) Z V
   /-- Geometry produces Hodge classes: the easy arrow. -/
   cl_isHodge : ∀ z, obstruction (cl z) = 0
 
