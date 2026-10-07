@@ -6,27 +6,10 @@ import Mathlib.Tactic.Ring
 import Mathlib.RingTheory.Ideal.Basic
 import Hodge.Construct
 
-/-!
-# Special Noether–Lefschetz sextic (plane locus)
-
-    F = x0^5 x3 + x3^6 + x1^5 x4 + x4^6 + x2^5 x5 + x5^6
-    Pi     = {x3 = x4 = x5 = 0},                 I(Pi) = <x3, x4, x5>
-    Pi_{-1} = {x0+x3 = x1+x4 = x2+x5 = 0},         I(Pi_{-1}) = <x0+x3, x1+x4, x2+x5>
-
-Official closed theorem of this file: `contains_two_planes`.
-Both planes lie on V(F). `{x0=x1=x2=0}` does not.
-Gram of (h^2, [Pi], [Pi_{-1}]) has det 2604; that is a lower bound, not Hodge.
-Not general_fourfold. Not Clay.
--/
-
 namespace Hodge
 namespace SpecialSextic
 
 variable {R : Type*} [CommRing R]
-
-inductive P5Coord where
-  | x0 | x1 | x2 | x3 | x4 | x5
-  deriving DecidableEq, Repr
 
 def F (x0 x1 x2 x3 x4 x5 : R) : R :=
   x0 ^ 5 * x3 + x3 ^ 6 +
@@ -66,19 +49,19 @@ theorem F_mem_plane (x0 x1 x2 x3 x4 x5 : R) :
   · exact Ideal.mul_mem_right _ _ (Ideal.subset_span (Or.inr (Or.inl rfl)))
   · exact Ideal.mul_mem_right _ _ (Ideal.subset_span (Or.inr (Or.inr rfl)))
 
+/-- `*` is left-associative, so `a * g * p = (a * g) * p`.
+The generator is the middle factor `g`. Peel `p` on the right, then `a` on the left. -/
 theorem F_mem_plane_minus1 (x0 x1 x2 x3 x4 x5 : R) :
     F x0 x1 x2 x3 x4 x5 ∈ planeIdealMinus1 x0 x1 x2 x3 x4 x5 := by
   rw [F_factors_minus1]
   refine Ideal.add_mem _ (Ideal.add_mem _ ?_ ?_) ?_
   · exact Ideal.mul_mem_right _ _
-      (Ideal.mul_mem_right _ _ (Ideal.subset_span (Or.inl rfl)))
+      (Ideal.mul_mem_left _ _ (Ideal.subset_span (Or.inl rfl)))
   · exact Ideal.mul_mem_right _ _
-      (Ideal.mul_mem_right _ _ (Ideal.subset_span (Or.inr (Or.inl rfl))))
+      (Ideal.mul_mem_left _ _ (Ideal.subset_span (Or.inr (Or.inl rfl))))
   · exact Ideal.mul_mem_right _ _
-      (Ideal.mul_mem_right _ _ (Ideal.subset_span (Or.inr (Or.inr rfl))))
+      (Ideal.mul_mem_left _ _ (Ideal.subset_span (Or.inr (Or.inr rfl))))
 
-/-- Official closed theorem of this file (Frohman, Apache-2.0).
-    Both named planes lie on V(F). Not Clay. -/
 theorem contains_two_planes (x0 x1 x2 x3 x4 x5 : R) :
     F x0 x1 x2 x3 x4 x5 ∈ planeIdeal x3 x4 x5 ∧
       F x0 x1 x2 x3 x4 x5 ∈ planeIdealMinus1 x0 x1 x2 x3 x4 x5 :=
@@ -142,7 +125,6 @@ theorem affine_cone_isolated_at_origin [IsDomain R]
 
 theorem five_pow_six : 5 ^ 6 = 15625 := by decide
 
-/-- Arithmetic identity for the 3x3 Gram determinant. Not an intersection proof. -/
 theorem gram_det_numeral :
     (6 : Nat) * 21 * 21 - 21 - 21 = 2604 := by decide
 
