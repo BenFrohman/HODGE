@@ -18,6 +18,13 @@ jobs:
             echo "ARCHITECTURE: Hodge.lean must not import Hodge.Attempt.*"
             exit 1
           fi
+      - name: Sorry check on the built library
+        run: |
+          if grep -nE '\bsorry\b' Hodge.lean Hodge/*.lean; then
+            echo "sorry in the built library"
+            exit 1
+          fi
+          echo "no sorry in Hodge.lean or Hodge/*.lean"
       - name: Build Hodge
         uses: leanprover/lean-action@v1
         with:
