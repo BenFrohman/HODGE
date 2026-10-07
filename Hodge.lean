@@ -16,6 +16,7 @@ import Hodge.Geometry
 import Hodge.Construct
 import Hodge.Fermat
 import Hodge.FermatQuintic
+import Hodge.HostSplit
 import Hodge.SpecialSextic
 import Hodge.SpecialSexticMembership
 import Hodge.HeadPlane
