@@ -17,6 +17,9 @@ Partials `5 x_i^4`. Cone isolated at the origin when `5 ≠ 0`.
 `T_F` is `CycleSection.construct`. This file does not rebind it and does not
 supply a `CycleSection` instance. Shioda and Aljovín–Movasati–Villaflor are literature,
 not a term of `HodgeConjecture.general_fourfold`.
+
+The geometric Chow group is not defined in this kernel. No coefficient
+vector is declared to be `CH^k`.
 -/
 
 namespace Hodge
@@ -115,9 +118,10 @@ theorem canonical_degree : (5 : Int) - 6 = -1 := by decide
 
 theorem this_is_not_general_fourfold : True := trivial
 
-/-- Finished algebraic certificate for the host `V(G)`. Not a Hodge inhabitant. -/
+/-- Finished algebraic certificate for the host `V(G)`. Not a Hodge inhabitant.
+The binders are annotated `: R` so they are not elaborated as `Nat`. -/
 theorem jacobian_certificate [IsDomain R] (h5 : (5 : R) ≠ 0) :
-    (∀ x0 x1 x2 x3 x4 x5,
+    (∀ x0 x1 x2 x3 x4 x5 : R,
         dG_dx0 x0 x1 x2 x3 x4 x5 = 0 →
         dG_dx1 x0 x1 x2 x3 x4 x5 = 0 →
         dG_dx2 x0 x1 x2 x3 x4 x5 = 0 →
