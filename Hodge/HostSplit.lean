@@ -11,8 +11,9 @@ Author: Benjamin Stanley Frohman.
 Numeral identities only. The sextic remainder `Z` is not computed.
 `T_F` is not redefined.
 
-Closed here: the Hodge-number split.
-Not closed here: the Fermat Hodge lattice. No exponent sum stands in for it.
+Closed here: the complex numeral split.
+Not closed here: the rational Hodge lattice. Rank 401 is literature
+(Aljovín–Movasati–Villaflor), not a term in this file.
 -/
 
 namespace Hodge
