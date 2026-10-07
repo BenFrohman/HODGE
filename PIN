@@ -3,3 +3,7 @@ mathlib        = v4.22.0
 not            = master
 clay-tag       = clay-statement-open / v1.0.0-guarded
 clay-status    = OPEN
+locked-head    = bc1abdfae0f26bbad02b0ea0e4a81ab01d260926
+locked-run     = 37561876445 success
+locked-claims  = F_mem_plane, F_mem_plane_minus1, contains_two_planes, cycleOf
+not-locked     = Hodge class of the sextic, Clay close

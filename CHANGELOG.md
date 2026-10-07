@@ -2,6 +2,15 @@
 
 Author: Benjamin Stanley Frohman (@BenFrohman).
 
+## 2026-10-06 green head lock
+
+- Head `bc1abdfa`. Lean CI run 37561876445 succeeded on `leanprover/lean4:v4.22.0`.
+- `Hodge/SpecialSextic.lean` at `311bebe0`: `F_mem_plane` and `F_mem_plane_minus1`.
+- `*` associates left, so `a * g * p = (a * g) * p`. The sign-plane generator is the middle factor. Peel `p` with `Ideal.mul_mem_right`, then `a` with `Ideal.mul_mem_left`.
+- `contains_two_planes` says both named planes lie on `V(F)`. It is not a Hodge-class statement and not a Clay close.
+- `Hodge/Klein.lean`: `initialize` is a Lean keyword. The map is `cycleOf`. Theorems `cycleOf_coeff`, `cycleOf_construct`.
+- Clay tag unchanged: `clay-statement-open`. Status remains open.
+
 ## 2026-09-30 Fermat quintic fourfold X_5
 
 - `Hodge/FermatQuintic.lean`: `G = ∑ x_i^5`, partials `5 x_i^4`, origin isolation.
