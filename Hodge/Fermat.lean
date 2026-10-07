@@ -34,7 +34,8 @@ def standardPairing : Pairing :=
     left1 := .z2, right1 := .z3
     left2 := .z4, right2 := .z5 }
 
-def RootIdx := Fin 4
+/-- Fourth roots of -1, indexed. `abbrev` so `OfNat (Fin 4)` applies. -/
+abbrev RootIdx := Fin 4
 
 structure LinearPlane where
   pairing : Pairing
@@ -86,7 +87,7 @@ def fermatQuartic : Datum Rat Rat Rat where
 
 instance : CycleSection fermatQuartic where
   construct := fun γ => γ.val
-  is_section := fun γ => rfl
+  is_section := fun _ => rfl
 
 theorem fermatQuartic_hodge : fermatQuartic.HodgeConjecture :=
   HodgeConjecture.of_section fermatQuartic

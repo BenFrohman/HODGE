@@ -2,6 +2,8 @@
 Copyright (c) 2026 Ben Frohman (@BenFrohman). Released under the MIT license.
 Authors: Ben Frohman (@BenFrohman)
 -/
+import Mathlib.Tactic.Ring
+import Mathlib.Tactic.Omega
 import Hodge.Basic
 
 /-!
