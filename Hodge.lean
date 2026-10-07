@@ -17,6 +17,8 @@ import Hodge.Construct
 import Hodge.Fermat
 import Hodge.FermatQuintic
 import Hodge.SpecialSextic
+import Hodge.SpecialSexticMembership
+import Hodge.HeadPlane
 import Hodge.SpecialSexticJacobian
 import Hodge.Hassett
 import Hodge.NamedFamilies
