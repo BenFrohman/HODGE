@@ -10,12 +10,12 @@ import Hodge.Construct
 # Special Noether–Lefschetz sextic (plane locus)
 
     F = x0^5 x3 + x3^6 + x1^5 x4 + x4^6 + x2^5 x5 + x5^6
-    Π     = {x3 = x4 = x5 = 0},                 I(Π) = ⟨x3, x4, x5⟩
-    Π_{-1} = {x0+x3 = x1+x4 = x2+x5 = 0},         I(Π_{-1}) = ⟨x0+x3, x1+x4, x2+x5⟩
+    Pi     = {x3 = x4 = x5 = 0},                 I(Pi) = <x3, x4, x5>
+    Pi_{-1} = {x0+x3 = x1+x4 = x2+x5 = 0},         I(Pi_{-1}) = <x0+x3, x1+x4, x2+x5>
 
 Official closed theorem of this file: `contains_two_planes`.
 Both planes lie on V(F). `{x0=x1=x2=0}` does not.
-Gram of (h², [Π], [Π_{-1}]) has det 2604; that is a lower bound, not Hodge.
+Gram of (h^2, [Pi], [Pi_{-1}]) has det 2604; that is a lower bound, not Hodge.
 Not general_fourfold. Not Clay.
 -/
 
@@ -62,20 +62,20 @@ theorem F_mem_plane (x0 x1 x2 x3 x4 x5 : R) :
     F x0 x1 x2 x3 x4 x5 ∈ planeIdeal x3 x4 x5 := by
   rw [F_factors]
   refine Ideal.add_mem _ (Ideal.add_mem _ ?_ ?_) ?_
-  · exact Ideal.mul_mem_right _ _ (Ideal.subset_span (by simp))
-  · exact Ideal.mul_mem_right _ _ (Ideal.subset_span (by simp))
-  · exact Ideal.mul_mem_right _ _ (Ideal.subset_span (by simp))
+  · exact Ideal.mul_mem_right _ _ (Ideal.subset_span (Or.inl rfl))
+  · exact Ideal.mul_mem_right _ _ (Ideal.subset_span (Or.inr (Or.inl rfl)))
+  · exact Ideal.mul_mem_right _ _ (Ideal.subset_span (Or.inr (Or.inr rfl)))
 
 theorem F_mem_plane_minus1 (x0 x1 x2 x3 x4 x5 : R) :
     F x0 x1 x2 x3 x4 x5 ∈ planeIdealMinus1 x0 x1 x2 x3 x4 x5 := by
   rw [F_factors_minus1]
   refine Ideal.add_mem _ (Ideal.add_mem _ ?_ ?_) ?_
-  · refine Ideal.mul_mem_right _ _ (Ideal.mul_mem_right _ _ ?_)
-    exact Ideal.subset_span (by simp)
-  · refine Ideal.mul_mem_right _ _ (Ideal.mul_mem_right _ _ ?_)
-    exact Ideal.subset_span (by simp)
-  · refine Ideal.mul_mem_right _ _ (Ideal.mul_mem_right _ _ ?_)
-    exact Ideal.subset_span (by simp)
+  · exact Ideal.mul_mem_right _ _
+      (Ideal.mul_mem_right _ _ (Ideal.subset_span (Or.inl rfl)))
+  · exact Ideal.mul_mem_right _ _
+      (Ideal.mul_mem_right _ _ (Ideal.subset_span (Or.inr (Or.inl rfl))))
+  · exact Ideal.mul_mem_right _ _
+      (Ideal.mul_mem_right _ _ (Ideal.subset_span (Or.inr (Or.inr rfl))))
 
 /-- Official closed theorem of this file (Frohman, Apache-2.0).
     Both named planes lie on V(F). Not Clay. -/
@@ -98,18 +98,20 @@ theorem gradPair_origin [IsDomain R]
     (hxy : (5 : R) * x ^ 4 * y = 0)
     (hsum : x ^ 5 + (6 : R) * y ^ 5 = 0) :
     x = 0 ∧ y = 0 := by
-  have hyx : x ^ 4 * y = 0 := by
-    have : (5 : R) * (x ^ 4 * y) = 0 := by
-      simpa [mul_assoc] using hxy
-    exact (mul_eq_zero.mp this).resolve_left h5
+  have hxy' : (5 : R) * (x ^ 4 * y) = 0 := by
+    simpa [mul_assoc] using hxy
+  have hyx : x ^ 4 * y = 0 := (mul_eq_zero.mp hxy').resolve_left h5
   rcases mul_eq_zero.mp hyx with hx4 | hy
-  · have hx : x = 0 := pow_eq_zero (by simpa using hx4)
-    have : (6 : R) * y ^ 5 = 0 := by
-      simpa [hx] using hsum
-    have hy5 : y ^ 5 = 0 := (mul_eq_zero.mp this).resolve_left h6
+  · have hx : x = 0 := pow_eq_zero hx4
+    have h6y : (6 : R) * y ^ 5 = 0 := by
+      rw [hx] at hsum
+      simpa using hsum
+    have hy5 : y ^ 5 = 0 := (mul_eq_zero.mp h6y).resolve_left h6
     exact ⟨hx, pow_eq_zero hy5⟩
-  · have : x ^ 5 = 0 := by simpa [hy] using hsum
-    exact ⟨pow_eq_zero this, hy⟩
+  · have hx5 : x ^ 5 = 0 := by
+      rw [hy] at hsum
+      simpa using hsum
+    exact ⟨pow_eq_zero hx5, hy⟩
 
 theorem gradient_only_origin [IsDomain R]
     (h5 : (5 : R) ≠ 0) (h6 : (6 : R) ≠ 0)
@@ -140,7 +142,7 @@ theorem affine_cone_isolated_at_origin [IsDomain R]
 
 theorem five_pow_six : 5 ^ 6 = 15625 := by decide
 
-/-- Arithmetic identity for the 3×3 Gram determinant. Not an intersection proof. -/
+/-- Arithmetic identity for the 3x3 Gram determinant. Not an intersection proof. -/
 theorem gram_det_numeral :
     (6 : Nat) * 21 * 21 - 21 - 21 = 2604 := by decide
 
@@ -150,7 +152,6 @@ def planeSpan : Datum (Rat × Rat) (Rat × Rat) Rat where
   cl := LinearMap.id
   cl_isHodge := by intro z; simp
 
-/-- Coefficient shadow of h², [Π], [Π_{-1}] on this host. Still a shadow, not Hodge. -/
 def threeSpan : Datum (Rat × Rat × Rat) (Rat × Rat × Rat) Rat where
   codim := 2
   obstruction := 0
@@ -166,8 +167,8 @@ theorem construct_section (gamma : Rat × Rat) :
   rfl
 
 instance : CycleSection planeSpan where
-  construct := fun γ => construct γ.val
-  is_section := fun γ => construct_section γ.val
+  construct := fun gamma => construct gamma.val
+  is_section := fun gamma => construct_section gamma.val
 
 def constructThree (gamma : Rat × Rat × Rat) : Rat × Rat × Rat := gamma
 
@@ -176,8 +177,8 @@ theorem constructThree_section (gamma : Rat × Rat × Rat) :
   rfl
 
 instance : CycleSection threeSpan where
-  construct := fun γ => constructThree γ.val
-  is_section := fun γ => constructThree_section γ.val
+  construct := fun gamma => constructThree gamma.val
+  is_section := fun gamma => constructThree_section gamma.val
 
 theorem planeSpan_hodge : planeSpan.HodgeConjecture :=
   hodgeConjecture_of_constructor planeSpan
