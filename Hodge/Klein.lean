@@ -61,15 +61,16 @@ structure FormalCycle where
   coeffPi : ℚ
   coeffPi' : ℚ
 
-def initialize : ℚ × ℚ → FormalCycle
+/-- `initialize` is a Lean keyword, so the constructor is `cycleOf`. -/
+def cycleOf : ℚ × ℚ → FormalCycle
   | (a, b) => ⟨a, b⟩
 
-@[simp] theorem initialize_coeff (a b : ℚ) :
-    (initialize (a, b)).coeffPi = a ∧ (initialize (a, b)).coeffPi' = b :=
+@[simp] theorem cycleOf_coeff (a b : ℚ) :
+    (cycleOf (a, b)).coeffPi = a ∧ (cycleOf (a, b)).coeffPi' = b :=
   ⟨rfl, rfl⟩
 
-theorem initialize_construct (gamma : ℚ × ℚ) :
-    initialize (Classical.construct gamma) = initialize gamma :=
+theorem cycleOf_construct (gamma : ℚ × ℚ) :
+    cycleOf (Classical.construct gamma) = cycleOf gamma :=
   rfl
 
 end Klein
