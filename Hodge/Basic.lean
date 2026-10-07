@@ -2,6 +2,7 @@
 Copyright (c) 2026 Benjamin Stanley Frohman (@BenFrohman). Released under Apache-2.0.
 Authors: Benjamin Stanley Frohman (@BenFrohman)
 -/
+import Mathlib.Algebra.Field.Rat
 import Mathlib.Algebra.Module.Submodule.Lattice
 import Mathlib.LinearAlgebra.Span.Basic
 
@@ -28,9 +29,9 @@ structure Datum (Z V N : Type*)
   /-- The integer `k` in `H^{2k}`. -/
   codim : ℕ
   /-- Projection onto the off-diagonal Hodge pieces. -/
-  obstruction : V →ₗ[ℚ] N
+  obstruction : V →ₑ[ℚ] N
   /-- The cycle class map. -/
-  cl : Z →ₗ[ℚ] V
+  cl : Z →ₑ[ℚ] V
   /-- Geometry produces Hodge classes: the easy arrow. -/
   cl_isHodge : ∀ z, obstruction (cl z) = 0
 
@@ -57,13 +58,6 @@ theorem algebraicClasses_le_hodgeClasses (D : Datum Z V N) :
   rcases hv with ⟨z, rfl⟩
   exact D.cl_isHodge z
 
-/-- The Hodge conjecture, as a statement about this datum: every Hodge class
-is algebraic. -/
-def HodgeConjecture (D : Datum Z V N) : Prop :=
-  D.hodgeClasses ≤ D.algebraicClasses
-
-/-- Generation form: if a set of algebraic classes already spans the Hodge
-classes over `ℚ`, the conjecture holds for `D`. -/
 theorem hodgeConjecture_of_generators (D : Datum Z V N)
     (L : Set V)
     (hspan : D.hodgeClasses ≤ Submodule.span ℚ L)
