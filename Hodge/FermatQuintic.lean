@@ -84,12 +84,7 @@ theorem affine_cone_isolated_at_origin [IsDomain R]
     intro x hx
     have : x ^ 4 = 0 := (mul_eq_zero.mp hx).resolve_left h5
     exact pow_eq_zero this
-  exact ⟨hx x0 (by simpa [dG_dx0] using d0),
-    hx x1 (by simpa [dG_dx1] using d1),
-    hx x2 (by simpa [dG_dx2] using d2),
-    hx x3 (by simpa [dG_dx3] using d3),
-    hx x4 (by simpa [dG_dx4] using d4),
-    hx x5 (by simpa [dG_dx5] using d5)⟩
+  exact ⟨hx x0 d0, hx x1 d1, hx x2 d2, hx x3 d3, hx x4 d4, hx x5 d5⟩
 
 /-- Degree-6 product. Not a projective equation in P^5. Not the host. -/
 def G_inhomogeneous (x0 x1 x2 x3 x4 x5 : R) : R :=
