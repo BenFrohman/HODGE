@@ -3,6 +3,7 @@ Copyright (c) 2026 Benjamin Stanley Frohman (@BenFrohman). Released under Apache
 Authors: Benjamin Stanley Frohman (@BenFrohman)
 -/
 import Mathlib.Algebra.Field.Rat
+import Mathlib.Algebra.Module.LinearMap.Basic
 import Mathlib.Algebra.Module.Submodule.Lattice
 import Mathlib.LinearAlgebra.Span.Basic
 
@@ -29,9 +30,9 @@ structure Datum (Z V N : Type*)
   /-- The integer `k` in `H^{2k}`. -/
   codim : ℕ
   /-- Projection onto the off-diagonal Hodge pieces. -/
-  obstruction : V →ₑ[ℚ] N
+  obstruction : LinearMap ℚ V N
   /-- The cycle class map. -/
-  cl : Z →ₑ[ℚ] V
+  cl : LinearMap ℚ Z V
   /-- Geometry produces Hodge classes: the easy arrow. -/
   cl_isHodge : ∀ z, obstruction (cl z) = 0
 
