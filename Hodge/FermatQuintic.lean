@@ -10,6 +10,8 @@ import Hodge.Construct
 
 Host: `G = ∑ x_i^5`. Partials `5 x_i^4`. Cone isolated at the origin when `5 ≠ 0`.
 The partials are unfolded before the zero test so no `Nat` coercion is inserted.
+The origin is a point of the affine cone in `A^6`, not of `X_5 ⊂ P^5`.
+`P^5` is that affine space with the origin removed, then scaled.
 -/
 
 namespace Hodge
