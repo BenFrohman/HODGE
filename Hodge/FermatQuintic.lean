@@ -104,5 +104,24 @@ theorem canonical_degree : (5 : Int) - 6 = -1 := by decide
 
 theorem this_is_not_general_fourfold : True := trivial
 
+/-- Finished algebraic certificate. Not a Hodge-class inhabitant. -/
+theorem jacobian_certificate [IsDomain R] (h5 : (5 : R) ≠ 0) :
+    (∀ x0 x1 x2 x3 x4 x5,
+        dF5_dx0 x0 x1 x2 x3 x4 x5 = 0 →
+        dF5_dx1 x0 x1 x2 x3 x4 x5 = 0 →
+        dF5_dx2 x0 x1 x2 x3 x4 x5 = 0 →
+        dF5_dx3 x0 x1 x2 x3 x4 x5 = 0 →
+        dF5_dx4 x0 x1 x2 x3 x4 x5 = 0 →
+        dF5_dx5 x0 x1 x2 x3 x4 x5 = 0 →
+        x0 = 0 ∧ x1 = 0 ∧ x2 = 0 ∧ x3 = 0 ∧ x4 = 0 ∧ x5 = 0) ∧
+      X_5_name ≠ locked_T_F_name ∧
+      (126 : Nat) - 6 = 120 ∧
+      (580 : Nat) + 1 = 581 ∧
+      (0 : Nat) + 120 + 581 + 120 + 0 = 821 ∧
+      ((5 : Int) - 6 = -1) := by
+  refine ⟨?_, X_5_name_ne_T_F, h31_numeral, h22_full_numeral, b4_numeral, canonical_degree⟩
+  intro x0 x1 x2 x3 x4 x5 d0 d1 d2 d3 d4 d5
+  exact affine_cone_isolated_at_origin h5 x0 x1 x2 x3 x4 x5 d0 d1 d2 d3 d4 d5
+
 end FermatQuintic
 end Hodge
