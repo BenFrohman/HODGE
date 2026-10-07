@@ -5,5 +5,7 @@ clay-tag       = clay-statement-open / v1.0.0-guarded
 clay-status    = OPEN
 locked-head    = e0aff9badee93bc7296f7bd425da26a745b68920
 locked-run     = 37562252810 success
+previous-pin   = 3d826449d1efb13586625271b0a2c1a5a6bd3394
+second-pin     = requested
 locked-claims  = F_mem_plane, F_mem_plane_minus1, contains_two_planes, cycleOf, head_plane_point, head_plane_not_on_host
 not-locked     = Hodge class of the sextic, Clay close
