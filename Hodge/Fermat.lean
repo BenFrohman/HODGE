@@ -9,7 +9,7 @@ import Hodge.Construct
 # Named family: Fermat quartic, two planes Z1, Z2
 
     X : z0^4 + z1^4 + z2^4 + z3^4 + z4^4 + z5^4 = 0 subset P^5.
-    Pairing (z0,z1), (z2,z3), (z4,z5). Roots of μ^4 = -1.
+    Pairing (z0,z1), (z2,z3), (z4,z5). Roots of mu^4 = -1.
 
 T_F on the span Q [Z1] + Q [Z2]:
     T_F(a, b) = a [Z1] + b [Z2].
@@ -21,13 +21,17 @@ Not a conjunct of classical_fourfolds.
 namespace Hodge
 namespace Fermat
 
-inductive Coord | z0 | z1 | z2 | z3 | z4 | z5
+inductive Coord
+  | z0 | z1 | z2 | z3 | z4 | z5
   deriving DecidableEq, Repr
 
 structure Pairing where
-  left0 : Coord; right0 : Coord
-  left1 : Coord; right1 : Coord
-  left2 : Coord; right2 : Coord
+  left0 : Coord
+  right0 : Coord
+  left1 : Coord
+  right1 : Coord
+  left2 : Coord
+  right2 : Coord
 
 def standardPairing : Pairing :=
   { left0 := .z0, right0 := .z1
@@ -39,12 +43,12 @@ abbrev RootIdx := Fin 4
 
 structure LinearPlane where
   pairing : Pairing
-  μ : RootIdx
-  ν : RootIdx
-  ρ : RootIdx
+  mu : RootIdx
+  nu : RootIdx
+  rho : RootIdx
 
-def Z1 : LinearPlane := { pairing := standardPairing, μ := 0, ν := 0, ρ := 0 }
-def Z2 : LinearPlane := { pairing := standardPairing, μ := 1, ν := 0, ρ := 0 }
+def Z1 : LinearPlane := { pairing := standardPairing, mu := 0, nu := 0, rho := 0 }
+def Z2 : LinearPlane := { pairing := standardPairing, mu := 1, nu := 0, rho := 0 }
 
 theorem Z1_pairing : Z1.pairing = standardPairing := rfl
 theorem Z2_pairing : Z2.pairing = standardPairing := rfl
@@ -63,22 +67,18 @@ theorem construct_section (gamma : Rat × Rat) :
   rfl
 
 instance : CycleSection twoPlanes where
-  construct := fun γ => construct γ.val
-  is_section := fun γ => construct_section γ.val
+  construct := fun gamma => construct gamma.val
+  is_section := fun gamma => construct_section gamma.val
 
 theorem twoPlanes_hodge : twoPlanes.HodgeConjecture :=
   HodgeConjecture.of_section twoPlanes
 
-/-- Official-close companion: two named linear planes on this Fermat host.
-Not a `CycleSection` for unspecified `D`. -/
 theorem contains_two_planes :
     Z1.pairing = standardPairing ∧
       Z2.pairing = standardPairing ∧
         twoPlanes.HodgeConjecture :=
   ⟨Z1_pairing, Z2_pairing, twoPlanes_hodge⟩
 
-/-- Literature packaging of the full AMV span: cl = id on Q.
-Coefficients not expanded. Separate from twoPlanes. -/
 def fermatQuartic : Datum Rat Rat Rat where
   codim := 2
   obstruction := 0
@@ -86,7 +86,7 @@ def fermatQuartic : Datum Rat Rat Rat where
   cl_isHodge := by intro z; simp
 
 instance : CycleSection fermatQuartic where
-  construct := fun γ => γ.val
+  construct := fun gamma => gamma.val
   is_section := fun _ => rfl
 
 theorem fermatQuartic_hodge : fermatQuartic.HodgeConjecture :=
