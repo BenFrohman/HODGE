@@ -31,3 +31,18 @@ jobs:
           use-mathlib-cache: true
           test: false
           build-args: Hodge
+
+  attempt:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Report sandbox sorry
+        run: |
+          echo "HodgeAttempt is the sandbox. It is not the Clay sentence."
+          grep -nE '\bsorry\b' Hodge/Attempt/*.lean || echo "no sorry in Hodge/Attempt"
+      - name: Build HodgeAttempt
+        uses: leanprover/lean-action@v1
+        with:
+          use-mathlib-cache: true
+          test: false
+          build-args: HodgeAttempt
