@@ -1,6 +1,7 @@
 /-
-Copyright (c) 2026 Benjamin Stanley Frohman. Apache-2.0.
+Copyright (c) 2026 Benjamin Stanley Frohman.
 Authors: Benjamin Stanley Frohman (@BenFrohman)
+SPDX-License-Identifier: Apache-2.0
 
 Build root for the three attempt axiom prints.
 Not the Hodge library root. Not a Clay close.
