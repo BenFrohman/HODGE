@@ -12,7 +12,7 @@ import Mathlib.Tactic.Ring
 # Fermat quartic planes with ζ^4 = -1
 
 Easy arrow on one host. Not imported by `Hodge.lean`.
-`X` is pinned to `CoordRing` so subtraction has an `HSub` instance.
+Both sides of each subtraction are ascribed to `MvPolynomial Var ℂ`.
 -/
 
 namespace Hodge
@@ -25,23 +25,23 @@ abbrev CoordRing := MvPolynomial Var ℂ
 
 open MvPolynomial
 
-abbrev Xc (i : Var) : CoordRing := X i
+noncomputable def Xc (i : Var) : MvPolynomial Var ℂ := X i
 
 noncomputable def fermatQuartic : CoordRing :=
   Xc Var.z0 ^ 4 + Xc Var.z1 ^ 4 + Xc Var.z2 ^ 4 +
     Xc Var.z3 ^ 4 + Xc Var.z4 ^ 4 + Xc Var.z5 ^ 4
 
 noncomputable def surfaceZ1Ideal (ζ : ℂ) : Ideal CoordRing :=
-  Ideal.span {
-    Xc Var.z0 - C ζ * Xc Var.z1,
-    Xc Var.z2 - C ζ * Xc Var.z3,
-    Xc Var.z4 - C ζ * Xc Var.z5 }
+  Ideal.span ({
+    (Xc Var.z0 - C ζ * Xc Var.z1 : MvPolynomial Var ℂ),
+    (Xc Var.z2 - C ζ * Xc Var.z3 : MvPolynomial Var ℂ),
+    (Xc Var.z4 - C ζ * Xc Var.z5 : MvPolynomial Var ℂ) } : Set (MvPolynomial Var ℂ))
 
 noncomputable def surfaceZ2Ideal (ζ : ℂ) : Ideal CoordRing :=
-  Ideal.span {
-    Xc Var.z0 + C ζ * Xc Var.z1,
-    Xc Var.z2 - C ζ * Xc Var.z3,
-    Xc Var.z4 - C ζ * Xc Var.z5 }
+  Ideal.span ({
+    (Xc Var.z0 + C ζ * Xc Var.z1 : MvPolynomial Var ℂ),
+    (Xc Var.z2 - C ζ * Xc Var.z3 : MvPolynomial Var ℂ),
+    (Xc Var.z4 - C ζ * Xc Var.z5 : MvPolynomial Var ℂ) } : Set (MvPolynomial Var ℂ))
 
 theorem pair_with_remainder {S : Type*} [CommRing S] (z w ζ : S) :
     z ^ 4 + w ^ 4 =
