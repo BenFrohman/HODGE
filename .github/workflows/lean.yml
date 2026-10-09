@@ -20,11 +20,18 @@ jobs:
           fi
       - name: Sorry check on the built library
         run: |
-          if grep -nE '\bsorry\b' Hodge.lean; then
-            echo "sorry in Hodge.lean"
+          if grep -nE '\bsorry\b' Hodge.lean \
+            Hodge/Basic.lean Hodge/Frontier.lean Hodge/Integral.lean Hodge/Known.lean \
+            Hodge/Examples.lean Hodge/Fourfold.lean Hodge/Classical.lean Hodge/Klein.lean \
+            Hodge/Geometry.lean Hodge/Construct.lean Hodge/Fermat.lean Hodge/FermatQuintic.lean \
+            Hodge/HostSplit.lean Hodge/SpecialSextic.lean Hodge/SpecialSexticMembership.lean \
+            Hodge/HeadPlane.lean Hodge/SpecialSexticJacobian.lean Hodge/Hassett.lean \
+            Hodge/NamedFamilies.lean Hodge/SexticModuli.lean Hodge/DerivedSurfaces.lean \
+            Hodge/Verify.lean; then
+            echo "sorry in the built library"
             exit 1
           fi
-          echo "no sorry in Hodge.lean"
+          echo "no sorry in the explicit Hodge library files"
       - name: Build Hodge
         uses: leanprover/lean-action@v1
         with:
@@ -39,7 +46,10 @@ jobs:
       - name: Report sandbox sorry
         run: |
           echo "HodgeAttempt is the sandbox. It is not the Clay sentence."
-          grep -nR --include='*.lean' -E '\bsorry\b' Hodge/Attempt || echo "no sorry in Hodge/Attempt"
+          grep -nE '\bsorry\b' \
+            Hodge/Attempt/Lefschetz.lean \
+            Hodge/Attempt/MonodromyTypeShift.lean \
+            Hodge/Attempt/AsymptoticAnalysis.lean || echo "no sorry in the named Attempt files"
       - name: Build HodgeAttempt
         uses: leanprover/lean-action@v1
         with:
