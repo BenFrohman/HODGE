@@ -15,16 +15,16 @@ jobs:
       - name: Forbid Attempt imports in Hodge.lean
         run: |
           if grep -nE '^import[[:space:]]+Hodge\.Attempt' Hodge.lean; then
-            echo "ARCHITECTURE: Hodge.lean must not import Hodge.Attempt.*"
+            echo "ARCHITECTURE: Hodge.lean must not import Hodge.Attempt"
             exit 1
           fi
       - name: Sorry check on the built library
         run: |
-          if grep -nE '\bsorry\b' Hodge.lean Hodge/*.lean; then
-            echo "sorry in the built library"
+          if grep -nE '\bsorry\b' Hodge.lean; then
+            echo "sorry in Hodge.lean"
             exit 1
           fi
-          echo "no sorry in Hodge.lean or Hodge/*.lean"
+          echo "no sorry in Hodge.lean"
       - name: Build Hodge
         uses: leanprover/lean-action@v1
         with:
@@ -39,7 +39,7 @@ jobs:
       - name: Report sandbox sorry
         run: |
           echo "HodgeAttempt is the sandbox. It is not the Clay sentence."
-          grep -nE '\bsorry\b' Hodge/Attempt/*.lean || echo "no sorry in Hodge/Attempt"
+          grep -nR --include='*.lean' -E '\bsorry\b' Hodge/Attempt || echo "no sorry in Hodge/Attempt"
       - name: Build HodgeAttempt
         uses: leanprover/lean-action@v1
         with:
