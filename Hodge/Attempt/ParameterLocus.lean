@@ -21,7 +21,7 @@ inductive ParameterLocus
   | genericObstructedLocus
 
 structure Tagged where
-  codim : ℕ
+  codim : Nat
   locus : ParameterLocus
 
 def carriesFermatRecipe (D : Tagged) : Prop :=
@@ -33,7 +33,7 @@ def GlobalFermatRecipe : Prop :=
   ∀ D : Tagged, 2 ≤ D.codim → carriesFermatRecipe D
 
 def genericObstructedTag : Tagged :=
-  { codim := 2, locus := .genericObstructedLocus }
+  { codim := (2 : Nat), locus := .genericObstructedLocus }
 
 theorem generic_tag_has_no_fermat_recipe :
     ¬ carriesFermatRecipe genericObstructedTag := by
@@ -41,7 +41,7 @@ theorem generic_tag_has_no_fermat_recipe :
 
 theorem recipe_is_not_global_constructor : ¬ GlobalFermatRecipe := by
   intro h
-  have hcodim : 2 ≤ genericObstructedTag.codim := by decide
+  have hcodim : 2 ≤ genericObstructedTag.codim := Nat.le_refl 2
   exact generic_tag_has_no_fermat_recipe (h genericObstructedTag hcodim)
 
 end Attempt
