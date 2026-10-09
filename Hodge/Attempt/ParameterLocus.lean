@@ -35,13 +35,13 @@ def GlobalFermatRecipe : Prop :=
 def genericObstructedTag : Tagged :=
   { codim := 2, locus := .genericObstructedLocus }
 
-theorem recipe_is_not_global_constructor : ¬ GlobalFermatRecipe := by
-  intro h
-  exact h genericObstructedTag (by decide)
-
 theorem generic_tag_has_no_fermat_recipe :
     ¬ carriesFermatRecipe genericObstructedTag := by
-  decide
+  simp [carriesFermatRecipe, genericObstructedTag]
+
+theorem recipe_is_not_global_constructor : ¬ GlobalFermatRecipe := by
+  intro h
+  exact generic_tag_has_no_fermat_recipe (h genericObstructedTag (by decide))
 
 end Attempt
 end Hodge
