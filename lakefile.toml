@@ -11,6 +11,10 @@ rev = "v4.22.0"
 [[lean_lib]]
 name = "Hodge"
 
+# Axiom prints for the attempt sentences. Not the Clay close.
+[[lean_lib]]
+name = "AxiomPrint"
+
 # Sandbox. Not the Clay sentence. Build with: lake build HodgeAttempt
 [[lean_lib]]
 name = "HodgeAttempt"

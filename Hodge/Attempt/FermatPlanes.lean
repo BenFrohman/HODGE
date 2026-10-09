@@ -3,7 +3,8 @@ Copyright (c) 2026 Benjamin Stanley Frohman. Released under Apache-2.0.
 Authors: Benjamin Stanley Frohman (@BenFrohman)
 -/
 import Mathlib.RingTheory.Ideal.Basic
-import Mathlib.Data.MvPolynomial.Basic
+import Mathlib.Algebra.MvPolynomial.Basic
+import Mathlib.Data.Complex.Basic
 import Mathlib.Tactic.Ring
 
 /-!
