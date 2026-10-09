@@ -12,7 +12,7 @@ import Mathlib.Tactic.Ring
 # Fermat quartic planes with ζ^4 = -1
 
 Easy arrow on one host. Not imported by `Hodge.lean`.
-Constructors are `Var.z0`, not dotted `.z0`, so the expected type is explicit.
+`X` is pinned to `CoordRing` so subtraction has an `HSub` instance.
 -/
 
 namespace Hodge
@@ -25,21 +25,23 @@ abbrev CoordRing := MvPolynomial Var ℂ
 
 open MvPolynomial
 
+abbrev Xc (i : Var) : CoordRing := X i
+
 noncomputable def fermatQuartic : CoordRing :=
-  X Var.z0 ^ 4 + X Var.z1 ^ 4 + X Var.z2 ^ 4 +
-    X Var.z3 ^ 4 + X Var.z4 ^ 4 + X Var.z5 ^ 4
+  Xc Var.z0 ^ 4 + Xc Var.z1 ^ 4 + Xc Var.z2 ^ 4 +
+    Xc Var.z3 ^ 4 + Xc Var.z4 ^ 4 + Xc Var.z5 ^ 4
 
 noncomputable def surfaceZ1Ideal (ζ : ℂ) : Ideal CoordRing :=
   Ideal.span {
-    X Var.z0 - C ζ * X Var.z1,
-    X Var.z2 - C ζ * X Var.z3,
-    X Var.z4 - C ζ * X Var.z5 }
+    Xc Var.z0 - C ζ * Xc Var.z1,
+    Xc Var.z2 - C ζ * Xc Var.z3,
+    Xc Var.z4 - C ζ * Xc Var.z5 }
 
 noncomputable def surfaceZ2Ideal (ζ : ℂ) : Ideal CoordRing :=
   Ideal.span {
-    X Var.z0 + C ζ * X Var.z1,
-    X Var.z2 - C ζ * X Var.z3,
-    X Var.z4 - C ζ * X Var.z5 }
+    Xc Var.z0 + C ζ * Xc Var.z1,
+    Xc Var.z2 - C ζ * Xc Var.z3,
+    Xc Var.z4 - C ζ * Xc Var.z5 }
 
 theorem pair_with_remainder {S : Type*} [CommRing S] (z w ζ : S) :
     z ^ 4 + w ^ 4 =
