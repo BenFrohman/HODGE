@@ -11,6 +11,7 @@ import Mathlib.Tactic.Ring
 # Fermat quartic planes with ζ^4 = -1
 
 Easy arrow on one host. Not imported by `Hodge.lean`.
+`MvPolynomial.commSemiring` has no executable code, so these defs are noncomputable.
 -/
 
 namespace Hodge
@@ -23,16 +24,16 @@ abbrev CoordRing := MvPolynomial Var ℂ
 
 open MvPolynomial
 
-def fermatQuartic : CoordRing :=
+noncomputable def fermatQuartic : CoordRing :=
   X .z0 ^ 4 + X .z1 ^ 4 + X .z2 ^ 4 + X .z3 ^ 4 + X .z4 ^ 4 + X .z5 ^ 4
 
-def surfaceZ1Ideal (ζ : ℂ) : Ideal CoordRing :=
+noncomputable def surfaceZ1Ideal (ζ : ℂ) : Ideal CoordRing :=
   Ideal.span {
     X .z0 - C ζ * X .z1,
     X .z2 - C ζ * X .z3,
     X .z4 - C ζ * X .z5 }
 
-def surfaceZ2Ideal (ζ : ℂ) : Ideal CoordRing :=
+noncomputable def surfaceZ2Ideal (ζ : ℂ) : Ideal CoordRing :=
   Ideal.span {
     X .z0 + C ζ * X .z1,
     X .z2 - C ζ * X .z3,

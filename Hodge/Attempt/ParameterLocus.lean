@@ -41,7 +41,8 @@ theorem generic_tag_has_no_fermat_recipe :
 
 theorem recipe_is_not_global_constructor : ¬ GlobalFermatRecipe := by
   intro h
-  exact generic_tag_has_no_fermat_recipe (h genericObstructedTag (by decide))
+  have hcodim : 2 ≤ genericObstructedTag.codim := by decide
+  exact generic_tag_has_no_fermat_recipe (h genericObstructedTag hcodim)
 
 end Attempt
 end Hodge
