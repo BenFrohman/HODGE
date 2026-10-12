@@ -15,5 +15,5 @@ Lean 4 is licensed under Apache License 2.0:
   https://github.com/leanprover/lean4/blob/master/LICENSE
 
 Using this repository does not transfer those copyrights.
-Attribution of this repository requires keeping the Apache-2.0 copyright notice
-in LICENSE and this NOTICE.
+Attribution of this repository requires keeping the copyright notice in this NOTICE.
+The LICENSE file is the unmodified Apache License, Version 2.0.
