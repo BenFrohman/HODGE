@@ -63,7 +63,8 @@ This file does not inhabit `general_fourfold` or ClayDisproofTerm.
 **Claim** (no term for unspecified `D`):
 
 ```lean
-def HodgeConjecture.general_fourfold D h : Prop := D.HodgeConjecture
+def HodgeConjecture.general_fourfold (D) (_h : D.codim = 2) : Prop :=
+  ∀ v ∈ D.hodgeClasses, ∃ z : Z, D.cl z = v
 ```
 
 **Three-host release:**
