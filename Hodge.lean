@@ -27,3 +27,4 @@ import Hodge.NamedFamilies
 import Hodge.SexticModuli
 import Hodge.DerivedSurfaces
 import Hodge.Verify
+import Hodge.ClayStatement
