@@ -10,11 +10,6 @@ import Hodge.NamedFamilies
 namespace Hodge
 namespace HodgeConjecture
 
-/-- Finite release: six named hosts. Proved. -/
-theorem named_fourfolds : NamedFourfolds :=
-  -- existing proof via the six CycleSection instances
-  named_fourfolds
-
 /-- Clay statement at codimension 2. Open. -/
 def general_fourfold
     {Z V N : Type*}
