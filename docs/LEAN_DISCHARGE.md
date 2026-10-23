@@ -1,3 +1,4 @@
+<!-- Copyright (c) 2026 Benjamin Stanley Frohman. Licensed under Apache-2.0. -->
 # What Lean 4 actually counts as discharge
 
 Author: Benjamin Stanley Frohman (@BenFrohman).

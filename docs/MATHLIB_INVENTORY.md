@@ -1,3 +1,4 @@
+<!-- Copyright (c) 2026 Benjamin Stanley Frohman. Licensed under Apache-2.0. -->
 # Mathlib inventory (specification targets, not modules we have)
 
 Author of this note: Benjamin Stanley Frohman (@BenFrohman).

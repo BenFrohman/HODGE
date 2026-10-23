@@ -1,3 +1,4 @@
+<!-- Copyright (c) 2026 Benjamin Stanley Frohman. Licensed under Apache-2.0. -->
 # Eight-step ledger (21 September 2026)
 
 Author of this record: Benjamin Stanley Frohman (@BenFrohman).

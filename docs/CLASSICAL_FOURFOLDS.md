@@ -1,3 +1,4 @@
+<!-- Copyright (c) 2026 Benjamin Stanley Frohman. Licensed under Apache-2.0. -->
 # Classical fourfolds with an explicit section of `cl`
 
 Author of the repository record: Ben Frohman (@BenFrohman).

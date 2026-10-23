@@ -1,3 +1,4 @@
+<!-- Copyright (c) 2026 Benjamin Stanley Frohman. Licensed under Apache-2.0. -->
 # Closing record of this development
 
 Author of the repository record: Benjamin Stanley Frohman (@BenFrohman).

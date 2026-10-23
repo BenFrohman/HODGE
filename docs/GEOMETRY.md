@@ -1,6 +1,6 @@
 # Variety, Hodge class, algebraic cycle
 
-Author: Benjamin Stanley Frohman.
+Author: Benjamin Stanley Frohman
 Copyright \u00a9 2026 Benjamin Stanley Frohman.
 License: Apache-2.0.
 

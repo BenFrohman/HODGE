@@ -1,3 +1,4 @@
+<!-- Copyright (c) 2026 Benjamin Stanley Frohman. Licensed under Apache-2.0. -->
 # Extra (2,2) classes on degree ≥ 6 fourfolds
 
 Author: Benjamin Stanley Frohman. Apache-2.0.
