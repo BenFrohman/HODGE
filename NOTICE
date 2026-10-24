@@ -1,8 +1,8 @@
 HODGE
-Copyright 2026 Benjamin Stanley Frohman
+Copyright 2026 Benjamin Stanley Frohman (ORCID: https://orcid.org/0009-0006-7068-3718)
 
 Licensed under the Apache License, Version 2.0.
-Copyright (c) 2026 Benjamin Stanley Frohman (@BenFrohman)
+Copyright (c) 2026 Benjamin Stanley Frohman (ORCID: https://orcid.org/0009-0006-7068-3718) (@BenFrohman)
 SPDX-License-Identifier: Apache-2.0
 
 This repository is original work of Benjamin Stanley Frohman.
@@ -16,4 +16,4 @@ Lean 4 is licensed under Apache License 2.0:
 
 Using this repository does not transfer those copyrights.
 Attribution of this repository requires keeping the copyright notice in this NOTICE.
-The LICENSE file is the unmodified Apache License, Version 2.0.
+See LICENSE for the full Apache License, Version 2.0 text.
