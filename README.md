@@ -1,5 +1,18 @@
 # HODGE
 
+<!-- ZENODO-PROVENANCE-HEADER -->
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23629480.svg)](https://doi.org/10.5281/zenodo.23629480)
+[![License: Apache-2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+[![ORCID](https://img.shields.io/badge/ORCID-0009--0006--7068--3718-brightgreen.svg)](https://orcid.org/0009-0006-7068-3718)
+
+> **Author:** Benjamin Stanley Frohman ([ORCID: 0009-0006-7068-3718](https://orcid.org/0009-0006-7068-3718))  
+> **Origin Provenance:** `2026-09-19 16:56:32 CDT (Git Initial Commit)`  
+> **Zenodo Archive & DOI:** [`10.5281/zenodo.23629480`](https://doi.org/10.5281/zenodo.23629480) ([Zenodo Record `23629480`](https://zenodo.org/records/23629480))  
+> **Primary Manuscript PDF:** [`docs/CYCLE_CLASS_AND_CONSTRUCTOR.pdf`](./docs/CYCLE_CLASS_AND_CONSTRUCTOR.pdf)  
+> **Copyright & License:** Copyright (c) 2026 Benjamin Stanley Frohman. Licensed under the Apache License, Version 2.0 ([`LICENSE`](./LICENSE), [`NOTICE`](./NOTICE)).
+<!-- /ZENODO-PROVENANCE-HEADER -->
+
+
 **Status:** Draft (finished skeleton, not a Clay close).
 **Author:** Benjamin Stanley Frohman (@BenFrohman)
 

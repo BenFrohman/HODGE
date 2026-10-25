@@ -1,18 +1,14 @@
 cff-version: 1.2.0
-title: "HODGE — Lean 4 skeleton of the Hodge conjecture"
-message: "Cite this repository as a formal skeleton, not as a proof of the Hodge conjecture."
-type: software
+message: "If you use this work, please cite it using the metadata below."
+title: "The Cycle Class Map, the Reverse Arrow, and a Classical Constructor on Three Fourfolds: Lean 4 Formalization and Hodge Ledger"
 authors:
-  - family-names: Frohman
-    given-names: Benjamin Stanley
-    alias: "@BenFrohman"
+  - family-names: "Frohman"
+    given-names: "Benjamin Stanley"
+    orcid: "https://orcid.org/0009-0006-7068-3718"
+    email: "frohmanbenjamin@gmail.com"
+version: "1.0.0"
+doi: "10.5281/zenodo.23629480"
+date-released: "2026-09-19"
+license: "Apache-2.0"
 repository-code: "https://github.com/BenFrohman/HODGE"
-license: Apache-2.0
-date-released: "2026-09-21"
-abstract: >
-  Lean 4 encoding of the Hodge sentence for fourfolds and classical island
-  constructions. Does not prove the Hodge conjecture.
-keywords:
-  - Hodge conjecture
-  - Lean 4
-  - algebraic geometry
+url: "https://doi.org/10.5281/zenodo.23629480"
