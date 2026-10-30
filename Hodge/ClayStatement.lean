@@ -10,18 +10,17 @@ import Hodge.NamedFamilies
 namespace Hodge
 namespace HodgeConjecture
 
-/-- Clay statement at codimension 2. Open. -/
-def general_fourfold
+/-- Clay statement at codimension 2, written out: every rational Hodge class is the class
+of a cycle. Equivalent to `general_fourfold` (defined in `Hodge.Fourfold`). Open; no term
+for `general_fourfold D h` itself is supplied. -/
+theorem general_fourfold_iff_clay
     {Z V N : Type*}
     [AddCommGroup Z] [Module ℚ Z]
     [AddCommGroup V] [Module ℚ V]
     [AddCommGroup N] [Module ℚ N]
-    (D : Datum Z V N) (_h : D.codim = 2) : Prop :=
-  ∀ v ∈ D.hodgeClasses, ∃ z : Z, D.cl z = v
-
-/-- No term is supplied. -/
--- theorem general_fourfold_holds (D) (h : D.codim = 2) :
---     general_fourfold D h := sorry   -- deliberately absent
+    (D : Datum Z V N) (h : D.codim = 2) :
+    general_fourfold D h ↔ ∀ v ∈ D.hodgeClasses, ∃ z : Z, D.cl z = v :=
+  ⟨fun H v hv => H hv, fun H v hv => H v hv⟩
 
 end HodgeConjecture
 end Hodge
