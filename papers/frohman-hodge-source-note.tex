@@ -185,31 +185,79 @@ The formal development was machine-checked as follows.
 {\raggedright
 \begin{itemize}
 \item Repository:\\ {\footnotesize\url{https://github.com/BenFrohman/HODGE}}
-\item Verified commit:\\ {\footnotesize\texttt{6923bcaab2e99de7b9a186ec2f76eedd26916f37}}
+\item Verified commit:\\ {\footnotesize\texttt{cb96cd49114ad142758c473a8e5f6506288e4fb7}}
 \item Lean toolchain: \texttt{leanprover/lean4:v4.22.0}
 \item Mathlib: tag \texttt{v4.22.0}, commit (from \texttt{lake-manifest.json})\\ {\footnotesize\texttt{79e94a093aff4a60fb1b1f92d9681e407124c2ca}}
-\item Continuous integration run (build, axiom audit, \texttt{sorry}/\texttt{axiom} scan; passed):\\ {\footnotesize\url{https://github.com/BenFrohman/HODGE/actions/runs/41574094131}}
-\item SHA-256 of the GitHub source tarball of the verified commit, downloaded twice with identical result:\\ {\footnotesize\url{https://github.com/BenFrohman/HODGE/archive/6923bcaab2e99de7b9a186ec2f76eedd26916f37.tar.gz}}\\
-{\footnotesize\texttt{1320d1417b0458fb52b38a38c0d7b81191a9a032d4c642f3fb3cd2394cfc91f0}}
+\item Continuous integration runs on the verified commit (both passed): certificate workflow (build, axiom audit, \texttt{sorry}/\texttt{axiom}/\texttt{native\_decide} scan)\\ {\footnotesize\url{https://github.com/BenFrohman/HODGE/actions/runs/41728656318}}\\ and Lean build workflow\\ {\footnotesize\url{https://github.com/BenFrohman/HODGE/actions/runs/41728656264}}
+\item SHA-256 of the GitHub source tarball of the verified commit, downloaded twice with identical result:\\ {\footnotesize\url{https://github.com/BenFrohman/HODGE/archive/cb96cd49114ad142758c473a8e5f6506288e4fb7.tar.gz}}\\
+{\footnotesize\texttt{3955313df3ec0ea6f94172b44138f7a160d50a4bd43ef22309cc748bb5a63e82}}
 \end{itemize}\par}
 
 The tarball hash refers to the verified commit rather than to a release tag, since a document cannot contain the hash of an archive that includes itself. The Lean sources are unchanged between that commit and the release tag.
 
-\textbf{The development contains no \texttt{sorry} and no user-declared axioms.} Every one of the 156 theorems and lemmas listed below depends only on Lean's standard axioms \texttt{propext}, \texttt{Classical.choice} and \texttt{Quot.sound} (or on none). The table is the verbatim output of \texttt{lake env lean AxiomAudit.lean} (\texttt{\#print axioms}) on the verified commit.
+
+\textbf{Scope.} The audited build consists of the default \texttt{lake} targets \texttt{Hodge} (250 theorems), \texttt{HodgeAttempt} (41 theorems; a sandbox that is \emph{not} the Clay Hodge statement and proves no Clay result) and \texttt{AxiomPrint} (axiom reports only, no theorems), 291 theorem declarations in total (201 written in the source and 90 generated automatically by Lean, such as constructor injectivity, \texttt{sizeOf} and equation lemmas). Excluded: \texttt{Hodge.Attempt.FermatRecipeScope}, which does not compile as committed (missing \(\mathbb{N}\) notation import; \texttt{decide} is stuck on \(2\le\texttt{offLocusGadget.codim}\)) and whose theorem \texttt{recipe\_is\_not\_global\_constructor} duplicates a certified declaration of the same name in \texttt{Hodge.Attempt.ParameterLocus}. The modules \texttt{Hodge.Chow}, \texttt{ContainerSeparation}, \texttt{Cubic}, \texttt{Islands}, \texttt{JacobianGenerators}, \texttt{JacobianLength}, \texttt{KleinPairing} and \texttt{NoShadow} are not imported by the \texttt{Hodge} root and are not covered by this certificate.
+
+\textbf{The development contains no \texttt{sorry} and no user-declared axioms.} Every one of the 291 theorems and lemmas listed below depends only on Lean's standard axioms \texttt{propext}, \texttt{Classical.choice} and \texttt{Quot.sound} (or on none). The table is the verbatim output of \texttt{lake env lean AxiomAudit.lean} (\texttt{\#print axioms}) on the verified commit.
 
 {\footnotesize
 \begin{longtable}{p{0.55\linewidth}p{0.38\linewidth}}
 \hline
 Lean declaration & \texttt{\#print axioms} \\
 \hline\endhead
-\path{Hodge.CycleConstructor.construct} & \texttt{[propext, Classical.choice, Quot.sound]} \\
-\path{Hodge.Datum.algebraicClasses_le_hodgeClasses} & \texttt{[propext, Classical.choice, Quot.sound]} \\
-\path{Hodge.Datum.cl_isHodge} & \texttt{[propext, Classical.choice, Quot.sound]} \\
-\path{Hodge.Datum.hodgeConjecture_codim_blind} & \texttt{[propext, Classical.choice, Quot.sound]} \\
-\path{Hodge.Datum.hodgeConjecture_of_generators} & \texttt{[propext, Classical.choice, Quot.sound]} \\
-\path{Hodge.constructor_of_hodgeConjecture} & \texttt{[propext, Classical.choice, Quot.sound]} \\
-\path{Hodge.hodgeConjecture_of_constructor} & \texttt{[propext, Classical.choice, Quot.sound]} \\
+\path{Hodge.Attempt.Hypersurface.mk.inj} & \texttt{(no axioms)} \\
+\path{Hodge.Attempt.Hypersurface.mk.injEq} & \texttt{[propext]} \\
+\path{Hodge.Attempt.Hypersurface.mk.sizeOf_spec} & \texttt{(no axioms)} \\
+\path{Hodge.Attempt.IntersectionInvariants.extra_class_mismatch} & \texttt{[propext, Classical.choice, Quot.sound]} \\
+\path{Hodge.Attempt.IntersectionInvariants.isolation_not_ambient} & \texttt{[propext]} \\
+\path{Hodge.Attempt.IntersectionInvariants.planeSelfIx_six} & \texttt{[propext]} \\
+\path{Hodge.Attempt.IntersectionInvariants.predicted_ambient_self} & \texttt{[propext, Classical.choice, Quot.sound]} \\
+\path{Hodge.Attempt.NamedSextic.namedSextic_eq_plane_combination} & \texttt{[propext]} \\
+\path{Hodge.Attempt.NamedSextic.namedSextic_mem_plane} & \texttt{[propext, Quot.sound]} \\
+\path{Hodge.Attempt.ParameterLocus.fermatLocus.inj} & \texttt{(no axioms)} \\
+\path{Hodge.Attempt.ParameterLocus.fermatLocus.injEq} & \texttt{[propext]} \\
+\path{Hodge.Attempt.ParameterLocus.fermatLocus.sizeOf_spec} & \texttt{(no axioms)} \\
+\path{Hodge.Attempt.ParameterLocus.genericObstructedLocus.sizeOf_spec} & \texttt{(no axioms)} \\
+\path{Hodge.Attempt.ParameterLocus.kleinQuadric.sizeOf_spec} & \texttt{(no axioms)} \\
+\path{Hodge.Attempt.ParameterLocus.productOfPlanes.sizeOf_spec} & \texttt{(no axioms)} \\
+\path{Hodge.Attempt.ParameterLocus.projectiveFourSpace.sizeOf_spec} & \texttt{(no axioms)} \\
+\path{Hodge.Attempt.SpecialSexticMembership.F_factors} & \texttt{[propext]} \\
+\path{Hodge.Attempt.SpecialSexticMembership.F_mem_plane} & \texttt{[propext, Quot.sound]} \\
+\path{Hodge.Attempt.Tagged.mk.inj} & \texttt{(no axioms)} \\
+\path{Hodge.Attempt.Tagged.mk.injEq} & \texttt{[propext]} \\
+\path{Hodge.Attempt.Tagged.mk.sizeOf_spec} & \texttt{(no axioms)} \\
+\path{Hodge.Attempt.Var.ofNat_toCtorIdx} & \texttt{(no axioms)} \\
+\path{Hodge.Attempt.Var.z0.sizeOf_spec} & \texttt{(no axioms)} \\
+\path{Hodge.Attempt.Var.z1.sizeOf_spec} & \texttt{(no axioms)} \\
+\path{Hodge.Attempt.Var.z2.sizeOf_spec} & \texttt{(no axioms)} \\
+\path{Hodge.Attempt.Var.z3.sizeOf_spec} & \texttt{(no axioms)} \\
+\path{Hodge.Attempt.Var.z4.sizeOf_spec} & \texttt{(no axioms)} \\
+\path{Hodge.Attempt.Var.z5.sizeOf_spec} & \texttt{(no axioms)} \\
+\path{Hodge.Attempt.carriesFermatRecipe.eq_1} & \texttt{(no axioms)} \\
+\path{Hodge.Attempt.fermat_pair_vanishing} & \texttt{[propext, Quot.sound]} \\
+\path{Hodge.Attempt.fermat_pair_with_remainder} & \texttt{[propext, Quot.sound]} \\
+\path{Hodge.Attempt.fermat_quartic_contains_Z1} & \texttt{[propext, Quot.sound]} \\
+\path{Hodge.Attempt.fourfold_complex_dim_eq_four} & \texttt{[propext]} \\
+\path{Hodge.Attempt.genericObstructedFourfold_codim} & \texttt{[propext, Classical.choice, Quot.sound]} \\
+\path{Hodge.Attempt.genericObstructedTag.eq_1} & \texttt{(no axioms)} \\
+\path{Hodge.Attempt.generic_tag_has_no_fermat_recipe} & \texttt{(no axioms)} \\
+\path{Hodge.Attempt.middle_cycle_codimension_is_two} & \texttt{[propext]} \\
+\path{Hodge.Attempt.middle_cycle_dim_eq_two} & \texttt{[propext]} \\
+\path{Hodge.Attempt.pair_vanishing} & \texttt{[propext, Quot.sound]} \\
+\path{Hodge.Attempt.pair_with_remainder} & \texttt{[propext, Quot.sound]} \\
+\path{Hodge.Attempt.recipe_is_not_global_constructor} & \texttt{(no axioms)} \\
 \path{Hodge.Classical.P4Coord.ofNat_toCtorIdx} & \texttt{(no axioms)} \\
+\path{Hodge.Classical.P4Coord.x0.sizeOf_spec} & \texttt{(no axioms)} \\
+\path{Hodge.Classical.P4Coord.x1.sizeOf_spec} & \texttt{(no axioms)} \\
+\path{Hodge.Classical.P4Coord.x2.sizeOf_spec} & \texttt{(no axioms)} \\
+\path{Hodge.Classical.P4Coord.x3.sizeOf_spec} & \texttt{(no axioms)} \\
+\path{Hodge.Classical.P4Coord.x4.sizeOf_spec} & \texttt{(no axioms)} \\
+\path{Hodge.Classical.P4Cycle.mk.inj} & \texttt{[propext]} \\
+\path{Hodge.Classical.P4Cycle.mk.injEq} & \texttt{[propext]} \\
+\path{Hodge.Classical.P4Cycle.mk.sizeOf_spec} & \texttt{[propext]} \\
+\path{Hodge.Classical.ProductCycle.mk.inj} & \texttt{[propext]} \\
+\path{Hodge.Classical.ProductCycle.mk.injEq} & \texttt{[propext]} \\
+\path{Hodge.Classical.ProductCycle.mk.sizeOf_spec} & \texttt{[propext]} \\
 \path{Hodge.Classical.classical_islands} & \texttt{[propext, Classical.choice, Quot.sound]} \\
 \path{Hodge.Classical.constructP4_coeff} & \texttt{[propext]} \\
 \path{Hodge.Classical.constructP4_discharged} & \texttt{[propext, Classical.choice, Quot.sound]} \\
@@ -224,21 +272,56 @@ Lean declaration & \texttt{\#print axioms} \\
 \path{Hodge.Classical.kleinQuadric_hodgeConjecture} & \texttt{[propext, Classical.choice, Quot.sound]} \\
 \path{Hodge.Classical.productOfPlanes_hodgeConjecture} & \texttt{[propext, Classical.choice, Quot.sound]} \\
 \path{Hodge.Classical.projectiveFourSpace_hodgeConjecture} & \texttt{[propext, Classical.choice, Quot.sound]} \\
-\path{Hodge.HodgeConjecture.general_fourfold_iff_clay} & \texttt{[propext, Classical.choice, Quot.sound]} \\
 \path{Hodge.Classical.sections_recover} & \texttt{[propext, Classical.choice, Quot.sound]} \\
+\path{Hodge.Clay.instNonemptyHdg2} & \texttt{(no axioms)} \\
+\path{Hodge.Clay.of_section_is_not_uniform} & \texttt{[propext, Classical.choice, Quot.sound]} \\
+\path{Hodge.Clay.skeleton_on_iff} & \texttt{[propext, Classical.choice, Quot.sound]} \\
+\path{Hodge.CycleConstructor.construct} & \texttt{[propext, Classical.choice, Quot.sound]} \\
 \path{Hodge.CycleSection.is_section} & \texttt{[propext, Classical.choice, Quot.sound]} \\
-\path{Hodge.instCycleConstructorOfCycleSection} & \texttt{[propext, Classical.choice, Quot.sound]} \\
+\path{Hodge.Datum.algebraicClasses_le_hodgeClasses} & \texttt{[propext, Classical.choice, Quot.sound]} \\
+\path{Hodge.Datum.cl_isHodge} & \texttt{[propext, Classical.choice, Quot.sound]} \\
+\path{Hodge.Datum.hodgeClasses.eq_1} & \texttt{[propext, Classical.choice, Quot.sound]} \\
+\path{Hodge.Datum.hodgeConjecture_codim_blind} & \texttt{[propext, Classical.choice, Quot.sound]} \\
+\path{Hodge.Datum.hodgeConjecture_of_generators} & \texttt{[propext, Classical.choice, Quot.sound]} \\
+\path{Hodge.Datum.hodgeConjecture_of_integral_generation} & \texttt{[propext, Classical.choice, Quot.sound]} \\
+\path{Hodge.Datum.mk.inj} & \texttt{[propext, Classical.choice, Quot.sound]} \\
+\path{Hodge.Datum.mk.injEq} & \texttt{[propext, Classical.choice, Quot.sound]} \\
+\path{Hodge.Datum.mk.sizeOf_spec} & \texttt{[propext, Classical.choice, Quot.sound]} \\
+\path{Hodge.DerivedSurfaces.NamedDerivedSurface.mk.inj} & \texttt{(no axioms)} \\
+\path{Hodge.DerivedSurfaces.NamedDerivedSurface.mk.injEq} & \texttt{[propext]} \\
+\path{Hodge.DerivedSurfaces.NamedDerivedSurface.mk.sizeOf_spec} & \texttt{(no axioms)} \\
 \path{Hodge.DerivedSurfaces.every_listed_host_is_a_fourfold} & \texttt{(no axioms)} \\
 \path{Hodge.DerivedSurfaces.every_listed_object_is_a_surface} & \texttt{(no axioms)} \\
 \path{Hodge.DerivedSurfaces.inventory_card} & \texttt{(no axioms)} \\
 \path{Hodge.DerivedSurfaces.residual_host_is_fourfold} & \texttt{(no axioms)} \\
 \path{Hodge.DerivedSurfaces.residual_is_surface} & \texttt{(no axioms)} \\
 \path{Hodge.DerivedSurfaces.residual_not_partner} & \texttt{(no axioms)} \\
+\path{Hodge.DimLeThree.construct} & \texttt{[propext, Classical.choice, Quot.sound]} \\
 \path{Hodge.Examples.instCycleConstructorRatTrivialObstruction} & \texttt{[propext, Classical.choice, Quot.sound]} \\
 \path{Hodge.Examples.not_every_codim_ge_two} & \texttt{[propext, Classical.choice, Quot.sound]} \\
 \path{Hodge.Examples.trivialObstruction_hodge} & \texttt{[propext, Classical.choice, Quot.sound]} \\
+\path{Hodge.Examples.zeroCycle.eq_1} & \texttt{[propext, Classical.choice, Quot.sound]} \\
 \path{Hodge.Examples.zeroCycle_is_not_a_variety_sticker} & \texttt{(no axioms)} \\
 \path{Hodge.Examples.zeroCycle_not_hodge} & \texttt{[propext, Classical.choice, Quot.sound]} \\
+\path{Hodge.Fermat.Coord.ofNat_toCtorIdx} & \texttt{(no axioms)} \\
+\path{Hodge.Fermat.Coord.z0.sizeOf_spec} & \texttt{(no axioms)} \\
+\path{Hodge.Fermat.Coord.z1.sizeOf_spec} & \texttt{(no axioms)} \\
+\path{Hodge.Fermat.Coord.z2.sizeOf_spec} & \texttt{(no axioms)} \\
+\path{Hodge.Fermat.Coord.z3.sizeOf_spec} & \texttt{(no axioms)} \\
+\path{Hodge.Fermat.Coord.z4.sizeOf_spec} & \texttt{(no axioms)} \\
+\path{Hodge.Fermat.Coord.z5.sizeOf_spec} & \texttt{(no axioms)} \\
+\path{Hodge.Fermat.LinearPlane.mk.inj} & \texttt{(no axioms)} \\
+\path{Hodge.Fermat.LinearPlane.mk.injEq} & \texttt{[propext]} \\
+\path{Hodge.Fermat.LinearPlane.mk.sizeOf_spec} & \texttt{(no axioms)} \\
+\path{Hodge.Fermat.Pairing.mk.inj} & \texttt{(no axioms)} \\
+\path{Hodge.Fermat.Pairing.mk.injEq} & \texttt{[propext]} \\
+\path{Hodge.Fermat.Pairing.mk.sizeOf_spec} & \texttt{(no axioms)} \\
+\path{Hodge.Fermat.Z1_pairing} & \texttt{[propext]} \\
+\path{Hodge.Fermat.Z2_pairing} & \texttt{[propext]} \\
+\path{Hodge.Fermat.construct_section} & \texttt{[propext, Classical.choice, Quot.sound]} \\
+\path{Hodge.Fermat.contains_two_planes} & \texttt{[propext, Classical.choice, Quot.sound]} \\
+\path{Hodge.Fermat.fermatQuartic_hodge} & \texttt{[propext, Classical.choice, Quot.sound]} \\
+\path{Hodge.Fermat.twoPlanes_hodge} & \texttt{[propext, Classical.choice, Quot.sound]} \\
 \path{Hodge.FermatQuintic.F5_eq_G} & \texttt{(no axioms)} \\
 \path{Hodge.FermatQuintic.G_not_euler_degree5} & \texttt{[propext, Quot.sound]} \\
 \path{Hodge.FermatQuintic.X_5_name_ne_T_F} & \texttt{(no axioms)} \\
@@ -251,29 +334,10 @@ Lean declaration & \texttt{\#print axioms} \\
 \path{Hodge.FermatQuintic.h40_numeral} & \texttt{(no axioms)} \\
 \path{Hodge.FermatQuintic.jacobian_certificate} & \texttt{[propext, Classical.choice, Quot.sound]} \\
 \path{Hodge.FermatQuintic.this_is_not_general_fourfold} & \texttt{(no axioms)} \\
-\path{Hodge.Fermat.Coord.ofNat_toCtorIdx} & \texttt{(no axioms)} \\
-\path{Hodge.Fermat.Z1_pairing} & \texttt{[propext]} \\
-\path{Hodge.Fermat.Z2_pairing} & \texttt{[propext]} \\
-\path{Hodge.Fermat.construct_section} & \texttt{[propext, Classical.choice, Quot.sound]} \\
-\path{Hodge.Fermat.contains_two_planes} & \texttt{[propext, Classical.choice, Quot.sound]} \\
-\path{Hodge.Fermat.fermatQuartic_hodge} & \texttt{[propext, Classical.choice, Quot.sound]} \\
-\path{Hodge.Fermat.twoPlanes_hodge} & \texttt{[propext, Classical.choice, Quot.sound]} \\
-\path{Hodge.HodgeConjecture.LefschetzTwoTwo_iff} & \texttt{[propext, Classical.choice, Quot.sound]} \\
-\path{Hodge.HodgeConjecture.classical_fourfolds} & \texttt{[propext, Classical.choice, Quot.sound]} \\
-\path{Hodge.HodgeConjecture.general_fourfold_iff} & \texttt{[propext, Classical.choice, Quot.sound]} \\
-\path{Hodge.HodgeConjecture.klein} & \texttt{[propext, Classical.choice, Quot.sound]} \\
-\path{Hodge.HodgeConjecture.of_constructor} & \texttt{[propext, Classical.choice, Quot.sound]} \\
-\path{Hodge.HodgeConjecture.of_section} & \texttt{[propext, Classical.choice, Quot.sound]} \\
-\path{Hodge.HodgeConjecture.p4} & \texttt{[propext, Classical.choice, Quot.sound]} \\
-\path{Hodge.HodgeConjecture.product} & \texttt{[propext, Classical.choice, Quot.sound]} \\
-\path{Hodge.LefschetzOneOne.construct} & \texttt{[propext, Classical.choice, Quot.sound]} \\
-\path{Hodge.LefschetzOneOne.is_codim_one} & \texttt{[propext, Classical.choice, Quot.sound]} \\
-\path{Hodge.hodgeConjecture_codim_one} & \texttt{[propext, Classical.choice, Quot.sound]} \\
-\path{Hodge.instCycleConstructorOfLefschetzOneOne} & \texttt{[propext, Classical.choice, Quot.sound]} \\
-\path{Hodge.instLefschetzOneOneRatK3Surface} & \texttt{[propext, Classical.choice, Quot.sound]} \\
-\path{Hodge.k3Surface_codim} & \texttt{[propext, Classical.choice, Quot.sound]} \\
-\path{Hodge.k3Surface_hodge} & \texttt{[propext, Classical.choice, Quot.sound]} \\
 \path{Hodge.Geometry.Variety.hodgeConjecture_iff} & \texttt{[propext, Classical.choice, Quot.sound]} \\
+\path{Hodge.Geometry.Variety.mk.inj} & \texttt{[propext, Classical.choice, Quot.sound]} \\
+\path{Hodge.Geometry.Variety.mk.injEq} & \texttt{[propext, Classical.choice, Quot.sound]} \\
+\path{Hodge.Geometry.Variety.mk.sizeOf_spec} & \texttt{[propext, Classical.choice, Quot.sound]} \\
 \path{Hodge.Geometry.cycleClass_is_hodge} & \texttt{[propext, Classical.choice, Quot.sound]} \\
 \path{Hodge.Geometry.every_datum_wraps} & \texttt{[propext, Classical.choice, Quot.sound]} \\
 \path{Hodge.Geometry.kleinQuadric_hodge} & \texttt{[propext, Classical.choice, Quot.sound]} \\
@@ -283,11 +347,37 @@ Lean declaration & \texttt{\#print axioms} \\
 \path{Hodge.Geometry.wrap_data} & \texttt{[propext, Classical.choice, Quot.sound]} \\
 \path{Hodge.Geometry.wrapped} & \texttt{[propext, Classical.choice, Quot.sound]} \\
 \path{Hodge.Geometry.zeroGadget_not_hodge} & \texttt{[propext, Classical.choice, Quot.sound]} \\
+\path{Hodge.HardLefschetzComplement.construct} & \texttt{[propext, Classical.choice, Quot.sound]} \\
 \path{Hodge.Hassett.P5Coord.ofNat_toCtorIdx} & \texttt{(no axioms)} \\
+\path{Hodge.Hassett.P5Coord.x0.sizeOf_spec} & \texttt{(no axioms)} \\
+\path{Hodge.Hassett.P5Coord.x1.sizeOf_spec} & \texttt{(no axioms)} \\
+\path{Hodge.Hassett.P5Coord.x2.sizeOf_spec} & \texttt{(no axioms)} \\
+\path{Hodge.Hassett.P5Coord.x3.sizeOf_spec} & \texttt{(no axioms)} \\
+\path{Hodge.Hassett.P5Coord.x4.sizeOf_spec} & \texttt{(no axioms)} \\
+\path{Hodge.Hassett.P5Coord.x5.sizeOf_spec} & \texttt{(no axioms)} \\
 \path{Hodge.Hassett.construct_section} & \texttt{[propext, Classical.choice, Quot.sound]} \\
 \path{Hodge.Hassett.planeSpan_hodge} & \texttt{[propext, Classical.choice, Quot.sound]} \\
-\path{Hodge.SpecialSextic.head_plane_not_on_host} & \texttt{[propext, Classical.choice, Quot.sound]} \\
-\path{Hodge.SpecialSextic.head_plane_point} & \texttt{[propext, Classical.choice, Quot.sound]} \\
+\path{Hodge.HodgeConjecture.LefschetzTwoTwo_iff} & \texttt{[propext, Classical.choice, Quot.sound]} \\
+\path{Hodge.HodgeConjecture.RealClose.mk.inj} & \texttt{[propext, Classical.choice, Quot.sound]} \\
+\path{Hodge.HodgeConjecture.RealClose.mk.injEq} & \texttt{[propext, Classical.choice, Quot.sound]} \\
+\path{Hodge.HodgeConjecture.RealClose.mk.sizeOf_spec} & \texttt{[propext, Classical.choice, Quot.sound]} \\
+\path{Hodge.HodgeConjecture.classical_fourfolds} & \texttt{[propext, Classical.choice, Quot.sound]} \\
+\path{Hodge.HodgeConjecture.frohman_two_two_spans} & \texttt{[propext, Classical.choice, Quot.sound]} \\
+\path{Hodge.HodgeConjecture.frohman_two_two_spans_iff} & \texttt{[propext, Classical.choice, Quot.sound]} \\
+\path{Hodge.HodgeConjecture.general_fourfold_iff} & \texttt{[propext, Classical.choice, Quot.sound]} \\
+\path{Hodge.HodgeConjecture.general_fourfold_iff_clay} & \texttt{[propext, Classical.choice, Quot.sound]} \\
+\path{Hodge.HodgeConjecture.iff_nonempty_fibers} & \texttt{[propext, Classical.choice, Quot.sound]} \\
+\path{Hodge.HodgeConjecture.klein} & \texttt{[propext, Classical.choice, Quot.sound]} \\
+\path{Hodge.HodgeConjecture.living_skeleton} & \texttt{[propext, Classical.choice, Quot.sound]} \\
+\path{Hodge.HodgeConjecture.mem_algebraicClasses_iff} & \texttt{[propext, Classical.choice, Quot.sound]} \\
+\path{Hodge.HodgeConjecture.named_fourfolds} & \texttt{[propext, Classical.choice, Quot.sound]} \\
+\path{Hodge.HodgeConjecture.nonempty_fiber_iff} & \texttt{[propext, Classical.choice, Quot.sound]} \\
+\path{Hodge.HodgeConjecture.of_constructor} & \texttt{[propext, Classical.choice, Quot.sound]} \\
+\path{Hodge.HodgeConjecture.of_realClose} & \texttt{[propext, Classical.choice, Quot.sound]} \\
+\path{Hodge.HodgeConjecture.of_section} & \texttt{[propext, Classical.choice, Quot.sound]} \\
+\path{Hodge.HodgeConjecture.p4} & \texttt{[propext, Classical.choice, Quot.sound]} \\
+\path{Hodge.HodgeConjecture.product} & \texttt{[propext, Classical.choice, Quot.sound]} \\
+\path{Hodge.HodgeConjecture.ungated_codim_two_false} & \texttt{[propext, Classical.choice, Quot.sound]} \\
 \path{Hodge.HostSplit.Z_uncomputed} & \texttt{(no axioms)} \\
 \path{Hodge.HostSplit.containers_differ} & \texttt{(no axioms)} \\
 \path{Hodge.HostSplit.quintic_b4} & \texttt{(no axioms)} \\
@@ -299,26 +389,39 @@ Lean declaration & \texttt{\#print axioms} \\
 \path{Hodge.HostSplit.sextic_r12} & \texttt{(no axioms)} \\
 \path{Hodge.HostSplit.sextic_r18} & \texttt{(no axioms)} \\
 \path{Hodge.HostSplit.sextic_r6} & \texttt{(no axioms)} \\
-\path{Hodge.Datum.hodgeConjecture_of_integral_generation} & \texttt{[propext, Classical.choice, Quot.sound]} \\
 \path{Hodge.Integral.integral_unsolvable} & \texttt{[propext]} \\
 \path{Hodge.Integral.rational_does_not_imply_integral} & \texttt{[propext, Classical.choice, Quot.sound]} \\
 \path{Hodge.Integral.rational_solvable} & \texttt{[propext, Classical.choice, Quot.sound]} \\
 \path{Hodge.Klein.Coord.ofNat_toCtorIdx} & \texttt{(no axioms)} \\
+\path{Hodge.Klein.Coord.p01.sizeOf_spec} & \texttt{(no axioms)} \\
+\path{Hodge.Klein.Coord.p02.sizeOf_spec} & \texttt{(no axioms)} \\
+\path{Hodge.Klein.Coord.p03.sizeOf_spec} & \texttt{(no axioms)} \\
+\path{Hodge.Klein.Coord.p12.sizeOf_spec} & \texttt{(no axioms)} \\
+\path{Hodge.Klein.Coord.p13.sizeOf_spec} & \texttt{(no axioms)} \\
+\path{Hodge.Klein.Coord.p23.sizeOf_spec} & \texttt{(no axioms)} \\
+\path{Hodge.Klein.FormalCycle.mk.inj} & \texttt{[propext]} \\
+\path{Hodge.Klein.FormalCycle.mk.injEq} & \texttt{[propext]} \\
+\path{Hodge.Klein.FormalCycle.mk.sizeOf_spec} & \texttt{[propext]} \\
 \path{Hodge.Klein.cycleOf_coeff} & \texttt{[propext]} \\
 \path{Hodge.Klein.cycleOf_construct} & \texttt{[propext]} \\
 \path{Hodge.Klein.ideals_cover} & \texttt{[propext]} \\
 \path{Hodge.Klein.ideals_disjoint} & \texttt{[propext]} \\
 \path{Hodge.Klein.pi'_on_quadric} & \texttt{[propext, Classical.choice, Quot.sound]} \\
 \path{Hodge.Klein.pi_on_quadric} & \texttt{[propext, Classical.choice, Quot.sound]} \\
-\path{Hodge.DimLeThree.construct} & \texttt{[propext, Classical.choice, Quot.sound]} \\
-\path{Hodge.HardLefschetzComplement.construct} & \texttt{[propext, Classical.choice, Quot.sound]} \\
-\path{Hodge.hodgeConjecture_dim_le_three} & \texttt{[propext, Classical.choice, Quot.sound]} \\
-\path{Hodge.hodgeConjecture_hardLefschetz} & \texttt{[propext, Classical.choice, Quot.sound]} \\
-\path{Hodge.instCycleConstructorOfDimLeThree} & \texttt{[propext, Classical.choice, Quot.sound]} \\
-\path{Hodge.instCycleConstructorOfHardLefschetzComplement} & \texttt{[propext, Classical.choice, Quot.sound]} \\
-\path{Hodge.HodgeConjecture.frohman_two_two_spans} & \texttt{[propext, Classical.choice, Quot.sound]} \\
-\path{Hodge.HodgeConjecture.frohman_two_two_spans_iff} & \texttt{[propext, Classical.choice, Quot.sound]} \\
-\path{Hodge.HodgeConjecture.named_fourfolds} & \texttt{[propext, Classical.choice, Quot.sound]} \\
+\path{Hodge.Klein.pluckerEval.eq_1} & \texttt{[propext, Classical.choice, Quot.sound]} \\
+\path{Hodge.LefschetzOneOne.construct} & \texttt{[propext, Classical.choice, Quot.sound]} \\
+\path{Hodge.LefschetzOneOne.is_codim_one} & \texttt{[propext, Classical.choice, Quot.sound]} \\
+\path{Hodge.Release.NamedTerm.mk.inj} & \texttt{(no axioms)} \\
+\path{Hodge.Release.NamedTerm.mk.injEq} & \texttt{[propext]} \\
+\path{Hodge.Release.NamedTerm.mk.sizeOf_spec} & \texttt{(no axioms)} \\
+\path{Hodge.Release.Status.closed.sizeOf_spec} & \texttt{(no axioms)} \\
+\path{Hodge.Release.Status.ofNat_toCtorIdx} & \texttt{(no axioms)} \\
+\path{Hodge.Release.Status.open.sizeOf_spec} & \texttt{(no axioms)} \\
+\path{Hodge.Release.contains_two_planes} & \texttt{[propext, Quot.sound]} \\
+\path{Hodge.Release.inventory_uniform_count} & \texttt{(no axioms)} \\
+\path{Hodge.Release.named_host_shadows} & \texttt{[propext, Classical.choice, Quot.sound]} \\
+\path{Hodge.Release.only_uniformConstruct_is_flagged} & \texttt{(no axioms)} \\
+\path{Hodge.Release.status_separation} & \texttt{(no axioms)} \\
 \path{Hodge.SexticModuli.dim_PGL6} & \texttt{(no axioms)} \\
 \path{Hodge.SexticModuli.eq_15625_of_eq_five_pow_six} & \texttt{(no axioms)} \\
 \path{Hodge.SexticModuli.equation_space_dim} & \texttt{(no axioms)} \\
@@ -327,37 +430,72 @@ Lean declaration & \texttt{\#print axioms} \\
 \path{Hodge.SexticModuli.naive_git_dim} & \texttt{(no axioms)} \\
 \path{Hodge.SexticModuli.plane_restriction_monomials} & \texttt{(no axioms)} \\
 \path{Hodge.SexticModuli.sextic_monomials} & \texttt{(no axioms)} \\
+\path{Hodge.SpecialSextic.F_factors} & \texttt{[propext]} \\
+\path{Hodge.SpecialSextic.F_factors_minus1} & \texttt{[propext, Quot.sound]} \\
+\path{Hodge.SpecialSextic.F_mem_plane} & \texttt{[propext, Quot.sound]} \\
+\path{Hodge.SpecialSextic.F_mem_plane_minus1} & \texttt{[propext, Quot.sound]} \\
+\path{Hodge.SpecialSextic.Pi.eq_1} & \texttt{[propext]} \\
+\path{Hodge.SpecialSextic.S.eq_1} & \texttt{[propext]} \\
+\path{Hodge.SpecialSextic.S_eq} & \texttt{[propext, Classical.choice, Quot.sound]} \\
+\path{Hodge.SpecialSextic.affine_cone_isolated_at_origin} & \texttt{[propext, Classical.choice, Quot.sound]} \\
+\path{Hodge.SpecialSextic.beta.eq_1} & \texttt{[propext]} \\
+\path{Hodge.SpecialSextic.beta_eq} & \texttt{[propext, Classical.choice, Quot.sound]} \\
+\path{Hodge.SpecialSextic.closed_membership} & \texttt{[propext, Quot.sound]} \\
+\path{Hodge.SpecialSextic.constructThree_section} & \texttt{[propext, Classical.choice, Quot.sound]} \\
+\path{Hodge.SpecialSextic.construct_section} & \texttt{[propext, Classical.choice, Quot.sound]} \\
+\path{Hodge.SpecialSextic.contains_two_planes} & \texttt{[propext, Quot.sound]} \\
 \path{Hodge.SpecialSextic.dF_dx0_formula} & \texttt{(no axioms)} \\
 \path{Hodge.SpecialSextic.dF_dx1_formula} & \texttt{(no axioms)} \\
 \path{Hodge.SpecialSextic.dF_dx2_formula} & \texttt{(no axioms)} \\
 \path{Hodge.SpecialSextic.dF_dx3_formula} & \texttt{(no axioms)} \\
 \path{Hodge.SpecialSextic.dF_dx4_formula} & \texttt{(no axioms)} \\
 \path{Hodge.SpecialSextic.dF_dx5_formula} & \texttt{(no axioms)} \\
+\path{Hodge.SpecialSextic.discriminant} & \texttt{[propext, Classical.choice, Quot.sound]} \\
 \path{Hodge.SpecialSextic.euler_homogeneous} & \texttt{[propext]} \\
+\path{Hodge.SpecialSextic.five_pow_six} & \texttt{[propext]} \\
+\path{Hodge.SpecialSextic.gradPair_origin} & \texttt{[propext, Classical.choice, Quot.sound]} \\
+\path{Hodge.SpecialSextic.gradient_only_origin} & \texttt{[propext, Classical.choice, Quot.sound]} \\
+\path{Hodge.SpecialSextic.gram_det_numeral} & \texttt{(no axioms)} \\
+\path{Hodge.SpecialSextic.h2.eq_1} & \texttt{[propext]} \\
+\path{Hodge.SpecialSextic.head_plane_not_on_host} & \texttt{[propext, Classical.choice, Quot.sound]} \\
+\path{Hodge.SpecialSextic.head_plane_point} & \texttt{[propext, Classical.choice, Quot.sound]} \\
+\path{Hodge.SpecialSextic.hypersurface_contains_the_plane} & \texttt{[propext, Quot.sound]} \\
+\path{Hodge.SpecialSextic.hypersurface_contains_the_sign_plane} & \texttt{[propext, Quot.sound]} \\
 \path{Hodge.SpecialSextic.jacobian_lock_is_not_general_fourfold} & \texttt{(no axioms)} \\
 \path{Hodge.SpecialSextic.jacobian_vanishes_only_at_origin} & \texttt{[propext, Classical.choice, Quot.sound]} \\
+\path{Hodge.SpecialSextic.pairing.eq_1} & \texttt{[propext, Classical.choice, Quot.sound]} \\
+\path{Hodge.SpecialSextic.pairing_Pi_Pi} & \texttt{[propext, Classical.choice, Quot.sound]} \\
+\path{Hodge.SpecialSextic.pairing_Pi_S} & \texttt{[propext, Classical.choice, Quot.sound]} \\
+\path{Hodge.SpecialSextic.pairing_S_S} & \texttt{[propext, Classical.choice, Quot.sound]} \\
+\path{Hodge.SpecialSextic.pairing_beta_Pi} & \texttt{[propext, Classical.choice, Quot.sound]} \\
+\path{Hodge.SpecialSextic.pairing_beta_S} & \texttt{[propext, Classical.choice, Quot.sound]} \\
+\path{Hodge.SpecialSextic.pairing_beta_beta} & \texttt{[propext, Classical.choice, Quot.sound]} \\
+\path{Hodge.SpecialSextic.pairing_beta_h2} & \texttt{[propext, Classical.choice, Quot.sound]} \\
+\path{Hodge.SpecialSextic.pairing_h2_Pi} & \texttt{[propext, Classical.choice, Quot.sound]} \\
+\path{Hodge.SpecialSextic.pairing_h2_S} & \texttt{[propext, Classical.choice, Quot.sound]} \\
+\path{Hodge.SpecialSextic.pairing_h2_h2} & \texttt{[propext, Classical.choice, Quot.sound]} \\
+\path{Hodge.SpecialSextic.planeSpan_hodge} & \texttt{[propext, Classical.choice, Quot.sound]} \\
+\path{Hodge.SpecialSextic.planeSpan_identity_shadow} & \texttt{[propext, Classical.choice, Quot.sound]} \\
+\path{Hodge.SpecialSextic.special_NL_sextic_coefficient_shadow} & \texttt{[propext, Classical.choice, Quot.sound]} \\
+\path{Hodge.SpecialSextic.threeSpan_hodge} & \texttt{[propext, Classical.choice, Quot.sound]} \\
+\path{Hodge.SpecialSextic.threeSpan_identity_shadow} & \texttt{[propext, Classical.choice, Quot.sound]} \\
 \path{Hodge.SpecialSexticMembership.F_factors} & \texttt{[propext]} \\
 \path{Hodge.SpecialSexticMembership.F_factors_minus1} & \texttt{[propext, Quot.sound]} \\
 \path{Hodge.SpecialSexticMembership.F_mem_plane} & \texttt{[propext, Quot.sound]} \\
 \path{Hodge.SpecialSexticMembership.F_mem_plane_minus1} & \texttt{[propext, Quot.sound]} \\
 \path{Hodge.SpecialSexticMembership.contains_two_planes} & \texttt{[propext, Quot.sound]} \\
-\path{Hodge.SpecialSextic.F_factors} & \texttt{[propext]} \\
-\path{Hodge.SpecialSextic.F_factors_minus1} & \texttt{[propext, Quot.sound]} \\
-\path{Hodge.SpecialSextic.F_mem_plane} & \texttt{[propext, Quot.sound]} \\
-\path{Hodge.SpecialSextic.F_mem_plane_minus1} & \texttt{[propext, Quot.sound]} \\
-\path{Hodge.SpecialSextic.affine_cone_isolated_at_origin} & \texttt{[propext, Classical.choice, Quot.sound]} \\
-\path{Hodge.SpecialSextic.constructThree_section} & \texttt{[propext, Classical.choice, Quot.sound]} \\
-\path{Hodge.SpecialSextic.construct_section} & \texttt{[propext, Classical.choice, Quot.sound]} \\
-\path{Hodge.SpecialSextic.contains_two_planes} & \texttt{[propext, Quot.sound]} \\
-\path{Hodge.SpecialSextic.five_pow_six} & \texttt{[propext]} \\
-\path{Hodge.SpecialSextic.gradPair_origin} & \texttt{[propext, Classical.choice, Quot.sound]} \\
-\path{Hodge.SpecialSextic.gradient_only_origin} & \texttt{[propext, Classical.choice, Quot.sound]} \\
-\path{Hodge.SpecialSextic.gram_det_numeral} & \texttt{(no axioms)} \\
-\path{Hodge.SpecialSextic.hypersurface_contains_the_plane} & \texttt{[propext, Quot.sound]} \\
-\path{Hodge.SpecialSextic.hypersurface_contains_the_sign_plane} & \texttt{[propext, Quot.sound]} \\
-\path{Hodge.SpecialSextic.planeSpan_hodge} & \texttt{[propext, Classical.choice, Quot.sound]} \\
-\path{Hodge.SpecialSextic.special_NL_sextic_coefficient_shadow} & \texttt{[propext, Classical.choice, Quot.sound]} \\
-\path{Hodge.SpecialSextic.threeSpan_hodge} & \texttt{[propext, Classical.choice, Quot.sound]} \\
+\path{Hodge.constructor_of_hodgeConjecture} & \texttt{[propext, Classical.choice, Quot.sound]} \\
+\path{Hodge.hodgeConjecture_codim_one} & \texttt{[propext, Classical.choice, Quot.sound]} \\
+\path{Hodge.hodgeConjecture_dim_le_three} & \texttt{[propext, Classical.choice, Quot.sound]} \\
+\path{Hodge.hodgeConjecture_hardLefschetz} & \texttt{[propext, Classical.choice, Quot.sound]} \\
+\path{Hodge.hodgeConjecture_of_constructor} & \texttt{[propext, Classical.choice, Quot.sound]} \\
+\path{Hodge.instCycleConstructorOfCycleSection} & \texttt{[propext, Classical.choice, Quot.sound]} \\
+\path{Hodge.instCycleConstructorOfDimLeThree} & \texttt{[propext, Classical.choice, Quot.sound]} \\
+\path{Hodge.instCycleConstructorOfHardLefschetzComplement} & \texttt{[propext, Classical.choice, Quot.sound]} \\
+\path{Hodge.instCycleConstructorOfLefschetzOneOne} & \texttt{[propext, Classical.choice, Quot.sound]} \\
+\path{Hodge.instLefschetzOneOneRatK3Surface} & \texttt{[propext, Classical.choice, Quot.sound]} \\
+\path{Hodge.k3Surface_codim} & \texttt{[propext, Classical.choice, Quot.sound]} \\
+\path{Hodge.k3Surface_hodge} & \texttt{[propext, Classical.choice, Quot.sound]} \\
 \hline
 \end{longtable}}
 
