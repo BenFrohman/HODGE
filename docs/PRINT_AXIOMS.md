@@ -1,3 +1,4 @@
+<!-- Copyright (c) 2026 Benjamin Stanley Frohman. Licensed under Apache-2.0. -->
 # What `#print axioms` lists
 
 Author: Benjamin Stanley Frohman. Apache-2.0.
@@ -5,9 +6,10 @@ Author: Benjamin Stanley Frohman. Apache-2.0.
 `construct_of_codim_ge_two` is deleted.
 
     #print axioms Hodge.HodgeConjecture.classical_fourfolds
+    #print axioms Hodge.HodgeConjecture.named_fourfolds
 
 Expected: `propext`, `Quot.sound`. No Hodge axiom.
-Proof is `CycleSection` on the three islands.
+Proof is `CycleSection` on the named islands (`docs/CYCLESECTION_BODIES.md`).
 
     #print axioms Hodge.HodgeConjecture.general_fourfold
 
