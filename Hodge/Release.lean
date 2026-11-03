@@ -25,10 +25,12 @@ Writing `contains_two_planes` as a proof of Clay is a type error.
 namespace Hodge
 namespace Release
 
-/-- Official closed name of the two-plane membership theorem. -/
-abbrev ContainsTwoPlanes : Prop := SpecialSextic.ClosedMembership.{0}
+universe u
 
-theorem contains_two_planes : ContainsTwoPlanes :=
+/-- Official closed name of the two-plane membership theorem. -/
+abbrev ContainsTwoPlanes : Prop := SpecialSextic.ClosedMembership.{u}
+
+theorem contains_two_planes : ContainsTwoPlanes.{u} :=
   SpecialSextic.closed_membership
 
 /-- Finite list of identity-shadow discharges. Not `∀ X ∀ γ`. -/
