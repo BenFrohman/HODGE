@@ -21,6 +21,7 @@ import Hodge.Fermat
 import Hodge.FermatQuintic
 import Hodge.HostSplit
 import Hodge.SpecialSextic
+import Hodge.PlaneSpanPairing
 import Hodge.SpecialSexticMembership
 import Hodge.HeadPlane
 import Hodge.SpecialSexticJacobian
