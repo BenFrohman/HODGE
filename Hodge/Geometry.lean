@@ -2,6 +2,9 @@
 Copyright (c) 2026 Benjamin Stanley Frohman.
 Released under Apache-2.0 license as described in the file LICENSE.
 Authors: Benjamin Stanley Frohman (@BenFrohman)
+Copyright (c) 2026 Benjamin Stanley Frohman. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Benjamin Stanley Frohman
 -/
 import Hodge.Basic
 import Hodge.Classical
@@ -23,6 +26,7 @@ Three `ℚ`-vector spaces and two `ℚ`-linear maps.
 `AlgebraicCycle` is a vector of `Z`.
 
 Single copy. Not a Clay close.
+One copy. `Variety` is a name, a dimension, and one `Datum`. It is not a scheme.
 -/
 
 namespace Hodge
@@ -62,6 +66,18 @@ theorem cycleClass_is_hodge (D : Datum Z V N) (z : AlgebraicCycles Z) :
 
 /-- A variety as this skeleton can see it: a name, a dimension, one `Datum`.
 Not a scheme. -/
+
+abbrev AlgebraicCycles (Z : Type*) [AddCommGroup Z] [Module ℚ Z] := Z
+abbrev Cohomology (V : Type*) [AddCommGroup V] [Module ℚ V] := V
+abbrev OffDiagonal (N : Type*) [AddCommGroup N] [Module ℚ N] := N
+
+def cycleClass (D : Datum Z V N) : LinearMap (RingHom.id ℚ) Z V := D.cl
+def hodgeObstruction (D : Datum Z V N) : LinearMap (RingHom.id ℚ) V N := D.obstruction
+
+theorem cycleClass_is_hodge (D : Datum Z V N) (z : Z) :
+    D.obstruction (D.cl z) = 0 :=
+  D.cl_isHodge z
+
 structure Variety (Z V N : Type*)
     [AddCommGroup Z] [Module ℚ Z]
     [AddCommGroup V] [Module ℚ V]
@@ -88,6 +104,8 @@ theorem every_datum_wraps (D : Datum Z V N) :
 /-- A Hodge class: a vector of `V` in `ker obstruction`. -/
 def HodgeClass (X : Variety Z V N) : Type _ :=
   { v : V // v ∈ X.data.hodgeClasses }
+def HodgeClass (X : Variety Z V N) :=
+  Subtype fun v : V => v ∈ X.data.hodgeClasses
 
 /-- An algebraic cycle: a vector of `Z`. -/
 def AlgebraicCycle (X : Variety Z V N) : Type _ :=
@@ -111,16 +129,16 @@ def HodgeConjecture.forVarieties
 def HodgeConjecture.onVarieties : Prop :=
   ∀ X : Variety Z V N, X.HodgeConjecture
 
-def projectiveFourSpace : Variety Rat Rat Rat :=
+def projectiveFourSpace : Variety ℚ ℚ ℚ :=
   wrap "P^4" 4 Classical.projectiveFourSpace
 
-def kleinQuadric : Variety (Rat × Rat) (Rat × Rat) Rat :=
+def kleinQuadric : Variety (ℚ × ℚ) (ℚ × ℚ) ℚ :=
   wrap "Klein quadric Q^4" 4 Classical.kleinQuadric
 
-def productOfPlanes : Variety (Rat × Rat × Rat) (Rat × Rat × Rat) Rat :=
+def productOfPlanes : Variety (ℚ × ℚ × ℚ) (ℚ × ℚ × ℚ) ℚ :=
   wrap "P^2 x P^2" 4 Classical.productOfPlanes
 
-def zeroGadget : Variety Rat Rat Rat :=
+def zeroGadget : Variety ℚ ℚ ℚ :=
   wrap "zeroCycle" 4 Examples.zeroCycle
 
 theorem projectiveFourSpace_hodge : projectiveFourSpace.HodgeConjecture :=

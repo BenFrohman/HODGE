@@ -1,7 +1,9 @@
 /-
-Copyright (c) 2026 Benjamin Stanley Frohman (@BenFrohman). Apache-2.0.
-Authors: Benjamin Stanley Frohman (@BenFrohman)
-
+Copyright (c) 2026 Benjamin Stanley Frohman. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Benjamin Stanley Frohman
+-/
+/-
 Arithmetic of the extra-class isolation on a linear plane in a degree-6
 hypersurface fourfold in P^5. Not a Chow ring. Not a CycleSection.
 Not imported by Hodge.lean. `HodgeConjecture.general_fourfold` stays a Prop.

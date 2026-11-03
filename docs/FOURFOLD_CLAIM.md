@@ -1,3 +1,4 @@
+<!-- Copyright (c) 2026 Benjamin Stanley Frohman. Licensed under Apache-2.0. -->
 # Fourfold claim
 
 `construct_of_codim_ge_two` is a guarded axiom. It is a named hypothesis.

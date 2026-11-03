@@ -1,3 +1,4 @@
+<!-- Copyright (c) 2026 Benjamin Stanley Frohman. Licensed under Apache-2.0. -->
 # Tags
 
 Intended annotated tag (run in a local clone; the GitHub connector here cannot create annotated tags):
