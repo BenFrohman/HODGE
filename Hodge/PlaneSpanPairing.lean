@@ -3,6 +3,7 @@ Copyright (c) 2026 Benjamin Stanley Frohman (@BenFrohman). Apache-2.0.
 Authors: Benjamin Stanley Frohman (@BenFrohman)
 -/
 import Hodge.SpecialSextic
+import Mathlib.Tactic.NormNum
 
 /-!
 # Intersection form on ℔ h² + ℔ [Π]
@@ -31,24 +32,24 @@ def S : ℚ × ℚ := (1, -1)
 /-- Primitive direction orthogonal to `h²`: `h² - 6[Π]`. -/
 def beta : ℚ × ℚ := (1, -6)
 
-theorem pairing_h2_h2 : pairing h2 h2 = 6 := by decide
-theorem pairing_h2_Pi : pairing h2 Pi = 1 := by decide
-theorem pairing_Pi_Pi : pairing Pi Pi = 21 := by decide
+theorem pairing_h2_h2 : pairing h2 h2 = 6 := by norm_num [pairing, h2, Pi, S, beta]
+theorem pairing_h2_Pi : pairing h2 Pi = 1 := by norm_num [pairing, h2, Pi, S, beta]
+theorem pairing_Pi_Pi : pairing Pi Pi = 21 := by norm_num [pairing, h2, Pi, S, beta]
 
 theorem discriminant : pairing h2 h2 * pairing Pi Pi - pairing h2 Pi ^ 2 = 125 := by
-  decide
+  norm_num [pairing, h2, Pi]
 
-theorem pairing_h2_S : pairing h2 S = 5 := by decide
-theorem pairing_Pi_S : pairing Pi S = -20 := by decide
-theorem pairing_S_S : pairing S S = 25 := by decide
+theorem pairing_h2_S : pairing h2 S = 5 := by norm_num [pairing, h2, Pi, S, beta]
+theorem pairing_Pi_S : pairing Pi S = -20 := by norm_num [pairing, h2, Pi, S, beta]
+theorem pairing_S_S : pairing S S = 25 := by norm_num [pairing, h2, Pi, S, beta]
 
-theorem pairing_beta_h2 : pairing beta h2 = 0 := by decide
-theorem pairing_beta_Pi : pairing beta Pi = -125 := by decide
-theorem pairing_beta_S : pairing beta S = 125 := by decide
-theorem pairing_beta_beta : pairing beta beta = 750 := by decide
+theorem pairing_beta_h2 : pairing beta h2 = 0 := by norm_num [pairing, h2, Pi, S, beta]
+theorem pairing_beta_Pi : pairing beta Pi = -125 := by norm_num [pairing, h2, Pi, S, beta]
+theorem pairing_beta_S : pairing beta S = 125 := by norm_num [pairing, h2, Pi, S, beta]
+theorem pairing_beta_beta : pairing beta beta = 750 := by norm_num [pairing, h2, Pi, S, beta]
 
-theorem S_eq : S = (h2.1 - Pi.1, h2.2 - Pi.2) := rfl
-theorem beta_eq : beta = (h2.1 - 6 * Pi.1, h2.2 - 6 * Pi.2) := by decide
+theorem S_eq : S = (h2.1 - Pi.1, h2.2 - Pi.2) := by norm_num [S, h2, Pi]
+theorem beta_eq : beta = (h2.1 - 6 * Pi.1, h2.2 - 6 * Pi.2) := by norm_num [pairing, h2, Pi, S, beta]
 
 end SpecialSextic
 end Hodge

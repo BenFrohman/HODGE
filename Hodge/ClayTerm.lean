@@ -80,12 +80,12 @@ def inventory : List NamedTerm :=
 
 theorem inventory_uniform_count :
     (inventory.filter (·.isUniformConstruct)).length = 1 := by
-  native_decide
+  decide
 
 theorem only_uniformConstruct_is_flagged :
     (inventory.filter (·.isUniformConstruct)).map (·.name) =
       ["Clay.UniformConstruct"] := by
-  native_decide
+  decide
 
 /-- The flagged name is a type, not a theorem. There is still no inhabitant. -/
 def missingTermType : Type := Clay.UniformConstruct

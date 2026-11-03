@@ -32,13 +32,14 @@ Named hosts inhabit this via existing `CycleSection` instances.
 Unspecified `D` does not. -/
 structure HodgeConjecture.RealClose
     (D : Datum Z V N) (h : D.codim = 2) where
-  section : CycleSection D
+  «section» : CycleSection D
 
 /-- A real-close wrapper yields the Prop `general_fourfold`. -/
 theorem HodgeConjecture.of_realClose
     (D : Datum Z V N) (h : D.codim = 2)
     (s : HodgeConjecture.RealClose D h) :
     HodgeConjecture.general_fourfold D h :=
+  haveI := s.«section»
   HodgeConjecture.of_section D
 
 /-- Package an existing island instance. Not `∀ D`. -/

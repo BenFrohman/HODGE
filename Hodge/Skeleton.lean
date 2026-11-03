@@ -32,23 +32,23 @@ theorem living_skeleton : LivingSkeleton :=
 
 /-- Ungated `∀ D, D.codim = 2 → D.HodgeConjecture` is false. -/
 theorem ungated_codim_two_false :
-    ¬ (∀ (Z V N : Type*)
+    ¬ (∀ (Z V N : Type)
         [AddCommGroup Z] [Module Rat Z]
         [AddCommGroup V] [Module Rat V]
         [AddCommGroup N] [Module Rat N]
         (D : Datum Z V N), D.codim = 2 → D.HodgeConjecture) :=
-  Examples.not_every_codim_ge_two
+  fun h => Examples.zeroCycle_not_hodge (h Rat Rat Rat Examples.zeroCycle rfl)
 
 /-- Named hosts package to `RealClose`. Not `∀ D`. -/
-theorem realClose_projectiveFourSpace :
+def realClose_projectiveFourSpace :
     RealClose Classical.projectiveFourSpace rfl :=
   realClose_of_section _ rfl
 
-theorem realClose_kleinQuadric :
+def realClose_kleinQuadric :
     RealClose Classical.kleinQuadric rfl :=
   realClose_of_section _ rfl
 
-theorem realClose_productOfPlanes :
+def realClose_productOfPlanes :
     RealClose Classical.productOfPlanes rfl :=
   realClose_of_section _ rfl
 

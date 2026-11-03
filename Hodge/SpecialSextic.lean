@@ -73,15 +73,6 @@ theorem F_mem_plane_minus1 (x0 x1 x2 x3 x4 x5 : R) :
     F x0 x1 x2 x3 x4 x5 ∈ planeIdealMinus1 x0 x1 x2 x3 x4 x5 := by
   rw [F_factors_minus1]
   refine Ideal.add_mem _ (Ideal.add_mem _ ?_ ?_) ?_
-  · refine Ideal.mul_mem_right _ _ (Ideal.mul_mem_right _ _ ?_)
-    exact Ideal.subset_span (by simp)
-  · refine Ideal.mul_mem_right _ _ (Ideal.mul_mem_right _ _ ?_)
-    exact Ideal.subset_span (by simp)
-  · refine Ideal.mul_mem_right _ _ (Ideal.mul_mem_right _ _ ?_)
-    exact Ideal.subset_span (by simp)
-
-/-- Official closed theorem of this file (Frohman, Apache-2.0).
-    Both named planes lie on V(F). Type: ring membership. Not Clay. -/
   · exact Ideal.mul_mem_right _ _
       (Ideal.mul_mem_left _ _ (Ideal.subset_span (Or.inl rfl)))
   · exact Ideal.mul_mem_right _ _
@@ -89,6 +80,8 @@ theorem F_mem_plane_minus1 (x0 x1 x2 x3 x4 x5 : R) :
   · exact Ideal.mul_mem_right _ _
       (Ideal.mul_mem_left _ _ (Ideal.subset_span (Or.inr (Or.inr rfl))))
 
+/-- Official closed theorem of this file (Frohman, Apache-2.0).
+    Both named planes lie on V(F). Type: ring membership. Not Clay. -/
 theorem contains_two_planes (x0 x1 x2 x3 x4 x5 : R) :
     F x0 x1 x2 x3 x4 x5 ∈ planeIdeal x3 x4 x5 ∧
       F x0 x1 x2 x3 x4 x5 ∈ planeIdealMinus1 x0 x1 x2 x3 x4 x5 :=

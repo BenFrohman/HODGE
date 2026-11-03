@@ -26,7 +26,7 @@ namespace Hodge
 namespace Release
 
 /-- Official closed name of the two-plane membership theorem. -/
-abbrev ContainsTwoPlanes : Prop := SpecialSextic.ClosedMembership
+abbrev ContainsTwoPlanes : Prop := SpecialSextic.ClosedMembership.{0}
 
 theorem contains_two_planes : ContainsTwoPlanes :=
   SpecialSextic.closed_membership

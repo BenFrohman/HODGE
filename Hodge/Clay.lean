@@ -25,14 +25,23 @@ namespace Clay
 /-- Geometric fourfold. Not a linear-algebra `Datum`. -/
 opaque SmoothComplexProjectiveFourfold : Type
 
-/-- Rational Hodge classes of type (2,2): `Hdg²(X) ⊂ H⁴(X, ℚ)`. -/
-opaque Hdg2 (X : SmoothComplexProjectiveFourfold) : Type
+instance : Inhabited { α : Type // Nonempty α } := ⟨⟨PUnit, ⟨⟨⟩⟩⟩⟩
+
+/-- Carrier of `Hdg²(X)` (opaque). -/
+opaque Hdg2Carrier (X : SmoothComplexProjectiveFourfold) : { α : Type // Nonempty α }
+
+/-- Rational Hodge classes of type (2,2): `Hdg²(X) ⊂ H⁴(X, ℚ)`.
+Nonempty because it is a `ℚ`-subspace (it contains `0`); this is the only
+property recorded, and it is what lets `ofAlgebraic` be declared `opaque`. -/
+def Hdg2 (X : SmoothComplexProjectiveFourfold) : Type := (Hdg2Carrier X).1
+
+instance (X : SmoothComplexProjectiveFourfold) : Nonempty (Hdg2 X) := (Hdg2Carrier X).2
 
 /-- Finite `ℚ`-span of classes of algebraic surfaces on `X`. -/
 opaque AlgebraicSpan (X : SmoothComplexProjectiveFourfold) : Type
 
 /-- Cycle-class arrow from the algebraic span into `Hdg²(X)`. -/
-opaque ofAlgebraic {X : SmoothComplexProjectiveFourfold} :
+noncomputable opaque ofAlgebraic {X : SmoothComplexProjectiveFourfold} :
     AlgebraicSpan X → Hdg2 X
 
 /-- Clay sentence, first open geometric case:

@@ -30,10 +30,6 @@ structure Datum (Z V N : Type*)
     [AddCommGroup N] [Module ℚ N] where
   /-- The integer `k` in `H^{2k}`. -/
   codim : ℕ
-  /-- Projection onto the off-diagonal Hodge pieces. -/
-  obstruction : V →ᵢ[ℚ] N
-  /-- The cycle class map. -/
-  cl : Z →ᵢ[ℚ] V
   /-- Projection onto the off-diagonal Hodge pieces.
   `LinearMap` in mathlib v4.22.0 takes the ring hom, not the ring.
   `M →ₑ[R] M₂` is `LinearMap (RingHom.id R)`. -/

@@ -49,27 +49,6 @@ abbrev Cohomology (V : Type*) [AddCommGroup V] [Module ℚ V] := V
 Geometrically: `⊕_{p+q=2k, p≠k} H^{p,q}(X)`. Here: the caller’s space `N`. -/
 abbrev OffDiagonal (N : Type*) [AddCommGroup N] [Module ℚ N] := N
 
-/-- Cycle class map `cl : Z → V`.
-Geometrically: Poincaré dual of the fundamental class, extended `ℚ`-linearly.
-Here: `Datum.cl`. -/
-def cycleClass (D : Datum Z V N) : AlgebraicCycles Z →ᵢ[ℚ] Cohomology V :=
-  D.cl
-
-/-- Projection `V → N` onto the off-diagonal Hodge summands.
-Kernel = Hodge classes. Here: `Datum.obstruction`. -/
-def hodgeObstruction (D : Datum Z V N) : Cohomology V →ᵢ[ℚ] OffDiagonal N :=
-  D.obstruction
-
-theorem cycleClass_is_hodge (D : Datum Z V N) (z : AlgebraicCycles Z) :
-    hodgeObstruction D (cycleClass D z) = 0 :=
-  D.cl_isHodge z
-
-/-- A variety as this skeleton can see it: a name, a dimension, one `Datum`.
-Not a scheme. -/
-
-abbrev AlgebraicCycles (Z : Type*) [AddCommGroup Z] [Module ℚ Z] := Z
-abbrev Cohomology (V : Type*) [AddCommGroup V] [Module ℚ V] := V
-abbrev OffDiagonal (N : Type*) [AddCommGroup N] [Module ℚ N] := N
 
 def cycleClass (D : Datum Z V N) : LinearMap (RingHom.id ℚ) Z V := D.cl
 def hodgeObstruction (D : Datum Z V N) : LinearMap (RingHom.id ℚ) V N := D.obstruction
@@ -78,6 +57,8 @@ theorem cycleClass_is_hodge (D : Datum Z V N) (z : Z) :
     D.obstruction (D.cl z) = 0 :=
   D.cl_isHodge z
 
+/-- A variety as this skeleton can see it: a name, a dimension, one `Datum`.
+Not a scheme. -/
 structure Variety (Z V N : Type*)
     [AddCommGroup Z] [Module ℚ Z]
     [AddCommGroup V] [Module ℚ V]
@@ -104,8 +85,6 @@ theorem every_datum_wraps (D : Datum Z V N) :
 /-- A Hodge class: a vector of `V` in `ker obstruction`. -/
 def HodgeClass (X : Variety Z V N) : Type _ :=
   { v : V // v ∈ X.data.hodgeClasses }
-def HodgeClass (X : Variety Z V N) :=
-  Subtype fun v : V => v ∈ X.data.hodgeClasses
 
 /-- An algebraic cycle: a vector of `Z`. -/
 def AlgebraicCycle (X : Variety Z V N) : Type _ :=
