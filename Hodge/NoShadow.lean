@@ -18,6 +18,8 @@ This file does not inhabit the geometric cycle-class map.
 namespace Hodge
 namespace NoShadow
 
+universe u
+
 /-- Coefficient encoding used by the named islands. Not Chow. -/
 def shadow_name : String := "LinearMap.id"
 
@@ -29,11 +31,11 @@ theorem shadow_ne_geometric_cl : shadow_name ≠ geometric_cl_name := by
 
 /-- The missing discharge. No inhabitant is supplied. -/
 def GeometricCycleClassDischarged : Prop :=
-  ∀ (X : Type) (k : Nat), True → False
+  ∀ (X : Type u) (k : Nat), True → False
 
 /-- Fermat certificate stays the cone theorem, not a cycle-class section. -/
 theorem fermat_certificate_is_not_chow
-    {R : Type} [CommRing R] [IsDomain R] (h5 : (5 : R) ≠ 0) :
+    {R : Type u} [CommRing R] [IsDomain R] (h5 : (5 : R) ≠ 0) :
     shadow_name ≠ geometric_cl_name :=
   shadow_ne_geometric_cl
 

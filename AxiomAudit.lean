@@ -233,6 +233,7 @@ import HodgeAttempt
 #print axioms Hodge.HodgeConjecture.p4
 #print axioms Hodge.HodgeConjecture.product
 #print axioms Hodge.HodgeConjecture.ungated_codim_two_false
+#print axioms Hodge.HodgeConjecture.zeroCycleLift_not_hodge
 #print axioms Hodge.HostSplit.Z_uncomputed
 #print axioms Hodge.HostSplit.containers_differ
 #print axioms Hodge.HostSplit.quintic_b4
