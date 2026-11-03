@@ -1,8 +1,9 @@
 /-
-Copyright (c) 2026 Benjamin Stanley Frohman.
-Released under Apache License 2.0.
-Authors: Benjamin Stanley Frohman (@BenFrohman)
-
+Copyright (c) 2026 Benjamin Stanley Frohman. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Benjamin Stanley Frohman
+-/
+/-
 Named surfaces as derived objects O_Z. Sorry-free. No axiom.
 S is a surface (dim 2) on a fourfold (dim 4). That is not a partner Y.
 This file does not construct Y and does not inhabit Term B.

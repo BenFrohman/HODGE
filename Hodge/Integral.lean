@@ -1,7 +1,9 @@
 /-
-Copyright (c) 2026 Ben Frohman (@BenFrohman). Released under the MIT license.
-Authors: Ben Frohman (@BenFrohman)
+Copyright (c) 2026 Benjamin Stanley Frohman. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Benjamin Stanley Frohman
 -/
+import Mathlib.Tactic.Ring
 import Hodge.Basic
 
 /-!
@@ -29,10 +31,15 @@ namespace Integral
 theorem rational_solvable : ∀ q : ℚ, ∃ r : ℚ, 2 * r = q :=
   fun q => ⟨q / 2, by ring⟩
 
-/-- In the integral model, it is a genuine obstruction. -/
+/-- In the integral model, it is a genuine obstruction.
+`Mathlib.Tactic.Omega` is not a module at mathlib v4.22.0, so this is a mod-2 argument. -/
 theorem integral_unsolvable : ¬ ∃ n : ℤ, 2 * n = 1 := by
   rintro ⟨n, hn⟩
-  omega
+  have hmod : (2 * n) % 2 = (1 : ℤ) % 2 := congrArg (fun z : ℤ => z % 2) hn
+  have h0 : (2 * n) % 2 = 0 := Int.mul_emod_right 2 n
+  have h1 : (1 : ℤ) % 2 = 1 := by decide
+  rw [h0, h1] at hmod
+  exact absurd hmod (by decide)
 
 /-- **Separation.**  The rational statement holds and the integral statement
 fails, in one and the same model.  Hence the integral Hodge conjecture is not a

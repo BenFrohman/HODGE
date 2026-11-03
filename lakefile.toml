@@ -1,5 +1,6 @@
+# Copyright (c) 2026 Benjamin Stanley Frohman. Licensed under Apache-2.0.
 name = "HODGE"
-defaultTargets = ["Hodge"]
+defaultTargets = ["Hodge", "AxiomPrint", "HodgeAttempt"]
 
 # PIN: do not change these two lines without a matching lean-toolchain bump.
 # Lean 4.22.0  +  mathlib v4.22.0. Not master.
@@ -10,6 +11,10 @@ rev = "v4.22.0"
 
 [[lean_lib]]
 name = "Hodge"
+
+# Axiom prints for the attempt sentences. Not the Clay close.
+[[lean_lib]]
+name = "AxiomPrint"
 
 # Sandbox. Not the Clay sentence. Build with: lake build HodgeAttempt
 [[lean_lib]]

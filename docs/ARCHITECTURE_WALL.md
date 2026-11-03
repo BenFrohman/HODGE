@@ -1,3 +1,4 @@
+<!-- Copyright (c) 2026 Benjamin Stanley Frohman. Licensed under Apache-2.0. -->
 # Architecture wall: algebraic plane vs unnamed 4-form
 
 Author: Benjamin Stanley Frohman (@BenFrohman).
