@@ -14,3 +14,4 @@ import Hodge.Attempt.GenericObstructed
 import Hodge.Attempt.Grading
 import Hodge.Attempt.IntersectionInvariants
 import Hodge.Attempt.SpecialSexticMembership
+import Hodge.Attempt.NamedSexticMembership

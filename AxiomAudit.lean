@@ -24,6 +24,8 @@ import Hodge.SpecialSextic
 import Hodge.SpecialSexticJacobian
 import Hodge.SpecialSexticMembership
 import Hodge.Verify
+import AxiomPrint
+import HodgeAttempt
 
 #print axioms Hodge.CycleConstructor.construct
 #print axioms Hodge.Datum.algebraicClasses_le_hodgeClasses
@@ -181,3 +183,44 @@ import Hodge.Verify
 #print axioms Hodge.SpecialSextic.planeSpan_hodge
 #print axioms Hodge.SpecialSextic.special_NL_sextic_coefficient_shadow
 #print axioms Hodge.SpecialSextic.threeSpan_hodge
+
+-- Hodge.Attempt sandbox modules (AxiomPrint / HodgeAttempt libraries)
+#print axioms Hodge.Attempt.Hypersurface.mk.inj
+#print axioms Hodge.Attempt.Hypersurface.mk.injEq
+#print axioms Hodge.Attempt.Hypersurface.mk.sizeOf_spec
+#print axioms Hodge.Attempt.IntersectionInvariants.extra_class_mismatch
+#print axioms Hodge.Attempt.IntersectionInvariants.isolation_not_ambient
+#print axioms Hodge.Attempt.IntersectionInvariants.planeSelfIx_six
+#print axioms Hodge.Attempt.IntersectionInvariants.predicted_ambient_self
+#print axioms Hodge.Attempt.NamedSextic.namedSextic_eq_plane_combination
+#print axioms Hodge.Attempt.NamedSextic.namedSextic_mem_plane
+#print axioms Hodge.Attempt.ParameterLocus.fermatLocus.inj
+#print axioms Hodge.Attempt.ParameterLocus.fermatLocus.injEq
+#print axioms Hodge.Attempt.ParameterLocus.fermatLocus.sizeOf_spec
+#print axioms Hodge.Attempt.ParameterLocus.genericObstructedLocus.sizeOf_spec
+#print axioms Hodge.Attempt.ParameterLocus.kleinQuadric.sizeOf_spec
+#print axioms Hodge.Attempt.ParameterLocus.productOfPlanes.sizeOf_spec
+#print axioms Hodge.Attempt.ParameterLocus.projectiveFourSpace.sizeOf_spec
+#print axioms Hodge.Attempt.SpecialSexticMembership.F_factors
+#print axioms Hodge.Attempt.SpecialSexticMembership.F_mem_plane
+#print axioms Hodge.Attempt.Tagged.mk.inj
+#print axioms Hodge.Attempt.Tagged.mk.injEq
+#print axioms Hodge.Attempt.Tagged.mk.sizeOf_spec
+#print axioms Hodge.Attempt.Var.ofNat_toCtorIdx
+#print axioms Hodge.Attempt.Var.z0.sizeOf_spec
+#print axioms Hodge.Attempt.Var.z1.sizeOf_spec
+#print axioms Hodge.Attempt.Var.z2.sizeOf_spec
+#print axioms Hodge.Attempt.Var.z3.sizeOf_spec
+#print axioms Hodge.Attempt.Var.z4.sizeOf_spec
+#print axioms Hodge.Attempt.Var.z5.sizeOf_spec
+#print axioms Hodge.Attempt.fermat_pair_vanishing
+#print axioms Hodge.Attempt.fermat_pair_with_remainder
+#print axioms Hodge.Attempt.fermat_quartic_contains_Z1
+#print axioms Hodge.Attempt.fourfold_complex_dim_eq_four
+#print axioms Hodge.Attempt.genericObstructedFourfold_codim
+#print axioms Hodge.Attempt.generic_tag_has_no_fermat_recipe
+#print axioms Hodge.Attempt.middle_cycle_codimension_is_two
+#print axioms Hodge.Attempt.middle_cycle_dim_eq_two
+#print axioms Hodge.Attempt.pair_vanishing
+#print axioms Hodge.Attempt.pair_with_remainder
+#print axioms Hodge.Attempt.recipe_is_not_global_constructor
