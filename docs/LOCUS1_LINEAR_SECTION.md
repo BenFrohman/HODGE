@@ -1,3 +1,4 @@
+<!-- Copyright (c) 2026 Benjamin Stanley Frohman. Licensed under Apache-2.0. -->
 # Locus 1: linear section on the Noether–Lefschetz host
 
 Author: Benjamin Stanley Frohman (@BenFrohman). Apache-2.0.

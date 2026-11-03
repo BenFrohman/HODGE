@@ -1,0 +1,12 @@
+# stdout of scripts/jacobian_hodge.py
+# Author: Benjamin Stanley Frohman
+# Copyright (c) 2026 Benjamin Stanley Frohman
+# License: Apache-2.0
+
+0 1
+6 426
+12 1751
+18 426
+24 1
+sum prim 2605
+plus h2 2606

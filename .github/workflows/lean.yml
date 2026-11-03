@@ -15,12 +15,44 @@ jobs:
       - name: Forbid Attempt imports in Hodge.lean
         run: |
           if grep -nE '^import[[:space:]]+Hodge\.Attempt' Hodge.lean; then
-            echo "ARCHITECTURE: Hodge.lean must not import Hodge.Attempt.*"
+            echo "ARCHITECTURE: Hodge.lean must not import Hodge.Attempt"
             exit 1
           fi
+      - name: Sorry check on the built library
+        run: |
+          if grep -nE '\bsorry\b' Hodge.lean \
+            Hodge/Basic.lean Hodge/Frontier.lean Hodge/Integral.lean Hodge/Known.lean \
+            Hodge/Examples.lean Hodge/Fourfold.lean Hodge/Classical.lean Hodge/Klein.lean \
+            Hodge/Geometry.lean Hodge/Construct.lean Hodge/Fermat.lean Hodge/FermatQuintic.lean \
+            Hodge/HostSplit.lean Hodge/SpecialSextic.lean Hodge/SpecialSexticMembership.lean \
+            Hodge/HeadPlane.lean Hodge/SpecialSexticJacobian.lean Hodge/Hassett.lean \
+            Hodge/NamedFamilies.lean Hodge/SexticModuli.lean Hodge/DerivedSurfaces.lean \
+            Hodge/Verify.lean; then
+            echo "sorry in the built library"
+            exit 1
+          fi
+          echo "no sorry in the explicit Hodge library files"
       - name: Build Hodge
         uses: leanprover/lean-action@v1
         with:
           use-mathlib-cache: true
           test: false
           build-args: Hodge
+
+  attempt:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Report sandbox sorry
+        run: |
+          echo "HodgeAttempt is the sandbox. It is not the Clay sentence."
+          grep -nE '\bsorry\b' \
+            Hodge/Attempt/Lefschetz.lean \
+            Hodge/Attempt/MonodromyTypeShift.lean \
+            Hodge/Attempt/AsymptoticAnalysis.lean || echo "no sorry in the named Attempt files"
+      - name: Build HodgeAttempt
+        uses: leanprover/lean-action@v1
+        with:
+          use-mathlib-cache: true
+          test: false
+          build-args: HodgeAttempt

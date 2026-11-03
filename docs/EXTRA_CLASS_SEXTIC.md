@@ -1,6 +1,14 @@
+<!--
+Copyright (c) 2026 Benjamin Stanley Frohman. All rights reserved.
+Released under Apache-2.0 license as described in the file LICENSE.
+Author: Benjamin Stanley Frohman
+-->
+
 # Extra class on a special sextic fourfold: verified codimension framework
 
-Author: Benjamin Stanley Frohman (@BenFrohman). Apache-2.0.
+Author: Benjamin Stanley Frohman (@BenFrohman)
+Copyright (c) 2026 Benjamin Stanley Frohman
+License: Apache-2.0
 
 Permanent record of the linear-plane count. Not a `CycleSection` on an
 unnamed fourfold. Not a proof of Hodge.

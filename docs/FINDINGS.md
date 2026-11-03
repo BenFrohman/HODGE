@@ -1,3 +1,4 @@
+<!-- Copyright (c) 2026 Benjamin Stanley Frohman. Licensed under Apache-2.0. -->
 # Findings inventory (session lock)
 
 Author: Benjamin Stanley Frohman (@BenFrohman). Apache-2.0.
@@ -23,6 +24,12 @@ versus what remains literature or open. Not a Clay discharge.
    Special ⇒ extra algebraic surface, visible to Lean. Not full H^{2,2}.
    Not Hassett C_d (those are cubics). Partner is the NL locus of sextics
    through this plane.
+6. named_fourfolds (Hodge/NamedFamilies.lean): finite conjunction
+       ClassicalFourfolds ∧ Fermat.twoPlanes ∧ SpecialSextic.planeSpan
+       ∧ Hassett.planeSpan.
+   Fermat and planeSpan sit here, not in classical_fourfolds.
+   cl = id pipeline on named spans is finished. See docs/NAMED_FOURFOLDS.md.
+   Not ∀ X. Next unnamed fourfold has no z_of.
 
 ## B. Sister-repo theorems (Lean or ring identities)
 
@@ -42,6 +49,10 @@ versus what remains literature or open. Not a Clay discharge.
 
 ## C. Documentation findings (locks, not new geometry theorems)
 
+- Named fourfolds lock (docs/NAMED_FOURFOLDS.md):
+  cl = id after surfaces are named; halt that pipeline.
+  Fermat twoPlanes ≠ full Hdg^2 (AMV is literature).
+  Special sextic planeSpan ≠ general sextic ≠ general_fourfold.
 - Known bases taxonomy (docs/KNOWN_BASES.md):
   always h^k; cellular Schubert/Künneth; special-locus plane span;
   cited Zucker / Murre / Conte–Murre / Lefschetz (1,1).
@@ -100,6 +111,7 @@ No clay-solved tag. No ¬Hodge. No global construct.
 |---|---|
 | Cycle class vs constructor | docs/CYCLE_CLASS_AND_CONSTRUCTOR.tex |
 | F, plane, planeSpan | docs/F_HOST.md, docs/EXTRA_CLASS_SEXTIC.md |
+| Named fourfolds / cl = id stop | docs/NAMED_FOURFOLDS.md, Hodge/NamedFamilies.lean |
 | Known bases | docs/KNOWN_BASES.md |
 | Correspondences / two arrows | docs/CORRESPONDENCES.md, docs/TWO_MAPS.md |
 | Derived vs F | docs/DERIVED.md, docs/DERIVED_TORELLI.md |

@@ -1,20 +1,85 @@
 # HODGE
 
+[![Lean certificate](https://github.com/BenFrohman/HODGE/actions/workflows/certify.yml/badge.svg)](https://github.com/BenFrohman/HODGE/actions/workflows/certify.yml)
+
+<!-- ZENODO-PROVENANCE-HEADER -->
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23629480.svg)](https://doi.org/10.5281/zenodo.23629480)
+[![License: Apache-2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+[![ORCID](https://img.shields.io/badge/ORCID-0009--0006--7068--3718-brightgreen.svg)](https://orcid.org/0009-0006-7068-3718)
+
+> **Author:** Benjamin Stanley Frohman ([ORCID: 0009-0006-7068-3718](https://orcid.org/0009-0006-7068-3718))  
+> **Origin Provenance:** `2026-09-19 16:56:32 CDT (Git Initial Commit)`  
+> **Zenodo Archive & DOI:** [`10.5281/zenodo.23629480`](https://doi.org/10.5281/zenodo.23629480) ([Zenodo Record `23629480`](https://zenodo.org/records/23629480))  
+> **Primary Manuscript PDF:** [`docs/CYCLE_CLASS_AND_CONSTRUCTOR.pdf`](./docs/CYCLE_CLASS_AND_CONSTRUCTOR.pdf)  
+> **Copyright & License:** Copyright (c) 2026 Benjamin Stanley Frohman. Licensed under the Apache License, Version 2.0 ([`LICENSE`](./LICENSE), [`NOTICE`](./NOTICE)).
+<!-- /ZENODO-PROVENANCE-HEADER -->
+
+
 **Status:** Draft (finished skeleton, not a Clay close).
 **Author:** Benjamin Stanley Frohman (@BenFrohman)
 
 Copyright (c) 2026 Benjamin Stanley Frohman. All rights reserved under the Apache License, Version 2.0.
-See `LICENSE`, `NOTICE.md`, and `AUTHORS.md`.
+See `LICENSE`, `NOTICE.md`, `AUTHORS.md`, and `docs/BRANCH_RULES.md`.
 
 This repository does **not** prove the Hodge conjecture and does **not** contain a counterexample.
-See `docs/TRICHOTOMY.md` and `docs/CLAY_TAG.md`.
+See `docs/TRICHOTOMY.md`, `docs/CLAY_TAG.md`, `docs/CLAIM_VS_PROOF.md`, `docs/UNIVERSAL_INSTANCE.md`, and `docs/FROHMAN_SPANS.md`.
+
+## Official close
+
+Published theorem name: **Named (2,2) spans**.
+Lean: `HodgeConjecture.named_fourfolds`.
+`FrohmanTwoTwoSpans` is an encoding alias of the same finite list.
+Not Lefschetz. Lefschetz stops at `k = 1`.
+
+Released terms:
+
+- `HodgeConjecture.named_fourfolds`
+- `HodgeConjecture.frohman_two_two_spans` (same term)
+- `Fermat.contains_two_planes`
+
+Not released: a term of `HodgeConjecture.general_fourfold` for unspecified `D`.
+That `def` is the name of the open sentence
+
+```text
+∀ X⁴, ∀ γ ∈ Hdg²(X),  γ = ∑ a_i [Z_i].
+```
+
+The holes `?z_of` and `?cl_z_eq` in `docs/UNIVERSAL_INSTANCE.md` stay empty.
+No axiom, `sorry`, or `True` gadget.
+
+Live construction details: `docs/CYCLESECTION_BODIES.md`.
+Named-span pairing: `docs/HODGE_RIEMANN.md`, `docs/GRAM_VALUES.md`.
+`#print axioms` on `named_fourfolds`: `propext`, `Quot.sound` (`docs/PRINT_AXIOMS.md`).
+
+## Derived surfaces (`Hodge/DerivedSurfaces.lean`)
+
+Copyright (c) 2026 Benjamin Stanley Frohman. Apache-2.0. No `sorry`.
+
+Named library surfaces as objects `O_Z`. Closed numeral facts:
+
+```lean
+theorem inventory_card : inventory.length = 8
+theorem residual_is_surface : residualQuintic.objectDim = 2
+theorem residual_host_is_fourfold : residualQuintic.hostDim = 4
+theorem residual_not_partner :
+    residualQuintic.objectDim = 2 ∧ residualQuintic.objectDim ≠ 4
+theorem every_listed_object_is_a_surface :
+    inventory.all (fun s => s.objectDim == 2) = true
+theorem every_listed_host_is_a_fourfold :
+    inventory.all (fun s => s.hostDim == 4) = true
+```
+
+`S` is dimension 2 on the fourfold `V(F)`. It is not the partner `Y`.
+`Y` and Term B stay named and empty in `docs/Y_AND_MISS.md`.
+This file does not inhabit `general_fourfold` or ClayDisproofTerm.
 
 ## Two sentences
 
 **Claim** (no term for unspecified `D`):
 
 ```lean
-def HodgeConjecture.general_fourfold D h : Prop := D.HodgeConjecture
+def HodgeConjecture.general_fourfold (D) (_h : D.codim = 2) : Prop :=
+  ∀ v ∈ D.hodgeClasses, ∃ z : Z, D.cl z = v
 ```
 
 **Three-host release:**
@@ -48,7 +113,8 @@ That list is six specified hosts:
 `named_fourfolds` is a bigger release than `classical_fourfolds` (3 hosts → 6 hosts).
 It is not a bigger statement than Hodge: Hodge is `∀ D`, a list is not `∀`.
 
-`SpecialSexticMembership.F_mem_plane` is the easy arrow on one named sextic. Relabeling it does not prove Hodge and is not a counterexample.
+`contains_two_planes` is the easy arrow on `V(F)`: `Π, Π_{-1} ⊂ V(F)`.
+It is not the reverse arrow on every class of `V(F)`.
 
 ## License
 
