@@ -27,6 +27,11 @@ Not general_fourfold.
 namespace Hodge
 namespace Cubic
 
+variable {Z V N : Type*}
+    [AddCommGroup Z] [Module ℚ Z]
+    [AddCommGroup V] [Module ℚ V]
+    [AddCommGroup N] [Module ℚ N]
+
 /-- Sticker: this datum is meant as a cubic fourfold. Not a scheme. -/
 class IsCubicFourfold (D : Datum Z V N) : Prop
 

@@ -54,15 +54,15 @@ The named geometry lives in `Hodge.Klein`.
 -/
 
 def constructQ (gamma : ℚ × ℚ) : Klein.FormalCycle :=
-  Klein.initialize (Classical.construct gamma)
+  Klein.cycleOf (Classical.construct gamma)
 
 theorem constructQ_eq_initialize (gamma : ℚ × ℚ) :
-    constructQ gamma = Klein.initialize gamma :=
+    constructQ gamma = Klein.cycleOf gamma :=
   rfl
 
 theorem constructQ_coeff (a b : ℚ) :
     (constructQ (a, b)).coeffPi = a ∧ (constructQ (a, b)).coeffPi' = b :=
-  Klein.initialize_coeff a b
+  Klein.cycleOf_coeff a b
 
 theorem constructQ_recovers (gamma : ℚ × ℚ) :
     Classical.kleinQuadric.cl (Classical.construct gamma) = gamma :=

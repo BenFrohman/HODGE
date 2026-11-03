@@ -19,9 +19,9 @@ namespace Klein
 def pairing : (ℚ × ℚ) → (ℚ × ℚ) → ℚ
   | (a, b), (a', b') => a * a' + b * b'
 
-theorem pairing_Pi : pairing (1, 0) (1, 0) = 1 := by decide
-theorem pairing_Pi' : pairing (0, 1) (0, 1) = 1 := by decide
-theorem pairing_cross : pairing (1, 0) (0, 1) = 0 := by decide
+theorem pairing_Pi : pairing (1, 0) (1, 0) = 1 := by simp [pairing]
+theorem pairing_Pi' : pairing (0, 1) (0, 1) = 1 := by simp [pairing]
+theorem pairing_cross : pairing (1, 0) (0, 1) = 0 := by simp [pairing]
 
 /-- Reconstruction in the orthogonal ruling basis. -/
 theorem expand (a b : ℚ) :
