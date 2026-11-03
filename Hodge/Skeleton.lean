@@ -7,6 +7,7 @@ import Hodge.Fourfold
 import Hodge.NamedFamilies
 import Hodge.RealClose
 import Hodge.Geometry
+import Mathlib.Algebra.Module.ULift
 
 /-!
 # Living skeleton
