@@ -1,10 +1,11 @@
 # Authors
 
 **Benjamin Stanley Frohman** (@BenFrohman) is the author of this repository:
-core library `Hodge`, sandbox `HodgeAttempt`, and `docs/`.
+core library `Hodge`, sandbox `HodgeAttempt`, axiom-print root `AxiomPrint`, and `docs/`.
 
 Copyright (c) 2026 Benjamin Stanley Frohman.
-License: Apache License 2.0 (see `LICENSE` and `NOTICE.md`).
+License: Apache License 2.0 (see `LICENSE` and `NOTICE`).
+SPDX-License-Identifier: Apache-2.0
 Copies and derivatives must keep that notice and attribution.
 
 Sister repos FermatPlanes, NoetherLefschetz, CubicFourfold, DerivedCategories:
@@ -23,6 +24,8 @@ It is not discharged. Cite as a skeleton, not as a Clay proof.
 - Named derived surfaces (`Hodge/DerivedSurfaces.lean`): inventory of `O_Z`,
   `residual_not_partner` (`objectDim = 2`, not a fourfold `Y`)
 - Lake target `HodgeAttempt` and the notes in `docs/`
+- Lake target `AxiomPrint`: axiom prints for `GlobalClayFourfold`,
+  `fermat_pair_vanishing`, and `fermat_quartic_contains_Z1`
 
 ## Shoulders (not Frohman theorems)
 
@@ -33,4 +36,4 @@ It is not discharged. Cite as a skeleton, not as a Clay proof.
 - S. Zucker — Hodge for cubic fourfolds (citation in CubicFourfold)
 - T. Shioda, Z. Ran, Aljovín–Movasati–Villaflor — Fermat Hodge cycles
 - C. Voisin — surveys and integral Hodge questions
-- Lean 4 and mathlib4 (Apache-2.0; see `NOTICE.md`)
+- Lean 4 and mathlib4 (Apache-2.0; see `NOTICE`)

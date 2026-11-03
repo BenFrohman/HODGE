@@ -1,7 +1,9 @@
 /-
-Copyright (c) 2026 Benjamin Stanley Frohman (@BenFrohman). Apache-2.0.
-Authors: Benjamin Stanley Frohman (@BenFrohman)
+Copyright (c) 2026 Benjamin Stanley Frohman. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Benjamin Stanley Frohman
 -/
+import Mathlib.Data.Nat.Choose.Basic
 
 /-!
 # Sextic counts in P^5
@@ -9,6 +11,7 @@ Authors: Benjamin Stanley Frohman (@BenFrohman)
 Author: Benjamin Stanley Frohman (@BenFrohman).
 `milnor_number` is finished arithmetic. It does not compute `finrank` of a
 Jacobian quotient.
+`decide` is a core Lean tactic at v4.22.0; do not import Mathlib.Tactic.Decide.
 -/
 
 namespace Hodge.SexticModuli

@@ -1,9 +1,12 @@
 /-
-Copyright (c) 2026 Benjamin Stanley Frohman (@BenFrohman). Released under Apache-2.0.
-Authors: Benjamin Stanley Frohman (@BenFrohman)
+Copyright (c) 2026 Benjamin Stanley Frohman. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Benjamin Stanley Frohman
 -/
+import Mathlib.Algebra.Field.Rat
+import Mathlib.Algebra.Module.LinearMap.Basic
 import Mathlib.Algebra.Module.Submodule.Lattice
-import Mathlib.LinearAlgebra.Span
+import Mathlib.LinearAlgebra.Span.Basic
 
 /-!
 # Interface for the Hodge conjecture
@@ -27,10 +30,12 @@ structure Datum (Z V N : Type*)
     [AddCommGroup N] [Module ℚ N] where
   /-- The integer `k` in `H^{2k}`. -/
   codim : ℕ
-  /-- Projection onto the off-diagonal Hodge pieces. -/
-  obstruction : V →ₗ[ℚ] N
+  /-- Projection onto the off-diagonal Hodge pieces.
+  `LinearMap` in mathlib v4.22.0 takes the ring hom, not the ring.
+  `M →ₑ[R] M₂` is `LinearMap (RingHom.id R)`. -/
+  obstruction : LinearMap (RingHom.id ℚ) V N
   /-- The cycle class map. -/
-  cl : Z →ₗ[ℚ] V
+  cl : LinearMap (RingHom.id ℚ) Z V
   /-- Geometry produces Hodge classes: the easy arrow. -/
   cl_isHodge : ∀ z, obstruction (cl z) = 0
 

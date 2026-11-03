@@ -1,4 +1,6 @@
 # Monodromy group computation
+<!-- Copyright (c) 2026 Benjamin Stanley Frohman. Licensed under Apache-2.0. -->
+# Monodromy at the locked sextic
 
 Copyright 2026 Benjamin Stanley Frohman (@BenFrohman).
 License: Apache-2.0.
