@@ -7,6 +7,23 @@ import Mathlib.Tactic.Ring
 import Mathlib.RingTheory.Ideal.Basic
 import Hodge.Construct
 
+/-!
+# Special Noether–Lefschetz sextic (plane locus)
+
+    F = x0^5 x3 + x3^6 + x1^5 x4 + x4^6 + x2^5 x5 + x5^6
+    Π     = {x3 = x4 = x5 = 0},                 I(Π) = ⟨x3, x4, x5⟩
+    Π_{-1} = {x0+x3 = x1+x4 = x2+x5 = 0},         I(Π_{-1}) = ⟨x0+x3, x1+x4, x2+x5⟩
+
+Official closed theorem of this file: `contains_two_planes`.
+Type of that theorem: ideal membership in a commutative ring.
+That type is not `Clay.RationalHodgeCodimTwo`.
+
+Both planes lie on V(F). `{x0=x1=x2=0}` does not.
+Gram of (h², [Π], [Π_{-1}]) has det 2604; that is a lower bound, not Hodge.
+Identity-shadow `Datum`s below discharge `Datum.HodgeConjecture` by `rfl`.
+That is not Clay. Not general_fourfold.
+-/
+
 namespace Hodge
 namespace SpecialSextic
 
@@ -56,6 +73,15 @@ theorem F_mem_plane_minus1 (x0 x1 x2 x3 x4 x5 : R) :
     F x0 x1 x2 x3 x4 x5 ∈ planeIdealMinus1 x0 x1 x2 x3 x4 x5 := by
   rw [F_factors_minus1]
   refine Ideal.add_mem _ (Ideal.add_mem _ ?_ ?_) ?_
+  · refine Ideal.mul_mem_right _ _ (Ideal.mul_mem_right _ _ ?_)
+    exact Ideal.subset_span (by simp)
+  · refine Ideal.mul_mem_right _ _ (Ideal.mul_mem_right _ _ ?_)
+    exact Ideal.subset_span (by simp)
+  · refine Ideal.mul_mem_right _ _ (Ideal.mul_mem_right _ _ ?_)
+    exact Ideal.subset_span (by simp)
+
+/-- Official closed theorem of this file (Frohman, Apache-2.0).
+    Both named planes lie on V(F). Type: ring membership. Not Clay. -/
   · exact Ideal.mul_mem_right _ _
       (Ideal.mul_mem_left _ _ (Ideal.subset_span (Or.inl rfl)))
   · exact Ideal.mul_mem_right _ _
@@ -68,6 +94,16 @@ theorem contains_two_planes (x0 x1 x2 x3 x4 x5 : R) :
       F x0 x1 x2 x3 x4 x5 ∈ planeIdealMinus1 x0 x1 x2 x3 x4 x5 :=
   ⟨F_mem_plane x0 x1 x2 x3 x4 x5,
     F_mem_plane_minus1 x0 x1 x2 x3 x4 x5⟩
+
+/-- Packaged type of the closed theorem. Not `Clay.RationalHodgeCodimTwo`. -/
+def ClosedMembership : Prop :=
+  ∀ {R : Type*} [CommRing R] (x0 x1 x2 x3 x4 x5 : R),
+    F x0 x1 x2 x3 x4 x5 ∈ planeIdeal x3 x4 x5 ∧
+      F x0 x1 x2 x3 x4 x5 ∈ planeIdealMinus1 x0 x1 x2 x3 x4 x5
+
+theorem closed_membership : ClosedMembership := by
+  intro R _ x0 x1 x2 x3 x4 x5
+  exact contains_two_planes x0 x1 x2 x3 x4 x5
 
 theorem hypersurface_contains_the_plane (x0 x1 x2 x3 x4 x5 : R) :
     F x0 x1 x2 x3 x4 x5 ∈ planeIdeal x3 x4 x5 :=
@@ -129,12 +165,14 @@ theorem five_pow_six : 5 ^ 6 = 15625 := by decide
 theorem gram_det_numeral :
     (6 : Nat) * 21 * 21 - 21 - 21 = 2604 := by decide
 
+/-- Coefficient shadow of ℚ[Π]. `cl = id`. Not a Chow ring. Not Clay. -/
 def planeSpan : Datum (Rat × Rat) (Rat × Rat) Rat where
   codim := 2
   obstruction := 0
   cl := LinearMap.id
   cl_isHodge := by intro z; simp
 
+/-- Coefficient shadow of ℚ h² + ℚ[Π] + ℚ[Π_{-1}]. Still a shadow, not Hodge. -/
 def threeSpan : Datum (Rat × Rat × Rat) (Rat × Rat × Rat) Rat where
   codim := 2
   obstruction := 0
@@ -163,15 +201,25 @@ instance : CycleSection threeSpan where
   construct := fun gamma => constructThree gamma.val
   is_section := fun gamma => constructThree_section gamma.val
 
-theorem planeSpan_hodge : planeSpan.HodgeConjecture :=
+/-- Identity shadow: `cl (id γ) = γ`. Not Clay. -/
+theorem planeSpan_identity_shadow : planeSpan.HodgeConjecture :=
   hodgeConjecture_of_constructor planeSpan
 
-theorem threeSpan_hodge : threeSpan.HodgeConjecture :=
+/-- Identity shadow: `cl (id γ) = γ`. Not Clay. -/
+theorem threeSpan_identity_shadow : threeSpan.HodgeConjecture :=
   hodgeConjecture_of_constructor threeSpan
+
+/-- Retained name. Same type as `planeSpan_identity_shadow`. Not Clay. -/
+theorem planeSpan_hodge : planeSpan.HodgeConjecture :=
+  planeSpan_identity_shadow
+
+/-- Retained name. Same type as `threeSpan_identity_shadow`. Not Clay. -/
+theorem threeSpan_hodge : threeSpan.HodgeConjecture :=
+  threeSpan_identity_shadow
 
 theorem special_NL_sextic_coefficient_shadow :
     span_of_plane_and_hyperplane_square.HodgeConjecture :=
-  planeSpan_hodge
+  planeSpan_identity_shadow
 
 end SpecialSextic
 end Hodge

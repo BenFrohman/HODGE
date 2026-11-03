@@ -3,6 +3,15 @@
 
 Author: Benjamin Stanley Frohman (@BenFrohman).
 
+## 2026-09-29 type separation
+
+- Undo the collapse of `contains_two_planes` with the Hodge conjecture.
+- New official Clay type: `Hodge.Clay.RationalHodgeCodimTwo` (`∀ X ∀ γ ∃ z`). Uninhabited.
+- New release surface: `Hodge.Release.contains_two_planes` (closed) and `Hodge.Release.ClaySentence` (open, no theorem).
+- `SpecialSextic.ClosedMembership` packages the ring identity. Not Clay.
+- `planeSpan_identity_shadow` is the honest name of the `cl = id` discharge. `planeSpan_hodge` is retained as an alias and is not Clay.
+- Record: `docs/TYPE_SEPARATION.md`.
+- Tag remains `clay-statement-open`. Not a Clay close.
 ## 2026-10-06 green head lock
 
 - Head `bc1abdfa`. Lean CI run 37561876445 succeeded on `leanprover/lean4:v4.22.0`.

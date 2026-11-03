@@ -11,6 +11,11 @@ import Hodge.Hassett
 /-!
 # Finite conjunction of named hosts
 
+This extends the three-island release by the families that now have
+`CycleSection`. It is still a finite list of identity shadows.
+
+It is not `Clay.RationalHodgeCodimTwo`.
+It is not `HodgeConjecture.general_fourfold` for unspecified `D`.
 Published theorem name: **Named (2,2) spans**.
 Lean: `NamedFourfolds` / `named_fourfolds`.
 
