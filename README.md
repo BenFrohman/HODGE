@@ -1,5 +1,7 @@
 # HODGE
 
+[![Lean certificate](https://github.com/BenFrohman/HODGE/actions/workflows/certify.yml/badge.svg)](https://github.com/BenFrohman/HODGE/actions/workflows/certify.yml)
+
 <!-- ZENODO-PROVENANCE-HEADER -->
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23629480.svg)](https://doi.org/10.5281/zenodo.23629480)
 [![License: Apache-2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
