@@ -6,13 +6,14 @@ then `lake env lean AxiomAudit.lean`, and fails unless every audited declaration
 `sorry`/`admit`/`native_decide`/`axiom`.
 
 ## Current certificate
-- Verified commit: `cb96cd49114ad142758c473a8e5f6506288e4fb7`
+- Verified commit: `fc6ad0982a118a824c554001ee4ad10bf401766c`
 - Lean `v4.22.0`, Mathlib `v4.22.0`
-- CI (both passed): [Lean certificate run 41728656318](https://github.com/BenFrohman/HODGE/actions/runs/41728656318), [Lean run 41728656264](https://github.com/BenFrohman/HODGE/actions/runs/41728656264)
-- `AxiomAudit.lean`: **291** `#print axioms` declarations (201 source theorems + 90 Lean-generated lemmas), all standard axioms only; no `sorry`, no `native_decide`, no `axiom`.
+- CI (both passed): [Lean certificate run 41731467848](https://github.com/BenFrohman/HODGE/actions/runs/41731467848), [Lean run 41731468054](https://github.com/BenFrohman/HODGE/actions/runs/41731468054)
+- `AxiomAudit.lean`: **348** `#print axioms` declarations (238 source theorems + 110 Lean-generated lemmas), all standard axioms only; no `sorry`, no `native_decide`, no `axiom`.
 
 ## Covered
-- `Hodge` library (250 theorem declarations).
+- `Hodge` library (307 theorem declarations), including `Hodge.Chow`, `ContainerSeparation`, `Cubic`, `Islands`,
+  `JacobianLength`, `KleinPairing`, `NoShadow` (imported from the `Hodge` root since v1.1.2).
 - `AxiomPrint` library (root `AxiomPrint.lean`).
 - `HodgeAttempt` sandbox library (41 theorem declarations): `Hodge.Attempt.ClayStatement` (definitions only),
   `FermatIdentities` (3), `FermatPlanes` (9), `GenericObstructed` (1), `Grading` (6),
@@ -25,6 +26,9 @@ then `lake env lean AxiomAudit.lean`, and fails unless every audited declaration
   `Hodge.Attempt.recipe_is_not_global_constructor` duplicates the declaration of the same name in
   `Hodge.Attempt.ParameterLocus` (which is certified), so it cannot be imported alongside it without renaming.
 
-## Not in the default build (not covered)
-`Hodge.Chow`, `Hodge.ContainerSeparation`, `Hodge.Cubic`, `Hodge.Islands`, `Hodge.JacobianGenerators`,
-`Hodge.JacobianLength`, `Hodge.KleinPairing`, `Hodge.NoShadow` are not imported by the `Hodge` root.
+- `Hodge.JacobianGenerators` — redeclares, with identical names and statements, the declarations of
+  `Hodge.SpecialSexticJacobian` (certified), so it cannot be imported alongside it.
+
+## Lean ↔ paper
+The paper's appendix lists, for each claim of the body with a Lean counterpart, the exact Lean statement.
+Lefschetz (1,1), hard Lefschetz and the Hodge conjecture are only hypotheses/`Prop`s in Lean, not theorems.

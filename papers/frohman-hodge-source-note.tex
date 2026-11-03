@@ -185,20 +185,39 @@ The formal development was machine-checked as follows.
 {\raggedright
 \begin{itemize}
 \item Repository:\\ {\footnotesize\url{https://github.com/BenFrohman/HODGE}}
-\item Verified commit:\\ {\footnotesize\texttt{cb96cd49114ad142758c473a8e5f6506288e4fb7}}
+\item Verified commit:\\ {\footnotesize\texttt{fc6ad0982a118a824c554001ee4ad10bf401766c}}
 \item Lean toolchain: \texttt{leanprover/lean4:v4.22.0}
 \item Mathlib: tag \texttt{v4.22.0}, commit (from \texttt{lake-manifest.json})\\ {\footnotesize\texttt{79e94a093aff4a60fb1b1f92d9681e407124c2ca}}
-\item Continuous integration runs on the verified commit (both passed): certificate workflow (build, axiom audit, \texttt{sorry}/\texttt{axiom}/\texttt{native\_decide} scan)\\ {\footnotesize\url{https://github.com/BenFrohman/HODGE/actions/runs/41728656318}}\\ and Lean build workflow\\ {\footnotesize\url{https://github.com/BenFrohman/HODGE/actions/runs/41728656264}}
-\item SHA-256 of the GitHub source tarball of the verified commit, downloaded twice with identical result:\\ {\footnotesize\url{https://github.com/BenFrohman/HODGE/archive/cb96cd49114ad142758c473a8e5f6506288e4fb7.tar.gz}}\\
-{\footnotesize\texttt{3955313df3ec0ea6f94172b44138f7a160d50a4bd43ef22309cc748bb5a63e82}}
+\item Continuous integration runs on the verified commit (both passed): certificate workflow (build, axiom audit, \texttt{sorry}/\texttt{axiom}/\texttt{native\_decide} scan)\\ {\footnotesize\url{https://github.com/BenFrohman/HODGE/actions/runs/41731467848}}\\ and Lean build workflow\\ {\footnotesize\url{https://github.com/BenFrohman/HODGE/actions/runs/41731468054}}
+\item SHA-256 of the GitHub source tarball of the verified commit, downloaded twice with identical result:\\ {\footnotesize\url{https://github.com/BenFrohman/HODGE/archive/fc6ad0982a118a824c554001ee4ad10bf401766c.tar.gz}}\\
+{\footnotesize\texttt{b30e388de1f1dc9d06b852622d22889813cf68bea06e5be0be9c51fea8b2d620}}
 \end{itemize}\par}
 
 The tarball hash refers to the verified commit rather than to a release tag, since a document cannot contain the hash of an archive that includes itself. The Lean sources are unchanged between that commit and the release tag.
 
+\textbf{Scope.} The audited build consists of the default \texttt{lake} targets \texttt{Hodge} (307 theorems), \texttt{HodgeAttempt} (41 theorems; a sandbox that is \emph{not} the Clay Hodge statement and proves no Clay result) and \texttt{AxiomPrint} (axiom reports only, no theorems), 348 theorem declarations in total (238 written in the source and 110 generated automatically by Lean, such as constructor injectivity, \texttt{sizeOf} and equation lemmas). The \texttt{Hodge} root imports every module of the library except \texttt{Hodge.JacobianGenerators}, which is excluded because it redeclares, with the same names and statements, the declarations of \texttt{Hodge.SpecialSexticJacobian} (already certified) and so cannot be imported alongside it. Also excluded: \texttt{Hodge.Attempt.FermatRecipeScope}, which does not compile as committed (missing \(\mathbb{N}\) notation import; \texttt{decide} is stuck on \(2\le\texttt{offLocusGadget.codim}\)) and whose theorem \texttt{recipe\_is\_not\_global\_constructor} duplicates a certified declaration of the same name in \texttt{Hodge.Attempt.ParameterLocus}.
 
-\textbf{Scope.} The audited build consists of the default \texttt{lake} targets \texttt{Hodge} (250 theorems), \texttt{HodgeAttempt} (41 theorems; a sandbox that is \emph{not} the Clay Hodge statement and proves no Clay result) and \texttt{AxiomPrint} (axiom reports only, no theorems), 291 theorem declarations in total (201 written in the source and 90 generated automatically by Lean, such as constructor injectivity, \texttt{sizeOf} and equation lemmas). Excluded: \texttt{Hodge.Attempt.FermatRecipeScope}, which does not compile as committed (missing \(\mathbb{N}\) notation import; \texttt{decide} is stuck on \(2\le\texttt{offLocusGadget.codim}\)) and whose theorem \texttt{recipe\_is\_not\_global\_constructor} duplicates a certified declaration of the same name in \texttt{Hodge.Attempt.ParameterLocus}. The modules \texttt{Hodge.Chow}, \texttt{ContainerSeparation}, \texttt{Cubic}, \texttt{Islands}, \texttt{JacobianGenerators}, \texttt{JacobianLength}, \texttt{KleinPairing} and \texttt{NoShadow} are not imported by the \texttt{Hodge} root and are not covered by this certificate.
+\textbf{What the Lean development does and does not prove.} The body of this note is a mathematical exposition; its theorems are cited from the literature, not proved in Lean. The table records, for each claim of the body that has a Lean counterpart, exactly what the Lean declaration states.
 
-\textbf{The development contains no \texttt{sorry} and no user-declared axioms.} Every one of the 291 theorems and lemmas listed below depends only on Lean's standard axioms \texttt{propext}, \texttt{Classical.choice} and \texttt{Quot.sound} (or on none). The table is the verbatim output of \texttt{lake env lean AxiomAudit.lean} (\texttt{\#print axioms}) on the verified commit.
+{\footnotesize
+\begin{longtable}{p{0.33\linewidth}p{0.27\linewidth}p{0.32\linewidth}}
+\textbf{Claim in the body} & \textbf{Lean declaration} & \textbf{What Lean states} \\ \hline
+\endhead
+Gram matrix \(h^4=6\), \(h^2\cdot[\Pi]=1\), \([\Pi]^2=21\) & \path{Hodge.SpecialSextic.pairing_h2_h2}, \path{pairing_h2_Pi}, \path{pairing_Pi_Pi} & Values of the bilinear form \(6aa'+ab'+a'b+21bb'\) on \(\Q^2\), which is \emph{defined} by this matrix. Not derived from the geometry of \(X\). \\
+Discriminant \(125\) & \path{Hodge.SpecialSextic.discriminant}, \path{Hodge.ContainerSeparation.two_plane_shadow_det} & \(6\cdot21-1^2=125\) in \(\Q\) (resp.\ \(6\cdot 21-1=125\) in \(\mathbb{N}\)). Saturation is not addressed. \\
+\(h^2\cdot[S]=5\), \([\Pi]\cdot[S]=-20\), \([S]^2=25\) & \path{pairing_h2_S}, \path{pairing_Pi_S}, \path{pairing_S_S} & Same form, with \(S:=(1,-1)\), i.e.\ \([S]=h^2-[\Pi]\) taken as a definition (\path{S_eq}). \\
+\(\beta\cdot h^2=0\), \(\beta\cdot[\Pi]=-125\), \(\beta\cdot[S]=125\), \(\beta^2=750\) & \path{pairing_beta_h2}, \path{pairing_beta_Pi}, \path{pairing_beta_S}, \path{pairing_beta_beta} & Same form, with \(\beta:=(1,-6)=h^2-6[\Pi]\) (\path{beta_eq}). \\
+\(b_4=2606\) for a smooth sextic & \path{Hodge.HostSplit.sextic_b4}, \path{Hodge.ContainerSeparation.sextic_b4} & The natural-number identity \(1+426+1752+426+1=2606\); the Hodge numbers are inputs, not computed. Rank \(2605\) of \((h^2)^\perp\) has no Lean statement. \\
+\([\Pi]^2=21=c_2(N_{\Pi/X})\) & \path{Hodge.Attempt.IntersectionInvariants.planeSelfIx_six} & The integer polynomial \(d^2-3d+3\) equals \(21\) at \(d=6\); no normal bundle is formalized. \\
+Lefschetz \((1,1)\) settles \(k=1\) & \path{Hodge.hodgeConjecture_codim_one} & Conditional: \emph{if} a datum carries the hypothesis class \path{LefschetzOneOne}, the formal Hodge statement holds for it. Lefschetz \((1,1)\) itself is not proved. \\
+Hard Lefschetz settles \(k=\dim X-1\); \(\dim X\le3\) & \path{Hodge.hodgeConjecture_hardLefschetz}, \path{Hodge.hodgeConjecture_dim_le_three} & Conditional on hypothesis classes; hard Lefschetz is not proved. \\
+Rational vs.\ integral conjecture are different & \path{Hodge.Integral.rational_does_not_imply_integral}, \path{rational_solvable}, \path{integral_unsolvable} & A toy separation (\(2r=q\) solvable in \(\Q\), \(2n=1\) not in \(\Z\)); Atiyah--Hirzebruch and Koll\'ar are not formalized. \\
+The Hodge conjecture for a general fourfold is open & \path{Hodge.Clay.RationalHodgeCodimTwo}, \path{Hodge.HodgeConjecture.general_fourfold_iff_clay} & \path{RationalHodgeCodimTwo} is a \texttt{Prop} (a definition) with no proof in the library. The \texttt{iff} states, for an abstract linear datum of codimension \(2\), that \path{general_fourfold} is equivalent to surjectivity of \(\mathrm{cl}\) onto the Hodge classes; neither side is proved. \\
+\end{longtable}}
+
+No declaration in the library proves the Hodge conjecture, Lefschetz \((1,1)\), hard Lefschetz, Beauville's or Deligne's theorem, or any monodromy statement. In the built version, \path{Hodge.HodgeConjecture.ungated_codim_two_false} refutes the ungated statement only for \(Z,V,N:\texttt{Type}\) (universe \(0\)); \path{Hodge.Release.ContainsTwoPlanes} is \path{Hodge.SpecialSextic.ClosedMembership.{0}}, pinned to universe \(0\); and \path{realClose_projectiveFourSpace}, \path{realClose_kleinQuadric}, \path{realClose_productOfPlanes} are definitions (data of type \path{RealClose}), so they carry no \texttt{\#print axioms} entry. None of the claims of the body depends on these.
+
+\textbf{The development contains no \texttt{sorry} and no user-declared axioms.} Every one of the 348 theorems and lemmas listed below depends only on Lean's standard axioms \texttt{propext}, \texttt{Classical.choice} and \texttt{Quot.sound} (or on none). The table is the verbatim output of \texttt{lake env lean AxiomAudit.lean} (\texttt{\#print axioms}) on the verified commit.
 
 {\footnotesize
 \begin{longtable}{p{0.55\linewidth}p{0.38\linewidth}}
@@ -246,6 +265,9 @@ Lean declaration & \texttt{\#print axioms} \\
 \path{Hodge.Attempt.pair_vanishing} & \texttt{[propext, Quot.sound]} \\
 \path{Hodge.Attempt.pair_with_remainder} & \texttt{[propext, Quot.sound]} \\
 \path{Hodge.Attempt.recipe_is_not_global_constructor} & \texttt{(no axioms)} \\
+\path{Hodge.ChowData.mk.inj} & \texttt{[propext, Classical.choice, Quot.sound]} \\
+\path{Hodge.ChowData.mk.injEq} & \texttt{[propext, Classical.choice, Quot.sound]} \\
+\path{Hodge.ChowData.mk.sizeOf_spec} & \texttt{[propext, Classical.choice, Quot.sound]} \\
 \path{Hodge.Classical.P4Coord.ofNat_toCtorIdx} & \texttt{(no axioms)} \\
 \path{Hodge.Classical.P4Coord.x0.sizeOf_spec} & \texttt{(no axioms)} \\
 \path{Hodge.Classical.P4Coord.x1.sizeOf_spec} & \texttt{(no axioms)} \\
@@ -276,6 +298,23 @@ Lean declaration & \texttt{\#print axioms} \\
 \path{Hodge.Clay.instNonemptyHdg2} & \texttt{(no axioms)} \\
 \path{Hodge.Clay.of_section_is_not_uniform} & \texttt{[propext, Classical.choice, Quot.sound]} \\
 \path{Hodge.Clay.skeleton_on_iff} & \texttt{[propext, Classical.choice, Quot.sound]} \\
+\path{Hodge.ContainerSeparation.Z_not_container} & \texttt{(no axioms)} \\
+\path{Hodge.ContainerSeparation.Z_uncomputed} & \texttt{(no axioms)} \\
+\path{Hodge.ContainerSeparation.gram_shadow_numeral} & \texttt{(no axioms)} \\
+\path{Hodge.ContainerSeparation.quintic_h31} & \texttt{(no axioms)} \\
+\path{Hodge.ContainerSeparation.sextic_R12} & \texttt{(no axioms)} \\
+\path{Hodge.ContainerSeparation.sextic_R18} & \texttt{(no axioms)} \\
+\path{Hodge.ContainerSeparation.sextic_R6} & \texttt{(no axioms)} \\
+\path{Hodge.ContainerSeparation.sextic_b4} & \texttt{(no axioms)} \\
+\path{Hodge.ContainerSeparation.sextic_h22} & \texttt{(no axioms)} \\
+\path{Hodge.ContainerSeparation.two_plane_shadow_det} & \texttt{(no axioms)} \\
+\path{Hodge.Cubic.ZuckerCubic.construct} & \texttt{[propext, Classical.choice, Quot.sound]} \\
+\path{Hodge.Cubic.construct_h2_section} & \texttt{[propext, Classical.choice, Quot.sound]} \\
+\path{Hodge.Cubic.hassettC8_hodge} & \texttt{[propext, Classical.choice, Quot.sound]} \\
+\path{Hodge.Cubic.hodge_of_zucker} & \texttt{[propext, Classical.choice, Quot.sound]} \\
+\path{Hodge.Cubic.instCycleConstructorOfZuckerCubic} & \texttt{[propext, Classical.choice, Quot.sound]} \\
+\path{Hodge.Cubic.no_universal_cubic_section} & \texttt{(no axioms)} \\
+\path{Hodge.Cubic.veryGeneral_hodge} & \texttt{[propext, Classical.choice, Quot.sound]} \\
 \path{Hodge.CycleConstructor.construct} & \texttt{[propext, Classical.choice, Quot.sound]} \\
 \path{Hodge.CycleSection.is_section} & \texttt{[propext, Classical.choice, Quot.sound]} \\
 \path{Hodge.Datum.algebraicClasses_le_hodgeClasses} & \texttt{[propext, Classical.choice, Quot.sound]} \\
@@ -392,6 +431,35 @@ Lean declaration & \texttt{\#print axioms} \\
 \path{Hodge.Integral.integral_unsolvable} & \texttt{[propext]} \\
 \path{Hodge.Integral.rational_does_not_imply_integral} & \texttt{[propext, Classical.choice, Quot.sound]} \\
 \path{Hodge.Integral.rational_solvable} & \texttt{[propext, Classical.choice, Quot.sound]} \\
+\path{Hodge.Islands.P4Coord.ofNat_toCtorIdx} & \texttt{(no axioms)} \\
+\path{Hodge.Islands.P4Coord.x0.sizeOf_spec} & \texttt{(no axioms)} \\
+\path{Hodge.Islands.P4Coord.x1.sizeOf_spec} & \texttt{(no axioms)} \\
+\path{Hodge.Islands.P4Coord.x2.sizeOf_spec} & \texttt{(no axioms)} \\
+\path{Hodge.Islands.P4Coord.x3.sizeOf_spec} & \texttt{(no axioms)} \\
+\path{Hodge.Islands.P4Coord.x4.sizeOf_spec} & \texttt{(no axioms)} \\
+\path{Hodge.Islands.P4Cycle.mk.inj} & \texttt{[propext]} \\
+\path{Hodge.Islands.P4Cycle.mk.injEq} & \texttt{[propext]} \\
+\path{Hodge.Islands.P4Cycle.mk.sizeOf_spec} & \texttt{[propext]} \\
+\path{Hodge.Islands.ProductCycle.mk.inj} & \texttt{[propext]} \\
+\path{Hodge.Islands.ProductCycle.mk.injEq} & \texttt{[propext]} \\
+\path{Hodge.Islands.ProductCycle.mk.sizeOf_spec} & \texttt{[propext]} \\
+\path{Hodge.Islands.ProductSurface.P2TimesPt.sizeOf_spec} & \texttt{(no axioms)} \\
+\path{Hodge.Islands.ProductSurface.lineTimesLine.sizeOf_spec} & \texttt{(no axioms)} \\
+\path{Hodge.Islands.ProductSurface.ofNat_toCtorIdx} & \texttt{(no axioms)} \\
+\path{Hodge.Islands.ProductSurface.ptTimesP2.sizeOf_spec} & \texttt{(no axioms)} \\
+\path{Hodge.Islands.constructP4_coeff} & \texttt{[propext]} \\
+\path{Hodge.Islands.constructP4_recovers} & \texttt{[propext, Classical.choice, Quot.sound]} \\
+\path{Hodge.Islands.constructProduct_coeff} & \texttt{[propext]} \\
+\path{Hodge.Islands.constructProduct_recovers} & \texttt{[propext, Classical.choice, Quot.sound]} \\
+\path{Hodge.Islands.constructQ_coeff} & \texttt{[propext]} \\
+\path{Hodge.Islands.constructQ_eq_initialize} & \texttt{[propext]} \\
+\path{Hodge.Islands.constructQ_recovers} & \texttt{[propext, Classical.choice, Quot.sound]} \\
+\path{Hodge.Islands.islands_construct} & \texttt{[propext, Classical.choice, Quot.sound]} \\
+\path{Hodge.JacobianLength.HomogeneousCILength.dim_eq_pow} & \texttt{[propext]} \\
+\path{Hodge.JacobianLength.five_pow_six} & \texttt{[propext]} \\
+\path{Hodge.JacobianLength.length_num} & \texttt{[propext]} \\
+\path{Hodge.JacobianLength.length_num_of_hyps} & \texttt{[propext]} \\
+\path{Hodge.JacobianLength.this_is_not_general_fourfold} & \texttt{(no axioms)} \\
 \path{Hodge.Klein.Coord.ofNat_toCtorIdx} & \texttt{(no axioms)} \\
 \path{Hodge.Klein.Coord.p01.sizeOf_spec} & \texttt{(no axioms)} \\
 \path{Hodge.Klein.Coord.p02.sizeOf_spec} & \texttt{(no axioms)} \\
@@ -404,13 +472,20 @@ Lean declaration & \texttt{\#print axioms} \\
 \path{Hodge.Klein.FormalCycle.mk.sizeOf_spec} & \texttt{[propext]} \\
 \path{Hodge.Klein.cycleOf_coeff} & \texttt{[propext]} \\
 \path{Hodge.Klein.cycleOf_construct} & \texttt{[propext]} \\
+\path{Hodge.Klein.expand} & \texttt{[propext, Classical.choice, Quot.sound]} \\
 \path{Hodge.Klein.ideals_cover} & \texttt{[propext]} \\
 \path{Hodge.Klein.ideals_disjoint} & \texttt{[propext]} \\
+\path{Hodge.Klein.pairing.eq_1} & \texttt{[propext, Classical.choice, Quot.sound]} \\
+\path{Hodge.Klein.pairing_Pi} & \texttt{[propext, Classical.choice, Quot.sound]} \\
+\path{Hodge.Klein.pairing_Pi'} & \texttt{[propext, Classical.choice, Quot.sound]} \\
+\path{Hodge.Klein.pairing_cross} & \texttt{[propext, Classical.choice, Quot.sound]} \\
 \path{Hodge.Klein.pi'_on_quadric} & \texttt{[propext, Classical.choice, Quot.sound]} \\
 \path{Hodge.Klein.pi_on_quadric} & \texttt{[propext, Classical.choice, Quot.sound]} \\
 \path{Hodge.Klein.pluckerEval.eq_1} & \texttt{[propext, Classical.choice, Quot.sound]} \\
 \path{Hodge.LefschetzOneOne.construct} & \texttt{[propext, Classical.choice, Quot.sound]} \\
 \path{Hodge.LefschetzOneOne.is_codim_one} & \texttt{[propext, Classical.choice, Quot.sound]} \\
+\path{Hodge.NoShadow.fermat_certificate_is_not_chow} & \texttt{(no axioms)} \\
+\path{Hodge.NoShadow.shadow_ne_geometric_cl} & \texttt{(no axioms)} \\
 \path{Hodge.Release.NamedTerm.mk.inj} & \texttt{(no axioms)} \\
 \path{Hodge.Release.NamedTerm.mk.injEq} & \texttt{[propext]} \\
 \path{Hodge.Release.NamedTerm.mk.sizeOf_spec} & \texttt{(no axioms)} \\
@@ -484,6 +559,7 @@ Lean declaration & \texttt{\#print axioms} \\
 \path{Hodge.SpecialSexticMembership.F_mem_plane} & \texttt{[propext, Quot.sound]} \\
 \path{Hodge.SpecialSexticMembership.F_mem_plane_minus1} & \texttt{[propext, Quot.sound]} \\
 \path{Hodge.SpecialSexticMembership.contains_two_planes} & \texttt{[propext, Quot.sound]} \\
+\path{Hodge.chow_not_shadow_name} & \texttt{(no axioms)} \\
 \path{Hodge.constructor_of_hodgeConjecture} & \texttt{[propext, Classical.choice, Quot.sound]} \\
 \path{Hodge.hodgeConjecture_codim_one} & \texttt{[propext, Classical.choice, Quot.sound]} \\
 \path{Hodge.hodgeConjecture_dim_le_three} & \texttt{[propext, Classical.choice, Quot.sound]} \\
