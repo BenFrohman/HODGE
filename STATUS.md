@@ -95,3 +95,13 @@ argument.
 13. T. Shioda, *An explicit algorithm for computing the Picard number of certain algebraic surfaces*, Amer. J. Math. 108 (1986) 415–432. https://doi.org/10.2307/2374678
 14. H. Movasati, R. Villaflor Loyola, *Periods of linear algebraic cycles*, https://arxiv.org/abs/1705.00084; R. Villaflor Loyola, *Periods of complete intersection algebraic cycles*, Manuscripta Math. 167 (2022) 765–792, https://doi.org/10.1007/s00229-021-01290-x
 15. P. A. Griffiths, *On the periods of certain rational integrals I*, Ann. of Math. 90 (1969) 460–495. https://doi.org/10.2307/1970746
+
+## Lean coverage of the sextic computations (Hodge/SexticCombinatorics.lean)
+
+Lean-verified (decide +kernel / ring, no native_decide): planes on X (216 standard, 8 over Q,
+twisted-plane identity); 8x8 Gram matrix from the rule 21/-4/1/0, det 24,461,180,928, rank 8;
+given the 25-monomial Milnor basis: character injectivity, Hodge numbers 1/426/1751/426/1,
+785 rational (2,2) characters in 122 orbits, split 425 (D2, 77 orbits) / 360 (D24, 45 orbits), 0 unclassified.
+Still Python only: Groebner basis, ranks 125 and 425, twisted-plane intersection pattern.
+Lean checks finite combinatorics only, NOT that these numbers are intersection numbers,
+Hodge classes or cycle classes (cited theory).

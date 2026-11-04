@@ -38,7 +38,7 @@ We did not reverify these original proofs. Integral versions and explicit cycles
 classes remain open. Nothing here bears on the general Hodge conjecture.
 
 Throughout, \textbf{[Lean]} marks a statement checked in Lean~4/Mathlib in the repository,
-\textbf{[Py]} marks an exact computer computation (integer or cyclotomic arithmetic, with the
+\textbf{[Cited]} marks a published theorem used as input, \textbf{[Py]} marks an exact computer computation (integer or cyclotomic arithmetic, with the
 scripts in \texttt{scripts/}), and \textbf{[Proof]} marks a pen-and-paper argument.
 
 \section{Overview of the argument}
@@ -67,8 +67,10 @@ zero (\texttt{gradient\_only\_origin}, \texttt{affine\_cone\_isolated\_at\_origi
 
 \section{Planes}
 Each $f$ factors into the six linear forms $y$ and $x-\eta y$ with $\eta^5=-1$. Choosing one
-factor per pair gives $216$ planes. \textbf{[Lean]} $X$ contains them; see, for example,
-\texttt{contains\_two\_planes}. The intersection numbers on a sextic fourfold are as follows.
+factor per pair gives $216$ planes. \textbf{[Lean]} $X$ contains them over any commutative ring
+in which the chosen $\eta$ satisfy $\eta^5=-1$ (\texttt{standard\_plane\_on\_X}; the $8$ planes over $\Q$:
+\texttt{diagonal\_plane\_on\_X}; label count $6^3=216$: \texttt{card\_standard\_labels}, all in
+\texttt{Hodge/SexticCombinatorics.lean}). The intersection numbers on a sextic fourfold are as follows.
 \begin{itemize}
 \item $\Pi^2=c_2(N)=21$.
 \item Planes meeting in a line give $-4$ by the excess formula.
@@ -76,12 +78,17 @@ factor per pair gives $216$ planes. \textbf{[Lean]} $X$ contains them; see, for 
 \item Disjoint planes give $0$.
 \item $h^2\cdot\Pi=1$ and $h^4=6$.
 \end{itemize}
-\textbf{[Py]} The $8$ planes defined over $\Q$ have Gram matrix
+\textbf{[Lean]} Taking these four values as input (their geometric derivation above is cited
+theory, not formalized), the $8$ planes defined over $\Q$ have Gram matrix
 \[\left(\begin{smallmatrix}21&-4&-4&1&-4&1&1&0\\-4&21&1&-4&1&-4&0&1\\-4&1&21&-4&1&0&-4&1\\1&-4&-4&21&0&1&1&-4\\-4&1&1&0&21&-4&-4&1\\1&-4&0&1&-4&21&1&-4\\1&0&-4&1&-4&1&21&-4\\0&1&1&-4&1&-4&-4&21\end{smallmatrix}\right),\quad\det=24461180928,\]
-of rank $8$. Together with $h^2$ the rank is $9$. All $216$ planes with $h^2$ have rank $126$,
+of rank $8$ over $\Q$ (\texttt{gram8\_eq}, \texttt{det\_gram8}, \texttt{rank\_gram8}). The
+determinant is certified through the $(\mathbb Z/2)^3$ Hadamard matrix $H$: Lean checks $H^2=8I$
+and $MH=H\,\mathrm{diag}(\lambda)$ with eigenvalues $12,16^{(3)},24^{(3)},36$, so
+$\det M=12\cdot16^3\cdot24^3\cdot36$. \textbf{[Py]} Together with $h^2$ the rank is $9$. All $216$ planes with $h^2$ have rank $126$,
 which is primitive rank $125$.
 
-\textbf{Twisted planes.} \textbf{[Py]} For $A<B$, let $C$ be the third pair and take
+\textbf{Twisted planes.} \textbf{[Lean]} The identity $f(x,y)+f(\lambda x,\mu y)=0$ under
+$\mu^6=-1$, $\lambda^5\mu=-1$ (\texttt{twisted\_pair\_vanishes}). \textbf{[Py]} For $A<B$, let $C$ be the third pair and take
 $\mu^6=-1$ and $\lambda^5\mu=-1$. The planes $\{x_B=\lambda x_A,\ y_B=\mu y_A,\ L_C=0\}$
 lie on $X$, with membership verified exactly modulo $\Phi_{60}$. There are $540$ of them.
 With the $216$ coordinate planes and $h^2$, the exact Gram rank is $426$, so the primitive
@@ -89,15 +96,22 @@ span is $425$. Intersection dimensions were computed over $\mathbb{F}_{61},\math
 and in floating point, and all four agree. The rank was computed exactly over $\Q$.
 
 \section{Hodge classes: 785 and the gap 660}
-\textbf{[Py]} Griffiths residues and the diagonal $(\mathbb Z/30)^3$-symmetry give a
-multiplicity-free decomposition of $H^4_{\rm prim}$ into characters. The Galois orbits of type
-$(2,2)$ have total dimension $785$, coming from $122$ orbits. So $Z:=785-125=660$ for the
+\textbf{[Cited]} Griffiths residues and the diagonal $(\mathbb Z/30)^3$-symmetry give a
+decomposition of $H^4_{\rm prim}$ into characters, one per standard monomial of the Jacobian ring.
+\textbf{[Py]} The $25$ standard monomials of the Milnor algebra of $f$ (Gr\"obner basis
+$\{y^6,x^5+6y^5,x^4y\}$). \textbf{[Lean]} Given that list, the character map is injective
+(\texttt{chr\_injective}), the type counts are $(1,426,1751,426,1)$
+(\texttt{primitive\_hodge\_numbers}), the characters whose whole $(\mathbb Z/30)^\times$-orbit has
+type $(2,2)$ number $785$ (\texttt{rational\_hodge\_dim}), in $122$ orbits
+(\texttt{rational\_hodge\_orbits}). Lean checks the finite enumeration only; that this count
+\emph{equals} $\dim H^4_{\rm prim}(X,\Q)\cap H^{2,2}$ is the cited theory. So $Z:=785-125=660$ for the
 coordinate planes, and $785-425=360$ after adding the twisted planes.
 
-\textbf{Classification} [Py, informational]. We pulled each orbit back to a Fermat character in
+\textbf{Classification} [Lean counts, informational]. We pulled each orbit back to a Fermat character in
 $(\mathbb Z/30)^6$. There are $77$ orbits ($425$ dimensions) that split into three cancelling
 pairs, $45$ orbits ($360$ dimensions) made of one cancelling pair plus a Hodge quadruple, and
-$0$ unclassified orbits. For $193$ dimensions this labelling uses the heuristic reduction of
+$0$ unclassified orbits (\texttt{split\_425}, \texttt{split\_360}, \texttt{split\_orbits},
+\texttt{none\_unclassified}). For $193$ dimensions this labelling uses the heuristic reduction of
 Gap~2. The labels are \emph{not} used in the proof.
 
 \section{Proof of Theorem~\ref{thm:main}}\label{sec:descent}
@@ -141,8 +155,11 @@ dimension four. The same argument applies to any Delsarte fourfold whose Fermat 
 HC. This is a modest, conditional extension of the known cases. It is not a new method for
 general varieties.
 
-\textbf{Machine-checked components.} Smoothness, the Hodge numbers and the containment of the
-planes are checked in Lean. The deep inputs (Hironaka, Hodge theory, (F)) are \emph{not}
+\textbf{Machine-checked components.} Smoothness, the Hodge numbers, the containment of the
+planes, the $8\times8$ Gram matrix with its determinant and rank, and the full character
+enumeration ($785$, $122$, $425/360$, $77/45$) are checked in Lean with \texttt{decide +kernel},
+using no \texttt{native\_decide}. Still Python-only: the Gr\"obner basis, the ranks $125$ and $425$
+of the $217\times217$ and $757\times757$ Gram matrices, and the intersection pattern of twisted planes. The deep inputs (Hironaka, Hodge theory, (F)) are \emph{not}
 formalized. The Lean files state Lefschetz and HC only as hypotheses.
 
 \textbf{What does not follow.} This gives no information on HC for deformations of $X$ that are
@@ -152,7 +169,22 @@ HC, and nothing on the Clay problem.
 \textbf{Open directions.} (i) Find explicit cycles for the remaining $360$ dimensions, for
 example joins of points of $\{f_A=0\}$ with non-line curves on the Delsarte surface
 $\{f_B+f_C=0\}$. (ii) Determine which classes survive in the Noether--Lefschetz-type Hodge loci
-through $X$. (iii) Formalize the character computation in Lean.
+through $X$. (iii) Certify the ranks $125$ and $425$ in Lean, e.g.\ by an exact echelon
+certificate, and formalize the Gr\"obner basis.
+
+\textbf{Why this matters, and how much.} The Hodge conjecture is known in very few
+codimension-two situations beyond those reached by Lefschetz $(1,1)$, and essentially all of them
+come from special symmetry: Fermat and Delsarte varieties, abelian varieties of special type,
+uniruled or rationally connected fourfolds, cubic fourfolds. $X$ is in the first class. What is
+noteworthy is the \emph{size of the gap}: $660$ of the $785$ dimensions are invisible to the obvious
+linear cycles, and $360$ remain invisible even after the twisted planes. Such classes are exactly
+where one might hope to find counterexamples, and the theorem shows that here they are algebraic
+anyway, because they come from the Fermat cover. Conversely, the argument also explains why
+$X$ is \emph{not} evidence for HC in general: every class on $X$ is inherited from a variety where
+HC was already known, so the theorem transports rather than creates algebraicity. The honest
+headline is therefore: a concrete, fully computed fourfold with a large non-planar Hodge lattice,
+for which HC is proved conditional on (F), with every finite computation either machine-checked
+in Lean or reproducible by exact arithmetic.
 
 \appendix
 \section{Verification record}
@@ -161,6 +193,22 @@ CI status: \href{https://github.com/BenFrohman/HODGE/actions}{github.com/BenFroh
 The Lean certificate (\texttt{CERTIFICATE.md}) runs \texttt{lake build} and \texttt{AxiomAudit.lean}.
 Every audited declaration depends only on \texttt{propext}, \texttt{Classical.choice} and
 \texttt{Quot.sound}, with no \texttt{sorry}, \texttt{native\_decide} or \texttt{axiom}.
+\medskip
+\begin{center}\small
+\begin{tabular}{lll}
+\hline
+Statement & Status & Where\\\hline
+$X$ smooth, Hodge numbers & Lean & \texttt{SpecialSextic}, \texttt{FermatCubicHost}\\
+216 / 8 planes and twisted planes on $X$ & Lean & \texttt{SexticCombinatorics}\\
+Values $21,-4,1,0$ & Proof (cited) & Fulton\\
+$8\times8$ matrix, det, rank 8 & Lean & \texttt{SexticCombinatorics}\\
+Milnor basis (25 monomials) & Py & \texttt{hodge\_rank.py}\\
+785, 122 orbits, 425/360, 77/45 & Lean & \texttt{SexticCombinatorics}\\
+Count $=\dim$ Hodge classes & Cited & Griffiths, Shioda\\
+Ranks 125, 425; twisted intersections & Py & \texttt{plane\_intersections.py}, \texttt{more\_planes.py}\\
+Descent (Theorem 1.1) & Proof, uses (F) & Section 6\\\hline
+\end{tabular}\end{center}
+\medskip
 Python scripts: \texttt{hodge\_rank.py} (785), \texttt{plane\_intersections.py} (125),
 \texttt{more\_planes.py} (425), \texttt{hodge\_classify.py}.
 

@@ -27,7 +27,7 @@ jobs:
             Hodge/HostSplit.lean Hodge/SpecialSextic.lean Hodge/SpecialSexticMembership.lean \
             Hodge/HeadPlane.lean Hodge/SpecialSexticJacobian.lean Hodge/Hassett.lean \
             Hodge/NamedFamilies.lean Hodge/SexticModuli.lean Hodge/DerivedSurfaces.lean \
-            Hodge/Verify.lean; then
+            Hodge/Verify.lean Hodge/SexticCombinatorics.lean; then
             echo "sorry in the built library"
             exit 1
           fi
