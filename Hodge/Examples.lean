@@ -35,7 +35,7 @@ theorem zeroCycle_not_hodge :
     rw [Datum.hodgeClasses]
     simp [zeroCycle]
   rcases h hone with ⟨z, hz⟩
-  have : (0 : Rat) = 1 := by simpa [zeroCycle] using hz
+  have : (0 : Rat) = 1 := by simp [zeroCycle] at hz
   exact one_ne_zero this.symm
 
 theorem not_every_codim_ge_two :

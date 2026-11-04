@@ -20,7 +20,7 @@ theorem general_fourfold_iff_clay
     [AddCommGroup N] [Module ℚ N]
     (D : Datum Z V N) (h : D.codim = 2) :
     general_fourfold D h ↔ ∀ v ∈ D.hodgeClasses, ∃ z : Z, D.cl z = v :=
-  ⟨fun H v hv => H hv, fun H v hv => H v hv⟩
+  ⟨fun H _v hv => H hv, fun H v hv => H v hv⟩
 
 end HodgeConjecture
 end Hodge
