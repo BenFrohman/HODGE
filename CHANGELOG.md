@@ -55,3 +55,9 @@ Author: Benjamin Stanley Frohman (@BenFrohman).
 - CI builds `Hodge`; forbids `import Hodge.Attempt` in `Hodge.lean`
 
 Not tagged v1.0.0-verified as a Clay close.
+
+## 2026-11-04 explicit-cycle search (negative)
+
+- `scripts/explicit_cycles_graphs.py`: symbolic check of the fibration Ψ: S5 × W → X, plus exact character projections of 144 graph surfaces. These hit only plane-span orbits; **0 of the 45 cited orbits (0/360 dims)**.
+- `docs/EXPLICIT_CYCLES_SEARCH.md`: the obstructions (unit alpha entries, cone reduction to curves on Y_jk, Aoki 3-standard non-match) and the open target.
+- No status changes: the cited orbits stay cited.
