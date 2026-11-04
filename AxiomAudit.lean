@@ -1,3 +1,4 @@
+import Hodge.FermatCubicHost
 import AxiomPrint
 import Hodge
 import Hodge.Attempt.ClayStatement
@@ -389,3 +390,7 @@ import HodgeAttempt
 #print axioms Hodge.instLefschetzOneOneRatK3Surface
 #print axioms Hodge.k3Surface_codim
 #print axioms Hodge.k3Surface_hodge
+#print axioms Hodge.FermatCubicHost.F_isHomogeneous
+#print axioms Hodge.FermatCubicHost.smooth
+#print axioms Hodge.FermatCubicHost.cubic_primitive_hodge
+#print axioms Hodge.FermatCubicHost.sextic_primitive_hodge
