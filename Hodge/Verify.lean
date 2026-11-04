@@ -7,6 +7,7 @@ import Hodge.Fourfold
 import Hodge.Frontier
 import Hodge.SpecialSextic
 import Hodge.Release
+import Hodge.FermatCubicHost
 
 /-!
 #print axioms on the discharged theorems.
@@ -24,3 +25,7 @@ No `construct_of_codim_ge_two`.
 #print axioms Hodge.SpecialSextic.closed_membership
 #print axioms Hodge.Release.contains_two_planes
 #print axioms Hodge.Release.status_separation
+#print axioms Hodge.FermatCubicHost.F_isHomogeneous
+#print axioms Hodge.FermatCubicHost.smooth
+#print axioms Hodge.FermatCubicHost.cubic_primitive_hodge
+#print axioms Hodge.FermatCubicHost.sextic_primitive_hodge
