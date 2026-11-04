@@ -1,6 +1,7 @@
 import Hodge.FermatCubicHost
 import Hodge.QuinticHost
 import Hodge.DeformedQuinticHost
+import Hodge.ExplicitCurve
 import Hodge.SexticCombinatorics
 import Hodge.SexticCertificates
 import AxiomPrint
@@ -447,3 +448,11 @@ import HodgeAttempt
 #print axioms Hodge.SexticCertificates.twist_action
 #print axioms Hodge.SexticCertificates.mu_action
 #print axioms Hodge.SexticCertificates.eta_action
+#print axioms Hodge.ExplicitCurve.section_identity
+#print axioms Hodge.ExplicitCurve.cone_on_X
+#print axioms Hodge.ExplicitCurve.rel_h5
+#print axioms Hodge.ExplicitCurve.rel_h4
+#print axioms Hodge.ExplicitCurve.rel_h3
+#print axioms Hodge.ExplicitCurve.rel_h2
+#print axioms Hodge.ExplicitCurve.rel_h1
+#print axioms Hodge.ExplicitCurve.rel_h0

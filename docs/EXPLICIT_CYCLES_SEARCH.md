@@ -27,3 +27,9 @@ Each component is pushed to an X-character through the torus of Ψ.
 
 ## Open
 Find an explicit curve on Y = {x^5y+y^6+z^5w+w^6=0} with a nonzero component on one of the 12 quadruple types. Such a curve exists by Lefschetz (1,1). Its cone then gives an explicit surface on X for the corresponding orbits.
+
+## Update: a non-monomial curve was found (v1.3)
+
+the 45 D24 orbits (360 dims) now have explicit surfaces: an elliptic-correspondence curve on Y=x^5y+y^6+z^5w+w^6 (section of G^2=H^3+kX^5Y+Y^6, k a root of an irreducible degree-24 polynomial), lifted to X by a cone/hyperplane. Containment is Lean-checked (`Hodge/ExplicitCurve.lean`). The algebra is exact (`scripts/explicit_cycles_curve.py`). The nonzero-projection step is a pen-and-paper argument and is not formalized. See `docs/EXPLICIT_CYCLES_SEARCH.md` and paper v1.3.
+
+The construction: on C: t^6=-(x^5+1) the new factor A ~ E^4 (E: j=0) has CM type {11,17,23,29}. The map (u,v)=(G/t^3,H/t^2) to E pulls dv/u back to R(x)dx/t^5. R is a cubic with all four coefficients nonzero, so the map hits every A eigenform. The curve Γ = {H(z,w)=μ²H(x,y), G(z,w)=μ³G(x,y)}, μ⁶=−1, is a quadric ∩ cubic on Y_k. All 45 cited orbits have a (trivial/split) × (hol A) × (antihol A) character, which the script checks. The open problem stated above is therefore resolved, modulo formalizing the projection step.
