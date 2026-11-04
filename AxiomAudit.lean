@@ -1,6 +1,7 @@
 import Hodge.FermatCubicHost
 import Hodge.QuinticHost
 import Hodge.DeformedQuinticHost
+import Hodge.DworkQuinticPsi2
 import Hodge.ExplicitCurve
 import Hodge.SexticCombinatorics
 import Hodge.SexticCertificates
@@ -409,6 +410,11 @@ import HodgeAttempt
 #print axioms Hodge.DeformedQuinticHost.G_isHomogeneous
 #print axioms Hodge.DeformedQuinticHost.singular_at_p
 #print axioms Hodge.DeformedQuinticHost.not_smooth
+#print axioms Hodge.DworkQuinticPsi2.G_isHomogeneous
+#print axioms Hodge.DworkQuinticPsi2.eval_pderiv
+#print axioms Hodge.DworkQuinticPsi2.smooth
+#print axioms Hodge.DworkQuinticPsi2.psi_not_root
+#print axioms Hodge.DworkQuinticPsi2.dwork_primitive_hodge
 #print axioms Hodge.SexticCombinatorics.f_facPt
 #print axioms Hodge.SexticCombinatorics.standard_plane_on_X
 #print axioms Hodge.SexticCombinatorics.card_standard_labels
