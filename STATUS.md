@@ -22,6 +22,27 @@ type (2,2): dim H⁴_prim(X,Q) ∩ H^{2,2} = **785**, so ρ₂(X) = 786.
 That is an exact count, not a proof either way: whether those 660 dimensions are algebraic
 (other cycles than planes) is not decided here. The Hodge conjecture for X is not claimed.
 
+## Classification of the 785 Hodge dimensions (`scripts/hodge_classify.py`, exact)
+
+Pulling each eigenclass of X back along the cover X^4_30 ⇢ X (see below) gives a Fermat character α ∈ (Z/30)^6
+for each of the 122 Galois orbits. For 193 of the 785 dimensions, a pair carries the trivial
+character (0,0) (the residue of x^4). In those cases we classify the reduced character of length 4 or 2.
+This step is a heuristic identification with a lower-dimensional Fermat piece, not a proved pullback.
+The script checks that every orbit passes Shioda's Hodge test on the cover. Results:
+
+| criterion | orbits | dim |
+|---|---|---|
+| D2: α splits into three pairs a+b≡0 (Shioda's decomposable / linear-cycle type [1,6]) | 77 | 425 |
+| D24: one pair a+b≡0 plus a Hodge surface quadruple (Shioda–Katsura inductive structure + Lefschetz (1,1) [2]) | 45 | 360 |
+| unclassified (no known cycle by these criteria) | 0 | 0 |
+
+So every Hodge class of X, and hence all of the 660 classes not spanned by planes, corresponds to a
+character that is algebraic on the Fermat cover by Shioda's classical criteria. The planes account for
+only 125 of the 425 D2 dimensions. **Verdict: hit, conditional on the descent argument below.** That
+argument (rational-map resolution plus pushforward) is our own sketch and has not been refereed. The
+193-dimension trivial-pair identification is also heuristic. No class is shown to be non-algebraic,
+because no method could show that. No explicit cycles on X are written down.
+
 ## Related results
 
 **What is known.** Shioda's character method [1–3] expresses the primitive Hodge classes of Fermat

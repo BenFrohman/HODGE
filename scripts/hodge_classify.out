@@ -1,0 +1,6 @@
+total Hodge dim 785 ; of which with a trivial-character pair: 193
+dims passing Fermat Hodge test on reduced character: 785
+D2            orbits=  77 dim= 425
+D24           orbits=  45 dim= 360
+D33           orbits=   0 dim=   0
+unclassified  orbits=   0 dim=   0
