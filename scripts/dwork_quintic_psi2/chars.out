@@ -1,0 +1,5 @@
+prim dim 820
+types Counter({2: 580, 1: 120, 3: 120})
+H-eigenspaces 500 Counter({1: 240, 2: 200, 3: 60})
+pencil-wide Hodge eigenspaces 240 dim 240 Counter({1: 240})
+Fermat prim Hodge 400

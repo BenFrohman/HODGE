@@ -31,6 +31,7 @@ import Hodge.SexticModuli
 import Hodge.FermatCubicHost
 import Hodge.QuinticHost
 import Hodge.DeformedQuinticHost
+import Hodge.DworkQuinticPsi2
 import Hodge.SexticCombinatorics
 import Hodge.SexticCertificates
 import Hodge.DerivedSurfaces
