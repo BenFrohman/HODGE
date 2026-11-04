@@ -37,11 +37,7 @@ theorem F_isHomogeneous : (F : MvPolynomial (Fin 6) K).IsHomogeneous 3 := by
   unfold F
   apply IsHomogeneous.sum
   intro i _
-  first
-    | exact isHomogeneous_X_pow i 3
-    | exact isHomogeneous_X_pow (R := K) i 3
-    | exact (isHomogeneous_X K i).pow 3
-    | exact (isHomogeneous_X (R := K) i).pow 3
+  exact isHomogeneous_X_pow i 3
 
 theorem pderiv_F (i : Fin 6) :
     pderiv i (F : MvPolynomial (Fin 6) K) = 3 * X i ^ 2 := by
