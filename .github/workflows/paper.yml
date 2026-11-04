@@ -1,0 +1,33 @@
+name: Paper
+on:
+  push:
+    branches: [main]
+    tags: ["hodge-sextic-*"]
+    paths-ignore: []
+  pull_request:
+permissions:
+  contents: write
+jobs:
+  paper:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Stamp commit
+        run: sed -i "s/COMMITHASH/${GITHUB_SHA::12}/" paper/hodge_sextic/hodge_sextic.tex
+      - uses: xu-cheng/latex-action@v3
+        with:
+          root_file: hodge_sextic.tex
+          working_directory: paper/hodge_sextic
+      - uses: actions/upload-artifact@v4
+        with:
+          name: hodge_sextic
+          path: |
+            paper/hodge_sextic/hodge_sextic.pdf
+            paper/hodge_sextic/hodge_sextic.tex
+      - name: Release
+        if: startsWith(github.ref, 'refs/tags/hodge-sextic-')
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release view "$GITHUB_REF_NAME" >/dev/null 2>&1 || gh release create "$GITHUB_REF_NAME" --title "The Hodge conjecture for a Delsarte sextic fourfold ($GITHUB_REF_NAME)" --notes "Paper PDF and source. Theorem for one variety X only; relies on HC for the degree-30 Fermat fourfold (Shioda/Aoki). Does not resolve the Clay Millennium problem." --verify-tag
+          gh release upload "$GITHUB_REF_NAME" paper/hodge_sextic/hodge_sextic.pdf paper/hodge_sextic/hodge_sextic.tex --clobber

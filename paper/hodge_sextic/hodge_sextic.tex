@@ -1,0 +1,178 @@
+\documentclass[11pt]{amsart}
+\usepackage[margin=1in]{geometry}
+\usepackage{amssymb,hyperref,booktabs}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{remark}\newtheorem{remark}[theorem]{Remark}
+\newcommand{\Q}{\mathbb{Q}}\newcommand{\PP}{\mathbb{P}}
+\title{The Hodge conjecture for a Delsarte sextic fourfold}
+\author{Benjamin Stanley Frohman}
+\email{frohmanbenjamin@gmail.com}
+\date{November 2026. Repository \url{https://github.com/BenFrohman/HODGE}, commit \texttt{COMMITHASH}}
+\begin{abstract}
+Let $X\subset\PP^5$ be the smooth sextic fourfold
+$x_0^5x_3+x_3^6+x_1^5x_4+x_4^6+x_2^5x_5+x_5^6=0$. We compute exactly that the rational
+primitive Hodge classes of type $(2,2)$ form a space of dimension $785$. The $216$ coordinate
+planes on $X$ span only $125$ of these dimensions, which leaves a gap of $660$. Adding $540$
+further ``twisted'' planes raises the explicit span to $425$. We then prove that every rational
+Hodge class on $X$ is algebraic, so the Hodge conjecture holds for $X$. The proof resolves the
+indeterminacy of Shioda's rational covering map from the Fermat fourfold of degree $30$ and
+pushes cycles down. It relies on the Hodge conjecture for that Fermat fourfold, a known theorem
+of Shioda and Aoki, together with standard results (Hironaka, the blowup formula, Lefschetz
+$(1,1)$). This is a result about one variety. It does \emph{not} resolve the Clay Millennium
+Hodge problem.
+\end{abstract}
+\maketitle
+
+\section{Statement and scope}
+\begin{theorem}\label{thm:main}
+Every class in $H^4(X,\Q)\cap H^{2,2}(X)$ is the class of an algebraic cycle with $\Q$-coefficients.
+Hence the Hodge conjecture holds for $X$ in all codimensions.
+\end{theorem}
+The theorem depends on the following cited result.
+\textbf{(F)} The Hodge conjecture holds for the Fermat fourfold of degree $30$. This is
+attributed to Shioda~\cite{Shi79} and Aoki~\cite{Aok83} in \cite[\S1]{MMRV}. Kang's theorem
+for all Fermat fourfolds gives it independently, as cited in \cite[Rem.~3.9]{Kan16,MMRV}.
+We did not reverify these original proofs. Integral versions and explicit cycles for all
+classes remain open. Nothing here bears on the general Hodge conjecture.
+
+Throughout, \textbf{[Lean]} marks a statement checked in Lean~4/Mathlib in the repository,
+\textbf{[Py]} marks an exact computer computation (integer or cyclotomic arithmetic, with the
+scripts in \texttt{scripts/}), and \textbf{[Proof]} marks a pen-and-paper argument.
+
+\section{Overview of the argument}
+The argument works by passing your sextic X off to a variety where the answer is already known, then bringing the answer back.
+
+The cover. If you substitute $x_i = u_i^6/v_i$ and $x_{i+3} = v_i^5$, your equation F turns into the degree-30 Fermat equation $\sum u^{30} + \sum v^{30}$. So there's a map from the Fermat fourfold Y onto X. Aoki and Shioda proved long ago that every Hodge class on Y is algebraic.
+
+Gap 1: bringing the answer down from Y to X. If the map were a clean finite map, the rest would be standard. You'd pull a Hodge class from X up to Y, where it's algebraic, then push that algebraic cycle back down to X. You'd land on a multiple of the original class, so the original class is algebraic too. The catch is that this map is only rational: it's undefined wherever some $v_i = 0$, because you'd be dividing by zero. The usual fix is to blow up those bad loci, which replaces them with something smooth so the map is defined everywhere. Blowing up adds some new cohomology, but it comes from curves, points and surfaces, which the Lefschetz (1,1) theorem says are algebraic. I believe this works, but I still have to write it out carefully, step by step, with the right theorems cited.
+
+Gap 2: the 193 degenerate dimensions. Each Hodge class on X corresponds to a pattern of numbers, called a character. For 193 dimensions, one of the coordinate pairs in that pattern is all zeros. That happens when the class involves the monomial $x^4$. For those classes, I treated that pair as missing and used the known result for a smaller Fermat variety. The Shioda-Katsura inductive structure shows how smaller Fermat varieties sit inside larger ones, and it's the standard tool for this kind of reduction. But I haven't yet verified that the matching is exact for X.
+
+If both steps hold, every one of the 785 classes is algebraic, and the Hodge conjecture is proven for X. That's what I'm working on now.
+
+\medskip\noindent\emph{Status update (added after the overview above was written).} Gap~1 is now
+closed by the proof in Section~\ref{sec:descent}, given~(F). That proof treats every Hodge class
+at once, so it does not need Gap~2. The reduction for the 193 degenerate dimensions is
+\emph{not} proved here, and nothing depends on it.
+
+\section{The variety}
+Write $y_i=x_{i+3}$ and $f(x,y)=x^5y+y^6=y(x^5+y^5)$, so $F=f(x_0,y_0)+f(x_1,y_1)+f(x_2,y_2)$.
+\textbf{[Lean]} The gradient of $f$ vanishes only at the origin over any domain of characteristic
+zero (\texttt{gradient\_only\_origin}, \texttt{affine\_cone\_isolated\_at\_origin} in
+\texttt{Hodge/SpecialSextic.lean}). Since the three pairs have separate variables, $X$ is smooth.
+\textbf{[Lean]} The Jacobian ring gives primitive Hodge numbers $(1,426,1751,426,1)$, checked by
+\texttt{decide} in \texttt{sextic\_primitive\_hodge} (\texttt{Hodge/FermatCubicHost.lean}).
+
+\section{Planes}
+Each $f$ factors into the six linear forms $y$ and $x-\eta y$ with $\eta^5=-1$. Choosing one
+factor per pair gives $216$ planes. \textbf{[Lean]} $X$ contains them; see, for example,
+\texttt{contains\_two\_planes}. The intersection numbers on a sextic fourfold are as follows.
+\begin{itemize}
+\item $\Pi^2=c_2(N)=21$.
+\item Planes meeting in a line give $-4$ by the excess formula.
+\item Planes meeting in a point give $1$.
+\item Disjoint planes give $0$.
+\item $h^2\cdot\Pi=1$ and $h^4=6$.
+\end{itemize}
+\textbf{[Py]} The $8$ planes defined over $\Q$ have Gram matrix
+\[\left(\begin{smallmatrix}21&-4&-4&1&-4&1&1&0\\-4&21&1&-4&1&-4&0&1\\-4&1&21&-4&1&0&-4&1\\1&-4&-4&21&0&1&1&-4\\-4&1&1&0&21&-4&-4&1\\1&-4&0&1&-4&21&1&-4\\1&0&-4&1&-4&1&21&-4\\0&1&1&-4&1&-4&-4&21\end{smallmatrix}\right),\quad\det=24461180928,\]
+of rank $8$. Together with $h^2$ the rank is $9$. All $216$ planes with $h^2$ have rank $126$,
+which is primitive rank $125$.
+
+\textbf{Twisted planes.} \textbf{[Py]} For $A<B$, let $C$ be the third pair and take
+$\mu^6=-1$ and $\lambda^5\mu=-1$. The planes $\{x_B=\lambda x_A,\ y_B=\mu y_A,\ L_C=0\}$
+lie on $X$, with membership verified exactly modulo $\Phi_{60}$. There are $540$ of them.
+With the $216$ coordinate planes and $h^2$, the exact Gram rank is $426$, so the primitive
+span is $425$. Intersection dimensions were computed over $\mathbb{F}_{61},\mathbb{F}_{181},\mathbb{F}_{241}$
+and in floating point, and all four agree. The rank was computed exactly over $\Q$.
+
+\section{Hodge classes: 785 and the gap 660}
+\textbf{[Py]} Griffiths residues and the diagonal $(\mathbb Z/30)^3$-symmetry give a
+multiplicity-free decomposition of $H^4_{\rm prim}$ into characters. The Galois orbits of type
+$(2,2)$ have total dimension $785$, coming from $122$ orbits. So $Z:=785-125=660$ for the
+coordinate planes, and $785-425=360$ after adding the twisted planes.
+
+\textbf{Classification} [Py, informational]. We pulled each orbit back to a Fermat character in
+$(\mathbb Z/30)^6$. There are $77$ orbits ($425$ dimensions) that split into three cancelling
+pairs, $45$ orbits ($360$ dimensions) made of one cancelling pair plus a Hodge quadruple, and
+$0$ unclassified orbits. For $193$ dimensions this labelling uses the heuristic reduction of
+Gap~2. The labels are \emph{not} used in the proof.
+
+\section{Proof of Theorem~\ref{thm:main}}\label{sec:descent}
+\textbf{[Proof]} Let $Y=F_{30}$ be the Fermat fourfold of degree $30$ and put $V=v_0v_1v_2$.
+Define $\Phi:Y\dashrightarrow X$ by $x_i=u_i^6\prod_{j\ne i}v_j$ and $y_i=v_i^6\prod_{j\ne i}v_j$.
+Then $\Phi^*F=V^6\cdot(\sum u_i^{30}+\sum v_i^{30})$.
+
+\emph{Dominance.} A point of $X$ with all $y_i\neq0$ is the image of a point $(u,v)$ with
+$v_i^5=y_i$ and $u_i^6=x_iv_i$.
+
+\emph{Base locus.} It consists of the three surfaces $Y\cap\{u_i=v_i=0\}$ and the three surfaces
+$Y\cap\{v_j=v_k=0\}$, which have codimension $2$.
+
+By Hironaka~\cite{Hir64} there is a sequence of blowups along smooth centers $Z_k$ of codimension
+$c_k\ge2$, hence of dimension at most $2$, giving $p:\tilde Y\to Y$ with $q=\Phi\circ p$ a
+morphism. The morphism $q$ is surjective and generically finite, of some degree $d$. The blowup
+formula~\cite[Thm.~7.31]{Voi02} says
+\[H^4(Y')\cong H^4(Y)\oplus\bigoplus_{j=1}^{c-1}H^{4-2j}(Z)(-j).\]
+This is an isomorphism of Hodge structures given by algebraic correspondences. The new summands
+are $H^2$ or $H^0$ of varieties of dimension at most $2$, and their Hodge classes are algebraic
+by Lefschetz $(1,1)$. By induction and (F), HC holds for $H^4(\tilde Y)$. Now take a Hodge class
+$\alpha$ on $X$. The class $q^*\alpha$ is Hodge, hence algebraic, and
+$q_*q^*\alpha=d\alpha$ by the projection formula. Proper pushforward preserves
+algebraicity~\cite[Ch.~19]{Ful98}. So $\alpha$ is algebraic. Codimensions $1$ and $3$ follow from
+Lefschetz $(1,1)$ and hard Lefschetz. \qed
+
+\section{Significance and context}
+\textbf{The numbers.} $X$ has $785$ independent rational Hodge classes in middle degree, which
+is far from generic, since a very general sextic has none beyond $h^2$. Planes are the obvious
+cycles. Our $216$ coordinate planes reach only $125$ dimensions, and all $756$ planes we found
+reach $425$. This parallels the Fermat sextic fourfold, where $1001$ linear cycles span only part
+of the $1751$-dimensional Hodge space and Aoki--Shioda cycles are needed for the rest~\cite{BFLV}.
+A shortfall from planes is therefore expected for sextics, where $\gcd(d,6)\ne1$. Lines generate
+Picard groups of Fermat surfaces only when $d\le4$ or $\gcd(d,6)=1$~\cite{Deg15}.
+
+\textbf{Delsarte varieties.} Hypersurfaces given by $n+2$ monomials with an invertible exponent
+matrix are dominated by Fermat varieties~\cite{Shi86}. They are the natural setting where Hodge
+classes can be computed by characters. Our proof shows that the descent from a Fermat cover,
+although the map is only rational, is a clean consequence of resolution and Lefschetz in
+dimension four. The same argument applies to any Delsarte fourfold whose Fermat cover has known
+HC. This is a modest, conditional extension of the known cases. It is not a new method for
+general varieties.
+
+\textbf{Machine-checked components.} Smoothness, the Hodge numbers and the containment of the
+planes are checked in Lean. The deep inputs (Hironaka, Hodge theory, (F)) are \emph{not}
+formalized. The Lean files state Lefschetz and HC only as hypotheses.
+
+\textbf{What does not follow.} This gives no information on HC for deformations of $X$ that are
+not Delsarte, where the Hodge locus is small and HC is open. It also gives nothing on integral
+HC, and nothing on the Clay problem.
+
+\textbf{Open directions.} (i) Find explicit cycles for the remaining $360$ dimensions, for
+example joins of points of $\{f_A=0\}$ with non-line curves on the Delsarte surface
+$\{f_B+f_C=0\}$. (ii) Determine which classes survive in the Noether--Lefschetz-type Hodge loci
+through $X$. (iii) Formalize the character computation in Lean.
+
+\appendix
+\section{Verification record}
+CI status: \href{https://github.com/BenFrohman/HODGE/actions}{github.com/BenFrohman/HODGE/actions}
+(badge: \url{https://github.com/BenFrohman/HODGE/actions/workflows/certify.yml/badge.svg}).
+The Lean certificate (\texttt{CERTIFICATE.md}) runs \texttt{lake build} and \texttt{AxiomAudit.lean}.
+Every audited declaration depends only on \texttt{propext}, \texttt{Classical.choice} and
+\texttt{Quot.sound}, with no \texttt{sorry}, \texttt{native\_decide} or \texttt{axiom}.
+Python scripts: \texttt{hodge\_rank.py} (785), \texttt{plane\_intersections.py} (125),
+\texttt{more\_planes.py} (425), \texttt{hodge\_classify.py}.
+
+\begin{thebibliography}{99}
+\bibitem{Aok83} N.~Aoki, On some arithmetic problems related to the Hodge cycles on the Fermat varieties, Math.\ Ann.\ 266 (1983) 23--54. \href{https://doi.org/10.1007/BF01458703}{doi:10.1007/BF01458703}
+\bibitem{BFLV} A.~P.~Braun, H.~Fortin, D.~Lopez Garcia, R.~Villaflor Loyola, More on $G$-flux and general Hodge cycles on the Fermat sextic, JHEP 06 (2024) 046. \href{https://doi.org/10.1007/JHEP06(2024)046}{doi:10.1007/JHEP06(2024)046}
+\bibitem{Deg15} A.~Degtyarev, Lines generate the Picard groups of certain Fermat surfaces, J.\ Number Theory 147 (2015) 454--477. \href{https://doi.org/10.1016/j.jnt.2014.07.020}{doi}
+\bibitem{Ful98} W.~Fulton, Intersection Theory, Springer. \href{https://doi.org/10.1007/978-1-4612-1700-8}{doi:10.1007/978-1-4612-1700-8}
+\bibitem{Hir64} H.~Hironaka, Resolution of singularities of an algebraic variety over a field of characteristic zero I, Ann.\ of Math.\ 79 (1964) 109--203. \href{https://doi.org/10.2307/1970486}{doi:10.2307/1970486}
+\bibitem{Kan16} S.-J.~Kang, Refined motivic dimension of some Fermat varieties, Bull.\ Aust.\ Math.\ Soc.\ 93 (2016) 223--230. \href{https://doi.org/10.1017/S0004972715001379}{doi}
+\bibitem{MMRV} M.~Miranda, H.~Movasati, L.~Rufino, R.~Villaflor, Lengths of Hodge characters in Fermat varieties, \href{https://arxiv.org/abs/2609.27301}{arXiv:2609.27301}.
+\bibitem{Shi79} T.~Shioda, The Hodge conjecture for Fermat varieties, Math.\ Ann.\ 245 (1979) 175--184. \href{https://doi.org/10.1007/BF01428804}{doi:10.1007/BF01428804}
+\bibitem{Shi86} T.~Shioda, An explicit algorithm for computing the Picard number of certain algebraic surfaces, Amer.\ J.\ Math.\ 108 (1986) 415--432. \href{https://doi.org/10.2307/2374678}{doi:10.2307/2374678}
+\bibitem{Voi02} C.~Voisin, Hodge Theory and Complex Algebraic Geometry I, Cambridge Univ.\ Press. \href{https://doi.org/10.1017/CBO9780511615344}{doi:10.1017/CBO9780511615344}
+\end{thebibliography}
+\end{document}
