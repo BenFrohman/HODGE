@@ -87,7 +87,7 @@ def HodgeClass (X : Variety Z V N) : Type _ :=
   { v : V // v ∈ X.data.hodgeClasses }
 
 /-- An algebraic cycle: a vector of `Z`. -/
-def AlgebraicCycle (X : Variety Z V N) : Type _ :=
+def AlgebraicCycle (_X : Variety Z V N) : Type _ :=
   AlgebraicCycles Z
 
 /-- Cycle class landing in Hodge classes by the easy arrow. -/

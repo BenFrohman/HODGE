@@ -51,13 +51,17 @@ theorem gb_in_J :
     y ^ 6 = (1 / 6 : R) * (y * fy x y - (x / 5) * fx x y) := by
   refine ⟨?_, ?_, ?_⟩ <;> simp only [fx, fy] <;> field_simp <;> ring
 
+omit [CharZero R] in
 theorem J_in_gb : fx x y = 5 * (x ^ 4 * y) ∧ fy x y = x ^ 5 + 6 * y ^ 5 := by
-  simp only [fx, fy]; constructor <;> ring
+  simp only [fx, fy]; constructor <;> ring_nf
 
+omit [CharZero R] in
 /-- S(x⁵+6y⁵, x⁴y) = y·g₂ − x·g₁ = 6·y⁶ (reduces to 0 by `y⁶`). -/
 theorem spoly_12 : y * (x ^ 5 + 6 * y ^ 5) - x * (x ^ 4 * y) = 6 * y ^ 6 := by ring
+omit [CharZero R] in
 /-- S(y⁶, x⁴y) = x⁴·y⁶ − y⁵·x⁴y = 0. -/
 theorem spoly_13 : x ^ 4 * y ^ 6 - y ^ 5 * (x ^ 4 * y) = 0 := by ring
+omit [CharZero R] in
 /-- S(x⁵+6y⁵, y⁶) = y⁶·g₂ − x⁵·y⁶ = 6y⁵·y⁶ (coprime leading terms). -/
 theorem spoly_23 : y ^ 6 * (x ^ 5 + 6 * y ^ 5) - x ^ 5 * y ^ 6 = (6 * y ^ 5) * y ^ 6 := by ring
 end Groebner

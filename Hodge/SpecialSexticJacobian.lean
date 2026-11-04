@@ -27,12 +27,12 @@ namespace SpecialSextic
 
 variable {R : Type*} [CommRing R]
 
-def dF_dx0 (x0 x1 x2 x3 x4 x5 : R) : R := (5 : R) * x0 ^ 4 * x3
-def dF_dx1 (x0 x1 x2 x3 x4 x5 : R) : R := (5 : R) * x1 ^ 4 * x4
-def dF_dx2 (x0 x1 x2 x3 x4 x5 : R) : R := (5 : R) * x2 ^ 4 * x5
-def dF_dx3 (x0 x1 x2 x3 x4 x5 : R) : R := x0 ^ 5 + (6 : R) * x3 ^ 5
-def dF_dx4 (x0 x1 x2 x3 x4 x5 : R) : R := x1 ^ 5 + (6 : R) * x4 ^ 5
-def dF_dx5 (x0 x1 x2 x3 x4 x5 : R) : R := x2 ^ 5 + (6 : R) * x5 ^ 5
+def dF_dx0 (x0 _x1 _x2 x3 _x4 _x5 : R) : R := (5 : R) * x0 ^ 4 * x3
+def dF_dx1 (_x0 x1 _x2 _x3 x4 _x5 : R) : R := (5 : R) * x1 ^ 4 * x4
+def dF_dx2 (_x0 _x1 x2 _x3 _x4 x5 : R) : R := (5 : R) * x2 ^ 4 * x5
+def dF_dx3 (x0 _x1 _x2 x3 _x4 _x5 : R) : R := x0 ^ 5 + (6 : R) * x3 ^ 5
+def dF_dx4 (_x0 x1 _x2 _x3 x4 _x5 : R) : R := x1 ^ 5 + (6 : R) * x4 ^ 5
+def dF_dx5 (_x0 _x1 x2 _x3 _x4 x5 : R) : R := x2 ^ 5 + (6 : R) * x5 ^ 5
 
 theorem dF_dx0_formula (x0 x1 x2 x3 x4 x5 : R) :
     dF_dx0 x0 x1 x2 x3 x4 x5 = (5 : R) * x0 ^ 4 * x3 := rfl
