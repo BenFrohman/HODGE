@@ -29,6 +29,7 @@ import Hodge.Hassett
 import Hodge.NamedFamilies
 import Hodge.SexticModuli
 import Hodge.FermatCubicHost
+import Hodge.SexticCombinatorics
 import Hodge.DerivedSurfaces
 import Hodge.Clay
 import Hodge.Release
