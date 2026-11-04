@@ -8,7 +8,7 @@
 \title{The Hodge conjecture for a Delsarte sextic fourfold}
 \author{Benjamin Stanley Frohman}
 \email{frohmanbenjamin@gmail.com}
-\date{November 2026. Repository \url{https://github.com/BenFrohman/HODGE}, commit \texttt{COMMITHASH}. Version 1.2}
+\date{November 2026. Repository \url{https://github.com/BenFrohman/HODGE}, commit \texttt{COMMITHASH}. Version 1.3}
 \begin{document}
 \begin{abstract}
 Let $X\subset\PP^5$ be the smooth sextic fourfold
@@ -34,8 +34,8 @@ The theorem depends on the following cited result.
 \textbf{(F)} The Hodge conjecture holds for the Fermat fourfold of degree $30$. This is
 attributed to Shioda~\cite{Shi79} and Aoki~\cite{Aok83} in \cite[\S1]{MMRV}. Kang's theorem
 for all Fermat fourfolds gives it independently, \cite{Kan16}; see \cite[Rem.~3.9]{MMRV}.
-We did not reverify these original proofs. Integral versions and explicit cycles for all
-classes remain open. Nothing here bears on the general Hodge conjecture.
+We did not reverify these original proofs. Integral versions remain open. Explicit cycles for all
+classes are given in \S\ref{sec:search} (v1.3; one projection step is pen-and-paper). Nothing here bears on the general Hodge conjecture.
 
 Throughout, \textbf{[Lean]} marks a statement checked in Lean~4/Mathlib in the repository,
 \textbf{[Cited]} marks a published theorem used as input, \textbf{[Py]} marks an exact computer computation (integer or cyclotomic arithmetic, with the
@@ -157,15 +157,57 @@ $756$ planes.
 Status & orbits & dims\\\midrule
 Explicit: coordinate plane witness & 32 & 125\\
 Explicit: twisted plane witness needed & 45 & 300\\
-Algebraic via cited (F) + Theorem~\ref{thm:main} proof only & 45 & 360\\
+Explicit (v1.3): elliptic-correspondence surface, \S\ref{sec:search} & 45 & 360\\
 Unresolved & 0 & 0\\\midrule
 Total & 122 & 785\\\bottomrule
 \end{tabular}\end{center}
 Independent cross-checks: no plane projects onto a non-$(2,2)$ eigenspace; the explicit totals
-$125$ and $425$ agree with the exact Gram ranks; the explicit orbits are exactly the D2 orbits
-and the cited ones exactly the D24 orbits of \texttt{hodge\_classify.py}. The full list is in
+$125$ and $425$ agree with the exact Gram ranks; the plane-explicit orbits are exactly the D2 orbits
+and the remaining ones exactly the D24 orbits of \texttt{hodge\_classify.py}. Up to version 1.2 these
+$360$ dimensions were algebraic only through (F) and the descent proof; \S\ref{sec:search} gives
+explicit surfaces for them. The full list is in
 Appendix~\ref{app:orbits} and in \texttt{data/per\_class\_report.csv}.
 
+
+\section{Search for explicit cycles on the cited orbits}\label{sec:search}
+\emph{Negative results (PR \#27, \texttt{scripts/explicit\_cycles\_graphs.py}).} Write
+$\Psi$ for the map sending a surface on $X$ to its projections onto the $45$ D24 orbits. The
+$144$ graph surfaces of the monomial maps between the pair curves span only the plane span: \textbf{[Py]}
+they hit none of the cited orbits. The reason is a power-map obstruction. Every one of the $45$ cited orbits has
+a pair entry that is a unit mod $30$, and monomial correspondences preserve the
+non-unit pattern. The cited quadruples also fail to match Aoki's 3-standard form, so his standard
+cycles do not descend directly. A cone reduction cuts the problem down to finding a curve on the surface
+$Y=\{x^5y+y^6+z^5w+w^6=0\}\subset\mathbb{P}^3$ whose class meets the relevant quadruple types.
+
+\emph{The curve.} On $C:t^6=-(x^5+1)$ (genus $10=2+4+4$), let $A$ be the new
+$4$-dimensional factor of the Jacobian, with CM type $\{11,17,23,29\}$ on the character $(6,29,25)$. This
+type is stable under $4,7 \bmod 15$, so $A\sim E^4$ with $E:u^2=v^3-1$ ($j=0$). Its holomorphic forms are
+$x^i\,dx/t^5$, $i=0,\dots,3$. Fix a root $k$ of the irreducible polynomial
+$m(k)=k^{24}+66081312000k^{18}-4811512860000k^{12}+1167566400000k^6+583200000$. We found a
+section $(H,G)$ of the rational elliptic surface $G^2=H^3+kX^5Y+Y^6$ with
+$H=X^2+bXY+cY^2$ and $G=X^3+dX^2Y+eXY^2+gY^3$, where $b,c,d,e,g\in\Q(k)$ \textbf{[Py, exact]}. The map
+$(u,v)=(G/t^3,H/t^2)$ sends $C$ to $E$ and pulls $dv/u$ back to $R(x)\,dx/t^5$. Here $R$ is a cubic whose four
+coefficients are all nonzero in $\Q(k)$ \textbf{[Py, exact]}. On $Y_k=\{kx_1^5x_4+x_4^6+kx_2^5x_5+x_5^6=0\}\cong Y$,
+the complete intersection
+\[\Gamma:\ H(x_2,x_5)=\mu^2H(x_1,x_4),\quad G(x_2,x_5)=\mu^3G(x_1,x_4),\qquad\mu^6=-1,\]
+is the graph-type correspondence $\{\varphi(p)=\alpha\varphi(q)\}$. We lift it to $X$ by a cone over the third pair:
+$x_{i+3}=0$ for a trivial pair, or $x_i=\eta x_{i+3}$ with $\eta^5=-1$ for a split pair, after rescaling
+$x_i\mapsto\rho x_i$ with $\rho^5=k$. \textbf{[Lean]} \texttt{Hodge/ExplicitCurve.lean} proves the following for every root $k$
+of $m$ in a field of characteristic $0$: the section identity; and the fact that every point of the lifted surface
+lies on $X$. Both use \texttt{linear\_combination}/\texttt{ring} only, with standard axioms.
+
+\emph{Projection.} \textbf{[Proof]} Because all four coefficients of $R$ are nonzero, $\varphi^*$ meets
+every eigenform of $A$. So each of the $16$ Künneth components of $[\Gamma]$ in
+(anti-holomorphic $A$-type)$\otimes$(holomorphic $A$-type) is nonzero. Twelve of these are
+the cited quadruples, and four are decomposable. The inductive-structure summands that carry the plane witnesses
+make the cone lift injective on them. \textbf{[Py]} Every one of the $45$ cited orbits has a character of the form
+(trivial or split pair)$\times$(holomorphic $A$-type)$\times$(anti-holomorphic $A$-type), and Galois
+conjugation reaches the whole orbit. Hence all $45$ orbits ($360$ dimensions) are
+spanned by explicit algebraic surfaces, and all $785$ primitive Hodge dimensions now have
+explicit cycles. \emph{Scope:} containment is Lean-checked and the algebra is exact. The step from nonzero $R$-coefficients to a
+nonzero projection is a pen-and-paper argument and is \emph{not} formalized. If it is
+accepted, Theorem~\ref{thm:main} no longer depends on (F), although we keep (F) as the cited route. Integral
+statements remain open, and nothing here bears on the general Hodge conjecture.
 \section{Significance and context}
 \textbf{The numbers.} $X$ has $785$ independent rational Hodge classes in middle degree, which
 is far from generic, since a very general sextic has none beyond $h^2$. Planes are the obvious
@@ -253,9 +295,9 @@ H1--H3. Witness planes and exact $S(\chi,P)$ coefficients are in \texttt{data/pe
 \# & $\chi$ & size & status\\\midrule\endhead
 1 & $(0,0,0)$ & 1 & expl.\ (coord.)\\
 2 & $(0,0,6)$ & 4 & expl.\ (coord.)\\
-3 & $(0,1,11)$ & 8 & cited (F)\\
-4 & $(0,1,17)$ & 8 & cited (F)\\
-5 & $(0,1,23)$ & 8 & cited (F)\\
+3 & $(0,1,11)$ & 8 & explicit (elliptic corr.)\\
+4 & $(0,1,17)$ & 8 & explicit (elliptic corr.)\\
+5 & $(0,1,23)$ & 8 & explicit (elliptic corr.)\\
 6 & $(0,1,29)$ & 8 & expl.\ (twist.)\\
 7 & $(0,2,28)$ & 8 & expl.\ (twist.)\\
 8 & $(0,3,27)$ & 4 & expl.\ (twist.)\\
@@ -264,40 +306,40 @@ H1--H3. Witness planes and exact $S(\chi,P)$ coefficients are in \texttt{data/pe
 11 & $(0,6,12)$ & 4 & expl.\ (coord.)\\
 12 & $(0,6,18)$ & 4 & expl.\ (coord.)\\
 13 & $(0,6,24)$ & 4 & expl.\ (coord.)\\
-14 & $(1,0,11)$ & 8 & cited (F)\\
-15 & $(1,0,17)$ & 8 & cited (F)\\
-16 & $(1,0,23)$ & 8 & cited (F)\\
+14 & $(1,0,11)$ & 8 & explicit (elliptic corr.)\\
+15 & $(1,0,17)$ & 8 & explicit (elliptic corr.)\\
+16 & $(1,0,23)$ & 8 & explicit (elliptic corr.)\\
 17 & $(1,0,29)$ & 8 & expl.\ (twist.)\\
-18 & $(1,6,11)$ & 8 & cited (F)\\
-19 & $(1,6,17)$ & 8 & cited (F)\\
-20 & $(1,6,23)$ & 8 & cited (F)\\
+18 & $(1,6,11)$ & 8 & explicit (elliptic corr.)\\
+19 & $(1,6,17)$ & 8 & explicit (elliptic corr.)\\
+20 & $(1,6,23)$ & 8 & explicit (elliptic corr.)\\
 21 & $(1,6,29)$ & 8 & expl.\ (twist.)\\
-22 & $(1,11,0)$ & 8 & cited (F)\\
-23 & $(1,11,6)$ & 8 & cited (F)\\
-24 & $(1,11,12)$ & 8 & cited (F)\\
-25 & $(1,11,18)$ & 8 & cited (F)\\
-26 & $(1,11,24)$ & 8 & cited (F)\\
-27 & $(1,12,11)$ & 8 & cited (F)\\
-28 & $(1,12,17)$ & 8 & cited (F)\\
-29 & $(1,12,23)$ & 8 & cited (F)\\
+22 & $(1,11,0)$ & 8 & explicit (elliptic corr.)\\
+23 & $(1,11,6)$ & 8 & explicit (elliptic corr.)\\
+24 & $(1,11,12)$ & 8 & explicit (elliptic corr.)\\
+25 & $(1,11,18)$ & 8 & explicit (elliptic corr.)\\
+26 & $(1,11,24)$ & 8 & explicit (elliptic corr.)\\
+27 & $(1,12,11)$ & 8 & explicit (elliptic corr.)\\
+28 & $(1,12,17)$ & 8 & explicit (elliptic corr.)\\
+29 & $(1,12,23)$ & 8 & explicit (elliptic corr.)\\
 30 & $(1,12,29)$ & 8 & expl.\ (twist.)\\
-31 & $(1,17,0)$ & 8 & cited (F)\\
-32 & $(1,17,6)$ & 8 & cited (F)\\
-33 & $(1,17,12)$ & 8 & cited (F)\\
-34 & $(1,17,18)$ & 8 & cited (F)\\
-35 & $(1,17,24)$ & 8 & cited (F)\\
-36 & $(1,18,11)$ & 8 & cited (F)\\
-37 & $(1,18,17)$ & 8 & cited (F)\\
-38 & $(1,18,23)$ & 8 & cited (F)\\
+31 & $(1,17,0)$ & 8 & explicit (elliptic corr.)\\
+32 & $(1,17,6)$ & 8 & explicit (elliptic corr.)\\
+33 & $(1,17,12)$ & 8 & explicit (elliptic corr.)\\
+34 & $(1,17,18)$ & 8 & explicit (elliptic corr.)\\
+35 & $(1,17,24)$ & 8 & explicit (elliptic corr.)\\
+36 & $(1,18,11)$ & 8 & explicit (elliptic corr.)\\
+37 & $(1,18,17)$ & 8 & explicit (elliptic corr.)\\
+38 & $(1,18,23)$ & 8 & explicit (elliptic corr.)\\
 39 & $(1,18,29)$ & 8 & expl.\ (twist.)\\
-40 & $(1,23,0)$ & 8 & cited (F)\\
-41 & $(1,23,6)$ & 8 & cited (F)\\
-42 & $(1,23,12)$ & 8 & cited (F)\\
-43 & $(1,23,18)$ & 8 & cited (F)\\
-44 & $(1,23,24)$ & 8 & cited (F)\\
-45 & $(1,24,11)$ & 8 & cited (F)\\
-46 & $(1,24,17)$ & 8 & cited (F)\\
-47 & $(1,24,23)$ & 8 & cited (F)\\
+40 & $(1,23,0)$ & 8 & explicit (elliptic corr.)\\
+41 & $(1,23,6)$ & 8 & explicit (elliptic corr.)\\
+42 & $(1,23,12)$ & 8 & explicit (elliptic corr.)\\
+43 & $(1,23,18)$ & 8 & explicit (elliptic corr.)\\
+44 & $(1,23,24)$ & 8 & explicit (elliptic corr.)\\
+45 & $(1,24,11)$ & 8 & explicit (elliptic corr.)\\
+46 & $(1,24,17)$ & 8 & explicit (elliptic corr.)\\
+47 & $(1,24,23)$ & 8 & explicit (elliptic corr.)\\
 48 & $(1,24,29)$ & 8 & expl.\ (twist.)\\
 49 & $(1,29,0)$ & 8 & expl.\ (twist.)\\
 50 & $(1,29,6)$ & 8 & expl.\ (twist.)\\
@@ -329,9 +371,9 @@ H1--H3. Witness planes and exact $S(\chi,P)$ coefficients are in \texttt{data/pe
 76 & $(6,0,12)$ & 4 & expl.\ (coord.)\\
 77 & $(6,0,18)$ & 4 & expl.\ (coord.)\\
 78 & $(6,0,24)$ & 4 & expl.\ (coord.)\\
-79 & $(6,1,11)$ & 8 & cited (F)\\
-80 & $(6,1,17)$ & 8 & cited (F)\\
-81 & $(6,1,23)$ & 8 & cited (F)\\
+79 & $(6,1,11)$ & 8 & explicit (elliptic corr.)\\
+80 & $(6,1,17)$ & 8 & explicit (elliptic corr.)\\
+81 & $(6,1,23)$ & 8 & explicit (elliptic corr.)\\
 82 & $(6,1,29)$ & 8 & expl.\ (twist.)\\
 83 & $(6,2,28)$ & 8 & expl.\ (twist.)\\
 84 & $(6,3,27)$ & 4 & expl.\ (twist.)\\
@@ -341,10 +383,10 @@ H1--H3. Witness planes and exact $S(\chi,P)$ coefficients are in \texttt{data/pe
 88 & $(6,6,12)$ & 4 & expl.\ (coord.)\\
 89 & $(6,6,18)$ & 4 & expl.\ (coord.)\\
 90 & $(6,6,24)$ & 4 & expl.\ (coord.)\\
-91 & $(6,7,11)$ & 8 & cited (F)\\
-92 & $(6,7,17)$ & 8 & cited (F)\\
+91 & $(6,7,11)$ & 8 & explicit (elliptic corr.)\\
+92 & $(6,7,17)$ & 8 & explicit (elliptic corr.)\\
 93 & $(6,7,23)$ & 8 & expl.\ (twist.)\\
-94 & $(6,7,29)$ & 8 & cited (F)\\
+94 & $(6,7,29)$ & 8 & explicit (elliptic corr.)\\
 95 & $(6,8,22)$ & 8 & expl.\ (twist.)\\
 96 & $(6,9,21)$ & 4 & expl.\ (twist.)\\
 97 & $(6,12,0)$ & 4 & expl.\ (coord.)\\
@@ -352,10 +394,10 @@ H1--H3. Witness planes and exact $S(\chi,P)$ coefficients are in \texttt{data/pe
 99 & $(6,12,12)$ & 4 & expl.\ (coord.)\\
 100 & $(6,12,18)$ & 4 & expl.\ (coord.)\\
 101 & $(6,12,24)$ & 4 & expl.\ (coord.)\\
-102 & $(6,13,11)$ & 8 & cited (F)\\
+102 & $(6,13,11)$ & 8 & explicit (elliptic corr.)\\
 103 & $(6,13,17)$ & 8 & expl.\ (twist.)\\
-104 & $(6,13,23)$ & 8 & cited (F)\\
-105 & $(6,13,29)$ & 8 & cited (F)\\
+104 & $(6,13,23)$ & 8 & explicit (elliptic corr.)\\
+105 & $(6,13,29)$ & 8 & explicit (elliptic corr.)\\
 106 & $(6,16,14)$ & 8 & expl.\ (twist.)\\
 107 & $(6,18,0)$ & 4 & expl.\ (coord.)\\
 108 & $(6,18,6)$ & 4 & expl.\ (coord.)\\
@@ -363,9 +405,9 @@ H1--H3. Witness planes and exact $S(\chi,P)$ coefficients are in \texttt{data/pe
 110 & $(6,18,18)$ & 4 & expl.\ (coord.)\\
 111 & $(6,18,24)$ & 4 & expl.\ (coord.)\\
 112 & $(6,19,11)$ & 8 & expl.\ (twist.)\\
-113 & $(6,19,17)$ & 8 & cited (F)\\
-114 & $(6,19,23)$ & 8 & cited (F)\\
-115 & $(6,19,29)$ & 8 & cited (F)\\
+113 & $(6,19,17)$ & 8 & explicit (elliptic corr.)\\
+114 & $(6,19,23)$ & 8 & explicit (elliptic corr.)\\
+115 & $(6,19,29)$ & 8 & explicit (elliptic corr.)\\
 116 & $(6,21,9)$ & 4 & expl.\ (twist.)\\
 117 & $(6,24,0)$ & 4 & expl.\ (coord.)\\
 118 & $(6,24,6)$ & 4 & expl.\ (coord.)\\

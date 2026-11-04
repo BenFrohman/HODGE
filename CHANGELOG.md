@@ -3,6 +3,14 @@
 
 Author: Benjamin Stanley Frohman (@BenFrohman).
 
+## 2026-11-04 explicit cycles for the 45 D24 orbits (v1.3)
+
+- Added `Hodge/ExplicitCurve.lean`: the section identity and containment on X, proved with linear_combination and standard axioms.
+- Added `scripts/explicit_cycles_curve.py`: exact sympy checks, orbit coverage 45/360, and a numeric check.
+- `per_class_report`: 785/785 explicit (425 planes + 360 elliptic-correspondence).
+- Paper v1.3: new section "Search for explicit cycles on the cited orbits".
+- Caveat: the nonzero-projection step is pen-and-paper.
+
 ## 2026-09-29 type separation
 
 - Undo the collapse of `contains_two_planes` with the Hodge conjecture.

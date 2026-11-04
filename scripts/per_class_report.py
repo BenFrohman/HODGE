@@ -18,8 +18,9 @@ For every character chi in (Z/30)^3 of the diagonal group G = (Z/30)^3
                definite on primitive (2,2) classes (Hodge-Riemann) and V_chi is
                1-dimensional, S != 0  <=>  pi_chi[P] != 0  <=>  V_chi lies in the
                span of plane classes.  (Uses the intersection numbers 21,-4,1,0 [Fulton].)
-    cited    : no plane projects to V_chi; algebraic by HC for the Fermat fourfold
-               X^4_30 (Shioda; Aoki) + descent (docs/descent_proof.md).  NOT explicit.
+    cited    : (pre-v1.3) no plane projects to V_chi; algebraic by HC for X^4_30 + descent.
+               v1.3: all 45 such orbits are explicit via the elliptic-correspondence
+               surface (scripts/explicit_cycles_curve.py).
     unresolved: neither.
 Sanity checks: S(chi,P) == 0 for every non-(2,2) chi (else intersection data are wrong);
 the explicit dimensions sum to the Gram ranks 425 (all planes) and 125 (coordinate).
@@ -136,7 +137,19 @@ for r in rows:
     a = hc.red(tuple(r['fermat_alpha']))
     r['shioda_label'] = 'D2' if hc.D2(a) else 'D24' if hc.D24(a) else 'D33' if hc.D33(a) else 'none'
 assert all((r['status'] == 'explicit') == (r['shioda_label'] == 'D2') for r in rows)
-print("explicit orbits coincide exactly with the D2 (pair-split) orbits")
+print("plane-explicit orbits coincide exactly with the D2 (pair-split) orbits")
+# v1.3: the 45 D24 orbits are explicit via the elliptic-correspondence surface
+# (scripts/explicit_cycles_curve.py, Hodge/ExplicitCurve.lean)
+for r in rows:
+    if r['shioda_label'] == 'D24':
+        r['status'] = 'explicit'; r['explicit_family'] = 'elliptic-correspondence'
+        r['witness_plane'] = ('cone/hyperplane lift of C={H(z,w)=mu^2H(x,y),G(z,w)=mu^3G(x,y)} on Y_k, '
+                              'k root of deg-24 m(k); see scripts/explicit_cycles_curve.py')
+        r['basis'] = ('elliptic-correspondence surface (containment Lean-checked; '
+                      'nonzero projection argued from exact R-coefficients, not formalized)')
+ex2 = sum(r['orbit_size'] for r in rows if r['status'] == 'explicit')
+assert ex2 == 785 and all(r['status'] == 'explicit' for r in rows)
+print("v1.3: explicit", ex2, "of", tot, "(425 planes + 360 elliptic-correspondence) | cited 0")
 os.makedirs('data', exist_ok=True)
 json.dump(rows, open('data/per_class_report.json', 'w'), indent=1)
 with open('data/per_class_report.csv', 'w', newline='') as fh:

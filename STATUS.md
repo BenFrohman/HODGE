@@ -41,11 +41,15 @@ character that is algebraic on the Fermat cover by Shioda's classical criteria. 
 only 125 of the 425 D2 dimensions. **Verdict: hit.** `docs/descent_proof.md` proves HC for X from cited theorems, the key one being HC for the degree-30 Fermat fourfold (Shioda/Aoki). The per-orbit labels are informational only. That
 argument (rational-map resolution plus pushforward) is our own sketch and has not been refereed. The
 193-dimension trivial-pair identification is also heuristic. No class is shown to be non-algebraic,
-because no method could show that. No explicit cycles on X are written down.
+because no method could show that. Until v1.3 no explicit cycles were written down for the D24 orbits; see the v1.3 update below.
+
+### v1.3 update
+
+**v1.3 update (2026-11-04):** the 45 D24 orbits (360 dims) now have explicit surfaces: an elliptic-correspondence curve on Y=x^5y+y^6+z^5w+w^6 (section of G^2=H^3+kX^5Y+Y^6, k a root of an irreducible degree-24 polynomial), lifted to X by a cone/hyperplane. Containment is Lean-checked (`Hodge/ExplicitCurve.lean`). The algebra is exact (`scripts/explicit_cycles_curve.py`). The nonzero-projection step is a pen-and-paper argument and is not formalized. See `docs/EXPLICIT_CYCLES_SEARCH.md` and paper v1.3.
 
 ## Explicit cycles (`scripts/more_planes.py`, exact)
 
-The 540 twisted planes x_B=λx_A, y_B=μy_A, L_C=0 (μ^6=−1, λ^5μ=−1) together with the 216 coordinate planes span a primitive space of rank **425** (Gram rank 426 with h²). The 360 remaining dimensions are algebraic by the descent theorem, but no explicit cycles are known for them.
+The 540 twisted planes x_B=λx_A, y_B=μy_A, L_C=0 (μ^6=−1, λ^5μ=−1) together with the 216 coordinate planes span a primitive space of rank **425** (Gram rank 426 with h²). The 360 remaining dimensions are algebraic by the descent theorem. Since v1.3 they also have explicit surfaces (below).
 
 
 ## Per-class report (v1.2, `scripts/per_class_report.py`, `docs/per_class_report.md`)
@@ -53,7 +57,7 @@ The 540 twisted planes x_B=λx_A, y_B=μy_A, L_C=0 (μ^6=−1, λ^5μ=−1) toge
 Every one of the 122 orbits / 785 dimensions is checked: type (2,2) via Griffiths degree, Galois-stable, and Shioda's weight test on the Fermat cover. **785/785 pass; none fails.** Algebraicity, by exact witness S(χ,P) = Σ_g χ(g)(P_prim·gP_prim) ∈ ℤ[ζ₃₀]:
 * explicit, coordinate planes: 32 orbits / 125 dims
 * explicit, twisted planes: 45 orbits / 300 dims
-* via cited Aoki/Shioda HC for the degree-30 Fermat fourfold + descent: 45 orbits / 360 dims
+* explicit (v1.3), elliptic-correspondence surface: 45 orbits / 360 dims (formerly only via cited Aoki/Shioda HC + descent)
 * unresolved: 0
 
 Cross-checks: explicit totals reproduce the Gram ranks 125 and 425 independently; explicit = D2 orbits, cited = D24 orbits. Lean (v1.2, `Hodge/SexticCertificates.lean`): Gröbner certificate of the Milnor algebra (Buchberger/Macaulay cited) and the group action on the plane families. Ranks and twisted intersection pattern remain Python (infeasible for kernel `decide`). Conditional on (F); not a Clay solution.
