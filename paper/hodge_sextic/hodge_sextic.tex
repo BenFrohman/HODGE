@@ -42,20 +42,26 @@ Throughout, \textbf{[Lean]} marks a statement checked in Lean~4/Mathlib in the r
 scripts in \texttt{scripts/}), and \textbf{[Proof]} marks a pen-and-paper argument.
 
 \section{Overview of the argument}
-The argument works by passing your sextic X off to a variety where the answer is already known, then bringing the answer back.
+The proof transfers the problem to the Fermat fourfold of degree $30$, where the Hodge conjecture is
+known by (F), and then descends.
 
-The cover. If you substitute $x_i = u_i^6/v_i$ and $x_{i+3} = v_i^5$, your equation F turns into the degree-30 Fermat equation $\sum u^{30} + \sum v^{30}$. So there's a map from the Fermat fourfold Y onto X. Aoki and Shioda proved long ago that every Hodge class on Y is algebraic.
+\emph{The cover.} The substitution $x_i=u_i^6/v_i$, $x_{i+3}=v_i^5$ ($i=0,1,2$) carries $F$ to
+$\sum_i u_i^{30}+\sum_i v_i^{30}$, which gives a dominant rational map from the Fermat fourfold
+$X^4_{30}$ to $X$. By (F), every rational Hodge class on $X^4_{30}$ is algebraic.
 
-Gap 1: bringing the answer down from Y to X. If the map were a clean finite map, the rest would be standard. You'd pull a Hodge class from X up to Y, where it's algebraic, then push that algebraic cycle back down to X. You'd land on a multiple of the original class, so the original class is algebraic too. The catch is that this map is only rational: it's undefined wherever some $v_i = 0$, because you'd be dividing by zero. The usual fix is to blow up those bad loci, which replaces them with something smooth so the map is defined everywhere. Blowing up adds some new cohomology, but it comes from curves, points and surfaces, which the Lefschetz (1,1) theorem says are algebraic. I believe this works, but I still have to write it out carefully, step by step, with the right theorems cited.
+\emph{Descent.} The map is not defined along the loci $v_i=0$. We resolve its indeterminacy by
+blowing up. The extra cohomology this introduces is spanned by classes of
+lower-dimensional varieties, which are algebraic by the Lefschetz $(1,1)$ theorem and its consequences. The
+correspondence then pulls back to the resolution, pushes forward to $X$, and acts on $H^{2,2}(X)$ as a nonzero
+multiple of the identity on each character. So every Hodge class on $X$ is algebraic, conditional
+on (F). Section~\ref{sec:descent} gives the details. The argument handles all $785$ primitive Hodge
+dimensions at once and does not need a separate reduction for characters with a degenerate pair.
 
-Gap 2: the 193 degenerate dimensions. Each Hodge class on X corresponds to a pattern of numbers, called a character. For 193 dimensions, one of the coordinate pairs in that pattern is all zeros. That happens when the class involves the monomial $x^4$. For those classes, I treated that pair as missing and used the known result for a smaller Fermat variety. The Shioda-Katsura inductive structure shows how smaller Fermat varieties sit inside larger ones, and it's the standard tool for this kind of reduction. But I haven't yet verified that the matching is exact for X.
-
-If both steps hold, every one of the 785 classes is algebraic, and the Hodge conjecture is proven for X. That's what I'm working on now.
-
-\medskip\noindent\emph{Status update (added after the overview above was written).} Gap~1 is now
-closed by the proof in Section~\ref{sec:descent}, given~(F). That proof treats every Hodge class
-at once, so it does not need Gap~2. The reduction for the 193 degenerate dimensions is
-\emph{not} proved here, and nothing depends on it.
+\emph{Explicit cycles.} Planes on $X$ span $425$ of the $785$ dimensions
+(Section~\ref{sec:perclass}). For the remaining $360$ (the D24 orbits), version~1.2 gave algebraicity only
+through (F) and the descent. Version~1.3 gives explicit surfaces for them
+(Section~\ref{sec:search}). Their containment in $X$ is Lean-checked, but one projection step is pen-and-paper. The main
+theorem is still stated conditionally on (F).
 
 \section{The variety}
 Write $y_i=x_{i+3}$ and $f(x,y)=x^5y+y^6=y(x^5+y^5)$, so $F=f(x_0,y_0)+f(x_1,y_1)+f(x_2,y_2)$.
