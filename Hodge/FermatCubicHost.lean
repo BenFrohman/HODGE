@@ -5,7 +5,7 @@ Authors: Benjamin Stanley Frohman
 -/
 import Mathlib.RingTheory.MvPolynomial.Homogeneous
 import Mathlib.Algebra.MvPolynomial.PDeriv
-import Mathlib.Algebra.CharZero.Lemmas
+import Mathlib.Tactic
 
 /-!
 # Second host: the Fermat cubic fourfold  Y = V(x0³ + … + x5³) ⊂ P⁵
