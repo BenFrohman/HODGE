@@ -131,3 +131,33 @@ Hodge classes or cycle classes (cited theory).
   Dwork pencil at ψ = 1 (ψ⁵ = 1). Smooth-host Hodge numbers and the Hodge-conjecture
   analysis do not apply as stated; use ψ⁵ ≠ 1 (e.g. ψ = 0, the Fermat quintic).
   The Hodge conjecture for these quintics is not addressed here.
+
+## Dwork-type quintic fourfold, ψ = 2 (Hodge/DworkQuinticPsi2.lean, scripts/dwork_quintic_psi2/)
+
+X = V(Σ_{i≤5} xᵢ⁵ − 10·x0x1x2x3x4) ⊂ P⁵ (the pencil Σ xᵢ⁵ − 5ψ·x0⋯x4 at ψ = 2; x5 not in the product).
+
+* **Lean (no sorry, no native_decide; axioms propext/Classical.choice/Quot.sound):**
+  homogeneous of degree 5; explicit partials; **smooth** in characteristic 0
+  (`x5⁴=0`, `xᵢ⁴ = 2∏_{j≠i}xⱼ`, product gives `P⁴ = 32P⁴`, so `P=0` and all `xᵢ=0`).
+  Primitive Hodge numbers 0/120/580/120 by `decide`, from the series `(1+t+t²+t³)⁶`; that this
+  series is the Jacobian ring of *every* smooth quintic in six variables is cited theory
+  (regular sequence), and was also computed for this G by Singular (Hilbert function
+  1,6,21,56,120,…,580,…,1; total 4096).
+* **Planes: none.** Gröbner basis of the Fano scheme of planes is {1} over ℚ (two S₅-orbit
+  chart representatives cover the Grassmannian). Same code finds the planes on the Fermat quintic.
+  (Consistent with: a plane in {xᵢ=0} would lie in a smooth quintic threefold, impossible by
+  Lefschetz; generic quintic fourfolds contain no planes, 21 conditions on dim G(3,6)=9.)
+  So the plane-span lattice is 0 in primitive cohomology; only h² is visibly algebraic.
+* **Hodge classes (computed, Python bookkeeping, cited theory).** Symmetry group H = {ζ^a :
+  a ∈ (ℤ/5)⁶, a0+…+a4 ≡ 0}/diagonal (order 625) and S₅ on x0..x4. Via the deformation to
+  ψ = 0, the 820 Fermat characters group into 500 H-eigenspaces (240 of rank 1, 200 of
+  rank 2, 60 of rank 3). 240 eigenspaces are rank 1 and, with all Galois conjugates, of type (2,2):
+  they give **≥ 240 primitive rational Hodge classes on X for every smooth ψ, including ψ = 2**
+  (≥ 241 with h²). The exact count at ψ = 2 (classes in rank-2/3 eigenspaces, at most 160 more
+  since the Fermat point has 400) is **not computed**.
+* **Literature / Hodge conjecture.** Fermat quintic fourfold (ψ = 0): known (Ran 1980,
+  Shioda; prime degree), cycles are linear subspaces. For ψ = 2 we found no published result;
+  the 240 classes are algebraic at ψ = 0 but the planes do not deform (X has none), and
+  carrying algebraicity along the pencil is an instance of the **variational Hodge conjecture
+  (open)**. G has 7 monomials in 6 variables, so it is not Delsarte type and the sextic's
+  cover argument does not apply. **Status: open; no claim of the Hodge conjecture for X.**

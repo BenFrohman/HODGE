@@ -1,0 +1,8 @@
+ring r=0,(x0,x1,x2,x3,x4,x5),dp;
+poly G=x0^5+x1^5+x2^5+x3^5+x4^5+x5^5-10*x0*x1*x2*x3*x4;
+ideal J=std(jacob(G));
+print(hilb(J,2));
+print(vdim(J));
+// smoothness: radical of J + G is maximal ideal: dim of std(J,G)
+print(dim(std(J+G)));
+int k; for(k=0;k<=18;k++){ print(string(k)+" "+string(size(kbase(J,k))));}
