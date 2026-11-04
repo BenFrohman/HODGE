@@ -1,5 +1,6 @@
 import Hodge.FermatCubicHost
 import Hodge.SexticCombinatorics
+import Hodge.SexticCertificates
 import AxiomPrint
 import Hodge
 import Hodge.Attempt.ClayStatement
@@ -424,3 +425,13 @@ import HodgeAttempt
 #print axioms Hodge.SexticCombinatorics.split_360
 #print axioms Hodge.SexticCombinatorics.split_orbits
 #print axioms Hodge.SexticCombinatorics.none_unclassified
+#print axioms Hodge.SexticCertificates.gb_in_J
+#print axioms Hodge.SexticCertificates.J_in_gb
+#print axioms Hodge.SexticCertificates.spoly_12
+#print axioms Hodge.SexticCertificates.spoly_13
+#print axioms Hodge.SexticCertificates.spoly_23
+#print axioms Hodge.SexticCertificates.std_card
+#print axioms Hodge.SexticCertificates.std_bounded
+#print axioms Hodge.SexticCertificates.twist_action
+#print axioms Hodge.SexticCertificates.mu_action
+#print axioms Hodge.SexticCertificates.eta_action

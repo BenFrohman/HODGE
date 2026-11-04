@@ -1,6 +1,6 @@
 \documentclass[11pt]{amsart}
 \usepackage[margin=1in]{geometry}
-\usepackage{amssymb,hyperref,booktabs}
+\usepackage{amssymb,hyperref,booktabs,longtable}
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{proposition}[theorem]{Proposition}
 \theoremstyle{remark}\newtheorem{remark}[theorem]{Remark}
@@ -8,14 +8,14 @@
 \title{The Hodge conjecture for a Delsarte sextic fourfold}
 \author{Benjamin Stanley Frohman}
 \email{frohmanbenjamin@gmail.com}
-\date{November 2026. Repository \url{https://github.com/BenFrohman/HODGE}, commit \texttt{COMMITHASH}}
+\date{November 2026. Repository \url{https://github.com/BenFrohman/HODGE}, commit \texttt{COMMITHASH}. Version 1.2}
 \begin{document}
 \begin{abstract}
 Let $X\subset\PP^5$ be the smooth sextic fourfold
 $x_0^5x_3+x_3^6+x_1^5x_4+x_4^6+x_2^5x_5+x_5^6=0$. We compute exactly that the rational
 primitive Hodge classes of type $(2,2)$ form a space of dimension $785$. The $216$ coordinate
 planes on $X$ span only $125$ of these dimensions, which leaves a gap of $660$. Adding $540$
-further ``twisted'' planes raises the explicit span to $425$. We then prove that every rational
+further ``twisted'' planes raises the explicit span to $425$. A per-class check confirms all $785$ dimensions are Hodge classes and exhibits, for each of the $77$ orbits spanning $425$ dimensions, a plane with nonzero projection onto it; the other $45$ orbits ($360$ dimensions) have no plane witness. We then prove that every rational
 Hodge class on $X$ is algebraic, so the Hodge conjecture holds for $X$. The proof resolves the
 indeterminacy of Shioda's rational covering map from the Fermat fourfold of degree $30$ and
 pushes cycles down. It relies on the Hodge conjecture for that Fermat fourfold, a known theorem
@@ -138,6 +138,34 @@ $q_*q^*\alpha=d\alpha$ by the projection formula. Proper pushforward preserves
 algebraicity~\cite[Ch.~19]{Ful98}. So $\alpha$ is algebraic. Codimensions $1$ and $3$ follow from
 Lefschetz $(1,1)$ and hard Lefschetz. \qed
 
+\section{Per-class verification}\label{sec:perclass}
+For each of the $122$ Galois orbits of characters $\chi\in(\mathbb{Z}/30)^3$ we checked
+\textbf{[Py]} (H1) that $\chi$ is the character of a Griffiths residue of Jacobian degree $6$,
+i.e.\ of type $(2,2)$, with one-dimensional eigenspace $V_\chi$; (H2) that every Galois conjugate
+$t\chi$, $t\in(\mathbb{Z}/30)^\times$, is also of type $(2,2)$, so the orbit spans a $\Q$-subspace;
+(H3) that the pulled-back Fermat character satisfies Shioda's weight criterion. The counts behind
+H1--H2 are also \textbf{[Lean]}. \emph{All $785$ dimensions pass; no class fails.}
+
+For algebraicity, let $G=(\mathbb{Z}/30)^3$ act diagonally and, for a plane $P\subset X$, put
+$S(\chi,P)=\sum_{g\in G}\chi(g)\,(P_{\mathrm{prim}}\cdot gP_{\mathrm{prim}})\in\mathbb{Z}[\zeta_{30}]$.
+Since the intersection form is definite on primitive $(2,2)$ classes (Hodge--Riemann) and
+$\dim V_\chi=1$, $S(\chi,P)\neq0$ if and only if $V_\chi$ lies in the span of plane classes. We evaluate
+$S$ exactly (reduction modulo $\Phi_{30}$) for one plane in each of the $14$ $G$-orbits of the
+$756$ planes.
+\begin{center}\small
+\begin{tabular}{lrr}\toprule
+Status & orbits & dims\\\midrule
+Explicit: coordinate plane witness & 32 & 125\\
+Explicit: twisted plane witness needed & 45 & 300\\
+Algebraic via cited (F) + Theorem~\ref{thm:main} proof only & 45 & 360\\
+Unresolved & 0 & 0\\\midrule
+Total & 122 & 785\\\bottomrule
+\end{tabular}\end{center}
+Independent cross-checks: no plane projects onto a non-$(2,2)$ eigenspace; the explicit totals
+$125$ and $425$ agree with the exact Gram ranks; the explicit orbits are exactly the D2 orbits
+and the cited ones exactly the D24 orbits of \texttt{hodge\_classify.py}. The full list is in
+Appendix~\ref{app:orbits} and in \texttt{data/per\_class\_report.csv}.
+
 \section{Significance and context}
 \textbf{The numbers.} $X$ has $785$ independent rational Hodge classes in middle degree, which
 is far from generic, since a very general sextic has none beyond $h^2$. Planes are the obvious
@@ -158,8 +186,12 @@ general varieties.
 \textbf{Machine-checked components.} Smoothness, the Hodge numbers, the containment of the
 planes, the $8\times8$ Gram matrix with its determinant and rank, and the full character
 enumeration ($785$, $122$, $425/360$, $77/45$) are checked in Lean with \texttt{decide +kernel},
-using no \texttt{native\_decide}. Still Python-only: the Gr\"obner basis, the ranks $125$ and $425$
-of the $217\times217$ and $757\times757$ Gram matrices, and the intersection pattern of twisted planes. The deep inputs (Hironaka, Hodge theory, (F)) are \emph{not}
+using no \texttt{native\_decide}. In version 1.2 Lean also checks the Gr\"obner certificate of the
+Milnor algebra (ideal equality, all S-polynomial reductions, 25 standard monomials; Buchberger's
+criterion and Macaulay's theorem are cited) and that the diagonal group preserves the plane families.
+Still Python-only: the ranks $125$ and $425$ of the $217\times217$ and $757\times757$ Gram matrices,
+now confirmed by two independent methods (exact rank over $\Q$, and the per-character count of
+Section~\ref{sec:perclass}), and the intersection pattern of twisted planes. The deep inputs (Hironaka, Hodge theory, (F)) are \emph{not}
 formalized. The Lean files state Lefschetz and HC only as hypotheses.
 
 \textbf{What does not follow.} This gives no information on HC for deformations of $X$ that are
@@ -170,7 +202,7 @@ HC, and nothing on the Clay problem.
 example joins of points of $\{f_A=0\}$ with non-line curves on the Delsarte surface
 $\{f_B+f_C=0\}$. (ii) Determine which classes survive in the Noether--Lefschetz-type Hodge loci
 through $X$. (iii) Certify the ranks $125$ and $425$ in Lean, e.g.\ by an exact echelon
-certificate, and formalize the Gr\"obner basis.
+certificate (the Gr\"obner basis is formalized in v1.2).
 
 \textbf{Why this matters, and how much.} The Hodge conjecture is known in very few
 codimension-two situations beyond those reached by Lefschetz $(1,1)$, and essentially all of them
@@ -202,15 +234,146 @@ $X$ smooth, Hodge numbers & Lean & \texttt{SpecialSextic}, \texttt{FermatCubicHo
 216 / 8 planes and twisted planes on $X$ & Lean & \texttt{SexticCombinatorics}\\
 Values $21,-4,1,0$ & Proof (cited) & Fulton\\
 $8\times8$ matrix, det, rank 8 & Lean & \texttt{SexticCombinatorics}\\
-Milnor basis (25 monomials) & Py & \texttt{hodge\_rank.py}\\
+Gr\"obner certificate, 25 std.\ monomials & Lean (+cited Buchberger) & \texttt{SexticCertificates}\\
+Group action on plane families & Lean & \texttt{SexticCertificates}\\
+Per-class H1--H3, witnesses $S(\chi,P)$ & Py & \texttt{per\_class\_report.py}\\
 785, 122 orbits, 425/360, 77/45 & Lean & \texttt{SexticCombinatorics}\\
 Count $=\dim$ Hodge classes & Cited & Griffiths, Shioda\\
-Ranks 125, 425; twisted intersections & Py & \texttt{plane\_intersections.py}, \texttt{more\_planes.py}\\
+Ranks 125, 425 (two methods); twisted intersections & Py & \texttt{plane\_intersections.py}, \texttt{more\_planes.py}\\
 Descent (Theorem 1.1) & Proof, uses (F) & Section 6\\\hline
 \end{tabular}\end{center}
 \medskip
 Python scripts: \texttt{hodge\_rank.py} (785), \texttt{plane\_intersections.py} (125),
-\texttt{more\_planes.py} (425), \texttt{hodge\_classify.py}.
+\texttt{more\_planes.py} (425), \texttt{hodge\_classify.py}, \texttt{per\_class\_report.py}.
+
+\section{All 122 orbits}\label{app:orbits}
+Representative character $\chi$ (per coordinate pair), orbit size, and status. Every row passes
+H1--H3. Witness planes and exact $S(\chi,P)$ coefficients are in \texttt{data/per\_class\_report.csv}.
+{\small\begin{longtable}{rlrl}\toprule
+\# & $\chi$ & size & status\\\midrule\endhead
+1 & $(0,0,0)$ & 1 & expl.\ (coord.)\\
+2 & $(0,0,6)$ & 4 & expl.\ (coord.)\\
+3 & $(0,1,11)$ & 8 & cited (F)\\
+4 & $(0,1,17)$ & 8 & cited (F)\\
+5 & $(0,1,23)$ & 8 & cited (F)\\
+6 & $(0,1,29)$ & 8 & expl.\ (twist.)\\
+7 & $(0,2,28)$ & 8 & expl.\ (twist.)\\
+8 & $(0,3,27)$ & 4 & expl.\ (twist.)\\
+9 & $(0,6,0)$ & 4 & expl.\ (coord.)\\
+10 & $(0,6,6)$ & 4 & expl.\ (coord.)\\
+11 & $(0,6,12)$ & 4 & expl.\ (coord.)\\
+12 & $(0,6,18)$ & 4 & expl.\ (coord.)\\
+13 & $(0,6,24)$ & 4 & expl.\ (coord.)\\
+14 & $(1,0,11)$ & 8 & cited (F)\\
+15 & $(1,0,17)$ & 8 & cited (F)\\
+16 & $(1,0,23)$ & 8 & cited (F)\\
+17 & $(1,0,29)$ & 8 & expl.\ (twist.)\\
+18 & $(1,6,11)$ & 8 & cited (F)\\
+19 & $(1,6,17)$ & 8 & cited (F)\\
+20 & $(1,6,23)$ & 8 & cited (F)\\
+21 & $(1,6,29)$ & 8 & expl.\ (twist.)\\
+22 & $(1,11,0)$ & 8 & cited (F)\\
+23 & $(1,11,6)$ & 8 & cited (F)\\
+24 & $(1,11,12)$ & 8 & cited (F)\\
+25 & $(1,11,18)$ & 8 & cited (F)\\
+26 & $(1,11,24)$ & 8 & cited (F)\\
+27 & $(1,12,11)$ & 8 & cited (F)\\
+28 & $(1,12,17)$ & 8 & cited (F)\\
+29 & $(1,12,23)$ & 8 & cited (F)\\
+30 & $(1,12,29)$ & 8 & expl.\ (twist.)\\
+31 & $(1,17,0)$ & 8 & cited (F)\\
+32 & $(1,17,6)$ & 8 & cited (F)\\
+33 & $(1,17,12)$ & 8 & cited (F)\\
+34 & $(1,17,18)$ & 8 & cited (F)\\
+35 & $(1,17,24)$ & 8 & cited (F)\\
+36 & $(1,18,11)$ & 8 & cited (F)\\
+37 & $(1,18,17)$ & 8 & cited (F)\\
+38 & $(1,18,23)$ & 8 & cited (F)\\
+39 & $(1,18,29)$ & 8 & expl.\ (twist.)\\
+40 & $(1,23,0)$ & 8 & cited (F)\\
+41 & $(1,23,6)$ & 8 & cited (F)\\
+42 & $(1,23,12)$ & 8 & cited (F)\\
+43 & $(1,23,18)$ & 8 & cited (F)\\
+44 & $(1,23,24)$ & 8 & cited (F)\\
+45 & $(1,24,11)$ & 8 & cited (F)\\
+46 & $(1,24,17)$ & 8 & cited (F)\\
+47 & $(1,24,23)$ & 8 & cited (F)\\
+48 & $(1,24,29)$ & 8 & expl.\ (twist.)\\
+49 & $(1,29,0)$ & 8 & expl.\ (twist.)\\
+50 & $(1,29,6)$ & 8 & expl.\ (twist.)\\
+51 & $(1,29,12)$ & 8 & expl.\ (twist.)\\
+52 & $(1,29,18)$ & 8 & expl.\ (twist.)\\
+53 & $(1,29,24)$ & 8 & expl.\ (twist.)\\
+54 & $(2,0,28)$ & 8 & expl.\ (twist.)\\
+55 & $(2,6,28)$ & 8 & expl.\ (twist.)\\
+56 & $(2,12,28)$ & 8 & expl.\ (twist.)\\
+57 & $(2,18,28)$ & 8 & expl.\ (twist.)\\
+58 & $(2,24,28)$ & 8 & expl.\ (twist.)\\
+59 & $(2,28,0)$ & 8 & expl.\ (twist.)\\
+60 & $(2,28,6)$ & 8 & expl.\ (twist.)\\
+61 & $(2,28,12)$ & 8 & expl.\ (twist.)\\
+62 & $(2,28,18)$ & 8 & expl.\ (twist.)\\
+63 & $(2,28,24)$ & 8 & expl.\ (twist.)\\
+64 & $(3,0,27)$ & 4 & expl.\ (twist.)\\
+65 & $(3,6,27)$ & 4 & expl.\ (twist.)\\
+66 & $(3,12,27)$ & 4 & expl.\ (twist.)\\
+67 & $(3,18,27)$ & 4 & expl.\ (twist.)\\
+68 & $(3,24,27)$ & 4 & expl.\ (twist.)\\
+69 & $(3,27,0)$ & 4 & expl.\ (twist.)\\
+70 & $(3,27,6)$ & 4 & expl.\ (twist.)\\
+71 & $(3,27,12)$ & 4 & expl.\ (twist.)\\
+72 & $(3,27,18)$ & 4 & expl.\ (twist.)\\
+73 & $(3,27,24)$ & 4 & expl.\ (twist.)\\
+74 & $(6,0,0)$ & 4 & expl.\ (coord.)\\
+75 & $(6,0,6)$ & 4 & expl.\ (coord.)\\
+76 & $(6,0,12)$ & 4 & expl.\ (coord.)\\
+77 & $(6,0,18)$ & 4 & expl.\ (coord.)\\
+78 & $(6,0,24)$ & 4 & expl.\ (coord.)\\
+79 & $(6,1,11)$ & 8 & cited (F)\\
+80 & $(6,1,17)$ & 8 & cited (F)\\
+81 & $(6,1,23)$ & 8 & cited (F)\\
+82 & $(6,1,29)$ & 8 & expl.\ (twist.)\\
+83 & $(6,2,28)$ & 8 & expl.\ (twist.)\\
+84 & $(6,3,27)$ & 4 & expl.\ (twist.)\\
+85 & $(6,4,26)$ & 8 & expl.\ (twist.)\\
+86 & $(6,6,0)$ & 4 & expl.\ (coord.)\\
+87 & $(6,6,6)$ & 4 & expl.\ (coord.)\\
+88 & $(6,6,12)$ & 4 & expl.\ (coord.)\\
+89 & $(6,6,18)$ & 4 & expl.\ (coord.)\\
+90 & $(6,6,24)$ & 4 & expl.\ (coord.)\\
+91 & $(6,7,11)$ & 8 & cited (F)\\
+92 & $(6,7,17)$ & 8 & cited (F)\\
+93 & $(6,7,23)$ & 8 & expl.\ (twist.)\\
+94 & $(6,7,29)$ & 8 & cited (F)\\
+95 & $(6,8,22)$ & 8 & expl.\ (twist.)\\
+96 & $(6,9,21)$ & 4 & expl.\ (twist.)\\
+97 & $(6,12,0)$ & 4 & expl.\ (coord.)\\
+98 & $(6,12,6)$ & 4 & expl.\ (coord.)\\
+99 & $(6,12,12)$ & 4 & expl.\ (coord.)\\
+100 & $(6,12,18)$ & 4 & expl.\ (coord.)\\
+101 & $(6,12,24)$ & 4 & expl.\ (coord.)\\
+102 & $(6,13,11)$ & 8 & cited (F)\\
+103 & $(6,13,17)$ & 8 & expl.\ (twist.)\\
+104 & $(6,13,23)$ & 8 & cited (F)\\
+105 & $(6,13,29)$ & 8 & cited (F)\\
+106 & $(6,16,14)$ & 8 & expl.\ (twist.)\\
+107 & $(6,18,0)$ & 4 & expl.\ (coord.)\\
+108 & $(6,18,6)$ & 4 & expl.\ (coord.)\\
+109 & $(6,18,12)$ & 4 & expl.\ (coord.)\\
+110 & $(6,18,18)$ & 4 & expl.\ (coord.)\\
+111 & $(6,18,24)$ & 4 & expl.\ (coord.)\\
+112 & $(6,19,11)$ & 8 & expl.\ (twist.)\\
+113 & $(6,19,17)$ & 8 & cited (F)\\
+114 & $(6,19,23)$ & 8 & cited (F)\\
+115 & $(6,19,29)$ & 8 & cited (F)\\
+116 & $(6,21,9)$ & 4 & expl.\ (twist.)\\
+117 & $(6,24,0)$ & 4 & expl.\ (coord.)\\
+118 & $(6,24,6)$ & 4 & expl.\ (coord.)\\
+119 & $(6,24,12)$ & 4 & expl.\ (coord.)\\
+120 & $(6,24,18)$ & 4 & expl.\ (coord.)\\
+121 & $(6,24,24)$ & 4 & expl.\ (coord.)\\
+122 & $(6,27,3)$ & 4 & expl.\ (twist.)\\
+\bottomrule\end{longtable}}
 
 \begin{thebibliography}{99}
 \bibitem{Aok83} N.~Aoki, On some arithmetic problems related to the Hodge cycles on the Fermat varieties, Math.\ Ann.\ 266 (1983) 23--54. \href{https://doi.org/10.1007/BF01458703}{doi:10.1007/BF01458703}

@@ -47,6 +47,17 @@ because no method could show that. No explicit cycles on X are written down.
 
 The 540 twisted planes x_B=λx_A, y_B=μy_A, L_C=0 (μ^6=−1, λ^5μ=−1) together with the 216 coordinate planes span a primitive space of rank **425** (Gram rank 426 with h²). The 360 remaining dimensions are algebraic by the descent theorem, but no explicit cycles are known for them.
 
+
+## Per-class report (v1.2, `scripts/per_class_report.py`, `docs/per_class_report.md`)
+
+Every one of the 122 orbits / 785 dimensions is checked: type (2,2) via Griffiths degree, Galois-stable, and Shioda's weight test on the Fermat cover. **785/785 pass; none fails.** Algebraicity, by exact witness S(χ,P) = Σ_g χ(g)(P_prim·gP_prim) ∈ ℤ[ζ₃₀]:
+* explicit, coordinate planes: 32 orbits / 125 dims
+* explicit, twisted planes: 45 orbits / 300 dims
+* via cited Aoki/Shioda HC for the degree-30 Fermat fourfold + descent: 45 orbits / 360 dims
+* unresolved: 0
+
+Cross-checks: explicit totals reproduce the Gram ranks 125 and 425 independently; explicit = D2 orbits, cited = D24 orbits. Lean (v1.2, `Hodge/SexticCertificates.lean`): Gröbner certificate of the Milnor algebra (Buchberger/Macaulay cited) and the group action on the plane families. Ranks and twisted intersection pattern remain Python (infeasible for kernel `decide`). Conditional on (F); not a Clay solution.
+
 ## Related results
 
 **What is known.** Shioda's character method [1–3] expresses the primitive Hodge classes of Fermat
