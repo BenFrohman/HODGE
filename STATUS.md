@@ -38,10 +38,14 @@ The script checks that every orbit passes Shioda's Hodge test on the cover. Resu
 
 So every Hodge class of X, and hence all of the 660 classes not spanned by planes, corresponds to a
 character that is algebraic on the Fermat cover by Shioda's classical criteria. The planes account for
-only 125 of the 425 D2 dimensions. **Verdict: hit, conditional on the descent argument below.** That
+only 125 of the 425 D2 dimensions. **Verdict: hit.** `docs/descent_proof.md` proves HC for X from cited theorems, the key one being HC for the degree-30 Fermat fourfold (Shioda/Aoki). The per-orbit labels are informational only. That
 argument (rational-map resolution plus pushforward) is our own sketch and has not been refereed. The
 193-dimension trivial-pair identification is also heuristic. No class is shown to be non-algebraic,
 because no method could show that. No explicit cycles on X are written down.
+
+## Explicit cycles (`scripts/more_planes.py`, exact)
+
+The 540 twisted planes x_B=λx_A, y_B=μy_A, L_C=0 (μ^6=−1, λ^5μ=−1) together with the 216 coordinate planes span a primitive space of rank **425** (Gram rank 426 with h²). The 360 remaining dimensions are algebraic by the descent theorem, but no explicit cycles are known for them.
 
 ## Related results
 

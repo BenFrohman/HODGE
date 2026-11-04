@@ -1,0 +1,4 @@
+standard planes 216 ; twisted planes 540
+membership in X verified exactly (mod Phi_60) for all 540 twisted planes
+rank <h^2, 216 standard> = 126 -> primitive 125
+rank <h^2, standard + twisted> = 426 -> primitive 425
