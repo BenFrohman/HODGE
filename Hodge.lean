@@ -30,6 +30,7 @@ import Hodge.NamedFamilies
 import Hodge.SexticModuli
 import Hodge.FermatCubicHost
 import Hodge.SexticCombinatorics
+import Hodge.SexticCertificates
 import Hodge.DerivedSurfaces
 import Hodge.Clay
 import Hodge.Release
