@@ -116,3 +116,18 @@ given the 25-monomial Milnor basis: character injectivity, Hodge numbers 1/426/1
 Still Python only: Groebner basis, ranks 125 and 425, twisted-plane intersection pattern.
 Lean checks finite combinatorics only, NOT that these numbers are intersection numbers,
 Hodge classes or cycle classes (cited theory).
+
+## Quintic hosts (Hodge/QuinticHost.lean, Hodge/DeformedQuinticHost.lean)
+
+* **Fermat quintic fourfold** `V(Σ xᵢ⁵) ⊂ P⁵`: homogeneous of degree 5, smooth in
+  characteristic 0 (Jacobian criterion), primitive Hodge numbers checked by `decide`
+  from the Jacobian-ring series `(1+t+t²+t³)⁶`: h^{4,0}=0, h^{3,1}=R₄=120,
+  h^{2,2}_prim=R₉=580, h^{1,3}=R₁₄=120 (total 820 = (4⁶+4)/5).
+* **Correction to a proposed host.** `Σ xᵢ⁵ - 5·x0x1x2x3x4x5` is *not* homogeneous
+  (the product term has degree 6), so it does not define a hypersurface in P⁵.
+  Also h^{3,1} ≠ 0 in degree 5 (it is 120); only h^{4,0} vanishes.
+* **Deformed quintic** `Σ xᵢ⁵ - 5·x0x1x2x3x4` (homogeneous, degree 5) is **singular**:
+  Lean proves every partial vanishes at `[1:1:1:1:1:0]`, which lies on it. It is the
+  Dwork pencil at ψ = 1 (ψ⁵ = 1). Smooth-host Hodge numbers and the Hodge-conjecture
+  analysis do not apply as stated; use ψ⁵ ≠ 1 (e.g. ψ = 0, the Fermat quintic).
+  The Hodge conjecture for these quintics is not addressed here.
