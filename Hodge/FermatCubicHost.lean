@@ -74,7 +74,14 @@ def jacobianSeries (d : ℕ) : List ℕ :=
   (List.range 6).foldl (fun acc _ => conv acc (List.replicate (d - 1) 1)) [1]
 
 /-- Griffiths: `h^{4-q,q}_prim = R_{d(q+1)-6}`. -/
-def primHodge (d q : ℕ) : ℕ := (jacobianSeries d).getD (d * (q + 1) - 6) 0
+def primHodge (d q : ℕ) : ℕ :=
+  if d * (q + 1) < 6 then 0
+  else (jacobianSeries d).getD (d * (q + 1) - 6) 0
+
+/-- Negative graded pieces vanish; natural subtraction alone would truncate to degree zero. -/
+theorem primHodge_of_negative_degree (d q : ℕ) (h : d * (q + 1) < 6) :
+    primHodge d q = 0 := by
+  simp [primHodge, h]
 
 theorem cubic_primitive_hodge :
     primHodge 3 1 = 1 ∧ primHodge 3 2 = 20 ∧ primHodge 3 3 = 1 := by decide

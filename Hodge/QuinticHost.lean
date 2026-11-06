@@ -80,6 +80,12 @@ theorem quintic_primitive_hodge :
 /-- `h^{4,0} = 0`: the Griffiths degree `5·(0+1)` is below `6`, so `R_{-1} = 0`. -/
 theorem quintic_h40_zero : 5 * (0 + 1) < 6 := by decide
 
+/-- Regression: the counting function itself returns zero at the negative degree. -/
+theorem quintic_primHodge_h40_zero : primHodge 5 0 = 0 := by decide
+
+/-- The conjugate boundary is beyond the socle, in degree 19. -/
+theorem quintic_primHodge_h04_zero : primHodge 5 4 = 0 := by decide
+
 /-- `h^{3,1} ≠ 0` for degree 5. -/
 theorem quintic_h31_ne_zero : primHodge 5 1 ≠ 0 := by decide
 

@@ -146,7 +146,7 @@ Lefschetz $(1,1)$ and hard Lefschetz. \qed
 
 \section{Per-class verification}\label{sec:perclass}
 For each of the $122$ Galois orbits of characters $\chi\in(\mathbb{Z}/30)^3$ we checked
-\textbf{[Py]} (H1) that $\chi$ is the character of a Griffiths residue of Jacobian degree $6$,
+\textbf{[Py]} (H1) that $\chi$ is the character of a Griffiths residue of Jacobian degree $12$,
 i.e.\ of type $(2,2)$, with one-dimensional eigenspace $V_\chi$; (H2) that every Galois conjugate
 $t\chi$, $t\in(\mathbb{Z}/30)^\times$, is also of type $(2,2)$, so the orbit spans a $\Q$-subspace;
 (H3) that the pulled-back Fermat character satisfies Shioda's weight criterion. The counts behind
@@ -163,7 +163,7 @@ $756$ planes.
 Status & orbits & dims\\\midrule
 Explicit: coordinate plane witness & 32 & 125\\
 Explicit: twisted plane witness needed & 45 & 300\\
-Explicit (v1.3): elliptic-correspondence surface, \S\ref{sec:search} & 45 & 360\\
+Surface supplied; projection argument, \S\ref{sec:search} & 45 & 360\\
 Unresolved & 0 & 0\\\midrule
 Total & 122 & 785\\\bottomrule
 \end{tabular}\end{center}
@@ -211,7 +211,12 @@ make the cone lift injective on them. \textbf{[Py]} Every one of the $45$ cited 
 conjugation reaches the whole orbit. Hence all $45$ orbits ($360$ dimensions) are
 spanned by explicit algebraic surfaces, and all $785$ primitive Hodge dimensions now have
 explicit cycles. \emph{Scope:} containment is Lean-checked and the algebra is exact. The step from nonzero $R$-coefficients to a
-nonzero projection is a pen-and-paper argument and is \emph{not} formalized. If it is
+nonzero projection is a pen-and-paper argument and is \emph{not} formalized.
+In particular, the identification of the complete intersection with the required correspondence,
+and nonvanishing of its cone pushforward on each indicated character summand, need a detailed
+geometric justification or an independently checkable projection certificate. The containment
+identities alone do not establish these facts. The explicit-spanning claim above is contingent
+on this projection argument; the cited descent proof does not require it. If it is
 accepted, Theorem~\ref{thm:main} no longer depends on (F), although we keep (F) as the cited route. Integral
 statements remain open, and nothing here bears on the general Hodge conjecture.
 \section{Significance and context}
@@ -246,9 +251,7 @@ formalized. The Lean files state Lefschetz and HC only as hypotheses.
 not Delsarte, where the Hodge locus is small and HC is open. It also gives nothing on integral
 HC, and nothing on the Clay problem.
 
-\textbf{Open directions.} (i) Find explicit cycles for the remaining $360$ dimensions, for
-example joins of points of $\{f_A=0\}$ with non-line curves on the Delsarte surface
-$\{f_B+f_C=0\}$. (ii) Determine which classes survive in the Noether--Lefschetz-type Hodge loci
+\textbf{Open directions.} (i) Complete the correspondence and cone-pushforward nonvanishing calculation for the proposed explicit cycles in the remaining $360$ dimensions (Section~\ref{sec:search}). (ii) Determine which classes survive in the Noether--Lefschetz-type Hodge loci
 through $X$. (iii) Certify the ranks $125$ and $425$ in Lean, e.g.\ by an exact echelon
 certificate (the Gr\"obner basis is formalized in v1.2).
 
