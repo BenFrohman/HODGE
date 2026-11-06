@@ -85,3 +85,7 @@ No `construct_of_codim_ge_two`.
 #print axioms Hodge.SexticCertificates.twist_action
 #print axioms Hodge.SexticCertificates.mu_action
 #print axioms Hodge.SexticCertificates.eta_action
+
+#print axioms Hodge.FermatCubicHost.primHodge_of_negative_degree
+#print axioms Hodge.QuinticHost.quintic_primHodge_h40_zero
+#print axioms Hodge.QuinticHost.quintic_primHodge_h04_zero

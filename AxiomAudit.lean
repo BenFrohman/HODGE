@@ -462,3 +462,7 @@ import HodgeAttempt
 #print axioms Hodge.ExplicitCurve.rel_h2
 #print axioms Hodge.ExplicitCurve.rel_h1
 #print axioms Hodge.ExplicitCurve.rel_h0
+
+#print axioms Hodge.FermatCubicHost.primHodge_of_negative_degree
+#print axioms Hodge.QuinticHost.quintic_primHodge_h40_zero
+#print axioms Hodge.QuinticHost.quintic_primHodge_h04_zero
