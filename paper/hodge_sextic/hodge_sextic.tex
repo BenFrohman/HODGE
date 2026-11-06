@@ -16,11 +16,11 @@ $x_0^5x_3+x_3^6+x_1^5x_4+x_4^6+x_2^5x_5+x_5^6=0$. We compute exactly that the ra
 primitive Hodge classes of type $(2,2)$ form a space of dimension $785$. The $216$ coordinate
 planes on $X$ span only $125$ of these dimensions, which leaves a gap of $660$. Adding $540$
 further ``twisted'' planes raises the explicit span to $425$. A per-class check confirms all $785$ dimensions are Hodge classes and exhibits, for each of the $77$ orbits spanning $425$ dimensions, a plane with nonzero projection onto it; the other $45$ orbits ($360$ dimensions) have no plane witness. We then prove that every rational
-Hodge class on $X$ is algebraic, so the Hodge conjecture holds for $X$. The proof resolves the
+Hodge class on $X$ is algebraic, so the Hodge conjecture holds for $X$. One proof resolves the
 indeterminacy of Shioda's rational covering map from the Fermat fourfold of degree $30$ and
 pushes cycles down. It relies on the Hodge conjecture for that Fermat fourfold, a known theorem
 of Shioda and Aoki, together with standard results (Hironaka, the blowup formula, Lefschetz
-$(1,1)$). This is a result about one variety. It does \emph{not} resolve the Clay Millennium
+$(1,1)$). An independent explicit-cycle proof uses a published complete-intersection residue formula and exact character-support certificates, avoiding the Fermat-HC assumption. Its geometric steps are classical arguments, not Lean-formalized. This is a result about one variety. It does \emph{not} resolve the Clay Millennium
 Hodge problem.
 \end{abstract}
 \maketitle
@@ -30,20 +30,19 @@ Hodge problem.
 Every class in $H^4(X,\Q)\cap H^{2,2}(X)$ is the class of an algebraic cycle with $\Q$-coefficients.
 Hence the Hodge conjecture holds for $X$ in all codimensions.
 \end{theorem}
-The theorem depends on the following cited result.
+The descent proof uses the following cited result; Proposition~\ref{prop:explicit-residue} gives an independent explicit-cycle proof using~\cite{VL} instead.
 \textbf{(F)} The Hodge conjecture holds for the Fermat fourfold of degree $30$. This is
 attributed to Shioda~\cite{Shi79} and Aoki~\cite{Aok83} in \cite[\S1]{MMRV}. Kang's theorem
 for all Fermat fourfolds gives it independently, \cite{Kan16}; see \cite[Rem.~3.9]{MMRV}.
 We did not reverify these original proofs. Integral versions remain open. Explicit cycles for all
-classes are given in \S\ref{sec:search} (v1.3; one projection step is pen-and-paper). Nothing here bears on the general Hodge conjecture.
+classes are given in \S\ref{sec:search} (with an exact residue certificate; the geometry uses cited classical theorems). Here $\Q$-coefficients mean rational linear combinations of cycles on $X_{\mathbb C}$, not that the individual cycles are defined over $\Q$. Nothing here bears on the general Hodge conjecture.
 
 Throughout, \textbf{[Lean]} marks a statement checked in Lean~4/Mathlib in the repository,
 \textbf{[Cited]} marks a published theorem used as input, \textbf{[Py]} marks an exact computer computation (integer or cyclotomic arithmetic, with the
 scripts in \texttt{scripts/}), and \textbf{[Proof]} marks a pen-and-paper argument.
 
 \section{Overview of the argument}
-The proof transfers the problem to the Fermat fourfold of degree $30$, where the Hodge conjecture is
-known by (F), and then descends.
+There are two routes. The descent route transfers the problem to the Fermat fourfold of degree $30$, uses (F), and then descends. The explicit residue route of Proposition~\ref{prop:explicit-residue} instead computes cycle-class supports directly on $X$, using~\cite{VL} and standard Hodge theory, without (F).
 
 \emph{The cover.} The substitution $x_i=u_i^6/v_i$, $x_{i+3}=v_i^5$ ($i=0,1,2$) carries $F$ to
 $\sum_i u_i^{30}+\sum_i v_i^{30}$, which gives a dominant rational map from the Fermat fourfold
@@ -60,8 +59,7 @@ dimensions at once and does not need a separate reduction for characters with a 
 \emph{Explicit cycles.} Planes on $X$ span $425$ of the $785$ dimensions
 (Section~\ref{sec:perclass}). For the remaining $360$ (the D24 orbits), version~1.2 gave algebraicity only
 through (F) and the descent. Version~1.3 gives explicit surfaces for them
-(Section~\ref{sec:search}). Their containment in $X$ is Lean-checked, but one projection step is pen-and-paper. The main
-theorem is still stated conditionally on (F).
+(Section~\ref{sec:search}). The section identity and trivial-pair cone containment are Lean-checked; the split-pair surfaces below use an exact polynomial decomposition. Proposition~\ref{prop:explicit-residue} now supplies a direct class-determinant and spanning proof; the separate descent route retains assumption (F).
 
 \section{The variety}
 Write $y_i=x_{i+3}$ and $f(x,y)=x^5y+y^6=y(x^5+y^5)$, so $F=f(x_0,y_0)+f(x_1,y_1)+f(x_2,y_2)$.
@@ -163,7 +161,7 @@ $756$ planes.
 Status & orbits & dims\\\midrule
 Explicit: coordinate plane witness & 32 & 125\\
 Explicit: twisted plane witness needed & 45 & 300\\
-Surface supplied; projection argument, \S\ref{sec:search} & 45 & 360\\
+Exact class determinant, \S\ref{sec:search} & 45 & 360\\
 Unresolved & 0 & 0\\\midrule
 Total & 122 & 785\\\bottomrule
 \end{tabular}\end{center}
@@ -185,42 +183,148 @@ non-unit pattern. The cited quadruples also fail to match Aoki's 3-standard form
 cycles do not descend directly. A cone reduction cuts the problem down to finding a curve on the surface
 $Y=\{x^5y+y^6+z^5w+w^6=0\}\subset\mathbb{P}^3$ whose class meets the relevant quadruple types.
 
-\emph{The curve.} On $C:t^6=-(x^5+1)$ (genus $10=2+4+4$), let $A$ be the new
-$4$-dimensional factor of the Jacobian, with CM type $\{11,17,23,29\}$ on the character $(6,29,25)$. This
-type is stable under $4,7 \bmod 15$, so $A\sim E^4$ with $E:u^2=v^3-1$ ($j=0$). Its holomorphic forms are
-$x^i\,dx/t^5$, $i=0,\dots,3$. Fix a root $k$ of the irreducible polynomial
-$m(k)=k^{24}+66081312000k^{18}-4811512860000k^{12}+1167566400000k^6+583200000$. We found a
-section $(H,G)$ of the rational elliptic surface $G^2=H^3+kX^5Y+Y^6$ with
-$H=X^2+bXY+cY^2$ and $G=X^3+dX^2Y+eXY^2+gY^3$, where $b,c,d,e,g\in\Q(k)$ \textbf{[Py, exact]}. The map
-$(u,v)=(G/t^3,H/t^2)$ sends $C$ to $E$ and pulls $dv/u$ back to $R(x)\,dx/t^5$. Here $R$ is a cubic whose four
-coefficients are all nonzero in $\Q(k)$ \textbf{[Py, exact]}. On $Y_k=\{kx_1^5x_4+x_4^6+kx_2^5x_5+x_5^6=0\}\cong Y$,
-the complete intersection
-\[\Gamma:\ H(x_2,x_5)=\mu^2H(x_1,x_4),\quad G(x_2,x_5)=\mu^3G(x_1,x_4),\qquad\mu^6=-1,\]
-is the graph-type correspondence $\{\varphi(p)=\alpha\varphi(q)\}$. We lift it to $X$ by a cone over the third pair:
-$x_{i+3}=0$ for a trivial pair, or $x_i=\eta x_{i+3}$ with $\eta^5=-1$ for a split pair, after rescaling
-$x_i\mapsto\rho x_i$ with $\rho^5=k$. \textbf{[Lean]} \texttt{Hodge/ExplicitCurve.lean} proves the following for every root $k$
-of $m$ in a field of characteristic $0$: the section identity; and the fact that every point of the lifted surface
-lies on $X$. Both use \texttt{linear\_combination}/\texttt{ring} only, with standard axioms.
+\emph{The section and surfaces.} Fix any complex root $k$ of
+\[
+ m(k)=k^{24}+66081312000k^{18}-4811512860000k^{12}
+       +1167566400000k^6+583200000.
+\]
+The exact coefficients in \path{scripts/explicit_section_data.py} give
+$H=x^2+bxy+cy^2$, $G=x^3+dx^2y+exy^2+gy^3$ satisfying
+$G^2-H^3=kx^5y+y^6$. \textbf{[Lean]} This identity at every root of $m$
+is proved in \texttt{Hodge/ExplicitCurve.lean}; that file proves containment,
+not cohomological nonvanishing. Since $m(0)\ne0$, choose $\rho^5=k\ne0$.
+The scaled hypersurface
+\[
+ F_k=f(u,v)+f_k(x,y)+f_k(z,w),\qquad f_k(x,y)=kx^5y+y^6,
+\]
+is isomorphic to $X$ by scaling the last two $x$ coordinates by $\rho$.
+Write $H_1=H(x,y)$, $G_1=G(x,y)$, $H_2=H(z,w)$, $G_2=G(z,w)$, and put
+\begin{align*}
+ L&=u+v,& D&=v(u^4-u^3v+u^2v^2-uv^3+v^4),\\
+ Q&=H_2+H_1,& A&=-(H_2^2-H_2H_1+H_1^2),\\
+ C&=G_2+iG_1,& B&=G_2-iG_1.
+\end{align*}
+Then $F_k=LD+QA+CB$. Transport $S=V(L,Q,C)$ to $X$ and permute
+which pair supplies $L$. These are three nonlinear surface seeds of
+multidegree $(1,2,3)$. This is the earlier construction with $\mu=i$;
+it is the whole reduced cycle, not an assumed irreducible graph.
 
-\emph{Projection.} \textbf{[Proof]} Because all four coefficients of $R$ are nonzero, $\varphi^*$ meets
-every eigenform of $A$. So each of the $16$ Künneth components of $[\Gamma]$ in
-(anti-holomorphic $A$-type)$\otimes$(holomorphic $A$-type) is nonzero. Twelve of these are
-the cited quadruples, and four are decomposable. The inductive-structure summands that carry the plane witnesses
-make the cone lift injective on them. \textbf{[Py]} Every one of the $45$ cited orbits has a character of the form
-(trivial or split pair)$\times$(holomorphic $A$-type)$\times$(anti-holomorphic $A$-type), and Galois
-conjugation reaches the whole orbit. Hence all $45$ orbits ($360$ dimensions) are
-spanned by explicit algebraic surfaces, and all $785$ primitive Hodge dimensions now have
-explicit cycles. \emph{Scope:} containment is Lean-checked and the algebra is exact. The step from nonzero $R$-coefficients to a
-nonzero projection is a pen-and-paper argument and is \emph{not} formalized.
-In particular, the identification of the complete intersection with the required correspondence,
-and nonvanishing of its cone pushforward on each indicated character summand, need a detailed
-geometric justification or an independently checkable projection certificate. The containment
-identities alone do not establish these facts. The explicit-spanning claim above is contingent
-on this projection argument; the cited descent proof does not require it. If it is
-accepted, Theorem~\ref{thm:main} no longer depends on (F), although we keep (F) as the cited route. Integral
-statements remain open, and nothing here bears on the general Hodge conjecture.
+\begin{proposition}\label{prop:explicit-residue}
+The diagonal-group translates of these three surfaces and of four plane
+seeds span all $785$ primitive rational Hodge dimensions. This proof does
+not use the Fermat Hodge-conjecture assumption~(F).
+\end{proposition}
+\begin{proof}
+\textbf{[Cited]} By Villaflor Loyola's complete-intersection class formula
+\cite[Theorem~1.1]{VL}, if $Z=V(f_1,f_2,f_3)$ is a complete intersection
+in $\PP^5$, $I(Z)=(f_1,f_2,f_3)$, and $F=\sum f_jg_j$, then
+\[
+ [Z]_{\rm prim}=-\tfrac13\operatorname{res}
+ \frac{\det\operatorname{Jac}(f_1,g_1,f_2,g_2,f_3,g_3)\,\Omega}{F^3}^{(2,2)}.
+\]
+We check the ideal hypothesis rather than assuming it for a possibly
+nonreduced equation set. \textbf{[Py, exact]} Bezout identities show
+$b^2-4c$ and $\operatorname{Res}_t(H(t,1),G(t,1))$ are coprime to $m$.
+Thus $H$ is nondegenerate and $H,G$ have no common projective zero at
+any root $k$ (their leading coefficients also exclude infinity).
+The rank-four quadric $Q$ is irreducible, and $Q$ cannot divide $C$:
+a linear multiple of $Q$ would have mixed bidegrees absent from $C$.
+Consequently $Q,C$ form a regular sequence.
+
+Neither pair vanishes on the curve $\Gamma=V(Q,C)\subset\PP^3$.
+Its projections to each $\PP^1$ have finite fibers, since the map
+$(x,y)\mapsto(H,G)$ is finite: the homogeneous ideal $(H,G)$ has only
+the origin as its zero set. Each curve component therefore dominates
+$\PP^1$. Let $W=\det\operatorname{Jac}(H,G)$; its $x^3$ coefficient is
+$k\ne0$. The minor of $\operatorname{Jac}(Q,C)$ in the first pair is
+$iW$, generically nonzero on every component. The curve is generically
+smooth. Its complete-intersection ring is Cohen--Macaulay without embedded
+associated primes; hence it is reduced, and depth two makes its ideal
+saturated. Eliminating $L$ makes the ring of $S$ a polynomial extension
+of that ring. Thus $I(S)=(L,Q,C)$ is a reduced complete-intersection
+ideal, and the cited formula applies even at the cone vertex.
+
+The binary Jacobian quotient has relations $x^4y=0$,
+$x^5=-(6/k)y^5$, $y^6=0$. In increasing powers of $x$, write
+\begin{align*}
+ W&=\sum_{a=0}^3w_ax^ay^{3-a},\\
+ (w_0,w_1,w_2,w_3)&=(3bg-2ce,\ 6g+be-4cd,\ 4e-bd-6c,\ k).
+\end{align*}
+The reduction $U=HW$ has the four degree-five coefficients
+\[
+ (u_0,u_1,u_2,u_3)=(cw_0-6,\ bw_0+cw_1,\
+ w_0+bw_1+cw_2,\ w_1+bw_2+ck).
+\]
+\textbf{[Py, exact]} For all eight coefficients, the script verifies
+polynomial Bezout identities with $m$ equal to $1$. Thus each coefficient
+is nonzero at every root $k$, not merely at a numerical approximation.
+The chain rule gives
+\[
+ \det\operatorname{Jac}(Q,A,C,B)=6i(H_2-H_1)W_1W_2,
+ \qquad P_L=\det\operatorname{Jac}(L,D)
+ =u^4-6u^3v+6u^2v^2-6uv^3+6v^4.
+\]
+Consequently the reduced degree-twelve class determinant of $S$ is
+\[
+ P_S=6iP_L(W_1U_2-U_1W_2).
+\]
+It has exactly $5\cdot4\cdot4\cdot2=160$ nonzero monomials.
+The two pair-degree patterns $(4,3,5)$ and $(4,5,3)$ are disjoint,
+so subtraction causes no cancellation. The three choices of distinguished
+pair give disjoint supports of size $160$ each.
+
+For completeness the plane ranks are independently checked by the same
+formula, not assumed from a Gram rank. One seed has $x_j+y_j=0$ in all
+three pairs, with class determinant the product of three $P_L$ factors
+and support $125$. The other three seeds use $L=0$ in the distinguished
+pair and $z=ix$, $w=iy$ in the other two. Since $f(ix,iy)=-f(x,y)$ they
+are planes on $X$. The exact decomposition
+\begin{align*}
+ f(x,y)+f(z,w)&=(z-ix)A_0+(w-iy)B_0,\\
+ A_0&=w\sum_{j=0}^4z^{4-j}(ix)^j,
+ &B_0&=(ix)^5+\sum_{j=0}^5w^{5-j}(iy)^j
+\end{align*}
+gives a reduced paired determinant with $25$ nonzero monomials.
+Together the four plane seeds have character support $425$.
+
+Here the group acts in each pair by $(x,y)\mapsto(\zeta x,\zeta^{-5}y)$,
+$\zeta^{30}=1$. A monomial $x^ay^b$ has residue character
+$a-5b-4\pmod {30}$, including the volume-form factor.
+The $25$ binary standard monomials have distinct characters, so all
+primitive character spaces are one-dimensional. By Griffiths' identification,
+degree $6q$ has Hodge type $(4-q,q)$.
+\textbf{[Py, exact]} Enumeration of the full tensor basis, independently
+of the D2/D24 report, gives Hodge dimensions $(1,426,1751,426,1)$ and
+$785$ characters whose entire cyclotomic Galois orbit is in degree $12$.
+These are exactly the rational Hodge summands, by the multiplicity-free
+rational representation of the finite diagonal group.
+The plane and surface supports are subsets of this set; their intersection
+has size $120$, and their union is \emph{equal to} the full $785$-element
+set, not just of the same size.
+
+Fourier idempotents of the diagonal group extract every nonzero character
+component from the span of the translates of a class. Since each character
+space is one-dimensional, these translates span precisely the computed
+support. The actual primitive cycle classes are rational, so rank over
+$\Q$ equals rank after extending scalars to $\mathbb C$. Their joint
+primitive rank is therefore $425+480-120=785$.
+\end{proof}
+
+\emph{Reproducibility and scope.} Run
+\texttt{python3 scripts/explicit\_projection\_certificate.py}.
+The program uses exact rational and Gaussian arithmetic, checks the section
+data against the Lean definitions, verifies ten Bezout identities, and derives
+the class determinants and full character-set equality without using the
+precomputed orbit report. A detailed proof is retained in
+\path{docs/EXPLICIT_PROJECTION_CERTIFICATE.md}.
+The residue formula, Hodge theory, and commutative-algebra steps are classical
+inputs, \emph{not} Lean-formalized. This argument bypasses the earlier
+elliptic-correspondence and cone-pushforward claims rather than presuming them.
+Adding $h^2$ supplies the nonprimitive summand, and standard Lefschetz results
+handle other codimensions. Integral statements remain open; no general Hodge
+conjecture or novelty claim follows.
 \section{Significance and context}
-\textbf{The numbers.} $X$ has $785$ independent rational Hodge classes in middle degree, which
+\textbf{The numbers.} $X$ has $785$ independent primitive rational Hodge classes in middle degree, which
 is far from generic, since a very general sextic has none beyond $h^2$. Planes are the obvious
 cycles. Our $216$ coordinate planes reach only $125$ dimensions, and all $756$ planes we found
 reach $425$. This parallels the Fermat sextic fourfold, where $1001$ linear cycles span only part
@@ -230,7 +334,7 @@ Picard groups of Fermat surfaces only when $d\le4$ or $\gcd(d,6)=1$~\cite{Deg15}
 
 \textbf{Delsarte varieties.} Hypersurfaces given by $n+2$ monomials with an invertible exponent
 matrix are dominated by Fermat varieties~\cite{Shi86}. They are the natural setting where Hodge
-classes can be computed by characters. Our proof shows that the descent from a Fermat cover,
+classes can be computed by characters. The descent route shows that the descent from a Fermat cover,
 although the map is only rational, is a clean consequence of resolution and Lefschetz in
 dimension four. The same argument applies to any Delsarte fourfold whose Fermat cover has known
 HC. This is a modest, conditional extension of the known cases. It is not a new method for
@@ -244,14 +348,14 @@ Milnor algebra (ideal equality, all S-polynomial reductions, 25 standard monomia
 criterion and Macaulay's theorem are cited) and that the diagonal group preserves the plane families.
 Still Python-only: the ranks $125$ and $425$ of the $217\times217$ and $757\times757$ Gram matrices,
 now confirmed by two independent methods (exact rank over $\Q$, and the per-character count of
-Section~\ref{sec:perclass}), and the intersection pattern of twisted planes. The deep inputs (Hironaka, Hodge theory, (F)) are \emph{not}
+Section~\ref{sec:perclass}), and the intersection pattern of twisted planes. The deep inputs (Hironaka, Hodge theory, the complete-intersection class formula, (F)) are \emph{not}
 formalized. The Lean files state Lefschetz and HC only as hypotheses.
 
 \textbf{What does not follow.} This gives no information on HC for deformations of $X$ that are
 not Delsarte, where the Hodge locus is small and HC is open. It also gives nothing on integral
 HC, and nothing on the Clay problem.
 
-\textbf{Open directions.} (i) Complete the correspondence and cone-pushforward nonvanishing calculation for the proposed explicit cycles in the remaining $360$ dimensions (Section~\ref{sec:search}). (ii) Determine which classes survive in the Noether--Lefschetz-type Hodge loci
+\textbf{Open directions.} (i) Formalize the geometric residue-class argument and the exact projection certificate (Section~\ref{sec:search}); the classical proof no longer requires a correspondence/cone-pushforward identification. (ii) Determine which classes survive in the Noether--Lefschetz-type Hodge loci
 through $X$. (iii) Certify the ranks $125$ and $425$ in Lean, e.g.\ by an exact echelon
 certificate (the Gr\"obner basis is formalized in v1.2).
 
@@ -260,14 +364,15 @@ codimension-two situations beyond those reached by Lefschetz $(1,1)$, and essent
 come from special symmetry: Fermat and Delsarte varieties, abelian varieties of special type,
 uniruled or rationally connected fourfolds, cubic fourfolds. $X$ is in the first class. What is
 noteworthy is the \emph{size of the gap}: $660$ of the $785$ dimensions are invisible to the obvious
-linear cycles, and $360$ remain invisible even after the twisted planes. Such classes are exactly
-where one might hope to find counterexamples, and the theorem shows that here they are algebraic
-anyway, because they come from the Fermat cover. Conversely, the argument also explains why
-$X$ is \emph{not} evidence for HC in general: every class on $X$ is inherited from a variety where
-HC was already known, so the theorem transports rather than creates algebraicity. The honest
-headline is therefore: a concrete, fully computed fourfold with a large non-planar Hodge lattice,
-for which HC is proved conditional on (F), with every finite computation either machine-checked
-in Lean or reproducible by exact arithmetic.
+linear cycles, and $360$ remain invisible even after the twisted planes. The explicit residue route supplies these remaining dimensions by
+computing the actual surface-class determinants and their character supports.
+Thus the conclusion for this particular $X$ has a classical explicit-cycle proof
+using~\cite{VL}, independent of (F), as well as the preserved alternate descent
+proof conditional on (F). The geometric arguments are not Lean-formalized;
+the finite algebra and character checks are reproducible by exact arithmetic.
+This establishes no integral statement, does not assert that the individual
+cycles are defined over $\Q$, and gives no result for the general Hodge conjecture.
+No novelty or complete independent validation claim is made.
 
 \appendix
 \section{Verification record}
@@ -291,22 +396,31 @@ Per-class H1--H3, witnesses $S(\chi,P)$ & Py & \texttt{per\_class\_report.py}\\
 785, 122 orbits, 425/360, 77/45 & Lean & \texttt{SexticCombinatorics}\\
 Count $=\dim$ Hodge classes & Cited & Griffiths, Shioda\\
 Ranks 125, 425 (two methods); twisted intersections & Py & \texttt{plane\_intersections.py}, \texttt{more\_planes.py}\\
-Descent (Theorem 1.1) & Proof, uses (F) & Section 6\\\hline
+Descent route to Theorem~\ref{thm:main} & Proof, uses (F) & Section~\ref{sec:descent}\\
+Explicit residue route & Proof + cited + Py; no (F) & Proposition~\ref{prop:explicit-residue}\\\hline
 \end{tabular}\end{center}
 \medskip
 Python scripts: \texttt{hodge\_rank.py} (785), \texttt{plane\_intersections.py} (125),
 \texttt{more\_planes.py} (425), \texttt{hodge\_classify.py}, \texttt{per\_class\_report.py}.
+The separate \path{scripts/explicit_projection_certificate.py} verifies the
+residue determinants, coefficient nonvanishing and exact support union; it does
+not formalize the cited geometric theorem or its application.
 
 \section{All 122 orbits}\label{app:orbits}
 Representative character $\chi$ (per coordinate pair), orbit size, and status. Every row passes
 H1--H3. Witness planes and exact $S(\chi,P)$ coefficients are in \texttt{data/per\_class\_report.csv}.
+The label \emph{surface support} means the orbit is covered by the group translates
+of the three complete-intersection surface seeds in Proposition~\ref{prop:explicit-residue};
+it does not assert a separately chosen seed for each row or an identification
+with an elliptic correspondence. The labels describe cycle-class support on
+$X_{\mathbb C}$, not fields of definition of the cycles.
 {\small\begin{longtable}{rlrl}\toprule
 \# & $\chi$ & size & status\\\midrule\endhead
 1 & $(0,0,0)$ & 1 & expl.\ (coord.)\\
 2 & $(0,0,6)$ & 4 & expl.\ (coord.)\\
-3 & $(0,1,11)$ & 8 & explicit (elliptic corr.)\\
-4 & $(0,1,17)$ & 8 & explicit (elliptic corr.)\\
-5 & $(0,1,23)$ & 8 & explicit (elliptic corr.)\\
+3 & $(0,1,11)$ & 8 & surface support\\
+4 & $(0,1,17)$ & 8 & surface support\\
+5 & $(0,1,23)$ & 8 & surface support\\
 6 & $(0,1,29)$ & 8 & expl.\ (twist.)\\
 7 & $(0,2,28)$ & 8 & expl.\ (twist.)\\
 8 & $(0,3,27)$ & 4 & expl.\ (twist.)\\
@@ -315,40 +429,40 @@ H1--H3. Witness planes and exact $S(\chi,P)$ coefficients are in \texttt{data/pe
 11 & $(0,6,12)$ & 4 & expl.\ (coord.)\\
 12 & $(0,6,18)$ & 4 & expl.\ (coord.)\\
 13 & $(0,6,24)$ & 4 & expl.\ (coord.)\\
-14 & $(1,0,11)$ & 8 & explicit (elliptic corr.)\\
-15 & $(1,0,17)$ & 8 & explicit (elliptic corr.)\\
-16 & $(1,0,23)$ & 8 & explicit (elliptic corr.)\\
+14 & $(1,0,11)$ & 8 & surface support\\
+15 & $(1,0,17)$ & 8 & surface support\\
+16 & $(1,0,23)$ & 8 & surface support\\
 17 & $(1,0,29)$ & 8 & expl.\ (twist.)\\
-18 & $(1,6,11)$ & 8 & explicit (elliptic corr.)\\
-19 & $(1,6,17)$ & 8 & explicit (elliptic corr.)\\
-20 & $(1,6,23)$ & 8 & explicit (elliptic corr.)\\
+18 & $(1,6,11)$ & 8 & surface support\\
+19 & $(1,6,17)$ & 8 & surface support\\
+20 & $(1,6,23)$ & 8 & surface support\\
 21 & $(1,6,29)$ & 8 & expl.\ (twist.)\\
-22 & $(1,11,0)$ & 8 & explicit (elliptic corr.)\\
-23 & $(1,11,6)$ & 8 & explicit (elliptic corr.)\\
-24 & $(1,11,12)$ & 8 & explicit (elliptic corr.)\\
-25 & $(1,11,18)$ & 8 & explicit (elliptic corr.)\\
-26 & $(1,11,24)$ & 8 & explicit (elliptic corr.)\\
-27 & $(1,12,11)$ & 8 & explicit (elliptic corr.)\\
-28 & $(1,12,17)$ & 8 & explicit (elliptic corr.)\\
-29 & $(1,12,23)$ & 8 & explicit (elliptic corr.)\\
+22 & $(1,11,0)$ & 8 & surface support\\
+23 & $(1,11,6)$ & 8 & surface support\\
+24 & $(1,11,12)$ & 8 & surface support\\
+25 & $(1,11,18)$ & 8 & surface support\\
+26 & $(1,11,24)$ & 8 & surface support\\
+27 & $(1,12,11)$ & 8 & surface support\\
+28 & $(1,12,17)$ & 8 & surface support\\
+29 & $(1,12,23)$ & 8 & surface support\\
 30 & $(1,12,29)$ & 8 & expl.\ (twist.)\\
-31 & $(1,17,0)$ & 8 & explicit (elliptic corr.)\\
-32 & $(1,17,6)$ & 8 & explicit (elliptic corr.)\\
-33 & $(1,17,12)$ & 8 & explicit (elliptic corr.)\\
-34 & $(1,17,18)$ & 8 & explicit (elliptic corr.)\\
-35 & $(1,17,24)$ & 8 & explicit (elliptic corr.)\\
-36 & $(1,18,11)$ & 8 & explicit (elliptic corr.)\\
-37 & $(1,18,17)$ & 8 & explicit (elliptic corr.)\\
-38 & $(1,18,23)$ & 8 & explicit (elliptic corr.)\\
+31 & $(1,17,0)$ & 8 & surface support\\
+32 & $(1,17,6)$ & 8 & surface support\\
+33 & $(1,17,12)$ & 8 & surface support\\
+34 & $(1,17,18)$ & 8 & surface support\\
+35 & $(1,17,24)$ & 8 & surface support\\
+36 & $(1,18,11)$ & 8 & surface support\\
+37 & $(1,18,17)$ & 8 & surface support\\
+38 & $(1,18,23)$ & 8 & surface support\\
 39 & $(1,18,29)$ & 8 & expl.\ (twist.)\\
-40 & $(1,23,0)$ & 8 & explicit (elliptic corr.)\\
-41 & $(1,23,6)$ & 8 & explicit (elliptic corr.)\\
-42 & $(1,23,12)$ & 8 & explicit (elliptic corr.)\\
-43 & $(1,23,18)$ & 8 & explicit (elliptic corr.)\\
-44 & $(1,23,24)$ & 8 & explicit (elliptic corr.)\\
-45 & $(1,24,11)$ & 8 & explicit (elliptic corr.)\\
-46 & $(1,24,17)$ & 8 & explicit (elliptic corr.)\\
-47 & $(1,24,23)$ & 8 & explicit (elliptic corr.)\\
+40 & $(1,23,0)$ & 8 & surface support\\
+41 & $(1,23,6)$ & 8 & surface support\\
+42 & $(1,23,12)$ & 8 & surface support\\
+43 & $(1,23,18)$ & 8 & surface support\\
+44 & $(1,23,24)$ & 8 & surface support\\
+45 & $(1,24,11)$ & 8 & surface support\\
+46 & $(1,24,17)$ & 8 & surface support\\
+47 & $(1,24,23)$ & 8 & surface support\\
 48 & $(1,24,29)$ & 8 & expl.\ (twist.)\\
 49 & $(1,29,0)$ & 8 & expl.\ (twist.)\\
 50 & $(1,29,6)$ & 8 & expl.\ (twist.)\\
@@ -380,9 +494,9 @@ H1--H3. Witness planes and exact $S(\chi,P)$ coefficients are in \texttt{data/pe
 76 & $(6,0,12)$ & 4 & expl.\ (coord.)\\
 77 & $(6,0,18)$ & 4 & expl.\ (coord.)\\
 78 & $(6,0,24)$ & 4 & expl.\ (coord.)\\
-79 & $(6,1,11)$ & 8 & explicit (elliptic corr.)\\
-80 & $(6,1,17)$ & 8 & explicit (elliptic corr.)\\
-81 & $(6,1,23)$ & 8 & explicit (elliptic corr.)\\
+79 & $(6,1,11)$ & 8 & surface support\\
+80 & $(6,1,17)$ & 8 & surface support\\
+81 & $(6,1,23)$ & 8 & surface support\\
 82 & $(6,1,29)$ & 8 & expl.\ (twist.)\\
 83 & $(6,2,28)$ & 8 & expl.\ (twist.)\\
 84 & $(6,3,27)$ & 4 & expl.\ (twist.)\\
@@ -392,10 +506,10 @@ H1--H3. Witness planes and exact $S(\chi,P)$ coefficients are in \texttt{data/pe
 88 & $(6,6,12)$ & 4 & expl.\ (coord.)\\
 89 & $(6,6,18)$ & 4 & expl.\ (coord.)\\
 90 & $(6,6,24)$ & 4 & expl.\ (coord.)\\
-91 & $(6,7,11)$ & 8 & explicit (elliptic corr.)\\
-92 & $(6,7,17)$ & 8 & explicit (elliptic corr.)\\
+91 & $(6,7,11)$ & 8 & surface support\\
+92 & $(6,7,17)$ & 8 & surface support\\
 93 & $(6,7,23)$ & 8 & expl.\ (twist.)\\
-94 & $(6,7,29)$ & 8 & explicit (elliptic corr.)\\
+94 & $(6,7,29)$ & 8 & surface support\\
 95 & $(6,8,22)$ & 8 & expl.\ (twist.)\\
 96 & $(6,9,21)$ & 4 & expl.\ (twist.)\\
 97 & $(6,12,0)$ & 4 & expl.\ (coord.)\\
@@ -403,10 +517,10 @@ H1--H3. Witness planes and exact $S(\chi,P)$ coefficients are in \texttt{data/pe
 99 & $(6,12,12)$ & 4 & expl.\ (coord.)\\
 100 & $(6,12,18)$ & 4 & expl.\ (coord.)\\
 101 & $(6,12,24)$ & 4 & expl.\ (coord.)\\
-102 & $(6,13,11)$ & 8 & explicit (elliptic corr.)\\
+102 & $(6,13,11)$ & 8 & surface support\\
 103 & $(6,13,17)$ & 8 & expl.\ (twist.)\\
-104 & $(6,13,23)$ & 8 & explicit (elliptic corr.)\\
-105 & $(6,13,29)$ & 8 & explicit (elliptic corr.)\\
+104 & $(6,13,23)$ & 8 & surface support\\
+105 & $(6,13,29)$ & 8 & surface support\\
 106 & $(6,16,14)$ & 8 & expl.\ (twist.)\\
 107 & $(6,18,0)$ & 4 & expl.\ (coord.)\\
 108 & $(6,18,6)$ & 4 & expl.\ (coord.)\\
@@ -414,9 +528,9 @@ H1--H3. Witness planes and exact $S(\chi,P)$ coefficients are in \texttt{data/pe
 110 & $(6,18,18)$ & 4 & expl.\ (coord.)\\
 111 & $(6,18,24)$ & 4 & expl.\ (coord.)\\
 112 & $(6,19,11)$ & 8 & expl.\ (twist.)\\
-113 & $(6,19,17)$ & 8 & explicit (elliptic corr.)\\
-114 & $(6,19,23)$ & 8 & explicit (elliptic corr.)\\
-115 & $(6,19,29)$ & 8 & explicit (elliptic corr.)\\
+113 & $(6,19,17)$ & 8 & surface support\\
+114 & $(6,19,23)$ & 8 & surface support\\
+115 & $(6,19,29)$ & 8 & surface support\\
 116 & $(6,21,9)$ & 4 & expl.\ (twist.)\\
 117 & $(6,24,0)$ & 4 & expl.\ (coord.)\\
 118 & $(6,24,6)$ & 4 & expl.\ (coord.)\\
@@ -436,6 +550,7 @@ H1--H3. Witness planes and exact $S(\chi,P)$ coefficients are in \texttt{data/pe
 \bibitem{MMRV} M.~Miranda, H.~Movasati, L.~Rufino, R.~Villaflor, Lengths of Hodge characters in Fermat varieties, \href{https://arxiv.org/abs/2609.27301}{arXiv:2609.27301}.
 \bibitem{Shi79} T.~Shioda, The Hodge conjecture for Fermat varieties, Math.\ Ann.\ 245 (1979) 175--184. \href{https://doi.org/10.1007/BF01428804}{doi:10.1007/BF01428804}
 \bibitem{Shi86} T.~Shioda, An explicit algorithm for computing the Picard number of certain algebraic surfaces, Amer.\ J.\ Math.\ 108 (1986) 415--432. \href{https://doi.org/10.2307/2374678}{doi:10.2307/2374678}
+\bibitem{VL} R.~Villaflor Loyola, Periods of complete intersection algebraic cycles, Manuscripta Math. \href{https://doi.org/10.1007/s00229-021-01290-x}{doi:10.1007/s00229-021-01290-x}; \href{https://arxiv.org/html/1812.03964}{arXiv:1812.03964}, Theorem~1.1.
 \bibitem{Voi02} C.~Voisin, Hodge Theory and Complex Algebraic Geometry I, Cambridge Univ.\ Press. \href{https://doi.org/10.1017/CBO9780511615344}{doi:10.1017/CBO9780511615344}
 \end{thebibliography}
 \end{document}

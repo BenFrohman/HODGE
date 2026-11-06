@@ -4,7 +4,8 @@ Copyright (c) 2026 Benjamin Stanley Frohman. Licensed under Apache-2.0.
 Explicit non-monomial surfaces on X = V(Σ x_i^5 x_{i+3} + x_{i+3}^6) ⊂ P^5 (v1.3).
 
 Containment only (ring identities). The cohomological claim (nonzero projection on the
-cited D24 characters) is argued in docs/EXPLICIT_CYCLES_SEARCH.md, not formalized here.
+cited D24 characters) is proved classically using an exact residue certificate in
+  docs/EXPLICIT_PROJECTION_CERTIFICATE.md, not formalized here.
 -/
 import Mathlib
 

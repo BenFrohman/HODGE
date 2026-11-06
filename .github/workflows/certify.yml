@@ -32,3 +32,10 @@ jobs:
             echo "Non-standard axiom output:"; cat axioms.txt; exit 1; fi
       - name: No sorry / no axiom declarations
         run: python3 scripts/check_no_sorry.py
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Exact surface projection certificate
+        run: |
+          python3 -m pip install sympy==1.14.0
+          python3 scripts/explicit_projection_certificate.py
