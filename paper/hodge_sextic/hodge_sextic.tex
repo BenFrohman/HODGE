@@ -20,7 +20,7 @@ Hodge class on $X$ is algebraic, so the Hodge conjecture holds for $X$. One proo
 indeterminacy of Shioda's rational covering map from the Fermat fourfold of degree $30$ and
 pushes cycles down. It relies on the Hodge conjecture for that Fermat fourfold, a known theorem
 of Shioda and Aoki, together with standard results (Hironaka, the blowup formula, Lefschetz
-$(1,1)$). An independent explicit-cycle proof uses a published complete-intersection residue formula and exact character-support certificates, avoiding the Fermat-HC assumption. This is a result about one variety. It does \emph{not} resolve the Clay Millennium
+$(1,1)$). An independent explicit-cycle proof uses a published complete-intersection residue formula and exact character-support certificates, avoiding the Fermat-HC assumption. Its geometric steps are classical arguments, not Lean-formalized. This is a result about one variety. It does \emph{not} resolve the Clay Millennium
 Hodge problem.
 \end{abstract}
 \maketitle
@@ -35,15 +35,14 @@ The descent proof uses the following cited result; Proposition~\ref{prop:explici
 attributed to Shioda~\cite{Shi79} and Aoki~\cite{Aok83} in \cite[\S1]{MMRV}. Kang's theorem
 for all Fermat fourfolds gives it independently, \cite{Kan16}; see \cite[Rem.~3.9]{MMRV}.
 We did not reverify these original proofs. Integral versions remain open. Explicit cycles for all
-classes are given in \S\ref{sec:search} (with an exact residue certificate; the geometry uses cited classical theorems). Nothing here bears on the general Hodge conjecture.
+classes are given in \S\ref{sec:search} (with an exact residue certificate; the geometry uses cited classical theorems). Here $\Q$-coefficients mean rational linear combinations of cycles on $X_{\mathbb C}$, not that the individual cycles are defined over $\Q$. Nothing here bears on the general Hodge conjecture.
 
 Throughout, \textbf{[Lean]} marks a statement checked in Lean~4/Mathlib in the repository,
 \textbf{[Cited]} marks a published theorem used as input, \textbf{[Py]} marks an exact computer computation (integer or cyclotomic arithmetic, with the
 scripts in \texttt{scripts/}), and \textbf{[Proof]} marks a pen-and-paper argument.
 
 \section{Overview of the argument}
-The proof transfers the problem to the Fermat fourfold of degree $30$, where the Hodge conjecture is
-known by (F), and then descends.
+There are two routes. The descent route transfers the problem to the Fermat fourfold of degree $30$, uses (F), and then descends. The explicit residue route of Proposition~\ref{prop:explicit-residue} instead computes cycle-class supports directly on $X$, using~\cite{VL} and standard Hodge theory, without (F).
 
 \emph{The cover.} The substitution $x_i=u_i^6/v_i$, $x_{i+3}=v_i^5$ ($i=0,1,2$) carries $F$ to
 $\sum_i u_i^{30}+\sum_i v_i^{30}$, which gives a dominant rational map from the Fermat fourfold
@@ -335,7 +334,7 @@ Picard groups of Fermat surfaces only when $d\le4$ or $\gcd(d,6)=1$~\cite{Deg15}
 
 \textbf{Delsarte varieties.} Hypersurfaces given by $n+2$ monomials with an invertible exponent
 matrix are dominated by Fermat varieties~\cite{Shi86}. They are the natural setting where Hodge
-classes can be computed by characters. Our proof shows that the descent from a Fermat cover,
+classes can be computed by characters. The descent route shows that the descent from a Fermat cover,
 although the map is only rational, is a clean consequence of resolution and Lefschetz in
 dimension four. The same argument applies to any Delsarte fourfold whose Fermat cover has known
 HC. This is a modest, conditional extension of the known cases. It is not a new method for
@@ -365,14 +364,15 @@ codimension-two situations beyond those reached by Lefschetz $(1,1)$, and essent
 come from special symmetry: Fermat and Delsarte varieties, abelian varieties of special type,
 uniruled or rationally connected fourfolds, cubic fourfolds. $X$ is in the first class. What is
 noteworthy is the \emph{size of the gap}: $660$ of the $785$ dimensions are invisible to the obvious
-linear cycles, and $360$ remain invisible even after the twisted planes. Such classes are exactly
-where one might hope to find counterexamples, and the theorem shows that here they are algebraic
-anyway, because they come from the Fermat cover. Conversely, the argument also explains why
-$X$ is \emph{not} evidence for HC in general: every class on $X$ is inherited from a variety where
-HC was already known, so the theorem transports rather than creates algebraicity. The honest
-headline is therefore: a concrete, fully computed fourfold with a large non-planar Hodge lattice,
-for which HC is proved conditional on (F), with every finite computation either machine-checked
-in Lean or reproducible by exact arithmetic.
+linear cycles, and $360$ remain invisible even after the twisted planes. The explicit residue route supplies these remaining dimensions by
+computing the actual surface-class determinants and their character supports.
+Thus the conclusion for this particular $X$ has a classical explicit-cycle proof
+using~\cite{VL}, independent of (F), as well as the preserved alternate descent
+proof conditional on (F). The geometric arguments are not Lean-formalized;
+the finite algebra and character checks are reproducible by exact arithmetic.
+This establishes no integral statement, does not assert that the individual
+cycles are defined over $\Q$, and gives no result for the general Hodge conjecture.
+No novelty or complete independent validation claim is made.
 
 \appendix
 \section{Verification record}
@@ -396,22 +396,31 @@ Per-class H1--H3, witnesses $S(\chi,P)$ & Py & \texttt{per\_class\_report.py}\\
 785, 122 orbits, 425/360, 77/45 & Lean & \texttt{SexticCombinatorics}\\
 Count $=\dim$ Hodge classes & Cited & Griffiths, Shioda\\
 Ranks 125, 425 (two methods); twisted intersections & Py & \texttt{plane\_intersections.py}, \texttt{more\_planes.py}\\
-Descent (Theorem 1.1) & Proof, uses (F) & Section 6\\\hline
+Descent route to Theorem~\ref{thm:main} & Proof, uses (F) & Section~\ref{sec:descent}\\
+Explicit residue route & Proof + cited + Py; no (F) & Proposition~\ref{prop:explicit-residue}\\\hline
 \end{tabular}\end{center}
 \medskip
 Python scripts: \texttt{hodge\_rank.py} (785), \texttt{plane\_intersections.py} (125),
 \texttt{more\_planes.py} (425), \texttt{hodge\_classify.py}, \texttt{per\_class\_report.py}.
+The separate \path{scripts/explicit_projection_certificate.py} verifies the
+residue determinants, coefficient nonvanishing and exact support union; it does
+not formalize the cited geometric theorem or its application.
 
 \section{All 122 orbits}\label{app:orbits}
 Representative character $\chi$ (per coordinate pair), orbit size, and status. Every row passes
 H1--H3. Witness planes and exact $S(\chi,P)$ coefficients are in \texttt{data/per\_class\_report.csv}.
+The label \emph{surface support} means the orbit is covered by the group translates
+of the three complete-intersection surface seeds in Proposition~\ref{prop:explicit-residue};
+it does not assert a separately chosen seed for each row or an identification
+with an elliptic correspondence. The labels describe cycle-class support on
+$X_{\mathbb C}$, not fields of definition of the cycles.
 {\small\begin{longtable}{rlrl}\toprule
 \# & $\chi$ & size & status\\\midrule\endhead
 1 & $(0,0,0)$ & 1 & expl.\ (coord.)\\
 2 & $(0,0,6)$ & 4 & expl.\ (coord.)\\
-3 & $(0,1,11)$ & 8 & explicit (elliptic corr.)\\
-4 & $(0,1,17)$ & 8 & explicit (elliptic corr.)\\
-5 & $(0,1,23)$ & 8 & explicit (elliptic corr.)\\
+3 & $(0,1,11)$ & 8 & surface support\\
+4 & $(0,1,17)$ & 8 & surface support\\
+5 & $(0,1,23)$ & 8 & surface support\\
 6 & $(0,1,29)$ & 8 & expl.\ (twist.)\\
 7 & $(0,2,28)$ & 8 & expl.\ (twist.)\\
 8 & $(0,3,27)$ & 4 & expl.\ (twist.)\\
@@ -420,40 +429,40 @@ H1--H3. Witness planes and exact $S(\chi,P)$ coefficients are in \texttt{data/pe
 11 & $(0,6,12)$ & 4 & expl.\ (coord.)\\
 12 & $(0,6,18)$ & 4 & expl.\ (coord.)\\
 13 & $(0,6,24)$ & 4 & expl.\ (coord.)\\
-14 & $(1,0,11)$ & 8 & explicit (elliptic corr.)\\
-15 & $(1,0,17)$ & 8 & explicit (elliptic corr.)\\
-16 & $(1,0,23)$ & 8 & explicit (elliptic corr.)\\
+14 & $(1,0,11)$ & 8 & surface support\\
+15 & $(1,0,17)$ & 8 & surface support\\
+16 & $(1,0,23)$ & 8 & surface support\\
 17 & $(1,0,29)$ & 8 & expl.\ (twist.)\\
-18 & $(1,6,11)$ & 8 & explicit (elliptic corr.)\\
-19 & $(1,6,17)$ & 8 & explicit (elliptic corr.)\\
-20 & $(1,6,23)$ & 8 & explicit (elliptic corr.)\\
+18 & $(1,6,11)$ & 8 & surface support\\
+19 & $(1,6,17)$ & 8 & surface support\\
+20 & $(1,6,23)$ & 8 & surface support\\
 21 & $(1,6,29)$ & 8 & expl.\ (twist.)\\
-22 & $(1,11,0)$ & 8 & explicit (elliptic corr.)\\
-23 & $(1,11,6)$ & 8 & explicit (elliptic corr.)\\
-24 & $(1,11,12)$ & 8 & explicit (elliptic corr.)\\
-25 & $(1,11,18)$ & 8 & explicit (elliptic corr.)\\
-26 & $(1,11,24)$ & 8 & explicit (elliptic corr.)\\
-27 & $(1,12,11)$ & 8 & explicit (elliptic corr.)\\
-28 & $(1,12,17)$ & 8 & explicit (elliptic corr.)\\
-29 & $(1,12,23)$ & 8 & explicit (elliptic corr.)\\
+22 & $(1,11,0)$ & 8 & surface support\\
+23 & $(1,11,6)$ & 8 & surface support\\
+24 & $(1,11,12)$ & 8 & surface support\\
+25 & $(1,11,18)$ & 8 & surface support\\
+26 & $(1,11,24)$ & 8 & surface support\\
+27 & $(1,12,11)$ & 8 & surface support\\
+28 & $(1,12,17)$ & 8 & surface support\\
+29 & $(1,12,23)$ & 8 & surface support\\
 30 & $(1,12,29)$ & 8 & expl.\ (twist.)\\
-31 & $(1,17,0)$ & 8 & explicit (elliptic corr.)\\
-32 & $(1,17,6)$ & 8 & explicit (elliptic corr.)\\
-33 & $(1,17,12)$ & 8 & explicit (elliptic corr.)\\
-34 & $(1,17,18)$ & 8 & explicit (elliptic corr.)\\
-35 & $(1,17,24)$ & 8 & explicit (elliptic corr.)\\
-36 & $(1,18,11)$ & 8 & explicit (elliptic corr.)\\
-37 & $(1,18,17)$ & 8 & explicit (elliptic corr.)\\
-38 & $(1,18,23)$ & 8 & explicit (elliptic corr.)\\
+31 & $(1,17,0)$ & 8 & surface support\\
+32 & $(1,17,6)$ & 8 & surface support\\
+33 & $(1,17,12)$ & 8 & surface support\\
+34 & $(1,17,18)$ & 8 & surface support\\
+35 & $(1,17,24)$ & 8 & surface support\\
+36 & $(1,18,11)$ & 8 & surface support\\
+37 & $(1,18,17)$ & 8 & surface support\\
+38 & $(1,18,23)$ & 8 & surface support\\
 39 & $(1,18,29)$ & 8 & expl.\ (twist.)\\
-40 & $(1,23,0)$ & 8 & explicit (elliptic corr.)\\
-41 & $(1,23,6)$ & 8 & explicit (elliptic corr.)\\
-42 & $(1,23,12)$ & 8 & explicit (elliptic corr.)\\
-43 & $(1,23,18)$ & 8 & explicit (elliptic corr.)\\
-44 & $(1,23,24)$ & 8 & explicit (elliptic corr.)\\
-45 & $(1,24,11)$ & 8 & explicit (elliptic corr.)\\
-46 & $(1,24,17)$ & 8 & explicit (elliptic corr.)\\
-47 & $(1,24,23)$ & 8 & explicit (elliptic corr.)\\
+40 & $(1,23,0)$ & 8 & surface support\\
+41 & $(1,23,6)$ & 8 & surface support\\
+42 & $(1,23,12)$ & 8 & surface support\\
+43 & $(1,23,18)$ & 8 & surface support\\
+44 & $(1,23,24)$ & 8 & surface support\\
+45 & $(1,24,11)$ & 8 & surface support\\
+46 & $(1,24,17)$ & 8 & surface support\\
+47 & $(1,24,23)$ & 8 & surface support\\
 48 & $(1,24,29)$ & 8 & expl.\ (twist.)\\
 49 & $(1,29,0)$ & 8 & expl.\ (twist.)\\
 50 & $(1,29,6)$ & 8 & expl.\ (twist.)\\
@@ -485,9 +494,9 @@ H1--H3. Witness planes and exact $S(\chi,P)$ coefficients are in \texttt{data/pe
 76 & $(6,0,12)$ & 4 & expl.\ (coord.)\\
 77 & $(6,0,18)$ & 4 & expl.\ (coord.)\\
 78 & $(6,0,24)$ & 4 & expl.\ (coord.)\\
-79 & $(6,1,11)$ & 8 & explicit (elliptic corr.)\\
-80 & $(6,1,17)$ & 8 & explicit (elliptic corr.)\\
-81 & $(6,1,23)$ & 8 & explicit (elliptic corr.)\\
+79 & $(6,1,11)$ & 8 & surface support\\
+80 & $(6,1,17)$ & 8 & surface support\\
+81 & $(6,1,23)$ & 8 & surface support\\
 82 & $(6,1,29)$ & 8 & expl.\ (twist.)\\
 83 & $(6,2,28)$ & 8 & expl.\ (twist.)\\
 84 & $(6,3,27)$ & 4 & expl.\ (twist.)\\
@@ -497,10 +506,10 @@ H1--H3. Witness planes and exact $S(\chi,P)$ coefficients are in \texttt{data/pe
 88 & $(6,6,12)$ & 4 & expl.\ (coord.)\\
 89 & $(6,6,18)$ & 4 & expl.\ (coord.)\\
 90 & $(6,6,24)$ & 4 & expl.\ (coord.)\\
-91 & $(6,7,11)$ & 8 & explicit (elliptic corr.)\\
-92 & $(6,7,17)$ & 8 & explicit (elliptic corr.)\\
+91 & $(6,7,11)$ & 8 & surface support\\
+92 & $(6,7,17)$ & 8 & surface support\\
 93 & $(6,7,23)$ & 8 & expl.\ (twist.)\\
-94 & $(6,7,29)$ & 8 & explicit (elliptic corr.)\\
+94 & $(6,7,29)$ & 8 & surface support\\
 95 & $(6,8,22)$ & 8 & expl.\ (twist.)\\
 96 & $(6,9,21)$ & 4 & expl.\ (twist.)\\
 97 & $(6,12,0)$ & 4 & expl.\ (coord.)\\
@@ -508,10 +517,10 @@ H1--H3. Witness planes and exact $S(\chi,P)$ coefficients are in \texttt{data/pe
 99 & $(6,12,12)$ & 4 & expl.\ (coord.)\\
 100 & $(6,12,18)$ & 4 & expl.\ (coord.)\\
 101 & $(6,12,24)$ & 4 & expl.\ (coord.)\\
-102 & $(6,13,11)$ & 8 & explicit (elliptic corr.)\\
+102 & $(6,13,11)$ & 8 & surface support\\
 103 & $(6,13,17)$ & 8 & expl.\ (twist.)\\
-104 & $(6,13,23)$ & 8 & explicit (elliptic corr.)\\
-105 & $(6,13,29)$ & 8 & explicit (elliptic corr.)\\
+104 & $(6,13,23)$ & 8 & surface support\\
+105 & $(6,13,29)$ & 8 & surface support\\
 106 & $(6,16,14)$ & 8 & expl.\ (twist.)\\
 107 & $(6,18,0)$ & 4 & expl.\ (coord.)\\
 108 & $(6,18,6)$ & 4 & expl.\ (coord.)\\
@@ -519,9 +528,9 @@ H1--H3. Witness planes and exact $S(\chi,P)$ coefficients are in \texttt{data/pe
 110 & $(6,18,18)$ & 4 & expl.\ (coord.)\\
 111 & $(6,18,24)$ & 4 & expl.\ (coord.)\\
 112 & $(6,19,11)$ & 8 & expl.\ (twist.)\\
-113 & $(6,19,17)$ & 8 & explicit (elliptic corr.)\\
-114 & $(6,19,23)$ & 8 & explicit (elliptic corr.)\\
-115 & $(6,19,29)$ & 8 & explicit (elliptic corr.)\\
+113 & $(6,19,17)$ & 8 & surface support\\
+114 & $(6,19,23)$ & 8 & surface support\\
+115 & $(6,19,29)$ & 8 & surface support\\
 116 & $(6,21,9)$ & 4 & expl.\ (twist.)\\
 117 & $(6,24,0)$ & 4 & expl.\ (coord.)\\
 118 & $(6,24,6)$ & 4 & expl.\ (coord.)\\
