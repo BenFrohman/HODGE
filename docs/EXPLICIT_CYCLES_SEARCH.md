@@ -1,3 +1,8 @@
+> Historical search log; its numerical examples and correspondence discussion are
+> not the projection proof. See [the exact residue proof](EXPLICIT_PROJECTION_CERTIFICATE.md)
+> and `scripts/explicit_projection_certificate.py` for the independently checked
+> class determinants, complete-intersection hypotheses, and rank-785 certificate.
+
 # Explicit-cycle search for the 45 cited orbits (v1.3 finding: negative)
 
 Status after this search: **0 of the 360 cited dimensions are explicit.** All 45 D24 orbits stay `cited`

@@ -1,26 +1,19 @@
-"""Explicit cycles on the 45 cited D24 orbits (v1.3).
+"""Exploratory section algebra and an illustrative numerical containment check.
 
-Curve on Y_k = {k x^5 y + y^6 + k z^5 w + w^6 = 0} (isomorphic to Y = X-surface
-x^5y+y^6+z^5w+w^6 via x->rho x, rho^5=k):  the complete intersection
-    H(z,w) = mu^2 H(x,y),  G(z,w) = mu^3 G(x,y),   mu^6 = -1,
-where (H,G) is a section of the rational elliptic surface G^2 = H^3 + k X^5 Y + Y^6,
-k a root of the irreducible degree-24 polynomial m below.  The graph of
-C -> E : (u,v) = (G/t^3, H/t^2), E: u^2 = v^3 - 1 (j=0), pulls dv/u back to
-R(x) dx / t^5 with all four coefficients of R nonzero, hence hits all four
-eigenforms of the new 4-dim factor A ~ E^4 of Jac(t^6 = -(x^5+1)).
-Lifted to X by a cone (trivial pair) or the hyperplane x_i = eta x_{i+3}
-(split pair).  Containment is formally checked in Hodge/ExplicitCurve.lean.
-This script re-verifies the algebra exactly and checks orbit coverage.
+H,G satisfy G^2-H^3=k X^5 Y+Y^6. The optional elliptic interpretation
+uses C_k: t^6=-(k x^5+1), isomorphic after rescaling to C_1.
+This script's coefficient and orbit-coverage checks alone are NOT a projection
+proof. The exact surface-class determinant, ideal hypotheses and rank proof
+are in docs/EXPLICIT_PROJECTION_CERTIFICATE.md and
+scripts/explicit_projection_certificate.py. No numerical output here is used
+by that independent certificate. The section identity and trivial-pair cone
+containment are checked in ExplicitCurve.lean.
 """
 import sympy as sp, json, random
 k,X,Y,x=sp.symbols('k X Y x')
-m=sp.Poly(k**24 + 66081312000*k**18 - 4811512860000*k**12 + 1167566400000*k**6 + 583200000,k)
-B=sp.Poly(-722487197*k**19/183091906523168640000 - 159143006270106241*k**13/610306355077228800 + 21430060790263809*k**7/1130196953846720 - 174160669504533*k/56509847692336,k)
-C=sp.Poly(24042395351*k**20/2197102878278023680000 + 8826405713420672683*k**14/12206127101544576000 - 2143524127385205629*k**8/40687090338481920 + 3380935656389167*k**2/226039390769344,k)
+from explicit_section_data import m, B, C, b, c, d, e, g
 print('m irreducible:',len(sp.factor_list(m.as_expr())[1])==1, flush=True)
 def M(p): return sp.Poly(sp.expand(p),k).rem(m).as_expr()
-b=B.as_expr(); c=C.as_expr()
-d=M((k+3*b)/2); e=M((3*c+3*b**2-d**2)/2); g=M((b**3+6*b*c-2*d*e)/2)
 H=X**2+b*X*Y+c*Y**2; G=X**3+d*X**2*Y+e*X*Y**2+g*Y**3
 D=sp.Poly(sp.expand(G**2-H**3-(k*X**5*Y+Y**6)),X,Y)
 print('G^2-H^3 == k X^5 Y + Y^6 mod m:', all(M(cf)==0 for cf in D.coeffs()), flush=True)
