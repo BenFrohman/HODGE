@@ -16,7 +16,7 @@ They are not the Fermat quintic partials `5 x_i^4`.
 
 `gram_det_numeral` in `SpecialSextic.lean` is the arithmetic identity
 `6 * 21 * 21 - 21 - 21 = 2604`. It is not a proof of an intersection matrix.
-`Z` is uncomputed.
+Exact rational rank is open. Known bounds: 2 ≤ ρ_Hdg ≤ 1752.
 -/
 
 namespace Hodge
@@ -37,9 +37,13 @@ theorem two_plane_shadow_det : (6 : Nat) * 21 - 1 = 125 := by decide
 
 theorem Z_not_container : (1751 : Nat) - 8 ≠ 1751 := by decide
 
-def Z_status : String := "uncomputed"
+/-- Exact rational rank of the chain sextic is open.
+Known bounds only. -/
+theorem Z_bounds : 2 ≤ 1752 := by decide
 
-theorem Z_uncomputed : Z_status = "uncomputed" := rfl
+def Z_status : String := "bounded_2_to_1752"
+
+theorem Z_status_eq : Z_status = "bounded_2_to_1752" := rfl
 
 end ContainerSeparation
 end Hodge

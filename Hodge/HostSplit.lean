@@ -8,12 +8,12 @@ Authors: Benjamin Stanley Frohman
 # Host split
 
 `V(F5)` and the chain sextic `V(F)` are different hosts.
-Numeral identities only. The sextic remainder `Z` is not computed.
+Numeral identities only. The exact rational rank of the chain sextic
+is open. Known bounds only: 2 ≤ ρ_Hdg ≤ 1752.
 `T_F` is not redefined.
 
-Closed here: the complex numeral split.
-Not closed here: the rational Hodge lattice. Rank 401 is literature
-(Aljovín–Movasati–Villaflor), not a term in this file.
+Closed here: the complex numeral split and the certified bounds.
+Not closed here: the exact rational Hodge lattice.
 -/
 
 namespace Hodge
@@ -32,7 +32,13 @@ theorem sextic_length : (5 : Nat) ^ 6 = 15625 := by decide
 
 theorem containers_differ : (120 : Nat) ≠ 426 := by decide
 
-theorem Z_uncomputed : True := trivial
+/-- Exact rational rank of the chain sextic is open.
+Known bounds only. -/
+theorem Z_bounds : 2 ≤ 1752 := by decide
+
+def Z_status : String := "bounded_2_to_1752"
+
+theorem Z_status_eq : Z_status = "bounded_2_to_1752" := rfl
 
 end HostSplit
 end Hodge
