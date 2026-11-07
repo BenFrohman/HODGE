@@ -39,3 +39,5 @@ jobs:
         run: |
           python3 -m pip install sympy==1.14.0
           python3 scripts/explicit_projection_certificate.py
+      - name: Build and audit incremental residue proofs
+        run: python3 scripts/check_residue_axioms.py
