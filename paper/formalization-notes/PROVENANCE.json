@@ -1,5 +1,5 @@
 {
-  "status": "REVIEW DRAFT; no DOI assigned; no publication",
+  "status": "REVIEW DRAFT; Zenodo draft DOIs reserved and unpublished (Stage1 10.5281/zenodo.24025148; Stage2 10.5281/zenodo.24025150); not live citation; not publication",
   "mathematical_source_commit": "e207394a9ed4255ad804860b8f69fde7e940dd54",
   "reviewed_ci_head": "fefe2ba9d87c900b538d02c13f7f51f375fcd285",
   "verified_merge_commit": "d38d042e701b09faa91a24dfb95a4a1a0217123b",
@@ -8,13 +8,75 @@
     "Hodge/ExplicitResidueAlgebra.lean": "78ec665c0982c5fbfbcec4705541a8f834e64e0ec02dddfbec7d98aa741add07",
     "Hodge/ExplicitResidueCertificates.lean": "bd5176c1cce148266869302e5eadd40de86de990a9d40287d75478c9481c793a",
     "ResidueAxiomAudit.lean": "345d6a8966e8651fda4e157921ffc30abad07bd8ea701dc7391eb8833ebb0c9d",
-    "lean-toolchain": "8f6680f8389e8adee06cb2bd44372c6d60dce0e8301630b61a99a5642d1bd71b",
     "lake-manifest.json": "5cc93cd3ce5c0a5f74267c7d1a9a2b50f5cbabd58a6dc7bfa3bd5dfcad6a36c1",
-    "paper/formalization-notes/README.md": "6e5f8afe17840b3f0a579f7d07379a2355239a68b2098185ca459087c9749813",
-    "paper/formalization-notes/note1-residue-algebra-stage1.pdf": "c2b721deb6919d959b9516802c688eb206abd447b9050af185b16ff6ad958016",
-    "paper/formalization-notes/note1-residue-algebra-stage1.tex": "e0f95f54ed8fd1d496bbc9da3b08651a71cbb20a63bd16c92e94d1b11f328dfd",
-    "paper/formalization-notes/note2-residue-certificates-stage2.pdf": "5665679285797acfadecae564e8a3536cf29c4f30644b2fec15713c4d5585138",
-    "paper/formalization-notes/note2-residue-certificates-stage2.tex": "1bcc228bd3c582e5856050f56d80f6eb45a43c400379ff1b44f7ba0036f18062",
+    "lean-toolchain": "8f6680f8389e8adee06cb2bd44372c6d60dce0e8301630b61a99a5642d1bd71b",
+    "paper/formalization-notes/README.md": "a19ae56bc8d720ee22d03da3dc665805dcf710f4afbee94aa3044f02051c906e",
+    "paper/formalization-notes/note1-residue-algebra-stage1.pdf": "6310b59785186ae0791ba76482dd9e3dbcce1807d233a3a782558926029f84f8",
+    "paper/formalization-notes/note1-residue-algebra-stage1.tex": "112ee0b3915f177304b64442567c675ef2b0354810eacff21f5beb464492d272",
+    "paper/formalization-notes/note2-residue-certificates-stage2.pdf": "54ac859bc9326263992d2702e330cd561dfa092e62500205a8ead5b6cc64b223",
+    "paper/formalization-notes/note2-residue-certificates-stage2.tex": "50ba609e71b3c92c4c0a743bff6295531784b6e6d6c37d5d54b9179fcf8fdcf5",
     "paper/formalization-notes/references.bib": "461c61301440101c5dc4c11fe523d153c5fa3bc262e8c87b8017d8128c73cb62"
+  },
+  "zenodo_draft_dois": {
+    "stage1_note": {
+      "doi": "10.5281/zenodo.24025148",
+      "url": "https://doi.org/10.5281/zenodo.24025148",
+      "status": "reserved; unpublished; not a live citation"
+    },
+    "stage2_note": {
+      "doi": "10.5281/zenodo.24025150",
+      "url": "https://doi.org/10.5281/zenodo.24025150",
+      "status": "reserved; unpublished; not a live citation"
+    },
+    "stage3_note": {
+      "doi": null,
+      "status": "unassigned; not edited in this update"
+    }
+  },
+  "papers_merge_commit": "82a630d110dd80cdebcb708ecbd150d7c41ac473",
+  "main_tip_at_packaging": "9289b3c6ae3f2f3ef616493737c113a09c255330",
+  "doi_update": {
+    "workspace": "/workspace/hodge-doi-update-20261106",
+    "base_main": "9289b3c6ae3f2f3ef616493737c113a09c255330",
+    "papers_merge": "82a630d110dd80cdebcb708ecbd150d7c41ac473",
+    "mathematical_source_pin_unchanged": "e207394a9ed4255ad804860b8f69fde7e940dd54",
+    "stage3_doi": "unassigned; note3 not edited",
+    "action": "reserved unpublished draft DOI text only; no Zenodo write; no publication"
+  },
+  "stage3_companion": {
+    "files": [
+      "NOTE3_README.md",
+      "NOTE3_PROVENANCE.json",
+      "note3-jacobian-quotient-stage3.tex",
+      "note3-jacobian-quotient-stage3.pdf"
+    ],
+    "doi": null,
+    "status": "REVIEW DRAFT; DOI unassigned; provenance file is NOTE3_PROVENANCE.json",
+    "mathematical_source_commit": "e56be3d0e848c2098f1d9057dccec324f34bae7f",
+    "verified_merge_commit": "9289b3c6ae3f2f3ef616493737c113a09c255330"
+  },
+  "sha256_scope": {
+    "source_files": {
+      "git_commit": "e207394a9ed4255ad804860b8f69fde7e940dd54",
+      "paths": [
+        "Hodge/ExplicitResidueAlgebra.lean",
+        "Hodge/ExplicitResidueCertificates.lean",
+        "ResidueAxiomAudit.lean",
+        "lake-manifest.json",
+        "lean-toolchain"
+      ],
+      "note": "Historical mathematical-source snapshot, not a manifest of the current branch. In particular ResidueAxiomAudit.lean is the 52-declaration audit at this source pin; the current branch has the later 65-declaration audit."
+    },
+    "manuscript_files": {
+      "paths": [
+        "paper/formalization-notes/README.md",
+        "paper/formalization-notes/note1-residue-algebra-stage1.pdf",
+        "paper/formalization-notes/note1-residue-algebra-stage1.tex",
+        "paper/formalization-notes/note2-residue-certificates-stage2.pdf",
+        "paper/formalization-notes/note2-residue-certificates-stage2.tex",
+        "paper/formalization-notes/references.bib"
+      ],
+      "note": "Packaged manuscript bytes in this paper update; these hashes are not attributed to the historical mathematical-source commit."
+    }
   }
 }

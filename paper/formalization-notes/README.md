@@ -6,8 +6,11 @@ Email: frohmanbenjamin@gmail.com
 ORCID: https://orcid.org/0009-0006-7068-3718
 License: Apache-2.0 (same as repository root `LICENSE` / `NOTICE`; no relicense)
 
-**Status:** REVIEW DRAFT algebraic manuscripts only. No DOI assigned for these
-notes. Not a Zenodo upload, not peer review, not a Clay/Hodge geometric close.
+**Status:** REVIEW DRAFT algebraic manuscripts.
+- Stage 1 reserved unpublished draft DOI: `10.5281/zenodo.24025148` (https://doi.org/10.5281/zenodo.24025148)
+- Stage 2 reserved unpublished draft DOI: `10.5281/zenodo.24025150` (https://doi.org/10.5281/zenodo.24025150)
+These DOIs are **Zenodo draft DOIs reserved; unpublished** — not live citations and not publication.
+Not peer review; not a Clay/Hodge geometric close.
 
 ## Mathematical source pin
 
@@ -86,7 +89,9 @@ Certification logs build the new modules and print
 Intended repository path: `paper/formalization-notes/` (separate from
 `paper/hodge_sextic/`, which is what `.github/workflows/paper.yml` builds).
 Do **not** wire these notes into tag/release workflows as a publication event.
-Do **not** invent a DOI or touch unrelated Zenodo drafts.
+Draft DOIs above are reserved and unpublished. Do **not** treat them as published
+citations until an explicit publication step. Do not touch unrelated Zenodo drafts
+(including 24024593). Stage 3 note DOI remains unassigned.
 
 ## Verified post-merge evidence
 
@@ -94,3 +99,17 @@ Merged source tree equals the reviewed CI head. Post-merge certificate run also 
 https://github.com/BenFrohman/HODGE/actions/runs/42317920400
 
 `PROVENANCE.json` binds these manuscripts and the reviewed proof/toolchain files by SHA-256.
+
+## Repository integration facts (DOI update packaging)
+
+- Papers merged via PR #37 at `82a630d110dd80cdebcb708ecbd150d7c41ac473`.
+- Current main tip at packaging: `9289b3c6ae3f2f3ef616493737c113a09c255330` (includes Stage 3 Lean proof); these Stage 1/2 notes still document only the 7+45=52 declaration scope pinned at `e207394…`.
+- Mathematical pins and Lean proof-run references in the TeX bodies are preserved.
+
+## Stage 3 companion (separate provenance)
+
+Stage 3 Jacobian-quotient note ships alongside this DOI update:
+`note3-jacobian-quotient-stage3.tex`/`.pdf`, documented in `NOTE3_README.md`
+and `NOTE3_PROVENANCE.json` (mathematical pin `e56be3d…`; merge tip `9289b3c…`).
+Stage 3 DOI remains **unassigned**. Stage 1/2 `PROVENANCE.json` above is not
+overwritten by Note3 hashes.
