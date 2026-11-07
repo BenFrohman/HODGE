@@ -1,0 +1,58 @@
+{
+  "status": "REVIEW DRAFT; no DOI assigned; no publication; no Zenodo write",
+  "mathematical_source_commit": "e56be3d0e848c2098f1d9057dccec324f34bae7f",
+  "verified_merge_commit": "9289b3c6ae3f2f3ef616493737c113a09c255330",
+  "pr": "https://github.com/BenFrohman/HODGE/pull/38",
+  "author": "Frohman, Benjamin Stanley",
+  "email": "frohmanbenjamin@gmail.com",
+  "orcid": "0009-0006-7068-3718",
+  "license": "Apache-2.0",
+  "new_theorems": 13,
+  "audited_total_declarations": 65,
+  "independent_review": "PASS on 13 theorems; required TeX/provenance/audit-citation corrections applied before integration",
+  "postmerge_ci": {
+    "timezone_note": "America/Chicago",
+    "all_six_runs_pass": true,
+    "pr37_merge": "82a630d110dd80cdebcb708ecbd150d7c41ac473",
+    "pr38_merge": "9289b3c6ae3f2f3ef616493737c113a09c255330",
+    "runs": {
+      "pr37_lean": "https://github.com/BenFrohman/HODGE/actions/runs/42319374297",
+      "pr37_paper": "https://github.com/BenFrohman/HODGE/actions/runs/42319374109",
+      "pr37_lean_certificate": "https://github.com/BenFrohman/HODGE/actions/runs/42319374078",
+      "pr38_lean": "https://github.com/BenFrohman/HODGE/actions/runs/42319813124",
+      "pr38_lean_certificate": "https://github.com/BenFrohman/HODGE/actions/runs/42319813016",
+      "pr38_paper": "https://github.com/BenFrohman/HODGE/actions/runs/42319813015"
+    },
+    "certificate_audits": {
+      "pr37": "PASS: 52 incremental theorem declarations; standard axioms only",
+      "pr38": "PASS: 65 incremental theorem declarations; standard axioms only (3 residue modules; ~18:48 America/Chicago)"
+    },
+    "paper_ci_builds_notes": false
+  },
+  "local_evidence": {
+    "build_and_audit": "/workspace/hodge-stage3-evidence-20261106/build-and-audit-final.log",
+    "pass_line": "PASS: 65 incremental theorem declarations; standard axioms only",
+    "axioms_json": "/workspace/hodge-stage3-evidence-20261106/axioms-65.json",
+    "no_sorry": "/workspace/hodge-stage3-evidence-20261106/no-sorry-final.log",
+    "manifest": "/workspace/hodge-stage3-evidence-20261106/stage3-manifest.json",
+    "postmerge37_certify_log": "/workspace/hodge-stage3-evidence-20261106/postmerge37-certify.log",
+    "postmerge38_certify_log": "/workspace/hodge-stage3-evidence-20261106/postmerge38-certify.log",
+    "postmerge_binding": "/workspace/hodge-stage3-evidence-20261106/postmerge-binding.json",
+    "independent_review_typecheck_log": "/workspace/hodge-stage3-independent-review-typecheck.log",
+    "independent_review_typecheck_log_status": "empty (0 bytes); exit status alone may support typecheck completion; supplies no file-text axiom evidence \u2014 cite dedicated audit logs only"
+  },
+  "sha256": {
+    "Hodge/ExplicitJacobianQuotient.lean": "0ff4a38ce58504ad4e4b53f327665e690895c795db34ebcbbd99159ce97e6ae5",
+    "paper/formalization-notes/note3-jacobian-quotient-stage3.tex": "fc828e0914533ccc948f67642cd1a39ba57c5c7f2cdcf2a118cc24375bd93539",
+    "paper/formalization-notes/note3-jacobian-quotient-stage3.pdf": "a63dfa5648310ea052d628be629e4e35bccf2c972c5cd9579f2444f854c4bec6",
+    "paper/formalization-notes/references.bib": "461c61301440101c5dc4c11fe523d153c5fa3bc262e8c87b8017d8128c73cb62",
+    "paper/formalization-notes/NOTE3_README.md": "e8fe86a42d4e58a06e3e42d59a36843959a825df86d21ce117c08f6b49861643"
+  },
+  "limitations": [
+    "Not Sylvester resultant proof",
+    "Not canonical normal form / basis independence / quotient dimension",
+    "Does not infer nonzero quotient classes from nonzero representative coefficients alone",
+    "Not reducedness/schemes/geometric Hodge/residue/cycle-class/descent"
+  ],
+  "filename_note": "NOTE3_PROVENANCE.json is separate from Stage1/2 PROVENANCE.json to avoid collision"
+}
