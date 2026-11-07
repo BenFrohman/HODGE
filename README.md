@@ -8,26 +8,77 @@
 [![License: Apache-2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![ORCID](https://img.shields.io/badge/ORCID-0009--0006--7068--3718-brightgreen.svg)](https://orcid.org/0009-0006-7068-3718)
 
-> **Author:** Benjamin Stanley Frohman ([ORCID: 0009-0006-7068-3718](https://orcid.org/0009-0006-7068-3718))  
-> **Origin Provenance:** `2026-09-19 16:56:32 CDT (Git Initial Commit)`  
-> **Zenodo Archive & DOI:** [`10.5281/zenodo.23629480`](https://doi.org/10.5281/zenodo.23629480) ([Zenodo Record `23629480`](https://zenodo.org/records/23629480))  
-> **Primary Manuscript PDF:** [`docs/CYCLE_CLASS_AND_CONSTRUCTOR.pdf`](./docs/CYCLE_CLASS_AND_CONSTRUCTOR.pdf)  
+> **Author:** Frohman, Benjamin Stanley ([ORCID: 0009-0006-7068-3718](https://orcid.org/0009-0006-7068-3718))
+> **Origin Provenance:** `2026-09-19 16:56:32 CDT (Git Initial Commit)`
+> **Zenodo Archive & DOI:** [`10.5281/zenodo.23629480`](https://doi.org/10.5281/zenodo.23629480) ([Zenodo Record `23629480`](https://zenodo.org/records/23629480))
+> **Primary Manuscript PDF:** [`docs/CYCLE_CLASS_AND_CONSTRUCTOR.pdf`](./docs/CYCLE_CLASS_AND_CONSTRUCTOR.pdf)
 > **Copyright & License:** Copyright (c) 2026 Benjamin Stanley Frohman. Licensed under the Apache License, Version 2.0 ([`LICENSE`](./LICENSE), [`NOTICE`](./NOTICE)).
 <!-- /ZENODO-PROVENANCE-HEADER -->
 
 
 **Status:** Draft (finished skeleton, not a Clay close).
-**Author:** Benjamin Stanley Frohman (@BenFrohman)
+**Author:** Frohman, Benjamin Stanley (@BenFrohman)
 
 Copyright (c) 2026 Benjamin Stanley Frohman. All rights reserved under the Apache License, Version 2.0.
 See `LICENSE`, `NOTICE.md`, `AUTHORS.md`, and `docs/BRANCH_RULES.md`.
 
-This repository does **not** prove the Hodge conjecture and does **not** contain a counterexample.
+The Lean library does **not** yet contain a full geometric proof of the Hodge conjecture for the sextic, and the repository contains no counterexample or proof of the general Hodge conjecture. The separate classical manuscript and the incremental Lean algebra have different verification boundaries, described below.
 See `docs/TRICHOTOMY.md`, `docs/CLAY_TAG.md`, `docs/CLAIM_VS_PROOF.md`, `docs/UNIVERSAL_INSTANCE.md`, and `docs/FROHMAN_SPANS.md`.
 
-## Official close
+## Current sextic proof and incremental formalization
 
-Published theorem name: **Named (2,2) spans**.
+The manuscript in `paper/hodge_sextic/hodge_sextic.tex` gives a classical
+explicit-cycle argument for one complex sextic fourfold, using the cited
+complete-intersection residue theorem and exact support calculations. This is
+not a full Lean formalization, an integral/general HC result, a claim that the
+individual cycles are Q-defined, or external peer review. The conditional
+Fermat-HC descent remains a separate route. Historical DOI/PDF links above
+identify the existing archive/source note, not a newly submitted formalization.
+
+`Hodge/ExplicitResidueAlgebra.lean` proves determinant and formal-derivative
+identities. `Hodge/ExplicitResidueCertificates.lean` proves exact rational
+polynomial reduction/Bezout identities and actual section-coefficient
+nonvanishing under the original modulus-root hypothesis. These modules do not
+supply the missing geometric cycle-class, Betti/Hodge, or residue-theorem bridge.
+See `docs/FULL_FORMALIZATION_STAGE1.md` for the dependency inventory.
+
+### Reproduce
+
+Use the toolchain pinned by `lean-toolchain` (Lean 4.22.0) and the exact
+`lake-manifest.json` dependency revisions; do not replace them with latest.
+After installing Lean's standard `elan` toolchain manager:
+
+```sh
+lake exe cache get
+lake build
+python3 scripts/check_no_sorry.py
+lake build Hodge.ExplicitResidueAlgebra Hodge.ExplicitResidueCertificates
+python3 scripts/check_residue_axioms.py
+```
+
+The incremental modules are explicit build targets, not silently included in
+an older release-root audit. For the separate exact Python certificate and
+reproducible Lean witness generation (Python 3.12 or newer):
+
+```sh
+python3 -m venv .venv
+. .venv/bin/activate
+python3 -m pip install sympy==1.14.0
+python3 scripts/explicit_projection_certificate.py
+python3 scripts/generate_residue_certificates.py
+# Regeneration should leave the generated Lean file unchanged.
+git diff --exit-code -- Hodge/ExplicitResidueCertificates.lean
+lake build Hodge.ExplicitResidueCertificates
+```
+
+SymPy generates candidate witnesses; Lean checks the polynomial identities.
+Python success or a clean axiom audit does not by itself formalize geometry.
+See `CONTRIBUTING.md`, `SECURITY.md`, `LICENSE`, and `NOTICE.md` for review,
+reporting, license, and third-party provenance boundaries.
+
+## Earlier abstract-interface ledger
+
+Abstract-interface theorem name: **Named (2,2) spans** (not a geometric HC theorem).
 Lean: `HodgeConjecture.named_fourfolds`.
 `FrohmanTwoTwoSpans` is an encoding alias of the same finite list.
 Not Lefschetz. Lefschetz stops at `k = 1`.
