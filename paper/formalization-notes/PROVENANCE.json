@@ -54,5 +54,29 @@
     "status": "REVIEW DRAFT; DOI unassigned; provenance file is NOTE3_PROVENANCE.json",
     "mathematical_source_commit": "e56be3d0e848c2098f1d9057dccec324f34bae7f",
     "verified_merge_commit": "9289b3c6ae3f2f3ef616493737c113a09c255330"
+  },
+  "sha256_scope": {
+    "source_files": {
+      "git_commit": "e207394a9ed4255ad804860b8f69fde7e940dd54",
+      "paths": [
+        "Hodge/ExplicitResidueAlgebra.lean",
+        "Hodge/ExplicitResidueCertificates.lean",
+        "ResidueAxiomAudit.lean",
+        "lake-manifest.json",
+        "lean-toolchain"
+      ],
+      "note": "Historical mathematical-source snapshot, not a manifest of the current branch. In particular ResidueAxiomAudit.lean is the 52-declaration audit at this source pin; the current branch has the later 65-declaration audit."
+    },
+    "manuscript_files": {
+      "paths": [
+        "paper/formalization-notes/README.md",
+        "paper/formalization-notes/note1-residue-algebra-stage1.pdf",
+        "paper/formalization-notes/note1-residue-algebra-stage1.tex",
+        "paper/formalization-notes/note2-residue-certificates-stage2.pdf",
+        "paper/formalization-notes/note2-residue-certificates-stage2.tex",
+        "paper/formalization-notes/references.bib"
+      ],
+      "note": "Packaged manuscript bytes in this paper update; these hashes are not attributed to the historical mathematical-source commit."
+    }
   }
 }
