@@ -13,3 +13,10 @@ you may not use this work except in compliance with the License.
 You may obtain a copy of the License at
 
     http://www.apache.org/licenses/LICENSE-2.0
+
+Current incremental formalization and third-party/citation provenance are
+explained in NOTICE.md. That document adds no license terms and does not
+relicense dependencies. The archive identifier above is historical provenance,
+not a claim that the new incremental work has been published there.
+The author copyright notice covers original repository contributions only;
+dependency code and cited mathematics retain their respective ownership.

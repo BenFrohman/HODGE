@@ -1,18 +1,21 @@
 # Authors
 
-**Benjamin Stanley Frohman** (@BenFrohman) is the author of this repository:
+**Frohman, Benjamin Stanley** (@BenFrohman) is credited for original contributions to this repository:
 core library `Hodge`, sandbox `HodgeAttempt`, axiom-print root `AxiomPrint`, and `docs/`.
 
 Copyright (c) 2026 Benjamin Stanley Frohman.
 License: Apache License 2.0 (see `LICENSE` and `NOTICE`).
 SPDX-License-Identifier: Apache-2.0
-Copies and derivatives must keep that notice and attribution.
+Redistribution obligations are governed by `LICENSE`; preserve applicable
+third-party notices rather than attributing their work to this author.
 
 Sister repos FermatPlanes, NoetherLefschetz, CubicFourfold, DerivedCategories:
 same author, Apache-2.0.
 
 This encoding is independent of whether the Hodge conjecture is discharged.
-It is not discharged. Cite as a skeleton, not as a Clay proof.
+The full geometric statement is not discharged in Lean. Cite the abstract
+interface, classical manuscript, and incremental polynomial proofs according to
+their distinct scopes, never as a Clay proof.
 
 ## Frohman encoding (this repo)
 
@@ -37,3 +40,5 @@ It is not discharged. Cite as a skeleton, not as a Clay proof.
 - T. Shioda, Z. Ran, Aljovín–Movasati–Villaflor — Fermat Hodge cycles
 - C. Voisin — surveys and integral Hodge questions
 - Lean 4 and mathlib4 (Apache-2.0; see `NOTICE`)
+
+- R. Villaflor Loyola — the cited complete-intersection cycle-class formula

@@ -3,14 +3,19 @@
 Copyright (c) 2026 Benjamin Stanley Frohman (@BenFrohman).
 
 This repository is licensed under the Apache License, Version 2.0.
-See `LICENSE`. Attribution to the author is required.
+See `LICENSE` for the actual redistribution and notice conditions; this
+provenance note adds no license terms. Third-party work remains under its
+respective copyright and license.
 
-This encoding does not prove the Hodge conjecture.
+The current Lean encoding does not fully formalize the geometric sextic Hodge
+argument. The separate classical manuscript uses external theorems; neither
+this note nor the algebra certificates establish general or integral HC.
 
 ## Author of this repository
 
-Benjamin Stanley Frohman (@BenFrohman) is the author of the Lean encoding,
-the documentation, and the sister records linked from the README.
+Frohman, Benjamin Stanley (@BenFrohman) is credited for this repository's original
+Lean encoding and documentation. Existing third-party credits/notices are
+preserved; this is not a claim of ownership of dependencies or cited mathematics.
 
 ## Software this encoding stands on
 
@@ -37,3 +42,26 @@ this author's work.
 
 Naming those results here is citation, not coauthorship and not a claim that
 those authors endorse this repository.
+
+## Incremental residue work: provenance and dependency boundaries
+
+The polynomial witness generator uses SymPy 1.14.0. Its installed distribution
+has BSD-style terms and additional third-party notices (including Diofant,
+multipledispatch, PyDy and latex2sympy components). Its mpmath dependency has
+BSD-style terms. These dependencies are installed separately, not vendored by
+this change; retaining the repository's Apache-2.0 license does not relicense
+them. Redistributing dependency code/binaries requires preserving their own
+applicable notices and terms; this document is not a replacement for those files.
+
+The residue argument cites R. Villaflor Loyola, *Periods of complete intersection
+algebraic cycles*, Theorem 1.1, doi:10.1007/s00229-021-01290-x, and Griffiths'
+Jacobian-ring/Hodge theory. Citation records provenance; it does not claim
+coauthorship, endorsement, novelty, or that those geometric theorems have been
+formalized in the incremental Lean modules.
+
+The two tracked source-note PDFs have corresponding TeX sources. This bounded
+review does not establish complete clearance of every historical artifact,
+embedded font, quotation, transitive dependency, or external linked archive.
+No existing license, third-party notice, PDF or historical citation identifier
+was replaced or relicensed. Any ownership/license ambiguity needs owner review
+before redistributing material beyond the rights already established.
