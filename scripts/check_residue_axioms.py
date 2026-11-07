@@ -7,7 +7,7 @@ import re
 import subprocess
 
 ROOT = Path(__file__).resolve().parents[1]
-MODULES = ['ExplicitResidueAlgebra', 'ExplicitResidueCertificates']
+MODULES = ['ExplicitResidueAlgebra', 'ExplicitResidueCertificates', 'ExplicitJacobianQuotient']
 expected = []
 for module in MODULES:
     text = (ROOT/'Hodge'/f'{module}.lean').read_text()

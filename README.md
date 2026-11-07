@@ -42,6 +42,13 @@ nonvanishing under the original modulus-root hypothesis. These modules do not
 supply the missing geometric cycle-class, Betti/Hodge, or residue-theorem bridge.
 See `docs/FULL_FORMALIZATION_STAGE1.md` for the dependency inventory.
 
+`Hodge/ExplicitJacobianQuotient.lean` additionally identifies the actual `W`
+and `H*W` representatives modulo the partial derivatives of `k*x^5*y+y^6`.
+It proves that the actual section `H,G` have no common homogeneous zero except
+the origin, by differentiating the checked section identity. This does not yet
+prove a monomial basis, nonzero quotient classes, or the geometric comparison.
+See `docs/FULL_FORMALIZATION_STAGE3.md` for exact statements and limitations.
+
 ### Reproduce
 
 Use the toolchain pinned by `lean-toolchain` (Lean 4.22.0) and the exact
@@ -52,7 +59,7 @@ After installing Lean's standard `elan` toolchain manager:
 lake exe cache get
 lake build
 python3 scripts/check_no_sorry.py
-lake build Hodge.ExplicitResidueAlgebra Hodge.ExplicitResidueCertificates
+lake build Hodge.ExplicitResidueAlgebra Hodge.ExplicitResidueCertificates Hodge.ExplicitJacobianQuotient
 python3 scripts/check_residue_axioms.py
 ```
 
