@@ -1,0 +1,452 @@
+% Copyright (c) 2026 Benjamin Stanley Frohman.
+% Licensed under the Apache License, Version 2.0.
+% REVIEW DRAFT --- not a DOI assignment, upload, or publication.
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[margin=1.05in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{microtype}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{hyperref}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{setspace}
+\usepackage{xcolor}
+\usepackage{xurl}
+\Urlmuskip=0mu plus 3mu
+\setstretch{1.08}
+
+\hypersetup{colorlinks=true,linkcolor=black,citecolor=black,urlcolor=blue}
+
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\lean}[1]{\texttt{\detokenize{#1}}}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+
+\title{\textbf{Exact B\'ezout Certificates and Coefficient Nonvanishing\\
+at Section Roots}\\[0.35em]
+\large Lean Stage~2 Algebraic Certificates\\[0.4em]
+\normalsize\textcolor{red}{\textbf{REVIEW DRAFT}} --- not peer-reviewed; no DOI assigned; not uploaded}
+\author{Frohman, Benjamin Stanley\\
+\small ORCID: \href{https://orcid.org/0009-0006-7068-3718}{0009-0006-7068-3718}\\
+\small Email: \texttt{frohmanbenjamin@gmail.com}\\
+\small Independent Researcher}
+\date{6~November~2026 (America/Chicago)\\
+\small Source pin: \texttt{e207394a9ed4255ad804860b8f69fde7e940dd54}\\
+\small Repository: \url{https://github.com/BenFrohman/HODGE}\\
+\small Pull request: \url{https://github.com/BenFrohman/HODGE/pull/36}}
+
+\begin{document}
+\maketitle
+
+\begin{center}
+\fbox{\parbox{0.92\textwidth}{\centering\small
+\textbf{Status.} This manuscript is a \textbf{REVIEW DRAFT} prepared for later
+integration with Zenodo packaging. It invents no DOI, performs no upload or
+publication, and does not claim peer review, novelty, or a Clay/Hodge close.
+License of the cited Lean sources remains Apache-2.0; this note does not
+relicense them. Author metadata uses the exact form
+\texttt{Frohman, Benjamin Stanley}.}}
+\end{center}
+
+\begin{abstract}
+We record the Stage~2 Lean formalization of exact rational polynomial
+reduction and B\'ezout identities for nine explicit section-coefficient
+polynomials associated to a fixed degree-$24$ section modulus, together with
+the resulting nonvanishing theorems at every root of that modulus, the proof
+that the modulus has degree~$24$, the existence of a complex root, and the
+existence of a complex root at which all nine quantities are simultaneously
+nonzero. The module
+\path{Hodge.ExplicitResidueCertificates} contains $45$ theorem declarations;
+combined with the seven Stage~1 lemmas this yields the audited total of $52$
+incremental theorems, each depending only on the standard Lean axioms
+\lean{propext}, \lean{Classical.choice}, and \lean{Quot.sound}. SymPy is used
+only to generate candidate witnesses; Lean proves every identity
+independently. No geometric cycle-class, Jacobian-quotient basis, or H/G
+resultant theorem is claimed.
+\end{abstract}
+
+\tableofcontents
+
+\section{Scope and non-claims}
+
+This note is the companion to the Stage~1 determinant/derivative note. It
+covers every new Stage~2 theorem in
+\lean{Hodge/ExplicitResidueCertificates.lean} at commit
+\path{e207394a9ed4255ad804860b8f69fde7e940dd54}, organized as one coherent
+algebraic certificate paper. Generated helper declarations (evaluation lemmas,
+reduction/B\'ezout pairs) are mapped as supporting infrastructure for the nine
+nonvanishing results and three nonvacuity theorems; they are not split into
+separate papers~\cite{HODGERepo}.
+
+\paragraph{Proved here.}
+\begin{itemize}[leftmargin=1.4em,itemsep=0.25em]
+\item Nine scalar nonvanishing theorems for the formulas $w_0,w_1,w_2,w_3$,
+      $u_0,u_1,u_2,u_3$, and $\mathrm{disc}=b^2-4c$, under only the field /
+      $\Q$-algebra structure and the modulus-root equation.
+\item Eighteen exact identities in $\Q[X]$: for each of the nine raw
+      polynomials $P$, a reduction $P=R+Q\cdot m$ and a B\'ezout identity
+      $A R+B m=1$.
+\item Degree $24$ of the modulus polynomial, existence of a complex root, and
+      simultaneous nonvanishing of all nine quantities at some complex root.
+\end{itemize}
+
+\paragraph{Not proved here.}
+\begin{itemize}[leftmargin=1.4em,itemsep=0.25em]
+\item The tenth Python certificate: the actual H/G resultant and its
+      common-projective-zero consequence. Pinned mathlib defines resultant via
+      a Sylvester determinant and lists further resultant theory as TODO
+      (\lean{docs/FULL_FORMALIZATION_STAGE2.md}).
+\item Identification of the $U$ formulas with coefficients in an actual
+      Jacobian quotient (requires a Lean quotient-reduction/basis theorem).
+\item Complete-intersection ideal regularity, reducedness, saturation;
+      geometric residue-cycle theorems; Betti/Hodge comparison; geometric group
+      action; rational geometric spanning of Hodge classes.
+\item General or integral Hodge conjecture statements; novelty or peer-review
+      claims.
+\end{itemize}
+
+\section{Standing data}
+
+\begin{definition}[Modulus and section coefficients]
+Let $m\in\Q[X]$ be the explicit polynomial
+\begin{equation}
+m = X^{24}+66081312000\,X^{18}-4811512860000\,X^{12}
++1167566400000\,X^{6}+583200000
+\end{equation}
+(\lean{ExplicitResidueCertificates.modulus}). Let
+$b,c,d,e,g\in\Q[X]$ be the section polynomials
+\lean{bPoly},\lean{cPoly},\lean{dPoly},\lean{ePoly},\lean{gPoly}, whose
+evaluations recover \lean{ExplicitCurve.sb},\ldots,\lean{sg}. For a
+characteristic-zero field $K$ equipped with a $\Q$-algebra structure
+and $k\in K$, write
+$b(k)=\mathrm{sb}(k)$ etc., and define the nine scalar formulas
+\begin{align}
+w_0 &= 3bg-2ce, &
+w_1 &= 6g+be-4cd, &
+w_2 &= 4e-bd-6c, &
+w_3 &= 2d-3b,\\
+u_0 &= c w_0-6, &
+u_1 &= b w_0+c w_1, &
+u_2 &= w_0+b w_1+c w_2, &
+u_3 &= w_1+b w_2+c k,\\
+\mathrm{disc} &= b^2-4c. &&&&
+\end{align}
+The corresponding elements of $\Q[X]$ are \lean{w0Poly},\ldots,\lean{discPoly}.
+\end{definition}
+
+\begin{remark}[Trust boundary for SymPy]
+The script \path{scripts/generate_residue_certificates.py} uses
+SymPy~$1.14.0$~\cite{SymPy} to compute candidate sparse rational
+polynomials $R,Q,A,B$. Those candidates are written into Lean source;
+every equality is then proved by Lean polynomial extensionality and exact
+ring normalization. SymPy is reproducible generation tooling, not part of
+the proof trust base (\path{docs/FULL_FORMALIZATION_STAGE2.md}).
+\end{remark}
+
+\section{Supporting polynomial identities}
+
+\begin{lemma}[Evaluation]\label{lem:eval}
+For each section polynomial $P\in\{b,c,d,e,g\}$ and each raw coefficient
+polynomial $P\in\{w_0,\ldots,w_3,u_0,\ldots,u_3,\mathrm{disc}\}$,
+\begin{equation}
+\mathrm{aeval}_k(P_{\mathrm{Poly}})=P(k)
+\end{equation}
+in every characteristic-zero field $K$ equipped with a $\Q$-algebra
+structure. {\sloppy Lean declares the hypotheses
+\texttt{[Field K]}, \texttt{[CharZero K]}, and
+\texttt{[Algebra}~$\mathbb{Q}$~\texttt{K]}.}
+In particular the five section polynomials evaluate to
+\lean{ExplicitCurve.sb},\ldots,\lean{sg}.
+\end{lemma}
+\begin{proof}[Lean]
+Fourteen \lean{@[simp]} theorems
+(\lean{eval_bPoly} through \lean{eval_disc})
+are proved under those field and $\Q$-algebra hypotheses by unfolding
+definitions and applying the algebra-map simp set.
+\end{proof}
+
+\begin{lemma}[Reduction and B\'ezout]\label{lem:bezout}
+For each of the nine raw polynomials $P\in\Q[X]$ there exist explicitly
+defined sparse $R,Q,A,B\in\Q[X]$ such that
+\begin{equation}
+P = R + Q\cdot m
+\qquad\text{and}\qquad
+A R + B m = 1
+\end{equation}
+as equalities in $\Q[X]$.
+\end{lemma}
+\begin{proof}[Lean]
+Eighteen theorems
+\path{w0_reduction}, \path{w0_bezout}, \ldots,
+\path{disc_reduction}, \path{disc_bezout}
+are proved by \lean{Polynomial.funext}, evaluation at a generic point,
+and \lean{norm_num}/\lean{ring}. Exact rational coefficients are recorded
+in the Lean source; they are omitted here only for readability.
+\end{proof}
+
+\begin{lemma}[Evaluation criterion]\label{lem:criterion}
+If $P=R+Q m$ and $A R+B m=1$ in $\Q[X]$, and if $k$ is a root of $m$ in a
+characteristic-zero field $K$ equipped with a $\Q$-algebra structure
+(Lean: \texttt{[Field K]}, \texttt{[CharZero K]},
+\texttt{[Algebra}~$\mathbb{Q}$~\texttt{K]}),
+then $\mathrm{aeval}_k(P)\neq 0$.
+\end{lemma}
+\begin{proof}[Lean]
+\lean{eval_ne_zero_of_certificate}, under the same field/$\Q$-algebra
+hypotheses: evaluate both identities at $k$; the B\'ezout identity
+collapses to $A(k)R(k)=1$, so $R(k)\neq0$, hence $P(k)\neq0$.
+\end{proof}
+
+\section{Main nonvanishing theorems}
+
+\begin{theorem}[Nine coefficient nonvanishings]\label{thm:nine}
+Let $K$ be a field of characteristic zero with a $\Q$-algebra structure, and
+let $k\in K$ satisfy
+\begin{equation}
+k^{24}+66081312000\,k^{18}-4811512860000\,k^{12}
++1167566400000\,k^{6}+583200000=0.
+\end{equation}
+Then
+\begin{equation}
+w_0(k),\;w_1(k),\;w_2(k),\;w_3(k),\;
+u_0(k),\;u_1(k),\;u_2(k),\;u_3(k),\;
+\mathrm{disc}(k)
+\end{equation}
+are all nonzero.
+\end{theorem}
+\begin{proof}[Lean]
+Nine theorems \lean{w0_ne_zero},\ldots,\lean{disc_ne_zero}. Each rewrites the
+scalar hypothesis as $\mathrm{aeval}_k(m)=0$ and applies
+Lemma~\ref{lem:criterion} to the matching reduction/B\'ezout pair. No
+numerical root approximation, irreducibility hypothesis, geometric datum, or
+desired nonvanishing is assumed.
+\end{proof}
+
+\begin{theorem}[Modulus degree]\label{thm:degree}
+$\mathrm{degree}(m)=24$.
+\end{theorem}
+\begin{proof}[Lean]
+\lean{modulus_degree}: unfold $m$, apply \lean{compute_degree}, and discharge
+closed numerical bounds by \lean{norm_num} and ordinary
+\lean{decide +kernel}. This is not a \lean{native_decide} shortcut on the
+algebraic content of the nonvanishing theorems.
+\end{proof}
+
+\begin{theorem}[Complex root existence]\label{thm:exists}
+There exists $k\in\C$ with $\mathrm{aeval}_k(m)=0$.
+\end{theorem}
+\begin{proof}[Lean]
+\lean{exists_complex_root}: apply algebraic closedness of $\C$
+(\path{IsAlgClosed.exists_aeval_eq_zero}) using Theorem~\ref{thm:degree} and
+$\mathrm{degree}\,m\neq0$.
+\end{proof}
+
+\begin{theorem}[Simultaneous nonvanishing at a complex root]\label{thm:simul}
+There exists $k\in\C$ satisfying the modulus equation such that
+\begin{equation}
+w_0(k)\neq0,\;\ldots,\;w_3(k)\neq0,\;
+u_0(k)\neq0,\;\ldots,\;u_3(k)\neq0,\;
+\mathrm{disc}(k)\neq0.
+\end{equation}
+\end{theorem}
+\begin{proof}[Lean]
+\lean{exists_complex_nonvanishing}: take a root from
+Theorem~\ref{thm:exists} and apply all nine cases of
+Theorem~\ref{thm:nine}. This shows the universal nonvanishing statements are
+not vacuous assertions over a field without section roots. It is not a
+geometric cycle-class assertion.
+\end{proof}
+
+\section{Theorem--declaration mapping}
+\label{sec:mapping}
+
+\subsection*{Main results}
+
+\begin{center}
+\begin{longtable}{@{}llp{6.2cm}@{}}
+\toprule
+\# & Lean declaration & Role \\
+\midrule
+1 & \lean{w0_ne_zero} & $w_0=3bg-2ce\neq0$ \\
+2 & \lean{w1_ne_zero} & $w_1=6g+be-4cd\neq0$ \\
+3 & \lean{w2_ne_zero} & $w_2=4e-bd-6c\neq0$ \\
+4 & \lean{w3_ne_zero} & $w_3=2d-3b\neq0$ \\
+5 & \lean{u0_ne_zero} & $u_0=cw_0-6\neq0$ \\
+6 & \lean{u1_ne_zero} & $u_1=bw_0+cw_1\neq0$ \\
+7 & \lean{u2_ne_zero} & $u_2=w_0+bw_1+cw_2\neq0$ \\
+8 & \lean{u3_ne_zero} & $u_3=w_1+bw_2+ck\neq0$ \\
+9 & \lean{disc_ne_zero} & $b^2-4c\neq0$ \\
+10 & \lean{modulus_degree} & $\deg m=24$ \\
+11 & \lean{exists_complex_root} & $\exists\,k\in\C$, $m(k)=0$ \\
+12 & \lean{exists_complex_nonvanishing} & simultaneous nonvanishing \\
+\bottomrule
+\end{longtable}
+\end{center}
+
+\subsection*{Supporting certificates (same paper; not split)}
+
+\begin{center}
+\begin{longtable}{@{}llp{5.8cm}@{}}
+\toprule
+Count & Lean declarations & Role \\
+\midrule
+5 & \lean{eval_bPoly}\ldots\lean{eval_gPoly} & section evaluation \\
+9 & \lean{eval_w0}\ldots\lean{eval_disc} & raw-coefficient evaluation \\
+9 & \lean{*_reduction} & $P=R+Qm$ in $\Q[X]$ \\
+9 & \lean{*_bezout} & $AR+Bm=1$ in $\Q[X]$ \\
+1 & \lean{eval_ne_zero_of_certificate} & evaluation criterion \\
+\bottomrule
+\end{longtable}
+\end{center}
+
+\noindent
+Total Stage~2 theorems: $12+5+9+9+9+1=45$. Combined with the seven Stage~1
+lemmas: $52$ audited declarations
+(\lean{ResidueAxiomAudit.lean}).
+
+\section{Axiom audit and verification evidence}
+{\sloppy
+
+The checker \path{scripts/check_residue_axioms.py} requires
+\lean{ResidueAxiomAudit.lean} to enumerate every theorem in both incremental
+modules in source order, builds
+\path{Hodge.ExplicitResidueAlgebra} and
+\path{Hodge.ExplicitResidueCertificates}, and accepts only
+\lean{propext}, \lean{Classical.choice}, \lean{Quot.sound}.
+
+Verified log lines (America/Chicago evidence timestamps on disk):
+\begin{itemize}[leftmargin=1.4em]
+\item \path{build-and-audit-final.log}: reports successful
+      \path{Hodge.ExplicitResidueCertificates} build ($7085/7085$) and
+      ``PASS: 52 incremental theorem declarations; standard axioms only''.
+\item \path{residue-audit-e207394.log}: same PASS line; $52$ axiom-print
+      entries.
+\item \lean{no-sorry-e207394.log}:
+      ``OK: no sorry/admit/native\_decide, no axiom declarations''.
+\item \lean{full-build-e207394.log}: full repository
+      \lean{lake build} completed successfully at commit \lean{e207394}.
+\item Prior regeneration check (certificate delivery evidence):
+      byte-identical SymPy regeneration of
+      \lean{ExplicitResidueCertificates.lean}; \lean{LICENSE},
+      \lean{CITATION.cff}, and Stage~1 Lean source unchanged.
+\end{itemize}
+
+} % end sloppy
+
+\section{Toolchain pins and reproducibility}
+{\sloppy
+
+\begin{center}
+\begin{tabular}{@{}ll@{}}
+\toprule
+Pin & Value \\
+\midrule
+Lean~\cite{Lean4} & \lean{leanprover/lean4:v4.22.0} \\
+mathlib input~\cite{mathlib4} & \lean{v4.22.0} \\
+mathlib checkout & \path{79e94a093aff4a60fb1b1f92d9681e407124c2ca} \\
+SymPy (generator only)~\cite{SymPy} & $1.14.0$ \\
+Git commit & \path{e207394a9ed4255ad804860b8f69fde7e940dd54} \\
+PR & \url{https://github.com/BenFrohman/HODGE/pull/36} \\
+License & Apache-2.0 (preserved; no relicense) \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{verbatim}
+python3 scripts/generate_residue_certificates.py
+# optional: git diff --exit-code -- Hodge/ExplicitResidueCertificates.lean
+lake build Hodge.ExplicitResidueAlgebra \
+           Hodge.ExplicitResidueCertificates
+python3 scripts/check_residue_axioms.py
+python3 scripts/check_no_sorry.py
+\end{verbatim}
+
+Local sources and evidence inspected (read-only; no repository edits).
+Mathematical source pin \path{e207394a9ed4255ad804860b8f69fde7e940dd54};
+later inspected worktree \path{fefe2ba9d87c900b538d02c13f7f51f375fcd285}
+retains identical reviewed modules, audit, and toolchain/lock files:
+\begin{itemize}[leftmargin=1.4em]
+\item \path{/workspace/hodge-formal-stage1-20261106/Hodge/ExplicitResidueCertificates.lean}
+\item \path{/workspace/hodge-formal-stage1-20261106/ResidueAxiomAudit.lean}
+\item \path{/workspace/hodge-formal-stage1-20261106/docs/FULL_FORMALIZATION_STAGE2.md}
+\item \path{/workspace/hodge-formal-stage1-20261106/scripts/generate_residue_certificates.py}
+\item \path{/workspace/hodge-formal-stage2-evidence-20261106/}
+      (actual files: \lean{build-and-audit-final.log},
+      \lean{build-and-audit.log}, \lean{full-build.log},
+      \lean{typecheck*.log}, \lean{DegreeCheck.lean},
+      \lean{generate_certificates.py})
+\item \path{/workspace/hodge-formal-stage1-evidence-20261106/}
+      (\lean{Stage1Audit.lean}, \lean{axioms.txt},
+      \lean{baseline-explicit-curve.lean})
+\item \path{/workspace/hodge-certificate-delivery-20261106/}
+      (\lean{full-build-e207394.log},
+      \lean{residue-audit-e207394.log},
+      \lean{no-sorry-e207394.log}, status JSON).
+\end{itemize}
+
+} % end sloppy
+
+\paragraph{CI verification at a later identical head.}
+User-reported merge of PR~\url{https://github.com/BenFrohman/HODGE/pull/36}
+is acknowledged; this packaging records no merge-commit SHA (merge
+verification is underway separately). At head
+\path{fefe2ba9d87c900b538d02c13f7f51f375fcd285}, where the reviewed Lean
+modules, audit, and toolchain/lock match mathematical pin
+\path{e207394a9ed4255ad804860b8f69fde7e940dd54}, all five reported GitHub
+Actions checks completed successfully:
+Lean/build and Lean/attempt
+(\url{https://github.com/BenFrohman/HODGE/actions/runs/42317080169}),
+Lean certificate/certify on the PR
+(\url{https://github.com/BenFrohman/HODGE/actions/runs/42317080616}),
+Lean certificate/certify on the push
+(\url{https://github.com/BenFrohman/HODGE/actions/runs/42317075046}),
+and Paper/paper
+(\url{https://github.com/BenFrohman/HODGE/actions/runs/42317080271}).
+Both certification logs build the incremental modules and print
+\texttt{PASS: 52 incremental theorem declarations; standard axioms only}.
+CI success verifies those algebraic declarations; it does not discharge
+geometric Hodge/Betti/cycle-class obligations. This note remains a
+REVIEW DRAFT with no DOI and no publication claim.
+
+\section{Limitations relative to the geometric program}
+
+The nine nonvanishings are algebraic statements about evaluations of
+explicit elements of $\Q[X]$ at roots of $m$. They do not by themselves
+produce geometric residues, nor do they prove that the corresponding
+Jacobian-quotient classes are nonzero in a geometric cohomology theory.
+Villaflor Loyola's complete-intersection residue theorem~\cite{Villaflor2021}
+and Griffiths' comparison remain external classical input
+(\lean{NOTICE.md}).
+
+The classical Python projection certificate checks ten exact unit-at-every-root
+identities (eight $W$/$U$ formulas, the discriminant, and the H/G resultant).
+Lean Stage~2 covers the first nine; the tenth (resultant) remains unformalized.
+
+These algebraic certificates can stand as fully formalized Lean mathematics
+while a full geometric Hodge paper for the sextic fourfold remains unpublished
+pending the missing geometric foundations. This REVIEW DRAFT assigns no DOI
+and makes no upload.
+
+\section*{Author, license, and contact}
+Author metadata: \textbf{Frohman, Benjamin Stanley}.
+Email: \texttt{frohmanbenjamin@gmail.com}.
+ORCID: \href{https://orcid.org/0009-0006-7068-3718}{0009-0006-7068-3718}.
+Verified from repository \path{CITATION.cff}, \path{NOTICE}, and
+\path{.zenodo.json}.
+Copyright (c) 2026 Benjamin Stanley Frohman. Apache License 2.0.
+Historical archive DOI \texttt{10.5281/zenodo.23629480} is provenance of
+prior HODGE releases, not a DOI for this Stage~2 note.
+
+\bibliographystyle{plain}
+\bibliography{references}
+
+\end{document}

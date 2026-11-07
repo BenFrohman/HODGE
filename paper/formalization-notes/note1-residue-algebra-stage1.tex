@@ -1,0 +1,416 @@
+% Copyright (c) 2026 Benjamin Stanley Frohman.
+% Licensed under the Apache License, Version 2.0.
+% REVIEW DRAFT --- not a DOI assignment, upload, or publication.
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[margin=1.05in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{microtype}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{hyperref}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{setspace}
+\usepackage{xcolor}
+\usepackage{xurl}
+\Urlmuskip=0mu plus 3mu
+\setstretch{1.08}
+
+\hypersetup{colorlinks=true,linkcolor=black,citecolor=black,urlcolor=blue}
+
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\lean}[1]{\texttt{\detokenize{#1}}}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+
+\title{\textbf{Polynomial, Determinant, and Formal-Derivative Identities\\
+for an Explicit Sextic Section}\\[0.35em]
+\large Lean Stage~1 Algebraic Certificates\\[0.4em]
+\normalsize\textcolor{red}{\textbf{REVIEW DRAFT}} --- not peer-reviewed; no DOI assigned; not uploaded}
+\author{Frohman, Benjamin Stanley\\
+\small ORCID: \href{https://orcid.org/0009-0006-7068-3718}{0009-0006-7068-3718}\\
+\small Email: \texttt{frohmanbenjamin@gmail.com}\\
+\small Independent Researcher}
+\date{6~November~2026 (America/Chicago)\\
+\small Source pin: \texttt{e207394a9ed4255ad804860b8f69fde7e940dd54}\\
+\small Repository: \url{https://github.com/BenFrohman/HODGE}\\
+\small Pull request: \url{https://github.com/BenFrohman/HODGE/pull/36}}
+
+\begin{document}
+\maketitle
+
+\begin{center}
+\fbox{\parbox{0.92\textwidth}{\centering\small
+\textbf{Status.} This manuscript is a \textbf{REVIEW DRAFT} prepared for later
+integration with Zenodo packaging. It invents no DOI, performs no upload or
+publication, and does not claim peer review, novelty, or a Clay/Hodge close.
+License of the cited Lean sources remains Apache-2.0; this note does not
+relicense them. Author metadata uses the exact form
+\texttt{Frohman, Benjamin Stanley}.}}
+\end{center}
+
+\begin{abstract}
+We record seven kernel-checked commutative-algebra lemmas formalized in Lean~4
+in the module \lean{Hodge.ExplicitResidueAlgebra}. The lemmas concern an
+exact two-pair decomposition, a binary split factorization, two $4\times4$
+Jacobian determinant factorizations, nonvanishing of every root of an explicit
+degree-$24$ section modulus in characteristic zero, nonvanishing of one
+leading Wronskian coefficient at every such root, and an identity expressing
+the binary Wronskian of two explicit binary forms via formal multivariate
+polynomial derivatives. The statements are mapped to Lean declarations below. They do \emph{not} construct Betti or Hodge
+cohomology, cycle classes, geometric ideals, or a residue-cycle theorem.
+Toolchain pins, a theorem-to-declaration table, reproduction commands, and
+precise formalization boundaries are included. Companion Stage~2
+nonvanishing certificates appear in a separate note.
+\end{abstract}
+
+\tableofcontents
+
+\section{Scope and non-claims}
+
+Let $X\subset\mathbb{P}^5$ denote the complex projective hypersurface cut out
+by the homogeneous sextic
+\begin{equation}
+\sum_{j=0}^{2}\bigl(x_j^5\,x_{j+3}+x_{j+3}^6\bigr)=0
+\end{equation}
+{\sloppy
+(indices understood as in the repository's explicit-curve encoding).
+The classical manuscript and Python residue certificate in the HODGE
+repository argue that certain complete intersection surfaces on~$X$
+project nontrivially onto specified Griffiths Jacobian
+characters~\cite{HODGERepo}. The present note formalizes only a bounded
+algebraic fragment of that route.
+}
+
+\paragraph{What this note proves.}
+{\sloppy
+Exactly the seven Lean theorems listed in
+Section~\ref{sec:mapping}, as stated in
+\path{Hodge/ExplicitResidueAlgebra.lean} at mathematical
+source pin
+\path{e207394a9ed4255ad804860b8f69fde7e940dd54}.
+}
+
+\paragraph{What this note does not prove.}
+\begin{itemize}[leftmargin=1.4em,itemsep=0.25em]
+\item The Hodge conjecture for $X$, in any rational or integral form, and
+      not the general Hodge conjecture.
+\item Geometric cycle classes, Betti cohomology, Hodge structures, or a
+      Lean realization of Villaflor Loyola's residue-cycle
+      theorem~\cite{Villaflor2021}.
+\item An actual Jacobian-quotient vector-space basis, reducedness or
+      saturation of geometric ideals $(Q,C)$ or $(L,Q,C)$, or Fourier/Galois
+      orbit spanning of rational Hodge classes.
+\item The Stage~2 simultaneous nonvanishing of all eight Wronskian/U
+      coefficients and the discriminant $b^2-4c$ (treated in the companion
+      note), and the tenth Python H/G-resultant certificate (still not
+      Lean-proved).
+\end{itemize}
+These boundaries follow the repository records
+\path{docs/FULL_FORMALIZATION_STAGE1.md} and
+\lean{docs/FULL_FORMALIZATION_STAGE2.md}~\cite{HODGERepo}.
+
+\section{Notation and standing hypotheses}
+
+\begin{definition}[Section binary forms]
+For a commutative ring $R$ and coefficients $b,c,d,e,g\in R$, write
+\begin{align}
+H(b,c;X,Y) &= X^2 + b\,XY + c\,Y^2,\\
+G(d,e,g;X,Y) &= X^3 + d\,X^2Y + e\,XY^2 + g\,Y^3,
+\end{align}
+as in \lean{Hodge.ExplicitCurve.H} and \lean{Hodge.ExplicitCurve.G}.
+\end{definition}
+
+\begin{definition}[Section modulus]
+Over any field $K$ of characteristic zero, the scalar section modulus is the
+degree-$24$ monic polynomial identity
+\begin{equation}\label{eq:modulus}
+k^{24}+66081312000\,k^{18}-4811512860000\,k^{12}
++1167566400000\,k^{6}+583200000=0.
+\end{equation}
+The Lean definitions \lean{ExplicitCurve.sb}, \lean{sc}, \lean{sd},
+\lean{se}, \lean{sg} evaluate five explicit rational polynomials in $k$
+(recorded in \lean{Hodge/ExplicitCurve.lean}). Stage~1 uses the already
+checked relation
+\begin{equation}
+2\cdot\mathrm{sd}(k)-3\cdot\mathrm{sb}(k)-k=0
+\end{equation}
+(\lean{ExplicitCurve.rel_h5}) whenever~\eqref{eq:modulus} holds.
+\end{definition}
+
+\begin{remark}
+The docstring of \lean{ExplicitCurve.m} describes $m$ as irreducible over
+$\Q$. That irreducibility claim is classical/Python context and is
+\emph{not} among the seven Lean theorems of this note. Stage~2 proves only
+$\mathrm{degree}(m)=24$ in Lean.
+\end{remark}
+
+\section{Main results}
+
+Throughout, $R$ is a commutative ring and $K$ is a field of characteristic
+zero (with a $\Q$-algebra structure when section coefficients appear).
+
+\begin{theorem}[Two-pair decomposition]\label{thm:two-pair}
+For $h_1,g_1,h_2,g_2,i\in R$ with $i^2=-1$,
+\begin{align*}
+&(h_2+h_1)\bigl(-(h_2^2-h_2 h_1+h_1^2)\bigr)+(g_2+i g_1)(g_2-i g_1)\\
+&\qquad=(g_1^2-h_1^3)+(g_2^2-h_2^3).
+\end{align*}
+\end{theorem}
+\begin{proof}[Lean proof outline]
+\lean{linear_combination} against $-(g_1^2)\,(i^2+1)$. Declaration:
+\path{Hodge.ExplicitResidueAlgebra.two_pair_decomposition}.
+\end{proof}
+
+\begin{theorem}[Split-pair factorization]\label{thm:split}
+For $u,v\in R$,
+\begin{equation}
+(u+v)\cdot\bigl(v(u^4-u^3 v+u^2 v^2-u v^3+v^4)\bigr)=u^5 v+v^6.
+\end{equation}
+\end{theorem}
+\begin{proof}[Lean proof outline]
+Immediate ring normalization (\lean{ring}).
+Declaration: \path{split_pair_decomposition}.
+\end{proof}
+
+\begin{theorem}[Outer Jacobian determinant]\label{thm:outer}
+For $h_1,h_2,i\in R$,
+\begin{equation}
+\det
+\begin{pmatrix}
+1 & 0 & 1 & 0\\
+h_2-2h_1 & 0 & h_1-2h_2 & 0\\
+0 & i & 0 & 1\\
+0 & -i & 0 & 1
+\end{pmatrix}
+=6i(h_2-h_1).
+\end{equation}
+\end{theorem}
+\begin{proof}[Lean proof outline]
+Expand via \path{Matrix.det_succ_row_zero} and finish by \lean{ring}.
+Declaration: \lean{outer_jacobian_det}. No square-root hypothesis is used.
+\end{proof}
+
+\begin{theorem}[Paired Jacobian determinant]\label{thm:paired}
+For $h_1,h_2,i\in R$ and eight first partials
+\[
+h_{1x},\; h_{1y},\; g_{1x},\; g_{1y},\; h_{2x},\; h_{2y},\; g_{2x},\; g_{2y}\in R,
+\]
+\begin{align*}
+&\det
+\begin{pmatrix}
+h_{1x} & h_{1y} & h_{2x} & h_{2y}\\
+(h_2-2h_1)h_{1x} & (h_2-2h_1)h_{1y} & (h_1-2h_2)h_{2x} & (h_1-2h_2)h_{2y}\\
+i g_{1x} & i g_{1y} & g_{2x} & g_{2y}\\
+-i g_{1x} & -i g_{1y} & g_{2x} & g_{2y}
+\end{pmatrix}\\
+&\qquad=6i(h_2-h_1)\,(h_{1x}g_{1y}-h_{1y}g_{1x})\,(h_{2x}g_{2y}-h_{2y}g_{2x}).
+\end{align*}
+\end{theorem}
+\begin{proof}[Lean proof outline]
+Same determinant expansion and ring normalization as
+Theorem~\ref{thm:outer}. Declaration: \lean{paired_jacobian_det}. Linking
+the eight symbols to actual polynomial derivatives is a separate obligation
+and is not discharged by this identity alone.
+\end{proof}
+
+\begin{theorem}[Section roots are nonzero]\label{thm:rootnz}
+If $k\in K$ satisfies~\eqref{eq:modulus}, then $k\neq 0$.
+\end{theorem}
+\begin{proof}[Lean proof outline]
+Substitute $k=0$ into~\eqref{eq:modulus} and contradict by
+\lean{norm_num}. Declaration: \lean{section_root_ne_zero}.
+\end{proof}
+
+\begin{theorem}[Leading $W$ coefficient]\label{thm:leadingW}
+Assume moreover that $K$ carries a $\Q$-algebra structure. If $k\in K$ satisfies~\eqref{eq:modulus},
+then
+\begin{equation}
+2\cdot\mathrm{sd}(k)-3\cdot\mathrm{sb}(k)\neq 0.
+\end{equation}
+\end{theorem}
+\begin{proof}[Lean proof outline]
+From \lean{ExplicitCurve.rel_h5},
+$2\cdot\mathrm{sd}(k)-3\cdot\mathrm{sb}(k)=k$; apply
+Theorem~\ref{thm:rootnz}. Declaration: \lean{leading_W_ne_zero}.
+This is one of eight coefficient nonvanishings required by the classical
+residue route; the remaining seven and the discriminant are Stage~2.
+\end{proof}
+
+\begin{theorem}[Binary Wronskian via formal derivatives]\label{thm:wronskian}
+For $b,c,d,e,g\in R$, let $x=X_0$, $y=X_1$ in $R[X_0,X_1]$, and set
+\begin{align*}
+H_p &= x^2 + C(b)\,xy + C(c)\,y^2,\\
+G_p &= x^3 + C(d)\,x^2 y + C(e)\,x y^2 + C(g)\,y^3.
+\end{align*}
+Then the formal partial Wronskian expands as
+\begin{align*}
+\partial_0 H_p\cdot\partial_1 G_p-\partial_1 H_p\cdot\partial_0 G_p
+&= C(2d-3b)\,x^3 + C(4e-bd-6c)\,x^2 y\\
+&\qquad + C(6g+be-4cd)\,xy^2 + C(3bg-2ce)\,y^3.
+\end{align*}
+\end{theorem}
+\begin{proof}[Lean proof outline]
+Unfold definitions, apply \lean{simp} for the multivariate derivative API,
+and finish by \lean{ring}. Declaration: \lean{binary_wronskian}. The
+coefficient formulas are exactly the scalar Stage~2 quantities $w_3,w_2,w_1,w_0$.
+\end{proof}
+
+\section{Theorem--declaration mapping}
+\label{sec:mapping}
+
+\begin{center}
+\begin{longtable}{@{}llp{5.6cm}@{}}
+\toprule
+\# & Lean declaration & Mathematical content \\
+\midrule
+1 & \lean{two_pair_decomposition} & Thm.~\ref{thm:two-pair}: two-pair sextic identity \\
+2 & \lean{split_pair_decomposition} & Thm.~\ref{thm:split}: $u^5v+v^6$ factorization \\
+3 & \lean{outer_jacobian_det} & Thm.~\ref{thm:outer}: outer $4\times4$ factor \\
+4 & \lean{paired_jacobian_det} & Thm.~\ref{thm:paired}: paired $4\times4$ factor \\
+5 & \lean{section_root_ne_zero} & Thm.~\ref{thm:rootnz}: $k\neq0$ \\
+6 & \lean{leading_W_ne_zero} & Thm.~\ref{thm:leadingW}: $2d-3b\neq0$ \\
+7 & \lean{binary_wronskian} & Thm.~\ref{thm:wronskian}: formal Wronskian \\
+\bottomrule
+\end{longtable}
+\end{center}
+
+\noindent
+Namespace: \lean{Hodge.ExplicitResidueAlgebra}. Source file:
+\path{Hodge/ExplicitResidueAlgebra.lean}. No generated helper declarations
+from Stage~2 are split into this paper.
+
+\section{Axiom audit and verification evidence}
+{\sloppy
+
+A Stage~1 seven-declaration \lean{\#print axioms} audit
+(\path{/workspace/hodge-formal-stage1-evidence-20261106/axioms.txt},
+source \lean{Stage1Audit.lean}) reports only the standard Lean axioms
+\lean{propext}, \lean{Classical.choice}, and \lean{Quot.sound}
+(the first two theorems use only \lean{propext} and \lean{Quot.sound}).
+The combined Stage~1+Stage~2 audit
+(\lean{ResidueAxiomAudit.lean}; log
+\lean{residue-audit-e207394.log}) reports
+\begin{quote}
+\texttt{PASS: 52 incremental theorem declarations; standard axioms only}.
+\end{quote}
+Repository checks record no \lean{sorry}, \lean{admit}, or
+\lean{native_decide} in the incremental modules
+(\lean{no-sorry-e207394.log}:
+``OK: no sorry/admit/native\_decide, no axiom declarations'').
+
+Documented Stage~1 module build: \path{lake build Hodge.ExplicitResidueAlgebra}
+passes with $7084$ build targets
+(\path{docs/FULL_FORMALIZATION_STAGE1.md}). The Stage~2 incremental build that
+includes this module reports $7085/7085$ success for
+\path{Hodge.ExplicitResidueCertificates}
+(\lean{build-and-audit-final.log}). A full repository \lean{lake build} at
+commit \lean{e207394} completed successfully
+(\lean{full-build-e207394.log}).
+
+} % end sloppy
+
+\section{Toolchain pins and reproducibility}
+{\sloppy
+
+\begin{center}
+\begin{tabular}{@{}ll@{}}
+\toprule
+Pin & Value \\
+\midrule
+Lean~\cite{Lean4} & \lean{leanprover/lean4:v4.22.0} (\lean{lean-toolchain}) \\
+mathlib input~\cite{mathlib4} & \lean{v4.22.0} (\lean{lakefile.toml}) \\
+mathlib checkout & \path{79e94a093aff4a60fb1b1f92d9681e407124c2ca} \\
+Git commit & \path{e207394a9ed4255ad804860b8f69fde7e940dd54} \\
+PR & \url{https://github.com/BenFrohman/HODGE/pull/36} \\
+License & Apache-2.0 (unchanged; no relicense) \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Reproduction commands (from a checkout of the pinned commit):
+\begin{verbatim}
+lake exe cache get
+lake build Hodge.ExplicitResidueAlgebra
+python3 scripts/check_no_sorry.py
+# Combined audit after Stage 2 is present:
+lake build Hodge.ExplicitResidueAlgebra \
+           Hodge.ExplicitResidueCertificates
+python3 scripts/check_residue_axioms.py
+\end{verbatim}
+
+Local evidence directories inspected while preparing this draft (read-only;
+another worker packages proof evidence):
+\begin{itemize}[leftmargin=1.4em]
+\item \path{/workspace/hodge-formal-stage1-20261106/}
+      (mathematical source pin \path{e207394a9ed4255ad804860b8f69fde7e940dd54};
+      later inspected worktree \path{fefe2ba9d87c900b538d02c13f7f51f375fcd285}
+      retains identical reviewed modules, audit, and toolchain/lock files);
+\item \path{/workspace/hodge-formal-stage1-evidence-20261106/}
+      (\lean{Stage1Audit.lean}, \lean{axioms.txt},
+      \lean{baseline-explicit-curve.lean});
+\item \path{/workspace/hodge-formal-stage2-evidence-20261106/}
+      and \path{/workspace/hodge-certificate-delivery-20261106/}
+      (build/audit logs cited above).
+\end{itemize}
+
+} % end sloppy
+
+\paragraph{CI verification at a later identical head.}
+User-reported merge of PR~\url{https://github.com/BenFrohman/HODGE/pull/36}
+is acknowledged; this packaging records no merge-commit SHA (merge
+verification is underway separately). At head
+\path{fefe2ba9d87c900b538d02c13f7f51f375fcd285}, where the reviewed Lean
+modules, audit, and toolchain/lock match mathematical pin
+\path{e207394a9ed4255ad804860b8f69fde7e940dd54}, all five reported GitHub
+Actions checks completed successfully:
+Lean/build and Lean/attempt
+(\url{https://github.com/BenFrohman/HODGE/actions/runs/42317080169}),
+Lean certificate/certify on the PR
+(\url{https://github.com/BenFrohman/HODGE/actions/runs/42317080616}),
+Lean certificate/certify on the push
+(\url{https://github.com/BenFrohman/HODGE/actions/runs/42317075046}),
+and Paper/paper
+(\url{https://github.com/BenFrohman/HODGE/actions/runs/42317080271}).
+Both certification logs build the incremental modules and print
+\texttt{PASS: 52 incremental theorem declarations; standard axioms only}.
+CI success verifies those algebraic declarations; it does not discharge
+geometric Hodge/Betti/cycle-class obligations. This note remains a
+REVIEW DRAFT with no DOI and no publication claim.
+
+\section{Limitations and relation to the geometric program}
+
+The seven lemmas are genuine polynomial and matrix identities. They do not
+instantiate $X$ as a smooth projective scheme, do not produce a Betti cycle
+class, and do not identify Jacobian characters with geometric Hodge classes.
+Villaflor Loyola's theorem~\cite{Villaflor2021} and Griffiths' Jacobian-ring
+comparison remain external classical input
+(\lean{NOTICE.md}, \path{docs/FULL_FORMALIZATION_STAGE1.md}).
+
+These algebraic notes can be fully formalized---and, for the seven lemmas
+above, already are---while publication of a full geometric Hodge paper for
+$X$ remains held pending the missing geometric foundations. No novelty or
+peer-review claim is made.
+
+\section*{Author, license, and contact}
+Author metadata: \textbf{Frohman, Benjamin Stanley}.
+Email: \texttt{frohmanbenjamin@gmail.com}.
+ORCID: \href{https://orcid.org/0009-0006-7068-3718}{0009-0006-7068-3718}.
+Verified from repository \path{CITATION.cff}, \path{NOTICE}, and
+\path{.zenodo.json}.
+Copyright (c) 2026 Benjamin Stanley Frohman. Apache License 2.0.
+This REVIEW DRAFT assigns no new DOI.
+
+\bibliographystyle{plain}
+\bibliography{references}
+
+\end{document}
