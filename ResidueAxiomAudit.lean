@@ -1,3 +1,4 @@
+import Hodge.ExplicitJacobianQuotient
 /-
 Copyright (c) 2026 Benjamin Stanley Frohman. Apache-2.0.
 Author: Frohman, Benjamin Stanley.
@@ -58,3 +59,17 @@ import Hodge.ExplicitResidueCertificates
 #print axioms Hodge.ExplicitResidueCertificates.modulus_degree
 #print axioms Hodge.ExplicitResidueCertificates.exists_complex_root
 #print axioms Hodge.ExplicitResidueCertificates.exists_complex_nonvanishing
+
+#print axioms Hodge.ExplicitJacobianQuotient.partial_x
+#print axioms Hodge.ExplicitJacobianQuotient.partial_y
+#print axioms Hodge.ExplicitJacobianQuotient.partial_x_class
+#print axioms Hodge.ExplicitJacobianQuotient.partial_y_class
+#print axioms Hodge.ExplicitJacobianQuotient.constant_inverse
+#print axioms Hodge.ExplicitJacobianQuotient.x4y_class
+#print axioms Hodge.ExplicitJacobianQuotient.y6_class
+#print axioms Hodge.ExplicitJacobianQuotient.wronskian_polynomial
+#print axioms Hodge.ExplicitJacobianQuotient.wronskian_class
+#print axioms Hodge.ExplicitJacobianQuotient.sectionH_class
+#print axioms Hodge.ExplicitJacobianQuotient.section_HW_class
+#print axioms Hodge.ExplicitJacobianQuotient.section_identity_polynomial
+#print axioms Hodge.ExplicitJacobianQuotient.section_common_zero
