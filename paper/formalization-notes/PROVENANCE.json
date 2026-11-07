@@ -1,0 +1,20 @@
+{
+  "status": "REVIEW DRAFT; no DOI assigned; no publication",
+  "mathematical_source_commit": "e207394a9ed4255ad804860b8f69fde7e940dd54",
+  "reviewed_ci_head": "fefe2ba9d87c900b538d02c13f7f51f375fcd285",
+  "verified_merge_commit": "d38d042e701b09faa91a24dfb95a4a1a0217123b",
+  "post_merge_certificate_run": "https://github.com/BenFrohman/HODGE/actions/runs/42317920400",
+  "sha256": {
+    "Hodge/ExplicitResidueAlgebra.lean": "78ec665c0982c5fbfbcec4705541a8f834e64e0ec02dddfbec7d98aa741add07",
+    "Hodge/ExplicitResidueCertificates.lean": "bd5176c1cce148266869302e5eadd40de86de990a9d40287d75478c9481c793a",
+    "ResidueAxiomAudit.lean": "345d6a8966e8651fda4e157921ffc30abad07bd8ea701dc7391eb8833ebb0c9d",
+    "lean-toolchain": "8f6680f8389e8adee06cb2bd44372c6d60dce0e8301630b61a99a5642d1bd71b",
+    "lake-manifest.json": "5cc93cd3ce5c0a5f74267c7d1a9a2b50f5cbabd58a6dc7bfa3bd5dfcad6a36c1",
+    "paper/formalization-notes/README.md": "6e5f8afe17840b3f0a579f7d07379a2355239a68b2098185ca459087c9749813",
+    "paper/formalization-notes/note1-residue-algebra-stage1.pdf": "c2b721deb6919d959b9516802c688eb206abd447b9050af185b16ff6ad958016",
+    "paper/formalization-notes/note1-residue-algebra-stage1.tex": "e0f95f54ed8fd1d496bbc9da3b08651a71cbb20a63bd16c92e94d1b11f328dfd",
+    "paper/formalization-notes/note2-residue-certificates-stage2.pdf": "5665679285797acfadecae564e8a3536cf29c4f30644b2fec15713c4d5585138",
+    "paper/formalization-notes/note2-residue-certificates-stage2.tex": "1bcc228bd3c582e5856050f56d80f6eb45a43c400379ff1b44f7ba0036f18062",
+    "paper/formalization-notes/references.bib": "461c61301440101c5dc4c11fe523d153c5fa3bc262e8c87b8017d8128c73cb62"
+  }
+}
