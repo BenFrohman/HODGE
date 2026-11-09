@@ -5,9 +5,10 @@ Authors: Benjamin Stanley Frohman
 -/
 /-
 Sandbox root. Not imported by Hodge.lean.
+`Hodge.FermatPlanes` is now a library file.
 -/
 import Hodge.Attempt.FermatIdentities
-import Hodge.Attempt.FermatPlanes
+import Hodge.FermatPlanes
 import Hodge.Attempt.ClayStatement
 import Hodge.Attempt.ParameterLocus
 import Hodge.Attempt.GenericObstructed
