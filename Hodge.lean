@@ -4,8 +4,8 @@ Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Benjamin Stanley Frohman
 -/
 /-
-Core library. This file imports the Hodge library only.
-Do not import HodgeAttempt or Hodge.Attempt here.
+Core library. `Hodge.Attempt.FermatPlanes` is imported so the pinned
+plane generators elaborate with `lake build Hodge`. Not a Clay close.
 -/
 import Hodge.Basic
 import Hodge.Frontier
@@ -50,3 +50,4 @@ import Hodge.Islands
 import Hodge.JacobianLength
 import Hodge.KleinPairing
 import Hodge.NoShadow
+import Hodge.Attempt.FermatPlanes
