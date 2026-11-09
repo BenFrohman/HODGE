@@ -4,8 +4,10 @@ Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Benjamin Stanley Frohman
 -/
 /-
-Core library. `Hodge.FermatPlanes` is the permanent Fermat plane membership.
-Do not import HodgeAttempt or Hodge.Attempt here. Not a Clay close.
+Core library. This file imports the Hodge library only.
+Do not import HodgeAttempt or Hodge.Attempt here.
+`Hodge.FermatPlanes` is the library term for the Fermat plane membership.
+Not a Clay close.
 -/
 import Hodge.Basic
 import Hodge.Frontier

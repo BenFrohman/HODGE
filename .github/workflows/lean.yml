@@ -12,10 +12,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Forbid other Attempt imports in Hodge.lean
+      - name: Forbid Attempt imports in Hodge.lean
         run: |
-          if grep -nE '^import[[:space:]]+Hodge\.Attempt' Hodge.lean | grep -v 'Hodge\.Attempt\.FermatPlanes'; then
-            echo "ARCHITECTURE: only Hodge.Attempt.FermatPlanes may be imported from Hodge.lean"
+          if grep -nE '^import[[:space:]]+Hodge\.Attempt' Hodge.lean; then
+            echo "ARCHITECTURE: Hodge.lean must not import Hodge.Attempt"
             exit 1
           fi
       - name: Sorry check on the built library
@@ -28,7 +28,7 @@ jobs:
             Hodge/HeadPlane.lean Hodge/SpecialSexticJacobian.lean Hodge/Hassett.lean \
             Hodge/NamedFamilies.lean Hodge/SexticModuli.lean Hodge/DerivedSurfaces.lean \
             Hodge/Verify.lean Hodge/SexticCombinatorics.lean \
-            Hodge/Attempt/FermatPlanes.lean; then
+            Hodge/FermatPlanes.lean; then
             echo "sorry in the built library"
             exit 1
           fi
