@@ -5,10 +5,12 @@ Authors: Benjamin Stanley Frohman
 -/
 /-
 Sandbox root. Not imported by Hodge.lean.
-`Hodge.FermatPlanes` is now a library file.
+`Hodge.FermatPlanes` is now a library file. `Hodge.Attempt.FermatPlanes` is
+its re-export shim, built here so `AxiomAudit.lean` can import it.
 -/
 import Hodge.Attempt.FermatIdentities
 import Hodge.FermatPlanes
+import Hodge.Attempt.FermatPlanes
 import Hodge.Attempt.ClayStatement
 import Hodge.Attempt.ParameterLocus
 import Hodge.Attempt.GenericObstructed

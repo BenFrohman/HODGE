@@ -69,7 +69,7 @@ theorem pair_vanishing {S : Type*} [CommRing S] (z w ζ : S) (hζ : ζ ^ 4 = -1)
 /-- The constant polynomial satisfies the same relation as `ζ`. -/
 theorem C_pow_four_eq_neg_one (ζ : ℂ) (hζ : ζ ^ 4 = -1) :
     (C ζ : CoordRing) ^ 4 = -1 := by
-  rw [map_pow, hζ]
+  rw [← map_pow, hζ]
   simp
 
 /-- `+` associates left, so the three pairs are regrouped before rewriting. -/

@@ -68,13 +68,13 @@ import HodgeAttempt
 #print axioms Hodge.Attempt.Tagged.mk.inj
 #print axioms Hodge.Attempt.Tagged.mk.injEq
 #print axioms Hodge.Attempt.Tagged.mk.sizeOf_spec
-#print axioms Hodge.Attempt.Var.ofNat_toCtorIdx
-#print axioms Hodge.Attempt.Var.z0.sizeOf_spec
-#print axioms Hodge.Attempt.Var.z1.sizeOf_spec
-#print axioms Hodge.Attempt.Var.z2.sizeOf_spec
-#print axioms Hodge.Attempt.Var.z3.sizeOf_spec
-#print axioms Hodge.Attempt.Var.z4.sizeOf_spec
-#print axioms Hodge.Attempt.Var.z5.sizeOf_spec
+#print axioms Hodge.FermatPlanes.Var.ofNat_toCtorIdx
+#print axioms Hodge.FermatPlanes.Var.z0.sizeOf_spec
+#print axioms Hodge.FermatPlanes.Var.z1.sizeOf_spec
+#print axioms Hodge.FermatPlanes.Var.z2.sizeOf_spec
+#print axioms Hodge.FermatPlanes.Var.z3.sizeOf_spec
+#print axioms Hodge.FermatPlanes.Var.z4.sizeOf_spec
+#print axioms Hodge.FermatPlanes.Var.z5.sizeOf_spec
 #print axioms Hodge.Attempt.carriesFermatRecipe.eq_1
 #print axioms Hodge.Attempt.fermat_pair_vanishing
 #print axioms Hodge.Attempt.fermat_pair_with_remainder
@@ -85,8 +85,8 @@ import HodgeAttempt
 #print axioms Hodge.Attempt.generic_tag_has_no_fermat_recipe
 #print axioms Hodge.Attempt.middle_cycle_codimension_is_two
 #print axioms Hodge.Attempt.middle_cycle_dim_eq_two
-#print axioms Hodge.Attempt.pair_vanishing
-#print axioms Hodge.Attempt.pair_with_remainder
+#print axioms Hodge.FermatPlanes.pair_vanishing
+#print axioms Hodge.FermatPlanes.pair_with_remainder
 #print axioms Hodge.Attempt.recipe_is_not_global_constructor
 #print axioms Hodge.ChowData.mk.inj
 #print axioms Hodge.ChowData.mk.injEq
@@ -122,7 +122,8 @@ import HodgeAttempt
 #print axioms Hodge.Clay.of_section_is_not_uniform
 #print axioms Hodge.Clay.skeleton_on_iff
 #print axioms Hodge.ContainerSeparation.Z_not_container
-#print axioms Hodge.ContainerSeparation.Z_uncomputed
+#print axioms Hodge.ContainerSeparation.Z_bounds
+#print axioms Hodge.ContainerSeparation.Z_status_eq
 #print axioms Hodge.ContainerSeparation.gram_shadow_numeral
 #print axioms Hodge.ContainerSeparation.quintic_h31
 #print axioms Hodge.ContainerSeparation.sextic_R12
@@ -241,7 +242,8 @@ import HodgeAttempt
 #print axioms Hodge.HodgeConjecture.product
 #print axioms Hodge.HodgeConjecture.ungated_codim_two_false
 #print axioms Hodge.HodgeConjecture.zeroCycleLift_not_hodge
-#print axioms Hodge.HostSplit.Z_uncomputed
+#print axioms Hodge.HostSplit.Z_bounds
+#print axioms Hodge.HostSplit.Z_status_eq
 #print axioms Hodge.HostSplit.containers_differ
 #print axioms Hodge.HostSplit.quintic_b4
 #print axioms Hodge.HostSplit.quintic_h22
@@ -466,3 +468,7 @@ import HodgeAttempt
 #print axioms Hodge.FermatCubicHost.primHodge_of_negative_degree
 #print axioms Hodge.QuinticHost.quintic_primHodge_h40_zero
 #print axioms Hodge.QuinticHost.quintic_primHodge_h04_zero
+
+#print axioms Hodge.FermatPlanes.C_pow_four_eq_neg_one
+#print axioms Hodge.FermatPlanes.fermatQuartic_factors
+#print axioms Hodge.FermatPlanes.fermatQuartic_mem_surfaceZ1
