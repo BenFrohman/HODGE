@@ -59,7 +59,7 @@ for a smooth projective fourfold:
 `rho_bounds (D : ChainSexticHodgeBridge H) : 2 ≤ D.rho ∧ D.rho ≤ 1752` is then a full proof.
 It is a theorem *conditional on the bridge hypotheses*, not an unconditional statement about
 the cohomology of `X`: cohomology, Hodge decomposition, cycle classes, the Griffiths residue
-map and the self-intersection formula are not formalized. No `sorry`, no new axioms,
+map and the self-intersection formula are not formalized. No placeholder proofs, no new axioms,
 no `native_decide`.
 
 The upper bound 1752 is a complex dimension (`h^{2,2}`); the lower bound 2 comes from the
