@@ -56,3 +56,6 @@ import Hodge.FermatPlanes
 import Hodge.ChainSexticRank
 import Hodge.ChainSexticRho
 import Hodge.AlgebraicSpanChecks
+import Hodge.VacuityAudit
+import Hodge.HonestHosts
+import Hodge.ChainSexticBridgeAudit
