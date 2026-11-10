@@ -7,8 +7,10 @@
 \newcommand{\Q}{\mathbb{Q}}\newcommand{\PP}{\mathbb{P}}
 \title{The Hodge conjecture for a Delsarte sextic fourfold}
 \author{Benjamin Stanley Frohman}
+\address{Independent Researcher, Texas, United States}
 \email{frohmanbenjamin@gmail.com}
-\date{November 2026. Repository \url{https://github.com/BenFrohman/HODGE}, commit \texttt{COMMITHASH}. Version 1.3}
+\thanks{ORCID: \href{https://orcid.org/0009-0006-7068-3718}{0009-0006-7068-3718}.}
+\date{November 2026. Repository \url{https://github.com/BenFrohman/HODGE}, commit \texttt{COMMITHASH}. Version 1.4}
 \begin{document}
 \begin{abstract}
 Let $X\subset\PP^5$ be the smooth sextic fourfold
@@ -41,6 +43,26 @@ Throughout, \textbf{[Lean]} marks a statement checked in Lean~4/Mathlib in the r
 \textbf{[Cited]} marks a published theorem used as input, \textbf{[Py]} marks an exact computer computation (integer or cyclotomic arithmetic, with the
 scripts in \texttt{scripts/}), and \textbf{[Proof]} marks a pen-and-paper argument.
 
+\section{Corrections in v1.4}
+Version~1.3 marked the primitive Hodge numbers $(1,426,1751,426,1)$ as
+\textbf{[Lean]}, via \texttt{sextic\_primitive\_hodge}. Those numerals are a
+kernel-checked computation of the coefficients of the Hilbert series
+$(1+t+\cdots+t^4)^6$ at the Griffiths degrees, and of the corresponding
+character-type counts. They are \emph{not} a proof that the formalized
+Jacobian module $R_{12}$ of this $F$ has dimension $1751$. Lean currently
+proves only $1\le \dim_{\mathbb Q}R_{12}\le 1751$
+(\texttt{one\_le\_finrank\_jacobianDeg12},
+\texttt{jacobianDeg12\_finrank\_le}); the matching lower bound
+$\dim R_{12}\ge 1751$ (linear independence of the $1751$ standard monomials)
+is not formalized. See also \texttt{docs/VACUITY\_AUDIT.md} and
+\texttt{Hodge/ChainSexticBridgeAudit.lean}.
+
+The projection step in the explicit-cycle argument
+(Section~\ref{sec:search}) is a pen-and-paper geometric step and is not
+Lean-formalized. The accompanying Python script checks exact arithmetic of
+the residue certificate; it does not formalize the cited geometric theorem.
+Nothing in this paper proves or disproves the general Hodge conjecture.
+
 \section{Overview of the argument}
 There are two routes. The descent route transfers the problem to the Fermat fourfold of degree $30$, uses (F), and then descends. The explicit residue route of Proposition~\ref{prop:explicit-residue} instead computes cycle-class supports directly on $X$, using~\cite{VL} and standard Hodge theory, without (F).
 
@@ -59,15 +81,24 @@ dimensions at once and does not need a separate reduction for characters with a 
 \emph{Explicit cycles.} Planes on $X$ span $425$ of the $785$ dimensions
 (Section~\ref{sec:perclass}). For the remaining $360$ (the D24 orbits), version~1.2 gave algebraicity only
 through (F) and the descent. Version~1.3 gives explicit surfaces for them
-(Section~\ref{sec:search}). The section identity and trivial-pair cone containment are Lean-checked; the split-pair surfaces below use an exact polynomial decomposition. Proposition~\ref{prop:explicit-residue} now supplies a direct class-determinant and spanning proof; the separate descent route retains assumption (F).
+(Section~\ref{sec:search}). The section identity and trivial-pair cone containment are Lean-checked; the split-pair surfaces below use an exact polynomial decomposition. The step from those algebraic identities to a nonzero cohomological projection, and the application of the cited residue formula, are pen-and-paper geometric arguments and are \emph{not} Lean-formalized. Proposition~\ref{prop:explicit-residue} now supplies a direct class-determinant and spanning proof; the separate descent route retains assumption (F).
 
 \section{The variety}
 Write $y_i=x_{i+3}$ and $f(x,y)=x^5y+y^6=y(x^5+y^5)$, so $F=f(x_0,y_0)+f(x_1,y_1)+f(x_2,y_2)$.
 \textbf{[Lean]} The gradient of $f$ vanishes only at the origin over any domain of characteristic
 zero (\texttt{gradient\_only\_origin}, \texttt{affine\_cone\_isolated\_at\_origin} in
 \texttt{Hodge/SpecialSextic.lean}). Since the three pairs have separate variables, $X$ is smooth.
-\textbf{[Lean]} The Jacobian ring gives primitive Hodge numbers $(1,426,1751,426,1)$, checked by
-\texttt{decide} in \texttt{sextic\_primitive\_hodge} (\texttt{Hodge/FermatCubicHost.lean}).
+\textbf{[Lean]} The list-convolution coefficients of the Hilbert series
+$(1+t+\cdots+t^4)^6$ at the Griffiths degrees $(0,6,12,18,24)$ are
+$(1,426,1751,426,1)$, checked by \texttt{decide} in
+\texttt{sextic\_primitive\_hodge} (\texttt{Hodge/FermatCubicHost.lean}).
+This is a kernel-checked Hilbert-series / character-count computation, not a
+proof that the formalized Jacobian module $R_{12}$ of this $F$ has dimension
+$1751$. Lean proves only $1\le \dim_{\mathbb Q}R_{12}\le 1751$
+(\texttt{one\_le\_finrank\_jacobianDeg12} in
+\texttt{Hodge/ChainSexticBridgeAudit.lean},
+\texttt{jacobianDeg12\_finrank\_le} in \texttt{Hodge/ChainSexticRank.lean});
+the matching lower bound $\dim R_{12}\ge 1751$ is not formalized.
 
 \section{Planes}
 Each $f$ factors into the six linear forms $y$ and $x-\eta y$ with $\eta^5=-1$. Choosing one
@@ -107,8 +138,10 @@ $\{y^6,x^5+6y^5,x^4y\}$). \textbf{[Lean]} Given that list, the character map is 
 (\texttt{chr\_injective}), the type counts are $(1,426,1751,426,1)$
 (\texttt{primitive\_hodge\_numbers}), the characters whose whole $(\mathbb Z/30)^\times$-orbit has
 type $(2,2)$ number $785$ (\texttt{rational\_hodge\_dim}), in $122$ orbits
-(\texttt{rational\_hodge\_orbits}). Lean checks the finite enumeration only; that this count
-\emph{equals} $\dim H^4_{\rm prim}(X,\Q)\cap H^{2,2}$ is the cited theory. So $Z:=785-125=660$ for the
+(\texttt{rational\_hodge\_orbits}). Lean checks the finite enumeration of
+characters only; this is not a proof that $\dim R_{12}=1751$ as a module
+rank. That this count \emph{equals} $\dim H^4_{\rm prim}(X,\Q)\cap H^{2,2}$
+is the cited theory. So $Z:=785-125=660$ for the
 coordinate planes, and $785-425=360$ after adding the twisted planes.
 
 \textbf{Classification} [Lean counts, informational]. We pulled each orbit back to a Fermat character in
@@ -294,7 +327,7 @@ The $25$ binary standard monomials have distinct characters, so all
 primitive character spaces are one-dimensional. By Griffiths' identification,
 degree $6q$ has Hodge type $(4-q,q)$.
 \textbf{[Py, exact]} Enumeration of the full tensor basis, independently
-of the D2/D24 report, gives Hodge dimensions $(1,426,1751,426,1)$ and
+of the D2/D24 report, gives the same Hilbert-series / character-count numerals $(1,426,1751,426,1)$ and
 $785$ characters whose entire cyclotomic Galois orbit is in degree $12$.
 These are exactly the rational Hodge summands, by the multiplicity-free
 rational representation of the finite diagonal group.
@@ -317,8 +350,9 @@ data against the Lean definitions, verifies ten Bezout identities, and derives
 the class determinants and full character-set equality without using the
 precomputed orbit report. A detailed proof is retained in
 \path{docs/EXPLICIT_PROJECTION_CERTIFICATE.md}.
-The residue formula, Hodge theory, and commutative-algebra steps are classical
-inputs, \emph{not} Lean-formalized. This argument bypasses the earlier
+The residue formula, Hodge theory, commutative-algebra steps, and the
+projection from those certificates onto Hodge classes are classical
+pen-and-paper inputs, \emph{not} Lean-formalized. This argument bypasses the earlier
 elliptic-correspondence and cone-pushforward claims rather than presuming them.
 Adding $h^2$ supplies the nonprimitive summand, and standard Lefschetz results
 handle other codimensions. Integral statements remain open; no general Hodge
@@ -340,10 +374,14 @@ dimension four. The same argument applies to any Delsarte fourfold whose Fermat 
 HC. This is a modest, conditional extension of the known cases. It is not a new method for
 general varieties.
 
-\textbf{Machine-checked components.} Smoothness, the Hodge numbers, the containment of the
-planes, the $8\times8$ Gram matrix with its determinant and rank, and the full character
-enumeration ($785$, $122$, $425/360$, $77/45$) are checked in Lean with \texttt{decide +kernel},
-using no \texttt{native\_decide}. In version 1.2 Lean also checks the Gr\"obner certificate of the
+\textbf{Machine-checked components.} Smoothness, the containment of the
+planes, the $8\times8$ Gram matrix with its determinant and rank, the
+Hilbert-series / character-count numerals $(1,426,1751,426,1)$, and the full
+character enumeration ($785$, $122$, $425/360$, $77/45$) are checked in Lean
+with \texttt{decide +kernel}, using no \texttt{native\_decide}.
+The Lean check of $(1,426,1751,426,1)$ is the series coefficient and
+character count, not $\dim R_{12}=1751$ for the formalized Jacobian module
+(only $1\le \dim R_{12}\le 1751$ is proved). In version 1.2 Lean also checks the Gr\"obner certificate of the
 Milnor algebra (ideal equality, all S-polynomial reductions, 25 standard monomials; Buchberger's
 criterion and Macaulay's theorem are cited) and that the diagonal group preserves the plane families.
 Still Python-only: the ranks $125$ and $425$ of the $217\times217$ and $757\times757$ Gram matrices,
@@ -381,12 +419,24 @@ CI status: \href{https://github.com/BenFrohman/HODGE/actions}{github.com/BenFroh
 The Lean certificate (\texttt{CERTIFICATE.md}) runs \texttt{lake build} and \texttt{AxiomAudit.lean}.
 Every audited declaration depends only on \texttt{propext}, \texttt{Classical.choice} and
 \texttt{Quot.sound}, with no \texttt{sorry}, \texttt{native\_decide} or \texttt{axiom}.
+
+\emph{Reproducibility.} This PDF is built from commit \texttt{COMMITHASH} of
+\url{https://github.com/BenFrohman/HODGE}. The Lean toolchain is
+\texttt{leanprover/lean4:v4.22.0} (\texttt{lean-toolchain}), with Mathlib
+\texttt{v4.22.0} at manifest revision
+\texttt{79e94a093aff4a60fb1b1f92d9681e407124c2ca} (\texttt{lake-manifest.json}).
+Axiom output is as in \texttt{CERTIFICATE.md} and \texttt{AxiomAudit.lean}:
+only \texttt{propext}, \texttt{Classical.choice} and \texttt{Quot.sound}, or a
+subset. One-command rebuild of the Lean library: \texttt{lake build}.
+The paper PDF is rebuilt by the Paper workflow, or locally with
+\texttt{latexmk -pdf hodge\_sextic.tex} in \texttt{paper/hodge\_sextic}.
 \medskip
 \begin{center}\small
 \begin{tabular}{lll}
 \hline
 Statement & Status & Where\\\hline
-$X$ smooth, Hodge numbers & Lean & \texttt{SpecialSextic}, \texttt{FermatCubicHost}\\
+$X$ smooth & Lean & \texttt{SpecialSextic}\\
+Hilbert-series / character counts $(1,426,1751,426,1)$ & Lean, counts only$^*$ & \texttt{FermatCubicHost}\\
 216 / 8 planes and twisted planes on $X$ & Lean & \texttt{SexticCombinatorics}\\
 Values $21,-4,1,0$ & Proof (cited) & Fulton\\
 $8\times8$ matrix, det, rank 8 & Lean & \texttt{SexticCombinatorics}\\
@@ -399,6 +449,7 @@ Ranks 125, 425 (two methods); twisted intersections & Py & \texttt{plane\_inters
 Descent route to Theorem~\ref{thm:main} & Proof, uses (F) & Section~\ref{sec:descent}\\
 Explicit residue route & Proof + cited + Py; no (F) & Proposition~\ref{prop:explicit-residue}\\\hline
 \end{tabular}\end{center}
+{\small $^*$A kernel-checked Hilbert-series / character count, not a proof that $\dim R_{12}=1751$ for the formalized module (Lean proves only $1\le\dim R_{12}\le 1751$).}
 \medskip
 Python scripts: \texttt{hodge\_rank.py} (785), \texttt{plane\_intersections.py} (125),
 \texttt{more\_planes.py} (425), \texttt{hodge\_classify.py}, \texttt{per\_class\_report.py}.
