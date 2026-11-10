@@ -35,6 +35,8 @@ individual cycles are Q-defined, or external peer review. The conditional
 Fermat-HC descent remains a separate route. Historical DOI/PDF links above
 identify the existing archive/source note, not a newly submitted formalization.
 
+The Delsarte working paper is at v1.4. The numerals (1, 426, 1751, 426, 1) recorded there are a kernel-checked Hilbert-series / character-count computation, not a Lean proof that the formalized Jacobian module `R_12` has dimension 1751. Lean proves only `1 ≤ dim R_12 ≤ 1751`; the matching lower bound is not formalized. The explicit-cycle projection step is pen-and-paper and is not Lean-formalized.
+
 `Hodge/ExplicitResidueAlgebra.lean` proves determinant and formal-derivative
 identities. `Hodge/ExplicitResidueCertificates.lean` proves exact rational
 polynomial reduction/Bezout identities and actual section-coefficient

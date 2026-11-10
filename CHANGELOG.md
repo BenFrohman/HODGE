@@ -3,6 +3,13 @@
 
 Author: Benjamin Stanley Frohman (@BenFrohman).
 
+## 2026-11-10 Delsarte paper v1.4 (Lean status of dim R_12)
+
+- Paper v1.4: the numerals $(1,426,1751,426,1)$ are labelled as a kernel-checked Hilbert-series / character-count computation, not a proof that $\dim R_{12}=1751$ for the formalized Jacobian module.
+- Lean proves only $1 \le \dim R_{12} \le 1751$; the matching lower bound is not formalized.
+- The explicit-cycle projection step is marked as pen-and-paper and not Lean-formalized.
+- New section ``Corrections in v1.4'', reproducibility block (commit, Lean/Mathlib versions, axiom output, `lake build`), and affiliation Independent Researcher, Texas, United States on this version.
+
 ## 2026-11-04 explicit cycles for the 45 D24 orbits (v1.3)
 
 - Added `Hodge/ExplicitCurve.lean`: the section identity and containment on X, proved with linear_combination and standard axioms.
