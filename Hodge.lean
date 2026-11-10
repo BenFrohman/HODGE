@@ -55,3 +55,4 @@ import Hodge.NoShadow
 import Hodge.FermatPlanes
 import Hodge.ChainSexticRank
 import Hodge.ChainSexticRho
+import Hodge.AlgebraicSpanChecks
