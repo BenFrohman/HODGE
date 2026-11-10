@@ -35,7 +35,7 @@ individual cycles are Q-defined, or external peer review. The conditional
 Fermat-HC descent remains a separate route. Historical DOI/PDF links above
 identify the existing archive/source note, not a newly submitted formalization.
 
-The Delsarte working paper is at v1.4. The numerals (1, 426, 1751, 426, 1) recorded there are a kernel-checked Hilbert-series / character-count computation, not a Lean proof that the formalized Jacobian module `R_12` has dimension 1751. Lean proves only `1 ≤ dim R_12 ≤ 1751`; the matching lower bound is not formalized. The explicit-cycle projection step is pen-and-paper and is not Lean-formalized.
+The Delsarte working paper is at v1.5. Lean now proves `dim_Q R_12 = 1751` for the formalized Jacobian module of this sextic (`Hodge.ChainSexticR12.jacobianDeg12_finrank_eq`; upper bound by reduction, lower bound by an explicit normal-form map that kills the Jacobian ideal and fixes the 1751 standard monomials; see `docs/R12_EQUALITY.md`). This is a statement about the Jacobian ring. The Griffiths identification `H^{2,2}_prim ≅ R_12`, the Hodge-theoretic inputs, and the explicit-cycle projection step remain cited or pen-and-paper and are not Lean-formalized; `ρ = 786` is still conditional on the named hypotheses of `ChainSexticCharacterBridge`.
 
 `Hodge/ExplicitResidueAlgebra.lean` proves determinant and formal-derivative
 identities. `Hodge/ExplicitResidueCertificates.lean` proves exact rational

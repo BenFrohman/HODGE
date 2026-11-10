@@ -3,6 +3,14 @@
 
 Author: Benjamin Stanley Frohman (@BenFrohman).
 
+## 2026-11-10 dim R_12 = 1751 in Lean; Delsarte paper v1.5
+
+- New `Hodge/ChainSexticR12.lean`: `jacobianDeg12_finrank_eq : finrank ℚ jacobianDeg12 = 1751`. The lower bound comes from an explicit normal-form map `Φ` that vanishes on the Jacobian ideal and fixes the standard monomials (`stdMonomial_linearIndependent`, also for all 15625 standard monomials); `jacobianDeg12_basis` is an explicit basis. Non-vacuity checks included.
+- New `Hodge/ChainSexticR12Bridge.lean`: the Griffiths field is equivalent to `h^{2,2} = 1752` (`griffiths_iff`, `hodgeBridge_h22`); the necessary condition of `characterBridge_forces_R12` holds. `rho_eq_786` remains conditional on `ChainSexticCharacterBridge`; no inhabitant is constructed.
+- `AxiomAudit.lean`: 699 `#print axioms` lines (646 before, plus 53 new), standard axioms only.
+- Docs: `docs/R12_EQUALITY.md` (every step), `docs/R12.md`, `docs/GLOSSARY.md`, `docs/CHAIN_SEXTIC_RANK.md`, `docs/VACUITY_AUDIT.md`, README.
+- Paper v1.5: "Corrections in v1.5"; `dim R_12 = 1751` is now marked [Lean] with the full proof written out; the Griffiths identification stays [Cited].
+
 ## 2026-11-10 Delsarte paper v1.4 (Lean status of dim R_12)
 
 - Paper v1.4: the numerals $(1,426,1751,426,1)$ are labelled as a kernel-checked Hilbert-series / character-count computation, not a proof that $\dim R_{12}=1751$ for the formalized Jacobian module.

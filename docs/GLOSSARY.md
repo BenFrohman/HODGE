@@ -48,7 +48,7 @@ Short definitions for the words used in this ledger. Not a proof of Hodge.
 
 **Hilbert series.** `H_R(t) = (1+t+t^2+t^3+t^4)^6`. Graded dimensions: `R_0=1`, `R_6=426`, `R_12=1751`, `R_18=426`, `R_24=1`.
 
-**`R_12`.** The degree-12 piece. Griffiths: `H^{2,2}_prim(X) ≅ R_12`. A dimension, not a list of surfaces. The Hilbert-series coefficient 1751 is kernel-checked; Lean proves only `1 ≤ dim R_12 ≤ 1751` for the formalized module (equality is not a Lean theorem). See `docs/R12.md`.
+**`R_12`.** The degree-12 piece. Griffiths: `H^{2,2}_prim(X) ≅ R_12`. A dimension, not a list of surfaces. The Hilbert-series coefficient 1751 is kernel-checked, and for the formalized module Lean proves the equality `dim_Q R_12 = 1751` (`Hodge.ChainSexticR12.jacobianDeg12_finrank_eq`, with an explicit basis of 1751 standard monomials). The Griffiths isomorphism itself is cited, not formalized. See `docs/R12.md` and `docs/R12_EQUALITY.md`.
 
 **Griffiths residue.** Identifies a homogeneous polynomial `P` of degree `6q` with a primitive class of type `(4-q,q)` via `Res(P Ω / F^{q+1})`.
 
