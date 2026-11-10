@@ -83,6 +83,20 @@ Python success or a clean axiom audit does not by itself formalize geometry.
 See `CONTRIBUTING.md`, `SECURITY.md`, `LICENSE`, and `NOTICE.md` for review,
 reporting, license, and third-party provenance boundaries.
 
+## Vacuity audit (2026-11-10)
+
+The identity-shadow theorems in the earlier ledger are true for a trivial reason. Each named
+host (`P⁴`, Klein quadric, `P²×P²`, Fermat quartic, Hassett cubic, very general cubic, chain
+sextic spans, K3) is the datum `cl := LinearMap.id`, `obstruction := 0`, so every vector
+counts as both "Hodge" and "algebraic". `named_fourfolds` and the `*_hodgeConjecture` theorems
+are therefore statements about identity maps, not about varieties. The audit proves this and
+the other vacuities in Lean. It also adds honest, conditional replacements, with a named
+spanning hypothesis that is cited, not proved. See `docs/VACUITY_AUDIT.md`. Earlier files are
+unchanged because Zenodo records snapshot them; old names are tied to the new names in
+`Hodge.HonestHosts.Legacy`. Several declarations are `True`-typed or numeral placeholders, so
+the earlier "no `True` gadget" sentence below is inaccurate. Nothing here proves the Hodge
+conjecture.
+
 ## Earlier abstract-interface ledger
 
 Abstract-interface theorem name: **Named (2,2) spans** (not a geometric HC theorem).
