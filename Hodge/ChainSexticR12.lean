@@ -54,7 +54,7 @@ not use Gröbner-basis theory: the only facts used are steps 2–3, proved by ca
 ## What this does and does not say
 
 It is a statement about the polynomial `F` and its Jacobian ring over `ℚ`. It does not
-formalize cohomology, the Griffiths residue isomorphism, or any Hodge class. No `sorry`,
+formalize cohomology, the Griffiths residue isomorphism, or any Hodge class. No placeholder proofs,
 no `native_decide`, no new axioms.
 
 ## Non-vacuity checks
