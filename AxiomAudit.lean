@@ -472,3 +472,21 @@ import HodgeAttempt
 #print axioms Hodge.FermatPlanes.C_pow_four_eq_neg_one
 #print axioms Hodge.FermatPlanes.fermatQuartic_factors
 #print axioms Hodge.FermatPlanes.fermatQuartic_mem_surfaceZ1
+
+#print axioms Hodge.ChainSexticRank.finrank_rationalPoints_le
+#print axioms Hodge.ChainSexticRank.two_le_finrank_of_gram
+#print axioms Hodge.ChainSexticRank.chainSextic_isHomogeneous
+#print axioms Hodge.ChainSexticRank.pderiv_chainSextic_low
+#print axioms Hodge.ChainSexticRank.pderiv_chainSextic_high
+#print axioms Hodge.ChainSexticRank.stdPairs_card
+#print axioms Hodge.ChainSexticRank.stdTriples12_card
+#print axioms Hodge.ChainSexticRank.pair_mem_span
+#print axioms Hodge.ChainSexticRank.pair_relations
+#print axioms Hodge.ChainSexticRank.mk_monomial_mem
+#print axioms Hodge.ChainSexticRank.jacobianDeg12_finrank_le
+#print axioms Hodge.ChainSexticRank.one_add_six_mul_inverse
+#print axioms Hodge.ChainSexticRank.planeSelfIntersection_eq
+#print axioms Hodge.ChainSexticRank.gram_det_eq
+#print axioms Hodge.ChainSexticRank.rho_le_1752
+#print axioms Hodge.ChainSexticRank.two_le_rho
+#print axioms Hodge.ChainSexticRank.rho_bounds
