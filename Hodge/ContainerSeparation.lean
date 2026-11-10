@@ -37,12 +37,22 @@ theorem two_plane_shadow_det : (6 : Nat) * 21 - 1 = 125 := by decide
 
 theorem Z_not_container : (1751 : Nat) - 8 ≠ 1751 := by decide
 
+/-- Placeholder (commit b27f1a0): this is only the numeral fact `2 ≤ 1752`; it says nothing
+about any rank. Superseded by `Hodge.ChainSexticRank.rho_bounds`, which proves
+`2 ≤ ρ_Hdg(V(F)) ≤ 1752` from the genuine Jacobian-ring bound
+`Hodge.ChainSexticRank.jacobianDeg12_finrank_le` and the Gram determinant of `(h², [Π])`,
+conditional on the explicit geometric bridge `Hodge.ChainSexticRank.ChainSexticHodgeBridge`.
+Kept for history; not deleted. -/
 theorem Z_bounds : 2 ≤ 1752 := by decide
 
 theorem Z_gap : 1752 - 2 = 1750 := by decide
 
+/-- Placeholder label (commit b27f1a0): a string, not a theorem about a rank. Superseded by
+`Hodge.ChainSexticRank.rho_bounds`. Kept for history; not deleted. -/
 def Z_status : String := "bounded_2_to_1752"
 
+/-- Placeholder label (commit b27f1a0): a string, not a theorem about a rank. Superseded by
+`Hodge.ChainSexticRank.rho_bounds`. Kept for history; not deleted. -/
 theorem Z_status_eq : Z_status = "bounded_2_to_1752" := rfl
 
 end ContainerSeparation
