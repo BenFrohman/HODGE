@@ -54,3 +54,4 @@ import Hodge.KleinPairing
 import Hodge.NoShadow
 import Hodge.FermatPlanes
 import Hodge.ChainSexticRank
+import Hodge.ChainSexticRho
