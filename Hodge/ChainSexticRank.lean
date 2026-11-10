@@ -30,7 +30,8 @@ This file replaces them by real mathematics, split into three honest layers.
   `y⁶ = 0` in each pair (consequences of the partials), to the 1751 standard monomials
   counted by `stdTriples12_card` (kernel `decide`). This is the division-algorithm half
   of the Gröbner argument and needs no cited theorem. The reverse inequality
-  (`= 1751`, independence of the standard monomials) is not proved here and is not needed.
+  (independence of the standard monomials) is proved in `Hodge.ChainSexticR12`, which gives
+  `ChainSexticR12.jacobianDeg12_finrank_eq : finrank ℚ jacobianDeg12 = 1751`.
 * `planeSelfIntersection_eq : planeSelfIntersection = 21`: the degree-2 coefficient of
   `(1+h)³ · (1 - 6h + 36h²)`, i.e. `c₂` of `(1+h)³/(1+6h)` mod `h³`
   (`one_add_six_mul_inverse` checks the inverse). `gram_det_eq : 6 * 21 - 1 * 1 = 125`.

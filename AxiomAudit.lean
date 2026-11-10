@@ -50,6 +50,8 @@ import Hodge.VacuityAudit
 import Hodge.HonestHosts
 import Hodge.ChainSexticBridgeAudit
 import Hodge.Attempt.VacuityAudit
+import Hodge.ChainSexticR12
+import Hodge.ChainSexticR12Bridge
 
 #print axioms Hodge.Attempt.Hypersurface.mk.inj
 #print axioms Hodge.Attempt.Hypersurface.mk.injEq
@@ -701,3 +703,56 @@ import Hodge.Attempt.VacuityAudit
 #print axioms Hodge.Attempt.VacuityAudit.isProjectiveFourfold_by_fiat
 #print axioms Hodge.Attempt.VacuityAudit.globalClay_is_shape
 #print axioms Hodge.Attempt.VacuityAudit.forall_shape_true_false
+#print axioms Hodge.ChainSexticR12.pnf
+#print axioms Hodge.ChainSexticR12.pnf_rel1
+#print axioms Hodge.ChainSexticR12.pnf_rel2
+#print axioms Hodge.ChainSexticR12.pnf_std
+#print axioms Hodge.ChainSexticR12.nf
+#print axioms Hodge.ChainSexticR12.normalForm
+#print axioms Hodge.ChainSexticR12.normalForm_monomial
+#print axioms Hodge.ChainSexticR12.mon_mul_X_pow
+#print axioms Hodge.ChainSexticR12.pd_low
+#print axioms Hodge.ChainSexticR12.pd_high
+#print axioms Hodge.ChainSexticR12.g0
+#print axioms Hodge.ChainSexticR12.g3
+#print axioms Hodge.ChainSexticR12.g1
+#print axioms Hodge.ChainSexticR12.g4
+#print axioms Hodge.ChainSexticR12.g2
+#print axioms Hodge.ChainSexticR12.g5
+#print axioms Hodge.ChainSexticR12.normalForm_mul_low
+#print axioms Hodge.ChainSexticR12.normalForm_mul_high
+#print axioms Hodge.ChainSexticR12.normalForm_mul_pderiv
+#print axioms Hodge.ChainSexticR12.normalForm_jacobianIdeal
+#print axioms Hodge.ChainSexticR12.Triple
+#print axioms Hodge.ChainSexticR12.dt
+#print axioms Hodge.ChainSexticR12.prod_X_eq
+#print axioms Hodge.ChainSexticR12.dt_apply
+#print axioms Hodge.ChainSexticR12.dt_injective
+#print axioms Hodge.ChainSexticR12.dt_degree
+#print axioms Hodge.ChainSexticR12.stdMonomial_eq
+#print axioms Hodge.ChainSexticR12.stdTriples
+#print axioms Hodge.ChainSexticR12.stdTriples_card
+#print axioms Hodge.ChainSexticR12.stdTriples12_subset
+#print axioms Hodge.ChainSexticR12.normalForm_std
+#print axioms Hodge.ChainSexticR12.stdMonomial_linearIndependent_of_subset
+#print axioms Hodge.ChainSexticR12.stdMonomial_linearIndependent
+#print axioms Hodge.ChainSexticR12.stdMonomial_linearIndependent_all
+#print axioms Hodge.ChainSexticR12.stdMonomial_mem
+#print axioms Hodge.ChainSexticR12.jacobianDeg12_le_span
+#print axioms Hodge.ChainSexticR12.jacobianDeg12_eq_span
+#print axioms Hodge.ChainSexticR12.jacobianDeg12_finrank_eq
+#print axioms Hodge.ChainSexticR12.le_finrank_jacobianDeg12
+#print axioms Hodge.ChainSexticR12.jacobianDeg12_basis
+#print axioms Hodge.ChainSexticR12.jacobianDeg12_basis_apply
+#print axioms Hodge.ChainSexticR12.normalForm_x0_pow_five
+#print axioms Hodge.ChainSexticR12.normalForm_x0_four_x3
+#print axioms Hodge.ChainSexticR12.jacobianIdeal_ne_top
+#print axioms Hodge.ChainSexticR12.stdMonomial_ne_zero
+#print axioms Hodge.ChainSexticR12.nonstd_eq_neg_six
+#print axioms Hodge.ChainSexticR12Bridge.griffiths_iff
+#print axioms Hodge.ChainSexticR12Bridge.hodgeBridge_h22
+#print axioms Hodge.ChainSexticR12Bridge.r_eq
+#print axioms Hodge.ChainSexticR12Bridge.model_rho_eq
+#print axioms Hodge.ChainSexticR12Bridge.characterBridge_R12_obstruction_discharged
+#print axioms Hodge.ChainSexticR12Bridge.characterBridge_griffiths_agree
+#print axioms Hodge.ChainSexticR12Bridge.griffiths_not_automatic

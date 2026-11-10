@@ -147,6 +147,11 @@ FermatCubic, Quintic, DeformedQuintic and DworkQuinticPsi2 hosts; `AlgebraicSpan
   `dim_ℚ R₁₂ = 1751` (`characterBridge_h22`: `h^{2,2} = 1752`). Lean proves only
   `1 ≤ dim R₁₂ ≤ 1751`. **So whether `rho_eq_786` is non-vacuous depends on the unformalized
   lower bound `dim R₁₂ ≥ 1751`.** No inhabitant of the character bridge is constructed.
+* **Update (2026-11-10, `Hodge/ChainSexticR12.lean`).** The lower bound is now proved:
+  `jacobianDeg12_finrank_eq : finrank ℚ jacobianDeg12 = 1751`. The necessary condition of
+  `characterBridge_forces_R12` therefore holds (`ChainSexticR12Bridge.characterBridge_R12_obstruction_discharged`).
+  This removes the one known obstruction; it is not a construction of an inhabitant, so
+  `rho_eq_786` is still conditional on the character-bridge hypotheses.
 
 ## Axioms
 

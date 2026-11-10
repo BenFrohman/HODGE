@@ -59,3 +59,5 @@ import Hodge.AlgebraicSpanChecks
 import Hodge.VacuityAudit
 import Hodge.HonestHosts
 import Hodge.ChainSexticBridgeAudit
+import Hodge.ChainSexticR12
+import Hodge.ChainSexticR12Bridge

@@ -20,10 +20,11 @@ hypothesis bundles. A bundle that cannot be inhabited would make `rho_bounds` an
 * `rho_not_automatic`: for an arbitrary complex subspace in place of `H^{2,2}` the rational
   rank can be `0`, so the lower bound `2 ≤ ρ` genuinely uses the bridge fields.
 * `characterBridge_forces_R12`: any `ChainSexticCharacterBridge` forces
-  `finrank ℚ R₁₂ = 1751`. Lean proves only `≤ 1751` (`jacobianDeg12_finrank_le`); the reverse
-  inequality (independence of the 1751 standard monomials) is **not** formalized. So the
-  character bridge, and with it `rho_eq_786`, is non-vacuous only modulo that unproved
-  lower bound. This file does not construct an inhabitant of the character bridge.
+  `finrank ℚ R₁₂ = 1751`. This file proves only `≤ 1751` (`jacobianDeg12_finrank_le`) and
+  `≥ 1`. The reverse inequality (independence of the 1751 standard monomials) is proved in
+  `Hodge.ChainSexticR12` (`jacobianDeg12_finrank_eq`), so this necessary condition holds; see
+  `Hodge.ChainSexticR12Bridge`. This file does not construct an inhabitant of the character
+  bridge, and neither does any other file.
 -/
 
 open Module TensorProduct MvPolynomial
@@ -131,7 +132,7 @@ theorem one_le_finrank_jacobianDeg12 : 1 ≤ finrank ℚ jacobianDeg12 := by
 
 /-! ## A model of `ChainSexticHodgeBridge` -/
 
-/-- `r = dim_ℚ R₁₂` (known: `1 ≤ r ≤ 1751`). -/
+/-- `r = dim_ℚ R₁₂` (`r = 1751`: `ChainSexticR12Bridge.r_eq`). -/
 noncomputable abbrev r : ℕ := finrank ℚ jacobianDeg12
 
 /-- Model space of dimension `1 + r`. -/
@@ -225,9 +226,9 @@ theorem characterBridge_h22 {H : Type*} [AddCommGroup H] [Module ℚ H] [FiniteD
     Finset.sum_const, type22_card]
   rfl
 
-/-- **Necessity.** A character bridge exists only if `dim_ℚ R₁₂ = 1751`. Lean proves
-`1 ≤ dim R₁₂ ≤ 1751`; the equality is not formalized, so non-vacuity of `rho_eq_786` rests on
-that unproved lower bound (independence of the 1751 standard monomials). -/
+/-- **Necessity.** A character bridge exists only if `dim_ℚ R₁₂ = 1751`. The equality is
+proved in `Hodge.ChainSexticR12.jacobianDeg12_finrank_eq`, so this condition is satisfied; it is
+necessary, not sufficient, for an inhabitant. -/
 theorem characterBridge_forces_R12 {H : Type*} [AddCommGroup H] [Module ℚ H]
     [FiniteDimensional ℚ H] (D : ChainSexticCharacterBridge H) :
     finrank ℚ jacobianDeg12 = 1751 := by
