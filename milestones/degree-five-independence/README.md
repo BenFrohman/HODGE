@@ -3,6 +3,8 @@
 Author: Benjamin Stanley Frohman (Frohman, Benjamin Stanley) <frohmanbenjamin@gmail.com>.
 Affiliation: Independent Researcher, Texas, United States. Version 1.1, 10 November 2026.
 Copyright (c) 2026 Benjamin Stanley Frohman. Existing Apache-2.0 license unchanged.
+Published v1.1: DOI [10.5281/zenodo.24145349](https://doi.org/10.5281/zenodo.24145349) (11 November 2026;
+source pinned to `4c768890dc88bc180bf10887e4ba1b426f33a41a`; paper files CC BY 4.0 on Zenodo).
 
 Code commit: `52325b02f966139c99015443ca5fba8a725ef3bb` (PR #49, on `main` `b13f57f`; first prepared on `e56be3d`).
 CI: https://github.com/BenFrohman/HODGE/actions/runs/42922528702 (certify, pass: 78/78 standard axioms)

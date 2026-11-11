@@ -1,15 +1,23 @@
 <!-- Copyright (c) 2026 Benjamin Stanley Frohman. Licensed under Apache-2.0. -->
-# Formalization notes (REVIEW DRAFT)
+# Formalization notes
 
 Author metadata: **Frohman, Benjamin Stanley**
 Email: frohmanbenjamin@gmail.com
 ORCID: https://orcid.org/0009-0006-7068-3718
 License: Apache-2.0 (same as repository root `LICENSE` / `NOTICE`; no relicense)
 
-**Status:** REVIEW DRAFT algebraic manuscripts.
-- Stage 1 reserved unpublished draft DOI: `10.5281/zenodo.24025148` (https://doi.org/10.5281/zenodo.24025148)
-- Stage 2 reserved unpublished draft DOI: `10.5281/zenodo.24025150` (https://doi.org/10.5281/zenodo.24025150)
-These DOIs are **Zenodo draft DOIs reserved; unpublished** — not live citations and not publication.
+**Status (checked live on Zenodo, 11 November 2026):** all three notes are published on Zenodo
+as preprints. The Zenodo records license the paper files CC BY 4.0. The code in this repository
+stays Apache-2.0.
+- Stage 1: v1 [10.5281/zenodo.24025148](https://doi.org/10.5281/zenodo.24025148), v2 (correction)
+  [10.5281/zenodo.24082011](https://doi.org/10.5281/zenodo.24082011); concept DOI `10.5281/zenodo.24025147`.
+- Stage 2: v1 [10.5281/zenodo.24025150](https://doi.org/10.5281/zenodo.24025150), v2 (correction)
+  [10.5281/zenodo.24082012](https://doi.org/10.5281/zenodo.24082012); concept DOI `10.5281/zenodo.24025149`.
+- Stage 3 (v1.1): [10.5281/zenodo.24145347](https://doi.org/10.5281/zenodo.24145347), source pinned to `4c76889`.
+- Degree-five milestone (v1.1, `milestones/degree-five-independence/`):
+  [10.5281/zenodo.24145349](https://doi.org/10.5281/zenodo.24145349), source pinned to `4c76889`.
+
+The earlier wording here called the Stage 1 and 2 DOIs "reserved; unpublished". That is out of date.
 Not peer review; not a Clay/Hodge geometric close.
 
 ## Mathematical source pin
@@ -89,9 +97,8 @@ Certification logs build the new modules and print
 Intended repository path: `paper/formalization-notes/` (separate from
 `paper/hodge_sextic/`, which is what `.github/workflows/paper.yml` builds).
 Do **not** wire these notes into tag/release workflows as a publication event.
-Draft DOIs above are reserved and unpublished. Do **not** treat them as published
-citations until an explicit publication step. Do not touch unrelated Zenodo drafts
-(including 24024593). Stage 3 note DOI remains unassigned.
+The DOIs above are published records (see Status). Do not touch unrelated Zenodo drafts
+(including 24024593).
 
 ## Verified post-merge evidence
 
@@ -111,5 +118,5 @@ https://github.com/BenFrohman/HODGE/actions/runs/42317920400
 Stage 3 Jacobian-quotient note ships alongside this DOI update:
 `note3-jacobian-quotient-stage3.tex`/`.pdf`, documented in `NOTE3_README.md`
 and `NOTE3_PROVENANCE.json` (mathematical pin `e56be3d…`; merge tip `9289b3c…`).
-Stage 3 DOI remains **unassigned**. Stage 1/2 `PROVENANCE.json` above is not
+Stage 3 v1.1 is published as 10.5281/zenodo.24145347. Stage 1/2 `PROVENANCE.json` above is not
 overwritten by Note3 hashes.
