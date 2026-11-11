@@ -1,6 +1,6 @@
 % Copyright (c) 2026 Benjamin Stanley Frohman.
 % Licensed under the Apache License, Version 2.0.
-% REVIEW DRAFT --- not a DOI assignment, upload, or publication.
+% Version 1.1 (10 November 2026). Preprint, not peer reviewed.
 \documentclass[11pt,a4paper]{article}
 
 \usepackage[margin=1.05in]{geometry}
@@ -34,13 +34,14 @@
 \title{\textbf{Binary Jacobian Quotient Representatives\\
 and H/G Common-Zero Exclusion}\\[0.35em]
 \large Lean Stage~3 Algebraic Certificates\\[0.4em]
-\normalsize\textcolor{red}{\textbf{REVIEW DRAFT}} --- not peer-reviewed; no DOI assigned; not uploaded}
+\normalsize Version~1.1 --- preprint, not peer reviewed}
 \author{Frohman, Benjamin Stanley\\
 \small ORCID: \href{https://orcid.org/0009-0006-7068-3718}{0009-0006-7068-3718}\\
 \small Email: \texttt{frohmanbenjamin@gmail.com}\\
-\small Independent Researcher}
-\date{6~November~2026 (America/Chicago)\\
-\small Source pin: \texttt{e56be3d0e848c2098f1d9057dccec324f34bae7f}\\
+\small Independent Researcher, Texas, United States}
+\date{Version 1.1: 10~November~2026 (v1.0 review draft: 6~November~2026)\\
+\small Lean source unchanged since \texttt{e56be3d0e848c2098f1d9057dccec324f34bae7f};
+checked again at \texttt{52325b02f966139c99015443ca5fba8a725ef3bb}\\
 \small Repository: \url{https://github.com/BenFrohman/HODGE}\\
 \small Pull request: \url{https://github.com/BenFrohman/HODGE/pull/38}}
 
@@ -49,9 +50,9 @@ and H/G Common-Zero Exclusion}\\[0.35em]
 
 \begin{center}
 \fbox{\parbox{0.92\textwidth}{\centering\small
-\textbf{Status.} This manuscript is a \textbf{REVIEW DRAFT} companion to the
-Stage~1--2 algebraic notes. It invents no DOI, performs no upload or
-publication, and does not claim peer review, novelty, or a Clay/Hodge close.
+\textbf{Status.} Version~1.1 of a companion to the Stage~1--2 algebraic
+notes. It is not peer reviewed and does not claim novelty, a geometric Hodge
+statement, or anything about the Hodge conjecture.
 License of the cited Lean sources remains Apache-2.0; this note does not
 relicense them. Author metadata uses the exact form
 \texttt{Frohman, Benjamin Stanley}.}}
@@ -69,7 +70,7 @@ formulas, proves the four-monomial identity
 $[HW]=u_0 y^5+u_1 xy^4+u_2 x^2y^3+u_3 x^3y^2$ in the quotient at every modulus
 root, proves $G^2-H^3=f_k$ in the polynomial ring from the six existing
 coefficient relations, and proves that any common evaluation zero of the actual
-$H$ and $G$ forces the origin. Combined with Stages~1--2 this yields a local
+$H$ and $G$ forces the origin. Combined with Stages~1--2 this yields a GitHub Actions
 audit of $65$ incremental theorem declarations under only
 \lean{propext}, \lean{Classical.choice}, and \lean{Quot.sound}.
 This is not a Sylvester-resultant identification, not a quotient basis or
@@ -103,8 +104,11 @@ hypotheses taken from the Lean declarations (no hidden assumptions).
 \begin{itemize}[leftmargin=1.4em,itemsep=0.25em]
 \item Identification of mathlib's Sylvester resultant, or a Lean check of the
       tenth Python numeric resultant/B\'ezout certificate.
-\item Canonical normal forms, basis independence, quotient dimension, or that
-      a nonzero representative coefficient implies a nonzero quotient class.
+\item Canonical normal forms, a basis of the whole quotient, or quotient
+      dimension. (That the four degree-five classes are linearly independent,
+      and hence that $[HW]\neq0$, is proved in the companion milestone note
+      \path{milestones/degree-five-independence/main.pdf}, module
+      \path{Hodge/ExplicitJacobianIndependence.lean}; it is not part of this note.)
 \item Reducedness/saturation of geometric ideals, schemes, Betti/Hodge
       comparison, residue-cycle theorems, Galois/Fourier descent, or any
       general/integral Hodge conjecture statement.
@@ -258,8 +262,20 @@ $u_0=cw_0-6$, $u_1=bw_0+cw_1$, $u_2=w_0+bw_1+cw_2$, $u_3=w_1+bw_2+ck$.
 The constant $-6$ arises from the $k x^5$ term together with the actual
 $\partial_y$ relation; it is not obtained by setting $k=1$.
 \end{theorem}
-\begin{proof}[Lean]
-\lean{section_HW_class}: use $w_3=k$ via \lean{ExplicitCurve.rel_h5}, multiply
+\begin{proof}
+Write $H=x^2+bxy+cy^2$ and $W=w_3x^3+w_2x^2y+w_1xy^2+w_0y^3$. Multiplying out,
+\begin{align*}
+HW={}&w_3x^5+(w_2+bw_3)x^4y+(w_1+bw_2+cw_3)x^3y^2\\
+&+(w_0+bw_1+cw_2)x^2y^3+(bw_0+cw_1)xy^4+cw_0y^5 .
+\end{align*}
+In $\operatorname{Jac}(k)$, $\overline{x}^4\overline{y}=0$
+(Theorem~\ref{thm:vanishing}, which needs $k\neq0$), and
+$\overline{k}\,\overline{x}^5=-6\overline{y}^5$
+(Theorem~\ref{thm:partial-classes}). Since $w_3=k$
+(\lean{ExplicitCurve.rel_h5}), the $x^5$ term becomes $-6\overline{y}^5$, the
+$x^4y$ term drops, and collecting gives
+$u_0=cw_0-6$, $u_1=bw_0+cw_1$, $u_2=w_0+bw_1+cw_2$, $u_3=w_1+bw_2+ck$.
+Lean: \lean{section_HW_class}: use $w_3=k$ via \lean{ExplicitCurve.rel_h5}, multiply
 the $H$ and $W$ classes, and reduce with Theorems~\ref{thm:vanishing}
 and~\ref{thm:partial-classes} ($k\neq0$ from
 \lean{section_root_ne_zero}).
@@ -286,14 +302,16 @@ H(a,b)=0\qquad\text{and}\qquad G(a,b)=0,
 \end{equation}
 then $a=0$ and $b=0$.
 \end{theorem}
-\begin{proof}[Lean outline]
-\lean{section_common_zero}. Differentiate Theorem~\ref{thm:identity}: at a
-common zero of $H$ and $G$, both partials of $f_k$ vanish, so
+\begin{proof}
+\lean{section_common_zero}. Differentiate Theorem~\ref{thm:identity}:
+$\partial f_k=2G\,\partial G-3H^2\,\partial H$ for $\partial=\partial_x,\partial_y$.
+At a common zero of $H$ and $G$ both terms vanish, so both partials of $f_k$ vanish:
 \begin{equation}
 5k a^4 b=0,\qquad k a^5+6b^5=0.
 \end{equation}
-From~\eqref{eq:mod} one has $k\neq0$, hence $a=0$ or $b=0$; the second equation
-forces the remaining coordinate to vanish. No resultant API, coprimality
+From~\eqref{eq:mod} one has $k\neq0$ (its constant term $583200000$ is
+nonzero), and $5\neq0$ in characteristic zero, so $a=0$ or $b=0$. If $a=0$ the
+second equation is $6b^5=0$, so $b=0$; if $b=0$ it is $ka^5=0$, so $a=0$. No resultant API, coprimality
 premise, or external geometric theorem is assumed. This discharges the
 projective common-zero input supplied classically by the tenth Python
 certificate, without identifying Sylvester resultants.
@@ -328,42 +346,39 @@ certificate, without identifying Sylvester resultants.
 Namespace: \lean{Hodge.ExplicitJacobianQuotient}. Supporting lemmas for this
 result are kept in this paper; Stages~1--2 are not re-split here.
 
-\section{Verification evidence (local cached)}
+\section{Verification evidence (GitHub Actions)}
 
-Primary local evidence (this packaging does not re-run Lake):
-\begin{itemize}[leftmargin=1.4em]
-\item \path{/workspace/hodge-stage3-evidence-20261106/build-and-audit-final.log}:
-      \texttt{OK [7086/7086] Built Hodge.ExplicitJacobianQuotient};
-      \texttt{PASS: 65 incremental theorem declarations; standard axioms only}.
-\item \path{axioms-65.json}: $65$ declarations ($7{+}45{+}13$), each using only
-      the standard axioms \lean{propext}, \lean{Classical.choice}, and
-      \lean{Quot.sound}.
-\item \path{no-sorry-final.log}:
-      ``OK: no sorry/admit/native\_decide, no axiom declarations''.
-\item \path{full-cached-build.log}: full repository cached build completed.
-\item \path{stage3-manifest.json}: commit/source/evidence hashes; scope string
-      records ``no basis-independence, nonzero quotient-class or geometric Hodge
-      theorem claim''.
-\end{itemize}
-
-The independent review typecheck log
-\path{/workspace/hodge-stage3-independent-review-typecheck.log} is empty
-(zero bytes). At most its process exit status can support that a typecheck
-invocation completed; it supplies \emph{no} file-text axiom evidence and is
-not cited as an audit. Dedicated axiom/audit evidence is only the items above
-(\path{build-and-audit-final.log}, \path{axioms-65.json},
-\path{no-sorry-final.log}). Intermediate scratch logs such as
-\path{typecheck-2.log} record pre-final errors and are not the passing audit.
-
-Post-merge CI on \texttt{main} reports SUCCESS for all six Lean / Lean
-certificate / Paper runs of merges~\#37 and~\#38
-(certificate audits: Stage~1--2 PASS~$52$ on merge~\#37;
-Stage~1--3 PASS~$65$ with three residue modules on merge~\#38, completed
-about 18:48 America/Chicago). Paper CI builds only
-\path{paper/hodge_sextic/}; it does not rebuild these formalization notes.
-Mathematical source pin remains \path{e56be3d}; merge tip
-\path{9289b3c6ae3f2f3ef616493737c113a09c255330}. Manuscript status remains
-REVIEW DRAFT regardless of CI.
+The Lean file \path{Hodge/ExplicitJacobianQuotient.lean} is byte-identical at
+\path{e56be3d}, at \lean{main} \path{b13f57f}, and at
+\path{52325b02f966139c99015443ca5fba8a725ef3bb} (pull request~\#49), where it
+was checked again. In that run the workflow \lean{certify.yml}
+(\url{https://github.com/BenFrohman/HODGE/actions/runs/42922528702}, passed)
+built the residue modules and printed, for each of the thirteen theorems of
+this note,
+\begin{verbatim}
+'Hodge.ExplicitJacobianQuotient.partial_x'
+'Hodge.ExplicitJacobianQuotient.partial_y'
+'Hodge.ExplicitJacobianQuotient.partial_x_class'
+'Hodge.ExplicitJacobianQuotient.partial_y_class'
+'Hodge.ExplicitJacobianQuotient.constant_inverse'
+'Hodge.ExplicitJacobianQuotient.x4y_class'
+'Hodge.ExplicitJacobianQuotient.y6_class'
+'Hodge.ExplicitJacobianQuotient.wronskian_polynomial'
+'Hodge.ExplicitJacobianQuotient.wronskian_class'
+'Hodge.ExplicitJacobianQuotient.sectionH_class'
+'Hodge.ExplicitJacobianQuotient.section_HW_class'
+'Hodge.ExplicitJacobianQuotient.section_identity_polynomial'
+'Hodge.ExplicitJacobianQuotient.section_common_zero'
+  each: depends on axioms: [propext, Classical.choice, Quot.sound]
+PASS: 78 incremental theorem declarations; standard axioms only
+\end{verbatim}
+($78=7+45+13+13$: Stages~1--3 and the degree-five milestone). The same run's
+root audit printed \lean{audited 699 declarations, 699 with standard axioms
+only}, and \path{scripts/check_no_sorry.py} passed. The library build and the
+CI sorry scan, which now lists this file, passed in
+\url{https://github.com/BenFrohman/HODGE/actions/runs/42922528652}.
+A kernel check shows the Lean statements follow from the Lean definitions; it
+does not establish any geometric statement.
 
 \section{Toolchain pins and reproducibility}
 
@@ -375,26 +390,26 @@ Pin & Value \\
 Lean & \lean{leanprover/lean4:v4.22.0} \\
 mathlib input & \lean{v4.22.0} \\
 mathlib checkout & \path{79e94a093aff4a60fb1b1f92d9681e407124c2ca} \\
-Git commit & \path{e56be3d0e848c2098f1d9057dccec324f34bae7f} \\
-PR & \url{https://github.com/BenFrohman/HODGE/pull/38} \\
+Source commit & \path{e56be3d0e848c2098f1d9057dccec324f34bae7f} (PR~\#38) \\
+Re-checked at & \path{52325b02f966139c99015443ca5fba8a725ef3bb} (PR~\#49) \\
 License & Apache-2.0 (preserved; no relicense) \\
 \bottomrule
 \end{tabular}
 \end{center}
 
+One command from the repository root:
 \begin{verbatim}
-lake build Hodge.ExplicitJacobianQuotient
-python3 scripts/check_residue_axioms.py
-python3 scripts/check_no_sorry.py
+lake exe cache get && lake build && python3 scripts/check_residue_axioms.py
 \end{verbatim}
 
 \section{Limitations}
 
 Theorem~\ref{thm:HW} exhibits a representative of $\overline{HW}$ with
 coefficients $u_i$. Nonvanishing of those scalars (Stage~2) does \emph{not}
-by itself prove that the corresponding homogeneous components are nonzero as
-quotient classes; a basis/independence theorem for the Jacobian quotient is
-still required. Theorem~\ref{thm:common} excludes common nonzero zeros of
+by itself prove that the class is nonzero; that needs the independence of
+the four degree-five classes, which is proved separately in the degree-five
+milestone note. A basis or dimension theorem for the whole quotient is still
+not formalized. Theorem~\ref{thm:common} excludes common nonzero zeros of
 $H,G$ but does not formalize Proj, schemes, or residue maps.
 Villaflor Loyola's residue-cycle theorem~\cite{Villaflor2021} and Griffiths
 comparison remain external classical input.
@@ -405,7 +420,7 @@ Email: \texttt{frohmanbenjamin@gmail.com}.
 ORCID: \href{https://orcid.org/0009-0006-7068-3718}{0009-0006-7068-3718}
 (verified from repository \path{CITATION.cff}/\path{NOTICE}/\path{.zenodo.json}).
 Copyright (c) 2026 Benjamin Stanley Frohman. Apache License 2.0.
-This REVIEW DRAFT assigns no DOI. No Zenodo write was performed for this note.
+No DOI is assigned to this note yet.
 
 \bibliographystyle{plain}
 \bibliography{references}

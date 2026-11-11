@@ -1,0 +1,223 @@
+% Copyright (c) 2026 Benjamin Stanley Frohman. Apache-2.0.
+% Author: Frohman, Benjamin Stanley.
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,lmodern}
+\usepackage[T1]{fontenc}
+\usepackage{xurl,hyperref,booktabs,tabularx}
+\hypersetup{pdftitle={Degree-five Independence and a Nonzero Explicit Jacobian Class},pdfauthor={Frohman, Benjamin Stanley}}
+\newcommand{\lean}[1]{{\upshape\path{#1}}}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\emergencystretch=2em
+\title{\textbf{Degree-five Independence and a Nonzero Explicit Jacobian Class}}
+\author{Frohman, Benjamin Stanley\\\small Independent Researcher, Texas, United States\\\small ORCID 0009-0006-7068-3718\quad\texttt{frohmanbenjamin@gmail.com}}
+\date{Version 1.1, November 10, 2026 (v1.0: November 6, 2026)}
+\begin{document}
+\maketitle
+\begin{abstract}
+For a field $K$ and $k\ne0$, four specified degree-five monomials are proved
+linearly independent in the actual quotient
+$K[x,y]/(5kx^4y,kx^5+6y^5)$. The proof uses coefficient functionals annihilating
+every element of the full ideal, with arbitrary polynomial multipliers. In
+characteristic zero, the previously checked section identity and exact
+coefficient certificates then imply that the actual quotient class of $HW$
+is nonzero at every root of the specified modulus. This is an algebraic
+milestone, not a geometric residue, Hodge or cycle-class theorem.
+\end{abstract}
+
+\section{The actual quotient and the claim}
+Put $f_k=kx^5y+y^6$ and
+\[
+ I_k=(\partial_x f_k,\partial_y f_k)=(5kx^4y,kx^5+6y^5),\qquad
+ Q_k=K[x,y]/I_k.
+\]
+Brackets denote the quotient map. The functions \lean{binarySextic},
+\lean{jacobianIdeal}, \lean{Jacobian}, \lean{qx} and \lean{qy} in
+\lean{Hodge/ExplicitJacobianQuotient.lean} are these actual objects, not an
+abstract interface with a postulated basis.
+
+\begin{theorem}\label{thm:independence}
+For every field $K$ and $k\in K\setminus\{0\}$, the classes
+\[
+ [y^5],\quad[xy^4],\quad[x^2y^3],\quad[x^3y^2]
+\]
+are linearly independent over $K$ in $Q_k$.
+\end{theorem}
+No nontriviality of $Q_k$, no basis hypothesis and no geometric realization are
+assumed. The theorem concerns four classes of degree five, not a basis of the
+entire quotient. It does not assert a formalized spanning or dimension theorem
+for a graded component either.
+
+\section{Coefficient functionals on the full ideal}
+For a polynomial $p$, let $c_{a,b}(p)$ be its coefficient of $x^ay^b$.
+Define
+\[
+ L_0(p)=k c_{0,5}(p)-6c_{5,0}(p),\qquad
+ L_i(p)=c_{i,5-i}(p)\quad(1\leq i\leq3).
+\]
+The minus sign and the $x^5$ coefficient are essential: the raw coefficient of
+$y^5$ does not annihilate $kx^5+6y^5$ in characteristic zero.
+
+\begin{lemma}\label{lem:ideal}
+For every commutative coefficient ring, every $k$ and every $p\in I_k$, one has
+$L_0(p)=L_1(p)=L_2(p)=L_3(p)=0$.
+\end{lemma}
+\begin{proof}
+Write $p=A(5kx^4y)+B(kx^5+6y^5)$, where $A,B$ are arbitrary polynomials,
+with no degree restriction. Coefficient multiplication gives
+\begin{align*}
+ c_{1,4}(p)&=c_{2,3}(p)=c_{3,2}(p)=0,\\
+ c_{0,5}(p)&=6c_{0,0}(B),\qquad
+ c_{5,0}(p)=k c_{0,0}(B).
+\end{align*}
+For example, the generator $x^4y$ cannot contribute at any of the first three
+positions because its $x$ exponent is already too large. It cannot contribute
+to either pure-power position. At the two pure powers, only the constant term
+of $B$ contributes; every other multiplier monomial would increase an
+exponent. Thus $L_0(p)=6k c_{0,0}(B)-6k c_{0,0}(B)=0$.
+This proves the claim for the full ideal, not just its listed generators or
+constant linear combinations thereof.
+\end{proof}
+
+In Lean, the proof uses \lean{Ideal.mem_span_pair} and
+\lean{MvPolynomial.coeff_mul_monomial'}. These handle arbitrary ideal
+multipliers exactly. The finite exponent checks do not postulate a homogeneous
+basis or a Groebner basis.
+
+\begin{proof}[Proof of Theorem~\ref{thm:independence}]
+Suppose $[\Phi(c)]=0$, where
+\[
+ \Phi(c)=c_0y^5+c_1xy^4+c_2x^2y^3+c_3x^3y^2.
+\]
+Then $\Phi(c)\in I_k$. Lemma~\ref{lem:ideal} gives $c_1=c_2=c_3=0$ and
+$k c_0=0$. Since $K$ is a field and $k\ne0$, also $c_0=0$.
+This is precisely linear independence in the actual quotient.
+\end{proof}
+
+\section{Application to the actual explicit section}
+For this application let $K$ be a characteristic-zero field equipped with its
+specified $\mathbb Q$-algebra structure, and suppose
+\begin{align*}
+ P(k)={}&k^{24}+66081312000k^{18}-4811512860000k^{12}\\
+        &+1167566400000k^6+583200000=0.
+\end{align*}
+The nonzero constant term implies $k\ne0$; this is a previously checked theorem,
+not an extra nontriviality assumption.
+
+Use the actual coefficient functions $b,c,d,e,g$ from
+\lean{Hodge/ExplicitCurve.lean}, and set
+\[
+ H=x^2+bxy+cy^2,\qquad
+ G=x^3+dx^2y+exy^2+gy^3,\qquad W=H_xG_y-H_yG_x.
+\]
+Their exact rational-polynomial definitions, together with every reduction and
+Bezout certificate, are included in the pinned proof sources. In particular,
+the computation is reproducible without numerical root approximation.
+Writing $W=w_3x^3+w_2x^2y+w_1xy^2+w_0y^3$, the checked formulas are
+\begin{align*}
+ w_3&=2d-3b=k,& w_2&=4e-bd-6c,\\
+ w_1&=6g+be-4cd,& w_0&=3bg-2ce.
+\end{align*}
+In the actual quotient, $[x^4y]=0$ and $k[x^5]+6[y^5]=0$. Expanding $HW$
+and using these relations gives the already checked identity
+\[
+ [HW]=u_0[y^5]+u_1[xy^4]+u_2[x^2y^3]+u_3[x^3y^2],
+\]
+where
+\begin{align*}
+ u_0&=cw_0-6,& u_1&=bw_0+cw_1,\\
+ u_2&=w_0+bw_1+cw_2,& u_3&=w_1+bw_2+ck.
+\end{align*}
+The $-6$ is the contribution of $k[x^5]$, not an omitted or freely chosen term.
+
+The earlier exact polynomial certificates prove $u_0(k)\ne0$ whenever $P(k)=0$.
+Their mechanism is $u_0=QP+r$ and $Ar+BP=1$ in $\mathbb Q[T]$, with the
+explicit polynomials recorded in \lean{ExplicitResidueCertificates.lean}.
+Evaluating at a root gives $A(k)u_0(k)=1$. This is an actual checked polynomial
+identity, not a numerical test or a new coefficient-nonvanishing hypothesis.
+
+\begin{theorem}
+For every such field and every root $k$ of $P$, the actual class $[HW]\in Q_k$
+is nonzero.
+\end{theorem}
+\begin{proof}
+If $[HW]=0$, Theorem~\ref{thm:independence} and the displayed actual quotient
+identity imply $u_0(k)=0$, contrary to the exact certificate. In fact only this
+one coefficient certificate is needed here, although the earlier stage proves
+all four nonzero.
+\end{proof}
+
+This statement is nonvacuous: the checked modulus has degree $24$ and has an
+actual complex root. The new existential theorem supplies such a root together
+with its nonzero $[HW]$, without assuming that the quotient is nontrivial.
+
+\section{Formalization, reproduction and boundary}
+\subsection*{Lean source and exact versions}
+The module is \lean{Hodge/ExplicitJacobianIndependence.lean} in
+\url{https://github.com/BenFrohman/HODGE}, code commit
+\lean{52325b02f966139c99015443ca5fba8a725ef3bb} (pull request~\#49), on top of
+\lean{main} at \lean{b13f57f}. Toolchain \lean{leanprover/lean4:v4.22.0};
+Mathlib tag \lean{v4.22.0}, locked revision
+\lean{79e94a093aff4a60fb1b1f92d9681e407124c2ca} (\lean{lake-manifest.json}).
+The full source is in the repository; nothing here is a summary or certificate in
+place of source. The module is imported by \lean{Hodge.lean}, so the default
+library build checks it, and the CI sorry scan covers it.
+
+\subsection*{Lean hypotheses versus the assumptions of this note}
+\noindent\small
+\begin{tabularx}{\linewidth}{@{}p{0.42\linewidth}X@{}}\toprule
+Lean hypothesis & Assumption in this note\\\midrule
+\texttt{[Field K]}, \texttt{(hk : k $\ne$ 0)} & Theorem~\ref{thm:independence}: $K$ a field, $k\ne0$.\\
+\lean{jacobianIdeal k} (Stage~3 definition) & $I_k=(5kx^4y,\,kx^5+6y^5)$, the full ideal.\\
+\texttt{[CharZero K] [Algebra $\mathbb{Q}$ K]} & ``characteristic zero''. For a field of characteristic~0 a $\mathbb Q$-algebra structure exists and is unique, so this adds nothing.\\
+\texttt{hm : k\^{}24+66081312000*k\^{}18-\dots=0} & $P(k)=0$, the degree-24 modulus.\\
+none (existential) & \lean{exists_complex_nonzero_HW_class}: a complex root of $P$ with $[HW]\ne0$.\\
+\bottomrule\end{tabularx}\normalsize
+
+\noindent No hypothesis is equivalent to its conclusion, and none is uninhabited:
+$k=1$ over $\mathbb Q$ satisfies Theorem~\ref{thm:independence}, and the last row
+exhibits a root for the second theorem.
+
+\subsection*{One-command rebuild and axiom output}
+From the repository root at the commit above:
+\begin{verbatim}
+lake exe cache get && lake build && python3 scripts/check_residue_axioms.py
+\end{verbatim}
+GitHub Actions ran exactly this (workflow \lean{certify.yml}, run
+\url{https://github.com/BenFrohman/HODGE/actions/runs/42922528702}, passed;
+library build and sorry check: run
+\url{https://github.com/BenFrohman/HODGE/actions/runs/42922528652}, passed).
+Its axiom output for this module, one line per theorem in source order:
+\begin{verbatim}
+'Hodge.ExplicitJacobianIndependence.monomial_exponent'
+'Hodge.ExplicitJacobianIndependence.partial_x_monomial'
+'Hodge.ExplicitJacobianIndependence.partial_y_monomial'
+'Hodge.ExplicitJacobianIndependence.jacobian_ideal_coefficient_constraints'
+'Hodge.ExplicitJacobianIndependence.representative_coefficient'
+'Hodge.ExplicitJacobianIndependence.representative_x5_coefficient'
+'Hodge.ExplicitJacobianIndependence.representative_mem_ideal_iff'
+'Hodge.ExplicitJacobianIndependence.representative_class_formula'
+'Hodge.ExplicitJacobianIndependence.representative_class_sum'
+'Hodge.ExplicitJacobianIndependence.representative_class_eq_zero_iff'
+'Hodge.ExplicitJacobianIndependence.degreeFiveClasses_linearIndependent'
+'Hodge.ExplicitJacobianIndependence.section_HW_class_ne_zero'
+'Hodge.ExplicitJacobianIndependence.exists_complex_nonzero_HW_class'
+  each: depends on axioms: [propext, Classical.choice, Quot.sound]
+PASS: 78 incremental theorem declarations; standard axioms only
+\end{verbatim}
+The root audit in the same run printed
+\lean{audited 699 declarations, 699 with standard axioms only}.
+No \lean{sorry}, \lean{admit}, \lean{native\_decide} or new \lean{axiom} occurs.
+A kernel check shows that the stated Lean propositions follow from the stated
+definitions; it does not by itself establish any geometric statement.
+
+No geometric cycle-class map, residue-to-cohomology comparison, Hodge-type
+identification, descent argument, or geometric counterexample is proved by this
+milestone. In particular a nonzero class in this binary polynomial quotient
+must not be relabeled a nonalgebraic Hodge class. The remaining geometric
+bridges require their actual definitions and proofs.
+
+\smallskip\noindent Copyright (c) 2026 Benjamin Stanley Frohman.
+Existing Apache-2.0 licensing and third-party notices are preserved.
+\end{document}

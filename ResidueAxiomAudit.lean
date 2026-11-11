@@ -1,3 +1,4 @@
+import Hodge.ExplicitJacobianIndependence
 import Hodge.ExplicitJacobianQuotient
 /-
 Copyright (c) 2026 Benjamin Stanley Frohman. Apache-2.0.
@@ -73,3 +74,17 @@ import Hodge.ExplicitResidueCertificates
 #print axioms Hodge.ExplicitJacobianQuotient.section_HW_class
 #print axioms Hodge.ExplicitJacobianQuotient.section_identity_polynomial
 #print axioms Hodge.ExplicitJacobianQuotient.section_common_zero
+
+#print axioms Hodge.ExplicitJacobianIndependence.monomial_exponent
+#print axioms Hodge.ExplicitJacobianIndependence.partial_x_monomial
+#print axioms Hodge.ExplicitJacobianIndependence.partial_y_monomial
+#print axioms Hodge.ExplicitJacobianIndependence.jacobian_ideal_coefficient_constraints
+#print axioms Hodge.ExplicitJacobianIndependence.representative_coefficient
+#print axioms Hodge.ExplicitJacobianIndependence.representative_x5_coefficient
+#print axioms Hodge.ExplicitJacobianIndependence.representative_mem_ideal_iff
+#print axioms Hodge.ExplicitJacobianIndependence.representative_class_formula
+#print axioms Hodge.ExplicitJacobianIndependence.representative_class_sum
+#print axioms Hodge.ExplicitJacobianIndependence.representative_class_eq_zero_iff
+#print axioms Hodge.ExplicitJacobianIndependence.degreeFiveClasses_linearIndependent
+#print axioms Hodge.ExplicitJacobianIndependence.section_HW_class_ne_zero
+#print axioms Hodge.ExplicitJacobianIndependence.exists_complex_nonzero_HW_class

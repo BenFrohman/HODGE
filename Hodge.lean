@@ -61,3 +61,5 @@ import Hodge.HonestHosts
 import Hodge.ChainSexticBridgeAudit
 import Hodge.ChainSexticR12
 import Hodge.ChainSexticR12Bridge
+
+import Hodge.ExplicitJacobianIndependence
