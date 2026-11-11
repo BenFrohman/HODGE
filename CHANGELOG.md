@@ -3,6 +3,13 @@
 
 Author: Benjamin Stanley Frohman (@BenFrohman).
 
+## 2026-11-11 Shrink the chain-sextic character bridge; hypothesis table
+
+- New `Hodge/ChainSexticCharacterCore.lean`: `hdg_split` and `orbit_simple` are theorems of a smaller bundle `ChainSexticCharacterCore` (from `galois_min`), and `galois_min` is a theorem of `ChainSexticCharacterGalois` (from Galois conjugation of the eigenlines). `rho_eq_786` holds for both. Standard axioms only; no `sorry`, `admit`, `native_decide` or new axioms.
+- The eigenline decomposition, Griffiths type, and Galois descent of the isotypic pieces remain hypotheses. Nothing here is the cohomology of the sextic, and Mathlib still has no cycle class map.
+- New `docs/CHAIN_SEXTIC_BRIDGE_TABLE.md`: every bridge field mapped to the paper assumption it encodes, with checked citations. Identifications that Lean does not prove (combinatorial `qv` versus geometric Hodge type; the polynomial `21` versus `Π·Π`) are reported, not patched.
+- `AxiomAudit.lean`: 731 `#print axioms` lines (699 before, plus 32 new).
+
 ## 2026-11-10 dim R_12 = 1751 in Lean; Delsarte paper v1.5
 
 - New `Hodge/ChainSexticR12.lean`: `jacobianDeg12_finrank_eq : finrank ℚ jacobianDeg12 = 1751`. The lower bound comes from an explicit normal-form map `Φ` that vanishes on the Jacobian ideal and fixes the standard monomials (`stdMonomial_linearIndependent`, also for all 15625 standard monomials); `jacobianDeg12_basis` is an explicit basis. Non-vacuity checks included.

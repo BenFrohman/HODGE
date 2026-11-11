@@ -143,6 +143,7 @@ FermatCubic, Quintic, DeformedQuintic and DworkQuinticPsi2 hosts; `AlgebraicSpan
   (`2 ≤ ρ ≤ 1752`) is not vacuous. The model is linear algebra, **not** the cohomology of the
   sextic. In it `ρ = 1 + dim R₁₂` (`model_rho`), so the bridge alone does not determine `ρ`.
   `rho_not_automatic`: without the bridge fields, the rational rank can be `0`.
+* `Hodge/ChainSexticCharacterCore.lean` (2026-11-11) shrinks the character bridge as above; it does not yet construct an inhabitant, so the non-vacuity gap recorded here still stands.
 * `characterBridge_forces_R12`: every `ChainSexticCharacterBridge` forces
   `dim_ℚ R₁₂ = 1751` (`characterBridge_h22`: `h^{2,2} = 1752`). Lean proves only
   `1 ≤ dim R₁₂ ≤ 1751`. **So whether `rho_eq_786` is non-vacuous depends on the unformalized
