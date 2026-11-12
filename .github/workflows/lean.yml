@@ -31,6 +31,13 @@ jobs:
             Hodge/FermatPlanes.lean Hodge/ChainSexticRank.lean Hodge/ChainSexticRho.lean \
             Hodge/ChainSexticR12.lean Hodge/ChainSexticR12Bridge.lean \
             Hodge/ChainSexticCharacterCore.lean \
+            Hodge/ChainSexticCharacterModel.lean \
+            Hodge/ChainSexticCharacterModel/Space.lean \
+            Hodge/ChainSexticCharacterModel/Roots.lean \
+            Hodge/ChainSexticCharacterModel/Lines.lean \
+            Hodge/ChainSexticCharacterModel/Indep.lean \
+            Hodge/ChainSexticCharacterModel/GaloisMin.lean \
+            Hodge/ChainSexticCharacterModel/Bridge.lean \
             Hodge/ExplicitJacobianQuotient.lean Hodge/ExplicitJacobianIndependence.lean; then
             echo "sorry in the built library"
             exit 1

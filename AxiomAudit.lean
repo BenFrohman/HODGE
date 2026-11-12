@@ -790,3 +790,20 @@ import Hodge.ChainSexticCharacterCore
 #print axioms Hodge.ChainSexticCore.rationalPoints_eq_bot_of_conj
 #print axioms Hodge.ChainSexticCore.ChainSexticCharacterGalois.galois_min
 #print axioms Hodge.ChainSexticCore.ChainSexticCharacterGalois.rho_eq_786
+
+#print axioms Hodge.ChainSexticCharacterModel.card_cube
+#print axioms Hodge.ChainSexticCharacterModel.card_idx
+#print axioms Hodge.ChainSexticCharacterModel.finrank_modelH
+#print axioms Hodge.ChainSexticCharacterModel.finrank_denseH
+#print axioms Hodge.ChainSexticCharacterModel.finrank_eq_of_equivDense
+#print axioms Hodge.ChainSexticCharacterModel.poly8Z_irreducible
+#print axioms Hodge.ChainSexticCharacterModel.alpha_pow_independent
+#print axioms Hodge.ChainSexticCharacterModel.gen_linearIndependent
+#print axioms Hodge.ChainSexticCharacterModel.eigen_indep
+#print axioms Hodge.ChainSexticCharacterModel.model_galois_min
+#print axioms Hodge.ChainSexticCharacterModel.model_W_complex
+#print axioms Hodge.ChainSexticCharacterModel.model_griffiths
+#print axioms Hodge.ChainSexticCharacterModel.characterCore_model_rho
+#print axioms Hodge.ChainSexticCharacterModel.characterCore_dense_rho
+#print axioms Hodge.ChainSexticCharacterModel.characterCore_model_finrank
+#print axioms Hodge.ChainSexticCharacterModel.characterCore_dense_finrank
