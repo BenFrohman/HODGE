@@ -4,7 +4,9 @@
 Author: Benjamin Stanley Frohman (metadata form: Frohman, Benjamin Stanley)
 Affiliation: Independent Researcher, Texas, United States
 Email: frohmanbenjamin@gmail.com · ORCID: https://orcid.org/0009-0006-7068-3718
-License: Apache-2.0. Preprint, not peer reviewed. No DOI assigned yet.
+License: Apache-2.0 in this repository (the Zenodo record licenses the paper files CC BY 4.0).
+Preprint, not peer reviewed. Published v1.1: DOI [10.5281/zenodo.24145347](https://doi.org/10.5281/zenodo.24145347)
+(11 November 2026; source pinned to `4c768890dc88bc180bf10887e4ba1b426f33a41a`).
 
 ## Source and versions
 
