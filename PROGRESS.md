@@ -2,7 +2,6 @@
 
 Live branch: `formalize/chain-sextic-bridge-decomposition`.
 Draft PR: https://github.com/BenFrohman/HODGE/pull/51
-Head: `ec2937d99ecaf06f5d985037a6791262da5131b2` (from `origin/main` at `4c76889`).
 No merge, tag, force-push or Zenodo work.
 
 ## Checkpoint 1 (pushed)
@@ -15,25 +14,25 @@ No merge, tag, force-push or Zenodo work.
   then `galois_min` from the Galois-conjugation field.
 - Docs: `docs/CHAIN_SEXTIC_BRIDGE_TABLE.md`.
 
-## CI on `ec2937d` (all green, America/Chicago)
+## Checkpoint 3 (character-core model)
 
-- Lean `build`: success (run 43111565116)
-- Lean `attempt`: success
-- Lean certificate `certify`: success (also a second certify check, both success)
-- Paper: success
-
-## Checkpoint 2 (not pushed)
-
-A non-vacuity model is drafted in the untracked file
-`Hodge/ChainSexticCharacterModel.lean`. It is not in the PR because it does
-not yet compile. An earlier version used a 27001-dimensional `Pi` space and
-ran out of memory. The rewrite uses the finite span of `1 + 2605` standard
-vectors inside `Option Ch →₀ ℚ`, so Lean does not enumerate a `Fintype` of
-the character cube, and it uses `Finset.attach` to avoid a decidable
-computation of `shiftedSet`. The file is still incomplete (it ends at `N`,
-with `#exit`) and earlier compiles either failed on small algebraic goals or
-hit the memory cap while elaborating. It will be pushed only after a clean
-build on standard axioms.
+- `Hodge/ChainSexticCharacterModel/` constructs a linear-algebra inhabitant
+  of `ChainSexticCharacterCore` and `ChainSexticCharacterBridge` on the
+  compact 27001-dimensional space `Idx →₀ ℚ`.
+- Proved in Lean: `equivDense : ModelH ≃ₗ[ℚ] DenseH`,
+  `finrank ModelH = finrank DenseH = 27001` from counting formulas
+  (`card Cube = 27000`, `card Idx = 27001`), not by enumerating the cube
+  or materializing a dense 27001-dimensional `Pi` space. The bridge
+  hypotheses are inhabited on `ModelH` and transported along `equivDense`
+  to `DenseH`. In both models, `rho = 786`.
+- Memory peaks with `LEAN_NUM_THREADS=1` (RSS GiB): Space 2.054, Roots
+  2.796, Lines 5.155, Indep 4.868, GaloisMin 4.952, Bridge 5.017. All well
+  under GitHub Actions' ~16 GB; no workflow swap step is needed.
+- `ChainSexticCharacterGalois` is not inhabited. Mathlib has no action of
+  `Aut(ℂ/ℚ)` on the cohomology of a variety, and this work does not fake
+  one. The core bundle does not require that action.
+- This is not the cohomology of the sextic, and combinatorial `type22` /
+  `qv` is not identified with geometric Hodge type.
 
 ## Still assumed (plain words)
 
@@ -41,5 +40,6 @@ The geometric meaning of `H^{2,2}`, the Griffiths residue identification,
 the cycle classes of `h²` and of the plane, the cup-product numbers, the
 eigenline decomposition of primitive cohomology, and the Galois descent
 of those lines onto rational subspaces. Mathlib has none of this
-foundational Hodge theory, so those fields stay hypotheses. A kernel
-check of character counts is not geometric truth.
+foundational Hodge theory, so those fields stay hypotheses even though a
+linear-algebra model shows they are jointly satisfiable. A kernel check
+of character counts is not geometric truth.

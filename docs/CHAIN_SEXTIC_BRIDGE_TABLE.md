@@ -98,11 +98,20 @@ stand-in for `SpanBridge`.
 - `ChainSexticHodgeBridge` already has a linear-algebra inhabitant
   (`hodgeBridge_model`). That model is not the cohomology of the sextic; it
   only shows `rho_bounds` is not vacuous.
-- This pull request does **not** yet construct an inhabitant of
-  `ChainSexticCharacterCore` or `ChainSexticCharacterBridge`. A model is
-  being written in a follow-up file; until it compiles, `rho_eq_786` is
-  still formally conditional, and the earlier note in
-  `Hodge/ChainSexticBridgeAudit.lean` remains accurate.
+- `ChainSexticCharacterCore` and `ChainSexticCharacterBridge` now have a
+  linear-algebra inhabitant in `Hodge/ChainSexticCharacterModel/`. The
+  ambient space is the compact encoding `ModelH := Idx →₀ ℚ` of the full
+  27001-dimensional space (`Idx := Option (Fin 30 × Fin 30 × Fin 30)`),
+  with a proved `LinearEquiv` to the dense space `DenseH := Idx → ℚ` and
+  `finrank = 27001` from a counting formula, not by enumerating the cube.
+  The bridge hypotheses are inhabited on `ModelH` and transported along
+  that equivalence to `DenseH`. In the model, `rho = 786`. This is
+  **not** the cohomology of the sextic, and it is not geometric truth.
+  Combinatorial `type22` / `qv` is still not identified with geometric
+  Hodge type; the model uses the combinatorial labels.
+- `ChainSexticCharacterGalois` is **not** inhabited. The core bundle
+  does not need a genuine `Aut(ℂ/ℚ)` action; Mathlib still has no such
+  action on the cohomology of a variety, and this work does not fake one.
 - No field is the Hodge conjecture, and nothing here produces algebraic
   cycles for the 660 classes outside the plane span.
 
