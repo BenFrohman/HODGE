@@ -27,8 +27,9 @@ This file records what that changes, and what it does not.
 ## What remains a hypothesis
 
 `rho_eq_786` never used `dim R₁₂` in its proof; it uses the eigenline fields. The equality removes
-the one known necessary condition that was unproved. It does **not** construct an inhabitant of
-`ChainSexticCharacterBridge`, and it does not prove any of its geometric fields. These remain
+the one known necessary condition that was unproved. This file does **not** construct an
+inhabitant of `ChainSexticCharacterBridge`. A linear-algebra inhabitant (not the cohomology
+of the sextic) is constructed in `Hodge.ChainSexticCharacterModel`. The geometric fields remain
 named hypotheses (never Lean axioms):
 * from `ChainSexticHodgeBridge`: `H22`, `griffiths` (now equivalent to `h^{2,2} = 1752`),
   `pairing`, `h2`, `P`, `h2_hodge`, `P_hodge`, `h2_h2`, `h2_P`, `P_h2`, `P_P`;

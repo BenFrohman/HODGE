@@ -23,8 +23,9 @@ hypothesis bundles. A bundle that cannot be inhabited would make `rho_bounds` an
   `finrank ℚ R₁₂ = 1751`. This file proves only `≤ 1751` (`jacobianDeg12_finrank_le`) and
   `≥ 1`. The reverse inequality (independence of the 1751 standard monomials) is proved in
   `Hodge.ChainSexticR12` (`jacobianDeg12_finrank_eq`), so this necessary condition holds; see
-  `Hodge.ChainSexticR12Bridge`. This file does not construct an inhabitant of the character
-  bridge, and neither does any other file.
+  `Hodge.ChainSexticR12Bridge`. This file still does not construct an inhabitant of the
+  character bridge. An inhabitant is constructed in `Hodge.ChainSexticCharacterModel`; it is
+  linear algebra on the compact 27001-dimensional space, not the cohomology of the sextic.
 -/
 
 open Module TensorProduct MvPolynomial

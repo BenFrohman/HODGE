@@ -52,6 +52,7 @@ import Hodge.ChainSexticBridgeAudit
 import Hodge.Attempt.VacuityAudit
 import Hodge.ChainSexticR12
 import Hodge.ChainSexticR12Bridge
+import Hodge.ChainSexticCharacterCore
 
 #print axioms Hodge.Attempt.Hypersurface.mk.inj
 #print axioms Hodge.Attempt.Hypersurface.mk.injEq
@@ -756,3 +757,53 @@ import Hodge.ChainSexticR12Bridge
 #print axioms Hodge.ChainSexticR12Bridge.characterBridge_R12_obstruction_discharged
 #print axioms Hodge.ChainSexticR12Bridge.characterBridge_griffiths_agree
 #print axioms Hodge.ChainSexticR12Bridge.griffiths_not_automatic
+
+#print axioms Hodge.ChainSexticCore.units_mul_mem
+#print axioms Hodge.ChainSexticCore.units_inv
+#print axioms Hodge.ChainSexticCore.one_mem_units
+#print axioms Hodge.ChainSexticCore.mul_mod_assoc30
+#print axioms Hodge.ChainSexticCore.act_act
+#print axioms Hodge.ChainSexticCore.act_one
+#print axioms Hodge.ChainSexticCore.act_injOn
+#print axioms Hodge.ChainSexticCore.orbit_subset_cube
+#print axioms Hodge.ChainSexticCore.self_mem_orbit
+#print axioms Hodge.ChainSexticCore.act_mem_orbit
+#print axioms Hodge.ChainSexticCore.orbit_eq_of_mem
+#print axioms Hodge.ChainSexticCore.code_inj
+#print axioms Hodge.ChainSexticCore.rep_le
+#print axioms Hodge.ChainSexticCore.reps_eq_of_mem_orbit
+#print axioms Hodge.ChainSexticCore.coverCheck
+#print axioms Hodge.ChainSexticCore.mem_orbit_rep
+#print axioms Hodge.ChainSexticCore.primChars_subset_biUnion
+#print axioms Hodge.ChainSexticCore.type22_subset_primChars
+#print axioms Hodge.ChainSexticCore.disjoint_biSup_of_disjoint
+#print axioms Hodge.ChainSexticCore.biSup_inf_biSup
+#print axioms Hodge.ChainSexticCore.rationalPoints_cx
+#print axioms Hodge.ChainSexticCore.eq_zero_of_tmul_eq_zero
+#print axioms Hodge.ChainSexticCore.cx_span
+#print axioms Hodge.ChainSexticCore.ChainSexticCharacterCore.orbit_simple
+#print axioms Hodge.ChainSexticCore.ChainSexticCharacterCore.hdg_split
+#print axioms Hodge.ChainSexticCore.ChainSexticCharacterCore.rho_eq_786
+#print axioms Hodge.ChainSexticCore.conjMap_one_tmul
+#print axioms Hodge.ChainSexticCore.map_biSup_le
+#print axioms Hodge.ChainSexticCore.interImages_units_eq_empty
+#print axioms Hodge.ChainSexticCore.rationalPoints_eq_bot_of_conj
+#print axioms Hodge.ChainSexticCore.ChainSexticCharacterGalois.galois_min
+#print axioms Hodge.ChainSexticCore.ChainSexticCharacterGalois.rho_eq_786
+
+#print axioms Hodge.ChainSexticCharacterModel.card_cube
+#print axioms Hodge.ChainSexticCharacterModel.card_idx
+#print axioms Hodge.ChainSexticCharacterModel.finrank_modelH
+#print axioms Hodge.ChainSexticCharacterModel.finrank_denseH
+#print axioms Hodge.ChainSexticCharacterModel.finrank_eq_of_equivDense
+#print axioms Hodge.ChainSexticCharacterModel.poly8Z_irreducible
+#print axioms Hodge.ChainSexticCharacterModel.alpha_pow_independent
+#print axioms Hodge.ChainSexticCharacterModel.gen_linearIndependent
+#print axioms Hodge.ChainSexticCharacterModel.eigen_indep
+#print axioms Hodge.ChainSexticCharacterModel.model_galois_min
+#print axioms Hodge.ChainSexticCharacterModel.model_W_complex
+#print axioms Hodge.ChainSexticCharacterModel.model_griffiths
+#print axioms Hodge.ChainSexticCharacterModel.characterCore_model_rho
+#print axioms Hodge.ChainSexticCharacterModel.characterCore_dense_rho
+#print axioms Hodge.ChainSexticCharacterModel.characterCore_model_finrank
+#print axioms Hodge.ChainSexticCharacterModel.characterCore_dense_finrank

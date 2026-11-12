@@ -143,6 +143,14 @@ FermatCubic, Quintic, DeformedQuintic and DworkQuinticPsi2 hosts; `AlgebraicSpan
   (`2 ≤ ρ ≤ 1752`) is not vacuous. The model is linear algebra, **not** the cohomology of the
   sextic. In it `ρ = 1 + dim R₁₂` (`model_rho`), so the bridge alone does not determine `ρ`.
   `rho_not_automatic`: without the bridge fields, the rational rank can be `0`.
+* `Hodge/ChainSexticCharacterCore.lean` (2026-11-11) shrinks the character bridge as above.
+* **Update (2026-11-11, `Hodge/ChainSexticCharacterModel`).** An inhabitant of
+  `ChainSexticCharacterCore` (and, via `toCharacterBridge`, of
+  `ChainSexticCharacterBridge`) is constructed on the compact 27001-dimensional
+  space `Idx →₀ ℚ`, proved equivalent to `Idx → ℚ` with the same finite rank, and
+  transported along that equivalence. In the model, `rho = 786`. This is linear
+  algebra, not the cohomology of the sextic. `ChainSexticCharacterGalois` is not
+  inhabited. Combinatorial `type22` is not identified with geometric Hodge type.
 * `characterBridge_forces_R12`: every `ChainSexticCharacterBridge` forces
   `dim_ℚ R₁₂ = 1751` (`characterBridge_h22`: `h^{2,2} = 1752`). Lean proves only
   `1 ≤ dim R₁₂ ≤ 1751`. **So whether `rho_eq_786` is non-vacuous depends on the unformalized
@@ -150,11 +158,13 @@ FermatCubic, Quintic, DeformedQuintic and DworkQuinticPsi2 hosts; `AlgebraicSpan
 * **Update (2026-11-10, `Hodge/ChainSexticR12.lean`).** The lower bound is now proved:
   `jacobianDeg12_finrank_eq : finrank ℚ jacobianDeg12 = 1751`. The necessary condition of
   `characterBridge_forces_R12` therefore holds (`ChainSexticR12Bridge.characterBridge_R12_obstruction_discharged`).
-  This removes the one known obstruction; it is not a construction of an inhabitant, so
-  `rho_eq_786` is still conditional on the character-bridge hypotheses.
+  This removed the one known obstruction coming from `dim R₁₂`. A linear-algebra
+  inhabitant of the character core is now in `Hodge/ChainSexticCharacterModel`; it is
+  not the cohomology of the sextic, so the geometric fields remain hypotheses of the
+  bridge even though they are satisfiable in the model.
 
 ## Axioms
 
-`AxiomAudit.lean`: 646 `#print axioms` lines (522 before, plus 124 new). All use only `propext`,
+`AxiomAudit.lean`: 747 `#print axioms` lines after the character-core model (731 before, plus 16 new). All use only `propext`,
 `Classical.choice` and `Quot.sound`, or a subset of them. There are no `sorry`, `admit`,
 `native_decide` or `axiom` declarations (`scripts/check_no_sorry.py`).

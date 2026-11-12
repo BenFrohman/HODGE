@@ -49,3 +49,12 @@ The structure extends `ChainSexticHodgeBridge`, so the same ρ satisfies `2 ≤ 
 - The bridge facts above, and the Gröbner basis of the Milnor algebra.
   PR #41 proves only that the standard monomials span it.
 - Anything about the 660 classes outside the plane span, or the Hodge conjecture.
+
+## Update, 2026-11-11
+
+`Hodge/ChainSexticCharacterCore.lean` proves `hdg_split` and `orbit_simple`
+from a smaller hypothesis `galois_min`, and proves `galois_min` from Galois
+conjugation of the eigenlines (`ChainSexticCharacterGalois`). The exact
+count `ρ = 786` therefore holds for that smaller bundle. The eigenline
+decomposition, Griffiths type, and rational descent of the isotypic pieces
+are still hypotheses. See `docs/CHAIN_SEXTIC_BRIDGE_TABLE.md`.
