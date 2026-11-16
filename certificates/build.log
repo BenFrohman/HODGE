@@ -1,0 +1,147 @@
+✔ [1100/1190] Built Hodge.HostSplit
+✔ [2772/2941] Built Hodge.SexticModuli
+✔ [3063/3087] Built Hodge.Basic
+✔ [3064/3087] Built Hodge.SpecialSexticMembership
+✔ [3065/3087] Built Hodge.Integral
+✔ [3066/3088] Built Hodge.Classical
+✔ [3069/3088] Built Hodge.Frontier
+✔ [3070/3092] Built Hodge.FermatCubicHost
+✔ [3073/3092] Built Hodge.Construct
+✔ [3074/3094] Built Hodge.Klein
+✔ [3078/3094] Built Hodge.Known
+✔ [3079/3094] Built Hodge.Fourfold
+✔ [3080/3095] Built Hodge.SpecialSextic
+✔ [3083/3095] Built Hodge.QuinticHost
+✔ [3084/3095] Built Hodge.FermatQuintic
+✔ [3085/3095] Built Hodge.Examples
+✔ [3086/3095] Built Hodge.Fermat
+✔ [3087/3095] Built Hodge.Hassett
+✔ [3088/3099] Built Hodge.DeformedQuinticHost
+✔ [3091/3099] Built Hodge.HeadPlane
+✔ [3092/3186] Built Hodge.SpecialSexticJacobian
+✔ [3598/3854] Built Hodge.PlaneSpanPairing
+✔ [5023/5505] Built Hodge.Geometry
+✔ [6057/6586] Built Hodge.NamedFamilies
+✔ [7106/7149] Built Hodge.SexticCertificates
+✔ [7107/7149] Built Hodge.DerivedSurfaces
+✔ [7108/7149] Built Hodge.Clay
+✔ [7109/7149] Built Hodge.RealClose
+✔ [7110/7149] Built Hodge.ExplicitCurve
+✔ [7111/7149] Built Hodge.ContainerSeparation
+✔ [7112/7149] Built Hodge.Chow
+✔ [7113/7149] Built Hodge.DworkQuinticPsi2
+✔ [7114/7149] Built Hodge.Cubic
+✔ [7115/7149] Built Hodge.JacobianLength
+✔ [7116/7149] Built Hodge.KleinPairing
+✔ [7117/7149] Built Hodge.ChainSexticCharacterModel.Space
+✔ [7118/7149] Built Hodge.FermatPlanes
+✔ [7119/7150] Built Hodge.ChainSexticCharacterModel.Roots
+✔ [7120/7150] Built Hodge.GeometricCycleClass
+✔ [7121/7150] Built Hodge.ClayStatement
+✔ [7122/7150] Built Hodge.Islands
+✔ [7123/7153] Built Hodge.Attempt.ClayStatement
+✔ [7124/7153] Built Hodge.NoShadow
+✔ [7125/7153] Built Hodge.Release
+✔ [7126/7153] Built Hodge.Skeleton
+✔ [7127/7153] Built Hodge.ExplicitResidueAlgebra
+✔ [7128/7155] Built Hodge.Attempt.FermatIdentities
+✔ [7129/7155] Built Hodge.ClayTerm
+✔ [7130/7155] Built Hodge.ChainSexticRank
+✔ [7131/7156] Built Hodge.Attempt.FermatPlanes
+ℹ [7132/7156] Built AxiomPrint
+info: AxiomPrint.lean:20:0: 'Hodge.Attempt.GlobalClayFourfold' does not depend on any axioms
+info: AxiomPrint.lean:21:0: 'Hodge.Attempt.fermat_pair_vanishing' depends on axioms: [propext, Quot.sound]
+info: AxiomPrint.lean:22:0: 'Hodge.Attempt.fermat_quartic_contains_Z1' depends on axioms: [propext, Quot.sound]
+✔ [7134/7157] Built Hodge.Attempt.ParameterLocus
+✔ [7135/7157] Built Hodge.ChainSexticR12
+✔ [7136/7158] Built Hodge.Attempt.GenericObstructed
+✔ [7137/7159] Built Hodge.Attempt.Grading
+✔ [7138/7160] Built Hodge.Attempt.IntersectionInvariants
+✔ [7140/7163] Built Hodge.Attempt.SpecialSexticMembership
+✔ [7141/7163] Built Hodge.Attempt.NamedSexticMembership
+✔ [7142/7163] Built Hodge.Attempt.VacuityAudit
+✔ [7143/7163] Built HodgeAttempt
+✔ [7145/7163] Built Hodge.ExplicitResidueCertificates
+✔ [7146/7163] Built Hodge.AlgebraicSpanChecks
+✔ [7147/7163] Built Hodge.ExplicitJacobianQuotient
+✔ [7148/7163] Built Hodge.ExplicitJacobianIndependence
+✔ [7149/7163] Built Hodge.SexticCombinatorics
+ℹ [7150/7163] Built Hodge.Verify
+info: Hodge/Verify.lean:24:0: 'Hodge.HodgeConjecture.classical_fourfolds' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Hodge/Verify.lean:25:0: 'Hodge.HodgeConjecture.p4' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Hodge/Verify.lean:26:0: 'Hodge.HodgeConjecture.klein' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Hodge/Verify.lean:27:0: 'Hodge.HodgeConjecture.product' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Hodge/Verify.lean:28:0: 'Hodge.k3Surface_hodge' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Hodge/Verify.lean:29:0: 'Hodge.SpecialSextic.contains_two_planes' depends on axioms: [propext, Quot.sound]
+info: Hodge/Verify.lean:30:0: 'Hodge.SpecialSextic.closed_membership' depends on axioms: [propext, Quot.sound]
+info: Hodge/Verify.lean:31:0: 'Hodge.Release.contains_two_planes' depends on axioms: [propext, Quot.sound]
+info: Hodge/Verify.lean:32:0: 'Hodge.Release.status_separation' does not depend on any axioms
+info: Hodge/Verify.lean:33:0: 'Hodge.FermatCubicHost.F_isHomogeneous' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Hodge/Verify.lean:34:0: 'Hodge.FermatCubicHost.smooth' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Hodge/Verify.lean:35:0: 'Hodge.FermatCubicHost.cubic_primitive_hodge' depends on axioms: [propext]
+info: Hodge/Verify.lean:36:0: 'Hodge.FermatCubicHost.sextic_primitive_hodge' depends on axioms: [propext]
+info: Hodge/Verify.lean:37:0: 'Hodge.QuinticHost.G_isHomogeneous' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Hodge/Verify.lean:38:0: 'Hodge.QuinticHost.pderiv_G' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Hodge/Verify.lean:39:0: 'Hodge.QuinticHost.smooth' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Hodge/Verify.lean:40:0: 'Hodge.QuinticHost.quintic_series' depends on axioms: [propext]
+info: Hodge/Verify.lean:41:0: 'Hodge.QuinticHost.quintic_primitive_hodge' depends on axioms: [propext]
+info: Hodge/Verify.lean:42:0: 'Hodge.QuinticHost.quintic_h40_zero' does not depend on any axioms
+info: Hodge/Verify.lean:43:0: 'Hodge.QuinticHost.quintic_h31_ne_zero' depends on axioms: [propext]
+info: Hodge/Verify.lean:44:0: 'Hodge.DeformedQuinticHost.G_isHomogeneous' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Hodge/Verify.lean:45:0: 'Hodge.DeformedQuinticHost.singular_at_p' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Hodge/Verify.lean:46:0: 'Hodge.DeformedQuinticHost.not_smooth' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Hodge/Verify.lean:50:0: 'Hodge.SexticCombinatorics.f_facPt' depends on axioms: [propext, Quot.sound]
+info: Hodge/Verify.lean:51:0: 'Hodge.SexticCombinatorics.standard_plane_on_X' depends on axioms: [propext, Quot.sound]
+info: Hodge/Verify.lean:52:0: 'Hodge.SexticCombinatorics.card_standard_labels' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Hodge/Verify.lean:53:0: 'Hodge.SexticCombinatorics.diagonal_plane_on_X' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Hodge/Verify.lean:54:0: 'Hodge.SexticCombinatorics.twisted_pair_vanishes' depends on axioms: [propext, Quot.sound]
+info: Hodge/Verify.lean:55:0: 'Hodge.SexticCombinatorics.gram8_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Hodge/Verify.lean:56:0: 'Hodge.SexticCombinatorics.H8_mul_self' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Hodge/Verify.lean:57:0: 'Hodge.SexticCombinatorics.M8_mul_H8' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Hodge/Verify.lean:58:0: 'Hodge.SexticCombinatorics.det_ne_zero_of_mul_self' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Hodge/Verify.lean:59:0: 'Hodge.SexticCombinatorics.det_of_mul_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Hodge/Verify.lean:60:0: 'Hodge.SexticCombinatorics.det_H8_ne_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Hodge/Verify.lean:61:0: 'Hodge.SexticCombinatorics.prod_eig' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Hodge/Verify.lean:62:0: 'Hodge.SexticCombinatorics.det_M8' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Hodge/Verify.lean:63:0: 'Hodge.SexticCombinatorics.det_gram8' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Hodge/Verify.lean:64:0: 'Hodge.SexticCombinatorics.rank_map_of_det_ne_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Hodge/Verify.lean:65:0: 'Hodge.SexticCombinatorics.rank_gram8' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Hodge/Verify.lean:66:0: 'Hodge.SexticCombinatorics.milnorBasis_length' does not depend on any axioms
+info: Hodge/Verify.lean:67:0: 'Hodge.SexticCombinatorics.chr_injective' does not depend on any axioms
+info: Hodge/Verify.lean:68:0: 'Hodge.SexticCombinatorics.valid_iff' depends on axioms: [propext, Quot.sound]
+info: Hodge/Verify.lean:69:0: 'Hodge.SexticCombinatorics.valid_inverse' does not depend on any axioms
+info: Hodge/Verify.lean:70:0: 'Hodge.SexticCombinatorics.primitive_hodge_numbers' does not depend on any axioms
+info: Hodge/Verify.lean:71:0: 'Hodge.SexticCombinatorics.units30_spec' depends on axioms: [propext]
+info: Hodge/Verify.lean:72:0: 'Hodge.SexticCombinatorics.rational_hodge_dim' does not depend on any axioms
+info: Hodge/Verify.lean:73:0: 'Hodge.SexticCombinatorics.rational_hodge_orbits' does not depend on any axioms
+info: Hodge/Verify.lean:74:0: 'Hodge.SexticCombinatorics.gap_660' depends on axioms: [propext]
+info: Hodge/Verify.lean:75:0: 'Hodge.SexticCombinatorics.split_425' does not depend on any axioms
+info: Hodge/Verify.lean:76:0: 'Hodge.SexticCombinatorics.split_360' depends on axioms: [propext]
+info: Hodge/Verify.lean:77:0: 'Hodge.SexticCombinatorics.split_orbits' depends on axioms: [propext]
+info: Hodge/Verify.lean:78:0: 'Hodge.SexticCombinatorics.none_unclassified' depends on axioms: [propext]
+info: Hodge/Verify.lean:79:0: 'Hodge.SexticCertificates.gb_in_J' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Hodge/Verify.lean:80:0: 'Hodge.SexticCertificates.J_in_gb' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Hodge/Verify.lean:81:0: 'Hodge.SexticCertificates.spoly_12' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Hodge/Verify.lean:82:0: 'Hodge.SexticCertificates.spoly_13' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Hodge/Verify.lean:83:0: 'Hodge.SexticCertificates.spoly_23' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Hodge/Verify.lean:84:0: 'Hodge.SexticCertificates.std_card' does not depend on any axioms
+info: Hodge/Verify.lean:85:0: 'Hodge.SexticCertificates.std_bounded' does not depend on any axioms
+info: Hodge/Verify.lean:86:0: 'Hodge.SexticCertificates.twist_action' depends on axioms: [propext, Quot.sound]
+info: Hodge/Verify.lean:87:0: 'Hodge.SexticCertificates.mu_action' depends on axioms: [propext, Quot.sound]
+info: Hodge/Verify.lean:88:0: 'Hodge.SexticCertificates.eta_action' depends on axioms: [propext, Quot.sound]
+info: Hodge/Verify.lean:90:0: 'Hodge.FermatCubicHost.primHodge_of_negative_degree' depends on axioms: [propext]
+info: Hodge/Verify.lean:91:0: 'Hodge.QuinticHost.quintic_primHodge_h40_zero' depends on axioms: [propext]
+info: Hodge/Verify.lean:92:0: 'Hodge.QuinticHost.quintic_primHodge_h04_zero' depends on axioms: [propext]
+✔ [7151/7163] Built Hodge.VacuityAudit
+✔ [7152/7163] Built Hodge.HonestHosts
+✔ [7153/7163] Built Hodge.ChainSexticRho
+✔ [7154/7163] Built Hodge.ChainSexticBridgeAudit
+✔ [7155/7163] Built Hodge.ChainSexticR12Bridge
+✔ [7156/7163] Built Hodge.ChainSexticCharacterCore
+✔ [7157/7163] Built Hodge.ChainSexticCharacterModel.Lines
+✔ [7158/7163] Built Hodge.ChainSexticCharacterModel.Indep
+✔ [7159/7163] Built Hodge.ChainSexticCharacterModel.GaloisMin
+✔ [7160/7163] Built Hodge.ChainSexticCharacterModel.Bridge
+✔ [7161/7163] Built Hodge.ChainSexticCharacterModel
+✔ [7162/7163] Built Hodge
+Build completed successfully.

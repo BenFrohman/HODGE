@@ -1,0 +1,101 @@
+import Lean
+import «AxiomPrint»
+import «Hodge»
+import «Hodge».«AlgebraicSpanChecks»
+import «Hodge».«Attempt».«ClayStatement»
+import «Hodge».«Attempt».«FermatIdentities»
+import «Hodge».«Attempt».«FermatPlanes»
+import «Hodge».«Attempt».«GenericObstructed»
+import «Hodge».«Attempt».«Grading»
+import «Hodge».«Attempt».«IntersectionInvariants»
+import «Hodge».«Attempt».«NamedSexticMembership»
+import «Hodge».«Attempt».«ParameterLocus»
+import «Hodge».«Attempt».«SpecialSexticMembership»
+import «Hodge».«Attempt».«VacuityAudit»
+import «Hodge».«Basic»
+import «Hodge».«ChainSexticBridgeAudit»
+import «Hodge».«ChainSexticCharacterCore»
+import «Hodge».«ChainSexticCharacterModel»
+import «Hodge».«ChainSexticCharacterModel».«Bridge»
+import «Hodge».«ChainSexticCharacterModel».«GaloisMin»
+import «Hodge».«ChainSexticCharacterModel».«Indep»
+import «Hodge».«ChainSexticCharacterModel».«Lines»
+import «Hodge».«ChainSexticCharacterModel».«Roots»
+import «Hodge».«ChainSexticCharacterModel».«Space»
+import «Hodge».«ChainSexticR12»
+import «Hodge».«ChainSexticR12Bridge»
+import «Hodge».«ChainSexticRank»
+import «Hodge».«ChainSexticRho»
+import «Hodge».«Chow»
+import «Hodge».«Classical»
+import «Hodge».«Clay»
+import «Hodge».«ClayStatement»
+import «Hodge».«ClayTerm»
+import «Hodge».«Construct»
+import «Hodge».«ContainerSeparation»
+import «Hodge».«Cubic»
+import «Hodge».«DeformedQuinticHost»
+import «Hodge».«DerivedSurfaces»
+import «Hodge».«DworkQuinticPsi2»
+import «Hodge».«Examples»
+import «Hodge».«ExplicitCurve»
+import «Hodge».«ExplicitJacobianIndependence»
+import «Hodge».«ExplicitJacobianQuotient»
+import «Hodge».«ExplicitResidueAlgebra»
+import «Hodge».«ExplicitResidueCertificates»
+import «Hodge».«Fermat»
+import «Hodge».«FermatCubicHost»
+import «Hodge».«FermatPlanes»
+import «Hodge».«FermatQuintic»
+import «Hodge».«Fourfold»
+import «Hodge».«Frontier»
+import «Hodge».«GeometricCycleClass»
+import «Hodge».«Geometry»
+import «Hodge».«Hassett»
+import «Hodge».«HeadPlane»
+import «Hodge».«HonestHosts»
+import «Hodge».«HostSplit»
+import «Hodge».«Integral»
+import «Hodge».«Islands»
+import «Hodge».«JacobianLength»
+import «Hodge».«Klein»
+import «Hodge».«KleinPairing»
+import «Hodge».«Known»
+import «Hodge».«NamedFamilies»
+import «Hodge».«NoShadow»
+import «Hodge».«PlaneSpanPairing»
+import «Hodge».«QuinticHost»
+import «Hodge».«RealClose»
+import «Hodge».«Release»
+import «Hodge».«SexticCertificates»
+import «Hodge».«SexticCombinatorics»
+import «Hodge».«SexticModuli»
+import «Hodge».«Skeleton»
+import «Hodge».«SpecialSextic»
+import «Hodge».«SpecialSexticJacobian»
+import «Hodge».«SpecialSexticMembership»
+import «Hodge».«VacuityAudit»
+import «Hodge».«Verify»
+import «HodgeAttempt»
+
+open Lean Elab Command
+
+/-- Prints `#print axioms`-style lines for every theorem declared in the listed modules. -/
+elab "#kernel_certificate_audit" : command => do
+  let env ← getEnv
+  let mods : Array Name := #[`«AxiomPrint», `«Hodge», `«Hodge».«AlgebraicSpanChecks», `«Hodge».«Attempt».«ClayStatement», `«Hodge».«Attempt».«FermatIdentities», `«Hodge».«Attempt».«FermatPlanes», `«Hodge».«Attempt».«GenericObstructed», `«Hodge».«Attempt».«Grading», `«Hodge».«Attempt».«IntersectionInvariants», `«Hodge».«Attempt».«NamedSexticMembership», `«Hodge».«Attempt».«ParameterLocus», `«Hodge».«Attempt».«SpecialSexticMembership», `«Hodge».«Attempt».«VacuityAudit», `«Hodge».«Basic», `«Hodge».«ChainSexticBridgeAudit», `«Hodge».«ChainSexticCharacterCore», `«Hodge».«ChainSexticCharacterModel», `«Hodge».«ChainSexticCharacterModel».«Bridge», `«Hodge».«ChainSexticCharacterModel».«GaloisMin», `«Hodge».«ChainSexticCharacterModel».«Indep», `«Hodge».«ChainSexticCharacterModel».«Lines», `«Hodge».«ChainSexticCharacterModel».«Roots», `«Hodge».«ChainSexticCharacterModel».«Space», `«Hodge».«ChainSexticR12», `«Hodge».«ChainSexticR12Bridge», `«Hodge».«ChainSexticRank», `«Hodge».«ChainSexticRho», `«Hodge».«Chow», `«Hodge».«Classical», `«Hodge».«Clay», `«Hodge».«ClayStatement», `«Hodge».«ClayTerm», `«Hodge».«Construct», `«Hodge».«ContainerSeparation», `«Hodge».«Cubic», `«Hodge».«DeformedQuinticHost», `«Hodge».«DerivedSurfaces», `«Hodge».«DworkQuinticPsi2», `«Hodge».«Examples», `«Hodge».«ExplicitCurve», `«Hodge».«ExplicitJacobianIndependence», `«Hodge».«ExplicitJacobianQuotient», `«Hodge».«ExplicitResidueAlgebra», `«Hodge».«ExplicitResidueCertificates», `«Hodge».«Fermat», `«Hodge».«FermatCubicHost», `«Hodge».«FermatPlanes», `«Hodge».«FermatQuintic», `«Hodge».«Fourfold», `«Hodge».«Frontier», `«Hodge».«GeometricCycleClass», `«Hodge».«Geometry», `«Hodge».«Hassett», `«Hodge».«HeadPlane», `«Hodge».«HonestHosts», `«Hodge».«HostSplit», `«Hodge».«Integral», `«Hodge».«Islands», `«Hodge».«JacobianLength», `«Hodge».«Klein», `«Hodge».«KleinPairing», `«Hodge».«Known», `«Hodge».«NamedFamilies», `«Hodge».«NoShadow», `«Hodge».«PlaneSpanPairing», `«Hodge».«QuinticHost», `«Hodge».«RealClose», `«Hodge».«Release», `«Hodge».«SexticCertificates», `«Hodge».«SexticCombinatorics», `«Hodge».«SexticModuli», `«Hodge».«Skeleton», `«Hodge».«SpecialSextic», `«Hodge».«SpecialSexticJacobian», `«Hodge».«SpecialSexticMembership», `«Hodge».«VacuityAudit», `«Hodge».«Verify», `«HodgeAttempt»]
+  for m in mods do
+    match env.getModuleIdx? m with
+    | none => IO.println s!"MODULE NOT LOADED {m}"
+    | some i =>
+      for n in (env.header.moduleData[i.toNat]!).constNames do
+        match env.find? n with
+        | some (.thmInfo _) =>
+          if !n.isInternal then
+            let ax ← collectAxioms n
+            let axs := ", ".intercalate (ax.toList.map toString)
+            if ax.isEmpty then IO.println s!"'{n}' does not depend on any axioms [module {m}]"
+            else IO.println s!"'{n}' depends on axioms: [{axs}] [module {m}]"
+        | _ => pure ()
+
+#kernel_certificate_audit
