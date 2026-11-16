@@ -38,6 +38,7 @@ jobs:
             Hodge/ChainSexticCharacterModel/Indep.lean \
             Hodge/ChainSexticCharacterModel/GaloisMin.lean \
             Hodge/ChainSexticCharacterModel/Bridge.lean \
+            Hodge/GeometricCycleClass.lean \
             Hodge/ExplicitJacobianQuotient.lean Hodge/ExplicitJacobianIndependence.lean; then
             echo "sorry in the built library"
             exit 1

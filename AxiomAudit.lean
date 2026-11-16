@@ -59,6 +59,7 @@ import Hodge.Attempt.VacuityAudit
 import Hodge.ChainSexticR12
 import Hodge.ChainSexticR12Bridge
 import Hodge.ChainSexticCharacterCore
+import Hodge.GeometricCycleClass
 
 /-!
 # AxiomAudit
@@ -819,3 +820,7 @@ Machine-checked Lean 4 module.
 #print axioms Hodge.ChainSexticCharacterModel.characterCore_dense_rho
 #print axioms Hodge.ChainSexticCharacterModel.characterCore_model_finrank
 #print axioms Hodge.ChainSexticCharacterModel.characterCore_dense_finrank
+
+#print axioms Hodge.GeometricCycleClass.cycleClassMap
+#print axioms Hodge.GeometricCycleClass.algebraic_le_hodge
+#print axioms Hodge.GeometricCycleClass.hodgeConjecture_iff_hasSection
