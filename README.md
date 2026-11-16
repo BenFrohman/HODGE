@@ -8,6 +8,10 @@
 [![License: Apache-2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![ORCID](https://img.shields.io/badge/ORCID-0009--0006--7068--3718-brightgreen.svg)](https://orcid.org/0009-0006-7068-3718)
 
+## Kernel certificate
+
+[certificates/CERTIFICATE.md](certificates/CERTIFICATE.md): commit `2265e39`, `leanprover/lean4:v4.22.0`. `lake build` passes; the sorry/axiom scan finds 0 hits; **1154 theorems depend only on `propext`, `Classical.choice`, `Quot.sound`**; 78 of 78 modules replayed through the kernel, 0 failures ([CI run](https://github.com/BenFrohman/HODGE/actions/runs/43937940900)).
+
 > **Author:** Frohman, Benjamin Stanley ([ORCID: 0009-0006-7068-3718](https://orcid.org/0009-0006-7068-3718))
 > **Origin Provenance:** `2026-09-19 16:56:32 CDT (Git Initial Commit)`
 > **Zenodo Archive & DOI:** [`10.5281/zenodo.23629480`](https://doi.org/10.5281/zenodo.23629480) ([Zenodo Record `23629480`](https://zenodo.org/records/23629480))
