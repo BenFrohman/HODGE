@@ -21,23 +21,72 @@ jobs:
       - name: Axiom audit
         run: |
           set -o pipefail
-          lake env lean AxiomAudit.lean 2>&1 | awk '/^[ \t]/{sub(/^[ \t]+/," ");printf "%s",$0;next} NR>1{print ""} {printf "%s",$0} END{print ""}' | tee axioms.txt
+          mkdir -p certificate
+          lake env lean AxiomAudit.lean 2>&1 | tee certificate/axiom-audit-raw.txt | awk '/^[ \t]/{sub(/^[ \t]+/," ");printf "%s",$0;next} NR>1{print ""} {printf "%s",$0} END{print ""}' | tee axioms.txt
       - name: Check axioms are standard only
         run: |
           test -s axioms.txt
           OK='depends on axioms: \[(propext|Classical\.choice|Quot\.sound)(, (propext|Classical\.choice|Quot\.sound))*\]$|does not depend on any axioms$'
           n=$(grep -c "^#print axioms" AxiomAudit.lean); m=$(grep -E "^'" axioms.txt | grep -cE "$OK" || true)
-          echo "audited $n declarations, $m with standard axioms only"
+          echo "audited $n declarations, $m with standard axioms only" | tee certificate/axiom-check.txt
           if [ "$n" -ne "$m" ] || grep -iE "error|warning: declaration uses" axioms.txt; then
             echo "Non-standard axiom output:"; cat axioms.txt; exit 1; fi
       - name: No sorry / no axiom declarations
-        run: python3 scripts/check_no_sorry.py
+        run: |
+          set -o pipefail
+          python3 scripts/check_no_sorry.py 2>&1 | tee certificate/no-sorry.txt
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
       - name: Exact surface projection certificate
         run: |
           python3 -m pip install sympy==1.14.0
-          python3 scripts/explicit_projection_certificate.py
+          set -o pipefail
+          python3 scripts/explicit_projection_certificate.py 2>&1 | tee certificate/projection-certificate.txt
       - name: Build and audit incremental residue proofs
-        run: python3 scripts/check_residue_axioms.py
+        run: |
+          set -o pipefail
+          python3 scripts/check_residue_axioms.py 2>&1 | tee certificate/residue-axiom-audit.txt
+      # Everything below only records evidence; it never changes the result of the checks above.
+      - name: Assemble certificate
+        env:
+          PR_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}/attempts/${{ github.run_attempt }}
+        run: |
+          cp axioms.txt certificate/axiom-audit.txt
+          cp AxiomAudit.lean certificate/AxiomAudit.lean
+          cp ResidueAxiomAudit.lean certificate/ResidueAxiomAudit.lean
+          {
+            echo "repository: ${{ github.repository }}"
+            echo "event: ${{ github.event_name }}"
+            echo "ref: ${{ github.ref }}"
+            echo "audited_commit: $(git rev-parse HEAD)"
+            if [ -n "$PR_HEAD_SHA" ]; then echo "pull_request_head_commit: $PR_HEAD_SHA"; fi
+            echo "run: $RUN_URL"
+            echo "date_utc: $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+            echo "lean_toolchain: $(cat lean-toolchain)"
+            echo "lean_version: $(lake env lean --version)"
+            echo "lake_version: $(lake --version)"
+            echo "mathlib_rev: $(python3 -c 'import json;print(next(p["rev"]+" (inputRev "+str(p.get("inputRev"))+")" for p in json.load(open("lake-manifest.json"))["packages"] if p["name"]=="mathlib"))')"
+            echo "print_axioms_lines_in_AxiomAudit.lean: $(grep -c '^#print axioms' AxiomAudit.lean)"
+            echo "print_axioms_lines_in_ResidueAxiomAudit.lean: $(grep -c '^#print axioms' ResidueAxiomAudit.lean)"
+            echo "standard_axiom_results: $(grep -E "^'" certificate/axiom-audit.txt | grep -cE 'depends on axioms: \[(propext|Classical\.choice|Quot\.sound)(, (propext|Classical\.choice|Quot\.sound))*\]$|does not depend on any axioms$')"
+          } > certificate/METADATA.txt
+          {
+            echo "Compile status of tracked .lean files outside the default build targets (informational, not part of the certificate):"
+            for f in Hodge/Attempt/FermatRecipeScope.lean Hodge/JacobianGenerators.lean Hodge/OpenCase.lean; do
+              if [ -f "$f" ]; then
+                if out=$(lake env lean "$f" 2>&1); then echo "== $f: compiles"; else echo "== $f: FAILS"; fi
+                printf '%s\n' "$out" | head -n 40
+              fi
+            done
+          } > certificate/excluded-status.txt 2>&1 || true
+          cat certificate/METADATA.txt certificate/excluded-status.txt
+          (cd certificate && sha256sum $(ls | grep -v '^SHA256SUMS$' | sort) > SHA256SUMS && cat SHA256SUMS)
+      - name: Upload certificate artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: axiom-certificate-${{ github.sha }}
+          path: certificate/
+          if-no-files-found: error
+          retention-days: 90

@@ -1,0 +1,750 @@
+'Hodge.Attempt.Hypersurface.mk.inj' does not depend on any axioms
+'Hodge.Attempt.Hypersurface.mk.injEq' depends on axioms: [propext]
+'Hodge.Attempt.Hypersurface.mk.sizeOf_spec' does not depend on any axioms
+'Hodge.Attempt.IntersectionInvariants.extra_class_mismatch' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.Attempt.IntersectionInvariants.isolation_not_ambient' depends on axioms: [propext]
+'Hodge.Attempt.IntersectionInvariants.planeSelfIx_six' depends on axioms: [propext]
+'Hodge.Attempt.IntersectionInvariants.predicted_ambient_self' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.Attempt.NamedSextic.namedSextic_eq_plane_combination' depends on axioms: [propext]
+'Hodge.Attempt.NamedSextic.namedSextic_mem_plane' depends on axioms: [propext, Quot.sound]
+'Hodge.Attempt.ParameterLocus.fermatLocus.inj' does not depend on any axioms
+'Hodge.Attempt.ParameterLocus.fermatLocus.injEq' depends on axioms: [propext]
+'Hodge.Attempt.ParameterLocus.fermatLocus.sizeOf_spec' does not depend on any axioms
+'Hodge.Attempt.ParameterLocus.genericObstructedLocus.sizeOf_spec' does not depend on any axioms
+'Hodge.Attempt.ParameterLocus.kleinQuadric.sizeOf_spec' does not depend on any axioms
+'Hodge.Attempt.ParameterLocus.productOfPlanes.sizeOf_spec' does not depend on any axioms
+'Hodge.Attempt.ParameterLocus.projectiveFourSpace.sizeOf_spec' does not depend on any axioms
+'Hodge.Attempt.SpecialSexticMembership.F_factors' depends on axioms: [propext]
+'Hodge.Attempt.SpecialSexticMembership.F_mem_plane' depends on axioms: [propext, Quot.sound]
+'Hodge.Attempt.Tagged.mk.inj' does not depend on any axioms
+'Hodge.Attempt.Tagged.mk.injEq' depends on axioms: [propext]
+'Hodge.Attempt.Tagged.mk.sizeOf_spec' does not depend on any axioms
+'Hodge.FermatPlanes.Var.ofNat_toCtorIdx' does not depend on any axioms
+'Hodge.FermatPlanes.Var.z0.sizeOf_spec' does not depend on any axioms
+'Hodge.FermatPlanes.Var.z1.sizeOf_spec' does not depend on any axioms
+'Hodge.FermatPlanes.Var.z2.sizeOf_spec' does not depend on any axioms
+'Hodge.FermatPlanes.Var.z3.sizeOf_spec' does not depend on any axioms
+'Hodge.FermatPlanes.Var.z4.sizeOf_spec' does not depend on any axioms
+'Hodge.FermatPlanes.Var.z5.sizeOf_spec' does not depend on any axioms
+'Hodge.Attempt.carriesFermatRecipe.eq_1' does not depend on any axioms
+'Hodge.Attempt.fermat_pair_vanishing' depends on axioms: [propext, Quot.sound]
+'Hodge.Attempt.fermat_pair_with_remainder' depends on axioms: [propext, Quot.sound]
+'Hodge.Attempt.fermat_quartic_contains_Z1' depends on axioms: [propext, Quot.sound]
+'Hodge.Attempt.fourfold_complex_dim_eq_four' depends on axioms: [propext]
+'Hodge.Attempt.genericObstructedFourfold_codim' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.Attempt.genericObstructedTag.eq_1' does not depend on any axioms
+'Hodge.Attempt.generic_tag_has_no_fermat_recipe' does not depend on any axioms
+'Hodge.Attempt.middle_cycle_codimension_is_two' depends on axioms: [propext]
+'Hodge.Attempt.middle_cycle_dim_eq_two' depends on axioms: [propext]
+'Hodge.FermatPlanes.pair_vanishing' depends on axioms: [propext, Quot.sound]
+'Hodge.FermatPlanes.pair_with_remainder' depends on axioms: [propext, Quot.sound]
+'Hodge.Attempt.recipe_is_not_global_constructor' does not depend on any axioms
+'Hodge.ChowData.mk.inj' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChowData.mk.injEq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChowData.mk.sizeOf_spec' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.Classical.P4Coord.ofNat_toCtorIdx' does not depend on any axioms
+'Hodge.Classical.P4Coord.x0.sizeOf_spec' does not depend on any axioms
+'Hodge.Classical.P4Coord.x1.sizeOf_spec' does not depend on any axioms
+'Hodge.Classical.P4Coord.x2.sizeOf_spec' does not depend on any axioms
+'Hodge.Classical.P4Coord.x3.sizeOf_spec' does not depend on any axioms
+'Hodge.Classical.P4Coord.x4.sizeOf_spec' does not depend on any axioms
+'Hodge.Classical.P4Cycle.mk.inj' depends on axioms: [propext]
+'Hodge.Classical.P4Cycle.mk.injEq' depends on axioms: [propext]
+'Hodge.Classical.P4Cycle.mk.sizeOf_spec' depends on axioms: [propext]
+'Hodge.Classical.ProductCycle.mk.inj' depends on axioms: [propext]
+'Hodge.Classical.ProductCycle.mk.injEq' depends on axioms: [propext]
+'Hodge.Classical.ProductCycle.mk.sizeOf_spec' depends on axioms: [propext]
+'Hodge.Classical.classical_islands' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.Classical.constructP4_coeff' depends on axioms: [propext]
+'Hodge.Classical.constructP4_discharged' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.Classical.constructP4_section' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.Classical.constructProduct_section' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.Classical.construct_recovers' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.Classical.constructions_are_sections' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.Classical.expansion' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.Classical.instCycleConstructorProdRatKleinQuadric' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.Classical.instCycleConstructorProdRatProductOfPlanes' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.Classical.instCycleConstructorRatProjectiveFourSpace' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.Classical.kleinQuadric_hodgeConjecture' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.Classical.productOfPlanes_hodgeConjecture' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.Classical.projectiveFourSpace_hodgeConjecture' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.Classical.sections_recover' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.Clay.instNonemptyHdg2' does not depend on any axioms
+'Hodge.Clay.of_section_is_not_uniform' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.Clay.skeleton_on_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ContainerSeparation.Z_not_container' does not depend on any axioms
+'Hodge.ContainerSeparation.Z_bounds' does not depend on any axioms
+'Hodge.ContainerSeparation.Z_status_eq' does not depend on any axioms
+'Hodge.ContainerSeparation.gram_shadow_numeral' does not depend on any axioms
+'Hodge.ContainerSeparation.quintic_h31' does not depend on any axioms
+'Hodge.ContainerSeparation.sextic_R12' does not depend on any axioms
+'Hodge.ContainerSeparation.sextic_R18' does not depend on any axioms
+'Hodge.ContainerSeparation.sextic_R6' does not depend on any axioms
+'Hodge.ContainerSeparation.sextic_b4' does not depend on any axioms
+'Hodge.ContainerSeparation.sextic_h22' does not depend on any axioms
+'Hodge.ContainerSeparation.two_plane_shadow_det' does not depend on any axioms
+'Hodge.Cubic.ZuckerCubic.construct' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.Cubic.construct_h2_section' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.Cubic.hassettC8_hodge' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.Cubic.hodge_of_zucker' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.Cubic.instCycleConstructorOfZuckerCubic' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.Cubic.no_universal_cubic_section' does not depend on any axioms
+'Hodge.Cubic.veryGeneral_hodge' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.CycleConstructor.construct' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.CycleSection.is_section' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.Datum.algebraicClasses_le_hodgeClasses' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.Datum.cl_isHodge' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.Datum.hodgeClasses.eq_1' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.Datum.hodgeConjecture_codim_blind' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.Datum.hodgeConjecture_of_generators' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.Datum.hodgeConjecture_of_integral_generation' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.Datum.mk.inj' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.Datum.mk.injEq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.Datum.mk.sizeOf_spec' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.DerivedSurfaces.NamedDerivedSurface.mk.inj' does not depend on any axioms
+'Hodge.DerivedSurfaces.NamedDerivedSurface.mk.injEq' depends on axioms: [propext]
+'Hodge.DerivedSurfaces.NamedDerivedSurface.mk.sizeOf_spec' does not depend on any axioms
+'Hodge.DerivedSurfaces.every_listed_host_is_a_fourfold' does not depend on any axioms
+'Hodge.DerivedSurfaces.every_listed_object_is_a_surface' does not depend on any axioms
+'Hodge.DerivedSurfaces.inventory_card' does not depend on any axioms
+'Hodge.DerivedSurfaces.residual_host_is_fourfold' does not depend on any axioms
+'Hodge.DerivedSurfaces.residual_is_surface' does not depend on any axioms
+'Hodge.DerivedSurfaces.residual_not_partner' does not depend on any axioms
+'Hodge.DimLeThree.construct' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.Examples.instCycleConstructorRatTrivialObstruction' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.Examples.not_every_codim_ge_two' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.Examples.trivialObstruction_hodge' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.Examples.zeroCycle.eq_1' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.Examples.zeroCycle_is_not_a_variety_sticker' does not depend on any axioms
+'Hodge.Examples.zeroCycle_not_hodge' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.Fermat.Coord.ofNat_toCtorIdx' does not depend on any axioms
+'Hodge.Fermat.Coord.z0.sizeOf_spec' does not depend on any axioms
+'Hodge.Fermat.Coord.z1.sizeOf_spec' does not depend on any axioms
+'Hodge.Fermat.Coord.z2.sizeOf_spec' does not depend on any axioms
+'Hodge.Fermat.Coord.z3.sizeOf_spec' does not depend on any axioms
+'Hodge.Fermat.Coord.z4.sizeOf_spec' does not depend on any axioms
+'Hodge.Fermat.Coord.z5.sizeOf_spec' does not depend on any axioms
+'Hodge.Fermat.LinearPlane.mk.inj' does not depend on any axioms
+'Hodge.Fermat.LinearPlane.mk.injEq' depends on axioms: [propext]
+'Hodge.Fermat.LinearPlane.mk.sizeOf_spec' does not depend on any axioms
+'Hodge.Fermat.Pairing.mk.inj' does not depend on any axioms
+'Hodge.Fermat.Pairing.mk.injEq' depends on axioms: [propext]
+'Hodge.Fermat.Pairing.mk.sizeOf_spec' does not depend on any axioms
+'Hodge.Fermat.Z1_pairing' depends on axioms: [propext]
+'Hodge.Fermat.Z2_pairing' depends on axioms: [propext]
+'Hodge.Fermat.construct_section' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.Fermat.contains_two_planes' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.Fermat.fermatQuartic_hodge' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.Fermat.twoPlanes_hodge' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.FermatQuintic.F5_eq_G' does not depend on any axioms
+'Hodge.FermatQuintic.G_not_euler_degree5' depends on axioms: [propext, Quot.sound]
+'Hodge.FermatQuintic.X_5_name_ne_T_F' does not depend on any axioms
+'Hodge.FermatQuintic.affine_cone_isolated_at_origin' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.FermatQuintic.b4_numeral' does not depend on any axioms
+'Hodge.FermatQuintic.canonical_degree' does not depend on any axioms
+'Hodge.FermatQuintic.euler_homogeneous' depends on axioms: [propext]
+'Hodge.FermatQuintic.h22_full_numeral' does not depend on any axioms
+'Hodge.FermatQuintic.h31_numeral' does not depend on any axioms
+'Hodge.FermatQuintic.h40_numeral' does not depend on any axioms
+'Hodge.FermatQuintic.jacobian_certificate' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.FermatQuintic.this_is_not_general_fourfold' does not depend on any axioms
+'Hodge.Geometry.Variety.hodgeConjecture_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.Geometry.Variety.mk.inj' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.Geometry.Variety.mk.injEq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.Geometry.Variety.mk.sizeOf_spec' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.Geometry.cycleClass_is_hodge' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.Geometry.every_datum_wraps' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.Geometry.kleinQuadric_hodge' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.Geometry.onVarieties_false_on_Rat' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.Geometry.productOfPlanes_hodge' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.Geometry.projectiveFourSpace_hodge' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.Geometry.wrap_data' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.Geometry.wrapped' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.Geometry.zeroGadget_not_hodge' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.HardLefschetzComplement.construct' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.Hassett.P5Coord.ofNat_toCtorIdx' does not depend on any axioms
+'Hodge.Hassett.P5Coord.x0.sizeOf_spec' does not depend on any axioms
+'Hodge.Hassett.P5Coord.x1.sizeOf_spec' does not depend on any axioms
+'Hodge.Hassett.P5Coord.x2.sizeOf_spec' does not depend on any axioms
+'Hodge.Hassett.P5Coord.x3.sizeOf_spec' does not depend on any axioms
+'Hodge.Hassett.P5Coord.x4.sizeOf_spec' does not depend on any axioms
+'Hodge.Hassett.P5Coord.x5.sizeOf_spec' does not depend on any axioms
+'Hodge.Hassett.construct_section' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.Hassett.planeSpan_hodge' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.HodgeConjecture.LefschetzTwoTwo_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.HodgeConjecture.RealClose.mk.inj' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.HodgeConjecture.RealClose.mk.injEq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.HodgeConjecture.RealClose.mk.sizeOf_spec' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.HodgeConjecture.classical_fourfolds' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.HodgeConjecture.frohman_two_two_spans' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.HodgeConjecture.frohman_two_two_spans_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.HodgeConjecture.general_fourfold_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.HodgeConjecture.general_fourfold_iff_clay' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.HodgeConjecture.iff_nonempty_fibers' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.HodgeConjecture.klein' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.HodgeConjecture.living_skeleton' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.HodgeConjecture.mem_algebraicClasses_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.HodgeConjecture.named_fourfolds' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.HodgeConjecture.nonempty_fiber_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.HodgeConjecture.of_constructor' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.HodgeConjecture.of_realClose' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.HodgeConjecture.of_section' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.HodgeConjecture.p4' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.HodgeConjecture.product' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.HodgeConjecture.ungated_codim_two_false' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.HodgeConjecture.zeroCycleLift_not_hodge' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.HostSplit.Z_bounds' does not depend on any axioms
+'Hodge.HostSplit.Z_status_eq' does not depend on any axioms
+'Hodge.HostSplit.containers_differ' does not depend on any axioms
+'Hodge.HostSplit.quintic_b4' does not depend on any axioms
+'Hodge.HostSplit.quintic_h22' does not depend on any axioms
+'Hodge.HostSplit.quintic_h31' does not depend on any axioms
+'Hodge.HostSplit.sextic_b4' does not depend on any axioms
+'Hodge.HostSplit.sextic_h22' does not depend on any axioms
+'Hodge.HostSplit.sextic_length' does not depend on any axioms
+'Hodge.HostSplit.sextic_r12' does not depend on any axioms
+'Hodge.HostSplit.sextic_r18' does not depend on any axioms
+'Hodge.HostSplit.sextic_r6' does not depend on any axioms
+'Hodge.Integral.integral_unsolvable' depends on axioms: [propext]
+'Hodge.Integral.rational_does_not_imply_integral' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.Integral.rational_solvable' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.Islands.P4Coord.ofNat_toCtorIdx' does not depend on any axioms
+'Hodge.Islands.P4Coord.x0.sizeOf_spec' does not depend on any axioms
+'Hodge.Islands.P4Coord.x1.sizeOf_spec' does not depend on any axioms
+'Hodge.Islands.P4Coord.x2.sizeOf_spec' does not depend on any axioms
+'Hodge.Islands.P4Coord.x3.sizeOf_spec' does not depend on any axioms
+'Hodge.Islands.P4Coord.x4.sizeOf_spec' does not depend on any axioms
+'Hodge.Islands.P4Cycle.mk.inj' depends on axioms: [propext]
+'Hodge.Islands.P4Cycle.mk.injEq' depends on axioms: [propext]
+'Hodge.Islands.P4Cycle.mk.sizeOf_spec' depends on axioms: [propext]
+'Hodge.Islands.ProductCycle.mk.inj' depends on axioms: [propext]
+'Hodge.Islands.ProductCycle.mk.injEq' depends on axioms: [propext]
+'Hodge.Islands.ProductCycle.mk.sizeOf_spec' depends on axioms: [propext]
+'Hodge.Islands.ProductSurface.P2TimesPt.sizeOf_spec' does not depend on any axioms
+'Hodge.Islands.ProductSurface.lineTimesLine.sizeOf_spec' does not depend on any axioms
+'Hodge.Islands.ProductSurface.ofNat_toCtorIdx' does not depend on any axioms
+'Hodge.Islands.ProductSurface.ptTimesP2.sizeOf_spec' does not depend on any axioms
+'Hodge.Islands.constructP4_coeff' depends on axioms: [propext]
+'Hodge.Islands.constructP4_recovers' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.Islands.constructProduct_coeff' depends on axioms: [propext]
+'Hodge.Islands.constructProduct_recovers' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.Islands.constructQ_coeff' depends on axioms: [propext]
+'Hodge.Islands.constructQ_eq_initialize' depends on axioms: [propext]
+'Hodge.Islands.constructQ_recovers' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.Islands.islands_construct' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.JacobianLength.HomogeneousCILength.dim_eq_pow' depends on axioms: [propext]
+'Hodge.JacobianLength.five_pow_six' depends on axioms: [propext]
+'Hodge.JacobianLength.length_num' depends on axioms: [propext]
+'Hodge.JacobianLength.length_num_of_hyps' depends on axioms: [propext]
+'Hodge.JacobianLength.this_is_not_general_fourfold' does not depend on any axioms
+'Hodge.Klein.Coord.ofNat_toCtorIdx' does not depend on any axioms
+'Hodge.Klein.Coord.p01.sizeOf_spec' does not depend on any axioms
+'Hodge.Klein.Coord.p02.sizeOf_spec' does not depend on any axioms
+'Hodge.Klein.Coord.p03.sizeOf_spec' does not depend on any axioms
+'Hodge.Klein.Coord.p12.sizeOf_spec' does not depend on any axioms
+'Hodge.Klein.Coord.p13.sizeOf_spec' does not depend on any axioms
+'Hodge.Klein.Coord.p23.sizeOf_spec' does not depend on any axioms
+'Hodge.Klein.FormalCycle.mk.inj' depends on axioms: [propext]
+'Hodge.Klein.FormalCycle.mk.injEq' depends on axioms: [propext]
+'Hodge.Klein.FormalCycle.mk.sizeOf_spec' depends on axioms: [propext]
+'Hodge.Klein.cycleOf_coeff' depends on axioms: [propext]
+'Hodge.Klein.cycleOf_construct' depends on axioms: [propext]
+'Hodge.Klein.expand' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.Klein.ideals_cover' depends on axioms: [propext]
+'Hodge.Klein.ideals_disjoint' depends on axioms: [propext]
+'Hodge.Klein.pairing.eq_1' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.Klein.pairing_Pi' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.Klein.pairing_Pi'' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.Klein.pairing_cross' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.Klein.pi'_on_quadric' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.Klein.pi_on_quadric' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.Klein.pluckerEval.eq_1' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.LefschetzOneOne.construct' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.LefschetzOneOne.is_codim_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.NoShadow.fermat_certificate_is_not_chow' does not depend on any axioms
+'Hodge.NoShadow.shadow_ne_geometric_cl' does not depend on any axioms
+'Hodge.Release.NamedTerm.mk.inj' does not depend on any axioms
+'Hodge.Release.NamedTerm.mk.injEq' depends on axioms: [propext]
+'Hodge.Release.NamedTerm.mk.sizeOf_spec' does not depend on any axioms
+'Hodge.Release.Status.closed.sizeOf_spec' does not depend on any axioms
+'Hodge.Release.Status.ofNat_toCtorIdx' does not depend on any axioms
+'Hodge.Release.Status.open.sizeOf_spec' does not depend on any axioms
+'Hodge.Release.contains_two_planes' depends on axioms: [propext, Quot.sound]
+'Hodge.Release.inventory_uniform_count' does not depend on any axioms
+'Hodge.Release.named_host_shadows' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.Release.only_uniformConstruct_is_flagged' does not depend on any axioms
+'Hodge.Release.status_separation' does not depend on any axioms
+'Hodge.SexticModuli.dim_PGL6' does not depend on any axioms
+'Hodge.SexticModuli.eq_15625_of_eq_five_pow_six' does not depend on any axioms
+'Hodge.SexticModuli.equation_space_dim' does not depend on any axioms
+'Hodge.SexticModuli.fixed_plane_naive_dim' does not depend on any axioms
+'Hodge.SexticModuli.milnor_number' does not depend on any axioms
+'Hodge.SexticModuli.naive_git_dim' does not depend on any axioms
+'Hodge.SexticModuli.plane_restriction_monomials' does not depend on any axioms
+'Hodge.SexticModuli.sextic_monomials' does not depend on any axioms
+'Hodge.SpecialSextic.F_factors' depends on axioms: [propext]
+'Hodge.SpecialSextic.F_factors_minus1' depends on axioms: [propext, Quot.sound]
+'Hodge.SpecialSextic.F_mem_plane' depends on axioms: [propext, Quot.sound]
+'Hodge.SpecialSextic.F_mem_plane_minus1' depends on axioms: [propext, Quot.sound]
+'Hodge.SpecialSextic.Pi.eq_1' depends on axioms: [propext]
+'Hodge.SpecialSextic.S.eq_1' depends on axioms: [propext]
+'Hodge.SpecialSextic.S_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.SpecialSextic.affine_cone_isolated_at_origin' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.SpecialSextic.beta.eq_1' depends on axioms: [propext]
+'Hodge.SpecialSextic.beta_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.SpecialSextic.closed_membership' depends on axioms: [propext, Quot.sound]
+'Hodge.SpecialSextic.constructThree_section' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.SpecialSextic.construct_section' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.SpecialSextic.contains_two_planes' depends on axioms: [propext, Quot.sound]
+'Hodge.SpecialSextic.dF_dx0_formula' does not depend on any axioms
+'Hodge.SpecialSextic.dF_dx1_formula' does not depend on any axioms
+'Hodge.SpecialSextic.dF_dx2_formula' does not depend on any axioms
+'Hodge.SpecialSextic.dF_dx3_formula' does not depend on any axioms
+'Hodge.SpecialSextic.dF_dx4_formula' does not depend on any axioms
+'Hodge.SpecialSextic.dF_dx5_formula' does not depend on any axioms
+'Hodge.SpecialSextic.discriminant' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.SpecialSextic.euler_homogeneous' depends on axioms: [propext]
+'Hodge.SpecialSextic.five_pow_six' depends on axioms: [propext]
+'Hodge.SpecialSextic.gradPair_origin' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.SpecialSextic.gradient_only_origin' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.SpecialSextic.gram_det_numeral' does not depend on any axioms
+'Hodge.SpecialSextic.h2.eq_1' depends on axioms: [propext]
+'Hodge.SpecialSextic.head_plane_not_on_host' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.SpecialSextic.head_plane_point' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.SpecialSextic.hypersurface_contains_the_plane' depends on axioms: [propext, Quot.sound]
+'Hodge.SpecialSextic.hypersurface_contains_the_sign_plane' depends on axioms: [propext, Quot.sound]
+'Hodge.SpecialSextic.jacobian_lock_is_not_general_fourfold' does not depend on any axioms
+'Hodge.SpecialSextic.jacobian_vanishes_only_at_origin' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.SpecialSextic.pairing.eq_1' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.SpecialSextic.pairing_Pi_Pi' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.SpecialSextic.pairing_Pi_S' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.SpecialSextic.pairing_S_S' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.SpecialSextic.pairing_beta_Pi' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.SpecialSextic.pairing_beta_S' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.SpecialSextic.pairing_beta_beta' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.SpecialSextic.pairing_beta_h2' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.SpecialSextic.pairing_h2_Pi' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.SpecialSextic.pairing_h2_S' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.SpecialSextic.pairing_h2_h2' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.SpecialSextic.planeSpan_hodge' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.SpecialSextic.planeSpan_identity_shadow' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.SpecialSextic.special_NL_sextic_coefficient_shadow' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.SpecialSextic.threeSpan_hodge' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.SpecialSextic.threeSpan_identity_shadow' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.SpecialSexticMembership.F_factors' depends on axioms: [propext]
+'Hodge.SpecialSexticMembership.F_factors_minus1' depends on axioms: [propext, Quot.sound]
+'Hodge.SpecialSexticMembership.F_mem_plane' depends on axioms: [propext, Quot.sound]
+'Hodge.SpecialSexticMembership.F_mem_plane_minus1' depends on axioms: [propext, Quot.sound]
+'Hodge.SpecialSexticMembership.contains_two_planes' depends on axioms: [propext, Quot.sound]
+'Hodge.chow_not_shadow_name' does not depend on any axioms
+'Hodge.constructor_of_hodgeConjecture' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.hodgeConjecture_codim_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.hodgeConjecture_dim_le_three' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.hodgeConjecture_hardLefschetz' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.hodgeConjecture_of_constructor' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.instCycleConstructorOfCycleSection' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.instCycleConstructorOfDimLeThree' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.instCycleConstructorOfHardLefschetzComplement' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.instCycleConstructorOfLefschetzOneOne' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.instLefschetzOneOneRatK3Surface' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.k3Surface_codim' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.k3Surface_hodge' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.FermatCubicHost.F_isHomogeneous' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.FermatCubicHost.smooth' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.FermatCubicHost.cubic_primitive_hodge' depends on axioms: [propext]
+'Hodge.FermatCubicHost.sextic_primitive_hodge' depends on axioms: [propext]
+'Hodge.QuinticHost.G_isHomogeneous' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.QuinticHost.pderiv_G' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.QuinticHost.smooth' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.QuinticHost.quintic_series' depends on axioms: [propext]
+'Hodge.QuinticHost.quintic_primitive_hodge' depends on axioms: [propext]
+'Hodge.QuinticHost.quintic_h40_zero' does not depend on any axioms
+'Hodge.QuinticHost.quintic_h31_ne_zero' depends on axioms: [propext]
+'Hodge.DeformedQuinticHost.G_isHomogeneous' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.DeformedQuinticHost.singular_at_p' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.DeformedQuinticHost.not_smooth' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.DworkQuinticPsi2.G_isHomogeneous' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.DworkQuinticPsi2.eval_pderiv' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.DworkQuinticPsi2.smooth' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.DworkQuinticPsi2.psi_not_root' depends on axioms: [propext]
+'Hodge.DworkQuinticPsi2.dwork_primitive_hodge' depends on axioms: [propext]
+'Hodge.SexticCombinatorics.f_facPt' depends on axioms: [propext, Quot.sound]
+'Hodge.SexticCombinatorics.standard_plane_on_X' depends on axioms: [propext, Quot.sound]
+'Hodge.SexticCombinatorics.card_standard_labels' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.SexticCombinatorics.diagonal_plane_on_X' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.SexticCombinatorics.twisted_pair_vanishes' depends on axioms: [propext, Quot.sound]
+'Hodge.SexticCombinatorics.gram8_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.SexticCombinatorics.H8_mul_self' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.SexticCombinatorics.M8_mul_H8' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.SexticCombinatorics.det_ne_zero_of_mul_self' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.SexticCombinatorics.det_of_mul_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.SexticCombinatorics.det_H8_ne_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.SexticCombinatorics.prod_eig' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.SexticCombinatorics.det_M8' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.SexticCombinatorics.det_gram8' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.SexticCombinatorics.rank_map_of_det_ne_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.SexticCombinatorics.rank_gram8' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.SexticCombinatorics.milnorBasis_length' does not depend on any axioms
+'Hodge.SexticCombinatorics.chr_injective' does not depend on any axioms
+'Hodge.SexticCombinatorics.valid_iff' depends on axioms: [propext, Quot.sound]
+'Hodge.SexticCombinatorics.valid_inverse' does not depend on any axioms
+'Hodge.SexticCombinatorics.primitive_hodge_numbers' does not depend on any axioms
+'Hodge.SexticCombinatorics.units30_spec' depends on axioms: [propext]
+'Hodge.SexticCombinatorics.rational_hodge_dim' does not depend on any axioms
+'Hodge.SexticCombinatorics.rational_hodge_orbits' does not depend on any axioms
+'Hodge.SexticCombinatorics.gap_660' depends on axioms: [propext]
+'Hodge.SexticCombinatorics.split_425' does not depend on any axioms
+'Hodge.SexticCombinatorics.split_360' depends on axioms: [propext]
+'Hodge.SexticCombinatorics.split_orbits' depends on axioms: [propext]
+'Hodge.SexticCombinatorics.none_unclassified' depends on axioms: [propext]
+'Hodge.SexticCertificates.gb_in_J' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.SexticCertificates.J_in_gb' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.SexticCertificates.spoly_12' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.SexticCertificates.spoly_13' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.SexticCertificates.spoly_23' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.SexticCertificates.std_card' does not depend on any axioms
+'Hodge.SexticCertificates.std_bounded' does not depend on any axioms
+'Hodge.SexticCertificates.twist_action' depends on axioms: [propext, Quot.sound]
+'Hodge.SexticCertificates.mu_action' depends on axioms: [propext, Quot.sound]
+'Hodge.SexticCertificates.eta_action' depends on axioms: [propext, Quot.sound]
+'Hodge.ExplicitCurve.section_identity' depends on axioms: [propext, Quot.sound]
+'Hodge.ExplicitCurve.cone_on_X' depends on axioms: [propext, Quot.sound]
+'Hodge.ExplicitCurve.rel_h5' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ExplicitCurve.rel_h4' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ExplicitCurve.rel_h3' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ExplicitCurve.rel_h2' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ExplicitCurve.rel_h1' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ExplicitCurve.rel_h0' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.FermatCubicHost.primHodge_of_negative_degree' depends on axioms: [propext]
+'Hodge.QuinticHost.quintic_primHodge_h40_zero' depends on axioms: [propext]
+'Hodge.QuinticHost.quintic_primHodge_h04_zero' depends on axioms: [propext]
+'Hodge.FermatPlanes.C_pow_four_eq_neg_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.FermatPlanes.fermatQuartic_factors' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.FermatPlanes.fermatQuartic_mem_surfaceZ1' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticRank.finrank_rationalPoints_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticRank.two_le_finrank_of_gram' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticRank.chainSextic_isHomogeneous' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticRank.pderiv_chainSextic_low' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticRank.pderiv_chainSextic_high' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticRank.stdPairs_card' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticRank.stdTriples12_card' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticRank.pair_mem_span' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticRank.pair_relations' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticRank.mk_monomial_mem' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticRank.jacobianDeg12_finrank_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticRank.one_add_six_mul_inverse' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticRank.planeSelfIntersection_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticRank.gram_det_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticRank.rho_le_1752' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticRank.two_le_rho' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticRank.rho_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticRho.hodgeChars_card' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticRho.orbit_subset' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticRho.cubeAll_spec' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticRho.orbitCheck' does not depend on any axioms
+'Hodge.ChainSexticRho.hodgeOrbitCheck' does not depend on any axioms
+'Hodge.ChainSexticRho.repCheck' does not depend on any axioms
+'Hodge.ChainSexticRho.act_mem_cube' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticRho.mem_primChars' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticRho.mem_reps' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticRho.mem_orbit' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticRho.sumBelow_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticRho.hodgeSet_card' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticRho.hodgeChars_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticRho.mem_hodgeReps' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticRho.mem_type22' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticRho.rationalHodge_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticRho.hodgeChars_subset' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticRho.gc' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticRho.finrank_cx' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticRho.cx_span_singleton' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticRho.finrank_biSup_of_indep' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticRho.ChainSexticCharacterBridge.W_le_hdg_of_hodge' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticRho.ChainSexticCharacterBridge.hodge_of_W_le_hdg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticRho.ChainSexticCharacterBridge.hdg_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticRho.ChainSexticCharacterBridge.cx_hdg_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticRho.ChainSexticCharacterBridge.rho_eq_786' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticRho.ChainSexticCharacterBridge.rho_bounds_and_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.AlgebraicSpanChecks.linearIndependent_of_gram_det_ne_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.AlgebraicSpanChecks.finrank_span_of_gram_det_ne_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.AlgebraicSpanChecks.det_of_LU' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.AlgebraicSpanChecks.Klein.plucker_smooth' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.AlgebraicSpanChecks.Klein.pi_pi'_disjoint' depends on axioms: [propext]
+'Hodge.AlgebraicSpanChecks.Klein.h2_section_splits' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.AlgebraicSpanChecks.Klein.rhoPlane_on_quadric' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.AlgebraicSpanChecks.Klein.rhoPlanes_meet_in_point' depends on axioms: [propext]
+'Hodge.AlgebraicSpanChecks.Klein.gram_det' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.AlgebraicSpanChecks.Klein.degree_checks' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.AlgebraicSpanChecks.ProductOfPlanes.gram_det' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.AlgebraicSpanChecks.ProductOfPlanes.segre_degree' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.AlgebraicSpanChecks.PlaneInHypersurface.inverse_mod_h3' depends on axioms: [propext, Quot.sound]
+'Hodge.AlgebraicSpanChecks.PlaneInHypersurface.chern_product' depends on axioms: [propext, Quot.sound]
+'Hodge.AlgebraicSpanChecks.PlaneInHypersurface.selfIx_values' depends on axioms: [propext]
+'Hodge.AlgebraicSpanChecks.PlaneInHypersurface.lineMeetIx_values' does not depend on any axioms
+'Hodge.AlgebraicSpanChecks.HassettC8.cubic_mem_plane' depends on axioms: [propext, Quot.sound]
+'Hodge.AlgebraicSpanChecks.HassettC8.gram_det' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.AlgebraicSpanChecks.FermatQuartic.fermatQuartic_mem_surfaceZ2' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.AlgebraicSpanChecks.FermatQuartic.exists_root' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.AlgebraicSpanChecks.FermatQuartic.two_planes_exist' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.AlgebraicSpanChecks.FermatQuintic.quintic_mem_plane' depends on axioms: [propext, Quot.sound]
+'Hodge.AlgebraicSpanChecks.ChainSextic.block_term_factor' depends on axioms: [propext, Quot.sound]
+'Hodge.AlgebraicSpanChecks.ChainSextic.F_mem_diagPlane' depends on axioms: [propext, Quot.sound]
+'Hodge.AlgebraicSpanChecks.ChainSextic.diagPlane_false' depends on axioms: [propext, Quot.sound]
+'Hodge.AlgebraicSpanChecks.ChainSextic.diagPlane_true' depends on axioms: [propext, Quot.sound]
+'Hodge.AlgebraicSpanChecks.ChainSextic.block_differ' depends on axioms: [propext]
+'Hodge.AlgebraicSpanChecks.ChainSextic.pi_piMinus1_disjoint' depends on axioms: [propext]
+'Hodge.AlgebraicSpanChecks.ChainSextic.residual_factor' depends on axioms: [propext]
+'Hodge.AlgebraicSpanChecks.ChainSextic.residual_split' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.AlgebraicSpanChecks.ChainSextic.coordinate_planes' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.AlgebraicSpanChecks.ChainSextic.no_coordinate_P3' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.AlgebraicSpanChecks.ChainSextic.F_cast' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.AlgebraicSpanChecks.ChainSextic.gram2_det' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.AlgebraicSpanChecks.ChainSextic.gram3_det' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.AlgebraicSpanChecks.ChainSextic.gram8Z_rule' depends on axioms: [propext, Quot.sound]
+'Hodge.AlgebraicSpanChecks.ChainSextic.gram8_eq_cast' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.AlgebraicSpanChecks.ChainSextic.L8_mul_U8' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.AlgebraicSpanChecks.ChainSextic.L8_lower' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.AlgebraicSpanChecks.ChainSextic.U8_upper' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.AlgebraicSpanChecks.ChainSextic.L8_diag' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.AlgebraicSpanChecks.ChainSextic.U8_diag' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.AlgebraicSpanChecks.ChainSextic.gram8_det' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.AlgebraicSpanChecks.ChainSextic.L9_mul_U9' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.AlgebraicSpanChecks.ChainSextic.L9_lower' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.AlgebraicSpanChecks.ChainSextic.U9_upper' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.AlgebraicSpanChecks.ChainSextic.L9_diag' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.AlgebraicSpanChecks.ChainSextic.U9_diag' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.AlgebraicSpanChecks.ChainSextic.gram9_det' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.AlgebraicSpanChecks.ChainSextic.rank_nine' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.AlgebraicSpanChecks.ChainSextic.rank_three' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.AlgebraicSpanChecks.klein_rank_two' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.AlgebraicSpanChecks.productOfPlanes_rank_three' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.AlgebraicSpanChecks.hassettC8_rank_two' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.AlgebraicSpanChecks.rank_nine_nonvacuous' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.VacuityAudit.idShadow' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.VacuityAudit.idShadow_hodge' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.VacuityAudit.idShadow_hodgeClasses' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.VacuityAudit.idShadow_algebraicClasses' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.VacuityAudit.shadow_rank_2606_hodge' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.VacuityAudit.p4_is_idShadow' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.VacuityAudit.klein_is_idShadow' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.VacuityAudit.product_is_idShadow' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.VacuityAudit.fermatQuartic_is_idShadow' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.VacuityAudit.fermatTwoPlanes_is_idShadow' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.VacuityAudit.hassett_is_idShadow' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.VacuityAudit.veryGeneralCubic_is_idShadow' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.VacuityAudit.sexticPlaneSpan_is_idShadow' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.VacuityAudit.sexticThreeSpan_is_idShadow' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.VacuityAudit.k3_is_idShadow' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.VacuityAudit.trivialObstruction_is_idShadow' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.VacuityAudit.distinct_hosts_are_equal' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.VacuityAudit.namedFourfolds_unfolds' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.VacuityAudit.klein_section_is_id' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.VacuityAudit.cycleConstructor_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.VacuityAudit.lefschetzOneOne_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.VacuityAudit.hardLefschetzComplement_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.VacuityAudit.dimLeThree_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.VacuityAudit.zuckerCubic_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.VacuityAudit.isCubicFourfold_any' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.VacuityAudit.dimLeThree_on_p4' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.VacuityAudit.zuckerCubic_on_klein' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.VacuityAudit.hardLefschetz_on_product' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.VacuityAudit.partialsRegular_trivial' does not depend on any axioms
+'Hodge.VacuityAudit.homogeneousCILength_trivial' depends on axioms: [propext]
+'Hodge.VacuityAudit.geometricCycleClassDischarged_iff_false' does not depend on any axioms
+'Hodge.VacuityAudit.ClayShape' does not depend on any axioms
+'Hodge.VacuityAudit.clay_is_shape' depends on axioms: [Classical.choice]
+'Hodge.VacuityAudit.clayShape_true' does not depend on any axioms
+'Hodge.VacuityAudit.clayShape_false' does not depend on any axioms
+'Hodge.VacuityAudit.true_typed_theorems' does not depend on any axioms
+'Hodge.VacuityAudit.numeral_placeholders' does not depend on any axioms
+'Hodge.VacuityAudit.length_num_of_hyps_unconditional' depends on axioms: [propext]
+'Hodge.VacuityAudit.chowData_id' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.VacuityAudit.chowData_id_cycleClass' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.VacuityAudit.zeroCycle_all_hodge' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.VacuityAudit.zeroCycle_none_algebraic' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.VacuityAudit.any_datum_labelled_P4' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.VacuityAudit.zeroGadget_is_label' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.HonestHosts.SpanBridge.hodgeConjecture' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.HonestHosts.named_span_le_algebraic' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.HonestHosts.SpanBridge.ofHodge' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.HonestHosts.p4_hodge_of_planeSpan' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.HonestHosts.klein_hodge_of_schubertSpan' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.HonestHosts.product_hodge_of_kunnethSpan' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.HonestHosts.kleinModelBridge' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.HonestHosts.zeroKlein' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.HonestHosts.zeroKlein_not_hodge' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.HonestHosts.zeroKlein_no_bridge' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.HonestHosts.p4_identityShadow' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.HonestHosts.klein_identityShadow' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.HonestHosts.product_identityShadow' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.HonestHosts.fermatTwoPlanes_identityShadow' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.HonestHosts.fermatQuartic_identityShadow' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.HonestHosts.hassett_identityShadow' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.HonestHosts.veryGeneralCubic_identityShadow' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.HonestHosts.sexticPlaneSpan_identityShadow' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.HonestHosts.sexticThreeSpan_identityShadow' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.HonestHosts.k3_identityShadow' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.HonestHosts.trivialObstruction_identityShadow' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.HonestHosts.namedFourfolds_identityShadows' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.HonestHosts.zeroDatum_refutes_interface' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.HonestHosts.classical_identityShadows' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.HonestHosts.classicalFourfolds_identityShadows' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.HonestHosts.zeroDatum_refutes_labelled_interface' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.HonestHosts.zeroDatum_refutes_codim_two_interface' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.HonestHosts.Legacy.legacy_1_projectiveFourSpace_hodgeConjecture' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.HonestHosts.Legacy.legacy_2_p4' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.HonestHosts.Legacy.legacy_3_projectiveFourSpace_hodge' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.HonestHosts.Legacy.legacy_4_kleinQuadric_hodgeConjecture' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.HonestHosts.Legacy.legacy_5_klein' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.HonestHosts.Legacy.legacy_6_kleinQuadric_hodge' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.HonestHosts.Legacy.legacy_7_productOfPlanes_hodgeConjecture' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.HonestHosts.Legacy.legacy_8_product' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.HonestHosts.Legacy.legacy_9_productOfPlanes_hodge' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.HonestHosts.Legacy.legacy_10_twoPlanes_hodge' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.HonestHosts.Legacy.legacy_11_fermatQuartic_hodge' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.HonestHosts.Legacy.legacy_12_planeSpan_hodge' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.HonestHosts.Legacy.legacy_13_hassettC8_hodge' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.HonestHosts.Legacy.legacy_14_veryGeneral_hodge' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.HonestHosts.Legacy.legacy_15_planeSpan_hodge' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.HonestHosts.Legacy.legacy_16_special_NL_sextic_coefficient_shadow' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.HonestHosts.Legacy.legacy_17_threeSpan_hodge' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.HonestHosts.Legacy.legacy_18_k3Surface_hodge' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.HonestHosts.Legacy.legacy_19_trivialObstruction_hodge' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.HonestHosts.Legacy.legacy_20_named_fourfolds' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.HonestHosts.Legacy.legacy_21_frohman_two_two_spans' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.HonestHosts.Legacy.legacy_22_classical_fourfolds' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.HonestHosts.Legacy.legacy_23_classical_islands' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.HonestHosts.Legacy.legacy_24_islands_construct' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.HonestHosts.Legacy.legacy_25_not_every_codim_ge_two' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.HonestHosts.Legacy.legacy_26_onVarieties_false_on_Rat' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.HonestHosts.Legacy.legacy_27_ungated_codim_two_false' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticBridgeAudit.jacGens' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticBridgeAudit.monIdeal' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticBridgeAudit.X_pow_mem' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticBridgeAudit.jacobianIdeal_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticBridgeAudit.witness' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticBridgeAudit.witness_degree' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticBridgeAudit.witness_not_mem' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticBridgeAudit.witness_class_ne_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticBridgeAudit.witness_class_mem' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticBridgeAudit.one_le_finrank_jacobianDeg12' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticBridgeAudit.finrank_modelH' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticBridgeAudit.gram' depends on axioms: [propext, Quot.sound]
+'Hodge.ChainSexticBridgeAudit.modelPairing' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticBridgeAudit.hodgeBridge_model' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticBridgeAudit.hodgeBridge_nonempty' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticBridgeAudit.model_rho' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticBridgeAudit.rho_not_automatic' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticBridgeAudit.count_type22' does not depend on any axioms
+'Hodge.ChainSexticBridgeAudit.type22_card' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticBridgeAudit.characterBridge_h22' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticBridgeAudit.characterBridge_forces_R12' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.Attempt.VacuityAudit.genericObstructed_eq_zeroCycle' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.Attempt.VacuityAudit.fermatRecipe_is_tag' depends on axioms: [propext]
+'Hodge.Attempt.VacuityAudit.isProjectiveFourfold_by_fiat' does not depend on any axioms
+'Hodge.Attempt.VacuityAudit.globalClay_is_shape' does not depend on any axioms
+'Hodge.Attempt.VacuityAudit.forall_shape_true_false' does not depend on any axioms
+'Hodge.ChainSexticR12.pnf' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticR12.pnf_rel1' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticR12.pnf_rel2' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticR12.pnf_std' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticR12.nf' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticR12.normalForm' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticR12.normalForm_monomial' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticR12.mon_mul_X_pow' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticR12.pd_low' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticR12.pd_high' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticR12.g0' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticR12.g3' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticR12.g1' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticR12.g4' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticR12.g2' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticR12.g5' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticR12.normalForm_mul_low' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticR12.normalForm_mul_high' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticR12.normalForm_mul_pderiv' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticR12.normalForm_jacobianIdeal' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticR12.Triple' does not depend on any axioms
+'Hodge.ChainSexticR12.dt' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticR12.prod_X_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticR12.dt_apply' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticR12.dt_injective' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticR12.dt_degree' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticR12.stdMonomial_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticR12.stdTriples' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticR12.stdTriples_card' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticR12.stdTriples12_subset' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticR12.normalForm_std' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticR12.stdMonomial_linearIndependent_of_subset' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticR12.stdMonomial_linearIndependent' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticR12.stdMonomial_linearIndependent_all' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticR12.stdMonomial_mem' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticR12.jacobianDeg12_le_span' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticR12.jacobianDeg12_eq_span' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticR12.jacobianDeg12_finrank_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticR12.le_finrank_jacobianDeg12' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticR12.jacobianDeg12_basis' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticR12.jacobianDeg12_basis_apply' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticR12.normalForm_x0_pow_five' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticR12.normalForm_x0_four_x3' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticR12.jacobianIdeal_ne_top' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticR12.stdMonomial_ne_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticR12.nonstd_eq_neg_six' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticR12Bridge.griffiths_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticR12Bridge.hodgeBridge_h22' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticR12Bridge.r_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticR12Bridge.model_rho_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticR12Bridge.characterBridge_R12_obstruction_discharged' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticR12Bridge.characterBridge_griffiths_agree' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticR12Bridge.griffiths_not_automatic' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticCore.units_mul_mem' depends on axioms: [propext, Quot.sound]
+'Hodge.ChainSexticCore.units_inv' does not depend on any axioms
+'Hodge.ChainSexticCore.one_mem_units' depends on axioms: [propext, Quot.sound]
+'Hodge.ChainSexticCore.mul_mod_assoc30' depends on axioms: [propext]
+'Hodge.ChainSexticCore.act_act' depends on axioms: [propext]
+'Hodge.ChainSexticCore.act_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticCore.act_injOn' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticCore.orbit_subset_cube' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticCore.self_mem_orbit' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticCore.act_mem_orbit' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticCore.orbit_eq_of_mem' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticCore.code_inj' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticCore.rep_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticCore.reps_eq_of_mem_orbit' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticCore.coverCheck' does not depend on any axioms
+'Hodge.ChainSexticCore.mem_orbit_rep' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticCore.primChars_subset_biUnion' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticCore.type22_subset_primChars' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticCore.disjoint_biSup_of_disjoint' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticCore.biSup_inf_biSup' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticCore.rationalPoints_cx' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticCore.eq_zero_of_tmul_eq_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticCore.cx_span' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticCore.ChainSexticCharacterCore.orbit_simple' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticCore.ChainSexticCharacterCore.hdg_split' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticCore.ChainSexticCharacterCore.rho_eq_786' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticCore.conjMap_one_tmul' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticCore.map_biSup_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticCore.interImages_units_eq_empty' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticCore.rationalPoints_eq_bot_of_conj' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticCore.ChainSexticCharacterGalois.galois_min' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticCore.ChainSexticCharacterGalois.rho_eq_786' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticCharacterModel.card_cube' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticCharacterModel.card_idx' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticCharacterModel.finrank_modelH' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticCharacterModel.finrank_denseH' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticCharacterModel.finrank_eq_of_equivDense' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticCharacterModel.poly8Z_irreducible' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticCharacterModel.alpha_pow_independent' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticCharacterModel.gen_linearIndependent' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticCharacterModel.eigen_indep' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticCharacterModel.model_galois_min' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticCharacterModel.model_W_complex' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticCharacterModel.model_griffiths' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticCharacterModel.characterCore_model_rho' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticCharacterModel.characterCore_dense_rho' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticCharacterModel.characterCore_model_finrank' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.ChainSexticCharacterModel.characterCore_dense_finrank' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.GeometricCycleClass.cycleClassMap' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.GeometricCycleClass.algebraic_le_hodge' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hodge.GeometricCycleClass.hodgeConjecture_iff_hasSection' depends on axioms: [propext, Classical.choice, Quot.sound]
