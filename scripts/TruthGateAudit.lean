@@ -90,11 +90,12 @@ run_cmd do
   if fv == pv then
     logInfo "TRUTH GATE FAIL: formal_claim and paper_claim have syntactically equal bodies"; ok := false
   -- non-vacuity: the two claims must not be definitionally equal
-  -- bounded (heartbeat-capped) default-transparency check; a timeout counts as "not shown
+  -- bounded (heartbeat-capped) default-transparency check (timeouts are runtime exceptions, caught
+  -- with `tryCatchRuntimeEx`); a timeout counts as "not shown
   -- definitionally equal" and is reported, the syntactic and transport checks still apply
   let defeq? : Option Bool ← liftTermElabM <| withTransparency .default <| withoutModifyingState <|
     withTheReader Core.Context (fun c => { c with maxHeartbeats := 2000000 }) <|
-      (try some <$> isDefEq fc pc catch _ => pure none)
+      tryCatchRuntimeEx (some <$> isDefEq fc pc) (fun _ => pure none)
   if defeq?.isNone then
     logInfo "TRUTH GATE NOTE: definitional-equality check hit its heartbeat cap (inconclusive)"
   if defeq? == some true then
@@ -116,7 +117,7 @@ run_cmd do
     let mt := mci.instantiateTypeLevelParams (mci.levelParams.map fun _ => levelZero)
     let same ← liftTermElabM <| withTransparency .default <| withoutModifyingState <|
       withTheReader Core.Context (fun c => { c with maxHeartbeats := 2000000 }) <|
-        (try isDefEq mt fc catch _ => pure false)
+        tryCatchRuntimeEx (isDefEq mt fc) (fun _ => pure false)
     unless same do
       logInfo m!"TRUTH GATE FAIL: main theorem statement is not formal_claim"; ok := false
   unless (directUses env `TruthGate.paper_claim_holds).contains `TruthGate.intended_correspondence do
