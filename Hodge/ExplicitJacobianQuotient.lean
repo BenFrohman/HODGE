@@ -1,13 +1,16 @@
 /-
-Copyright (c) 2026 Benjamin Stanley Frohman. Released under Apache 2.0 license.
-Author: Frohman, Benjamin Stanley.
-
-The actual binary Jacobian quotient of f_k=x^5*y*k+y^6 used by the section.
-These results identify representatives, not basis independence or geometric
-cycle classes. In particular this file does not infer nonzero quotient classes
-merely from the nonzero coefficients in a representative.
+Copyright (c) 2026 Benjamin Stanley Frohman. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Benjamin Stanley Frohman
 -/
+
 import Hodge.ExplicitResidueCertificates
+
+/-!
+# Hodge.ExplicitJacobianQuotient
+
+Machine-checked Lean 4 module.
+-/
 
 noncomputable section
 

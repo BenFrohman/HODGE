@@ -1,3 +1,9 @@
+/-
+Copyright (c) 2026 Benjamin Stanley Frohman. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Benjamin Stanley Frohman
+-/
+
 import Hodge.ExplicitJacobianIndependence
 import Hodge.ExplicitJacobianQuotient
 /-
@@ -7,6 +13,12 @@ Incremental algebra audit, not an audit of unimplemented geometric foundations.
 -/
 import Hodge.ExplicitResidueAlgebra
 import Hodge.ExplicitResidueCertificates
+
+/-!
+# ResidueAxiomAudit
+
+Machine-checked Lean 4 module.
+-/
 
 #print axioms Hodge.ExplicitResidueAlgebra.two_pair_decomposition
 #print axioms Hodge.ExplicitResidueAlgebra.split_pair_decomposition

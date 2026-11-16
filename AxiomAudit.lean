@@ -1,3 +1,9 @@
+/-
+Copyright (c) 2026 Benjamin Stanley Frohman. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Benjamin Stanley Frohman
+-/
+
 import Hodge.FermatCubicHost
 import Hodge.QuinticHost
 import Hodge.DeformedQuinticHost
@@ -53,6 +59,12 @@ import Hodge.Attempt.VacuityAudit
 import Hodge.ChainSexticR12
 import Hodge.ChainSexticR12Bridge
 import Hodge.ChainSexticCharacterCore
+
+/-!
+# AxiomAudit
+
+Machine-checked Lean 4 module.
+-/
 
 #print axioms Hodge.Attempt.Hypersurface.mk.inj
 #print axioms Hodge.Attempt.Hypersurface.mk.injEq

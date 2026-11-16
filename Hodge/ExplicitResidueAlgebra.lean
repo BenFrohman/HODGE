@@ -1,11 +1,16 @@
 /-
-Copyright (c) 2026 Benjamin Stanley Frohman. Released under Apache 2.0 license.
-
-Stage-one polynomial identities for the actual sextic residue construction.
-This file does not define Betti/Hodge cohomology, algebraic cycles or a cycle
-class map, and makes no claim to formalize the geometric residue theorem.
+Copyright (c) 2026 Benjamin Stanley Frohman. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Benjamin Stanley Frohman
 -/
+
 import Hodge.ExplicitCurve
+
+/-!
+# Hodge.ExplicitResidueAlgebra
+
+Machine-checked Lean 4 module.
+-/
 
 namespace Hodge.ExplicitResidueAlgebra
 

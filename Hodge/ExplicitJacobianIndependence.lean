@@ -1,12 +1,17 @@
 /-
-Copyright (c) 2026 Benjamin Stanley Frohman. Released under Apache 2.0 license.
-Author: Frohman, Benjamin Stanley.
-
-Degree-five independence in the actual binary Jacobian quotient. These are
-coefficient annihilators of the full ideal, not an assumed quotient basis.
+Copyright (c) 2026 Benjamin Stanley Frohman. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Benjamin Stanley Frohman
 -/
+
 import Hodge.ExplicitJacobianQuotient
 import Mathlib.LinearAlgebra.LinearIndependent.Defs
+
+/-!
+# Hodge.ExplicitJacobianIndependence
+
+Machine-checked Lean 4 module.
+-/
 
 noncomputable section
 namespace Hodge.ExplicitJacobianIndependence

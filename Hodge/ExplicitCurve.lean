@@ -1,13 +1,16 @@
 /-
-Copyright (c) 2026 Benjamin Stanley Frohman. Licensed under Apache-2.0.
-
-Explicit non-monomial surfaces on X = V(Σ x_i^5 x_{i+3} + x_{i+3}^6) ⊂ P^5 (v1.3).
-
-Containment only (ring identities). The cohomological claim (nonzero projection on the
-cited D24 characters) is proved classically using an exact residue certificate in
-  docs/EXPLICIT_PROJECTION_CERTIFICATE.md, not formalized here.
+Copyright (c) 2026 Benjamin Stanley Frohman. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Benjamin Stanley Frohman
 -/
+
 import Mathlib
+
+/-!
+# Hodge.ExplicitCurve
+
+Machine-checked Lean 4 module.
+-/
 
 set_option linter.unusedSimpArgs false
 

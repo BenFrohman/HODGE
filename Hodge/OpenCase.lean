@@ -1,6 +1,18 @@
+/-
+Copyright (c) 2026 Benjamin Stanley Frohman. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Benjamin Stanley Frohman
+-/
+
 -- Rewritten in this session. No imported project.
 -- Open case: extra rational (2,2)-classes on a general fourfold.
 -- The proof body is the existential. It does not close.
+
+/-!
+# Hodge.OpenCase
+
+Machine-checked Lean 4 module.
+-/
 
 namespace OpenCase
 

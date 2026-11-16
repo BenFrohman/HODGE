@@ -7,6 +7,12 @@ Authors: Benjamin Stanley Frohman
 import Hodge.Basic
 import Hodge.NamedFamilies
 
+/-!
+# Hodge.ClayStatement
+
+Machine-checked Lean 4 module.
+-/
+
 namespace Hodge
 namespace HodgeConjecture
 

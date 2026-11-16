@@ -3,6 +3,7 @@ Copyright (c) 2026 Benjamin Stanley Frohman. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Benjamin Stanley Frohman
 -/
+
 /-
 Core library. This file imports the Hodge library only.
 Do not import HodgeAttempt or Hodge.Attempt here.
@@ -65,3 +66,9 @@ import Hodge.ChainSexticCharacterCore
 import Hodge.ChainSexticCharacterModel
 
 import Hodge.ExplicitJacobianIndependence
+
+/-!
+# Hodge
+
+Machine-checked Lean 4 module.
+-/
