@@ -74,7 +74,7 @@ jobs:
           } > certificate/METADATA.txt
           {
             echo "Compile status of tracked .lean files outside the default build targets (informational, not part of the certificate):"
-            for f in Hodge/Attempt/FermatRecipeScope.lean Hodge/JacobianGenerators.lean Hodge/OpenCase.lean; do
+            for f in Hodge/Attempt/FermatRecipeScope.lean Hodge/JacobianGenerators.lean drafts/OpenCase.lean; do
               if [ -f "$f" ]; then
                 if out=$(lake env lean "$f" 2>&1); then echo "== $f: compiles"; else echo "== $f: FAILS"; fi
                 printf '%s\n' "$out" | head -n 40

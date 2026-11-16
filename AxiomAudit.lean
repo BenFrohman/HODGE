@@ -60,6 +60,7 @@ import Hodge.ChainSexticR12
 import Hodge.ChainSexticR12Bridge
 import Hodge.ChainSexticCharacterCore
 import Hodge.GeometricCycleClass
+import Hodge.OpenCase
 
 /-!
 # AxiomAudit
@@ -824,3 +825,14 @@ Machine-checked Lean 4 module.
 #print axioms Hodge.GeometricCycleClass.cycleClassMap
 #print axioms Hodge.GeometricCycleClass.algebraic_le_hodge
 #print axioms Hodge.GeometricCycleClass.hodgeConjecture_iff_hasSection
+
+#print axioms OpenCase.extraRational22_iff_forall_extraAlgebraic
+#print axioms OpenCase.noCycleFourfold
+#print axioms OpenCase.idFourfold
+#print axioms OpenCase.instNonemptyFourfold
+#print axioms OpenCase.noCycleFourfold_hasExtra
+#print axioms OpenCase.idFourfold_hasExtra
+#print axioms OpenCase.noCycleFourfold_not_extraAlgebraic
+#print axioms OpenCase.idFourfold_extraAlgebraic
+#print axioms OpenCase.extraAlgebraic_nonvacuous
+#print axioms OpenCase.not_extraRational22
