@@ -1,6 +1,6 @@
 # Copyright (c) 2026 Benjamin Stanley Frohman. Licensed under Apache-2.0.
 name = "HODGE"
-defaultTargets = ["Hodge", "AxiomPrint", "HodgeAttempt"]
+defaultTargets = ["Hodge", "AxiomPrint", "HodgeAttempt", "TruthGateLock"]
 
 # PIN: do not change these two lines without a matching lean-toolchain bump.
 # Lean 4.22.0  +  mathlib v4.22.0. Not master.
@@ -19,3 +19,8 @@ name = "AxiomPrint"
 # Sandbox. Not the Clay sentence. Build with: lake build HodgeAttempt
 [[lean_lib]]
 name = "HodgeAttempt"
+
+# Truth Gate semantics lock (see TRUTH_GATE.md).
+[[lean_lib]]
+name = "TruthGateLock"
+roots = ["Hodge.Semantics"]

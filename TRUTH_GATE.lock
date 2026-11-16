@@ -1,0 +1,14 @@
+{
+  "semantics_file": "Hodge/Semantics.lean",
+  "semantics_module": "Hodge.Semantics",
+  "paper_path": "paper/hodge_sextic/hodge_sextic.tex",
+  "paper_sha256": "f5353127a20352e54c1644f268a25f34145fefcc2aa350276f99319df5cd85d1",
+  "main_theorems": [
+    "Hodge.ChainSexticR12.jacobianDeg12_finrank_eq"
+  ],
+  "lock_region_sha256": "6487fb883144956b055978052e0e42b068d3fe3a772e16118fd80fa495b55a04",
+  "draft_dirs": [],
+  "lean_roots": [
+    "Hodge"
+  ]
+}
