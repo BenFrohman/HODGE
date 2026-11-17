@@ -73,7 +73,7 @@ Reports are written to `truth-gate-report/`.
 ## The locked claim of this repository
 
 * Paper: `paper/hodge_sextic/hodge_sextic.tex`
-* sha256: `f5353127a20352e54c1644f268a25f34145fefcc2aa350276f99319df5cd85d1`
+* sha256: `8442be3d0a1972445477219a1a5ec344e3c71e2daf34ad9015f179824c458bad`
 * Section: Section "The Jacobian module R_12 has dimension 1751" (sec:r12), Theorem thm:r12 in full (dimension AND basis), with the definition of standard monomials in sec:r12 and F from Section "The variety"
 * Main theorem(s): `Hodge.ChainSexticR12.jacobianDeg12_finrank_eq`, `Hodge.ChainSexticRank.stdTriples12_card`, `Hodge.ChainSexticR12.stdMonomial_linearIndependent`, `Hodge.ChainSexticR12.jacobianDeg12_eq_span`
 * Lock file: `TRUTH_GATE.lock`; semantics: `Hodge/Semantics.lean`
