@@ -102,3 +102,27 @@ def paper_claim : Prop :=
 ```
 
 See the doc comment of `Hodge/Semantics.lean` for the fixed reading of the paper's terms and the scope.
+
+## Re-audit (2026-11-16): this lock is NOT certifying
+
+Status: **REOPENED. The gate is red on purpose.** `TRUTH_GATE.lock` carries `"certifying": false`, and
+`scripts/truth_gate_check.py` fails while it does. Nothing was deleted: `Semantics.lean`, the quotes,
+the hashes and the history are unchanged.
+
+Rule applied (Benjamin Stanley Frohman, 2026-11-16):
+* There are no partial locks. A lock certifies only a step on the correct path to the full theorem
+  that is kernel-proved as the actual true answer, so that the next step can build on it.
+* Drifted, dummy, placeholder or stand-in types, names or categories are rejected.
+* Cross-ontology connections are not rejected for looking unrelated. The kernel check, and whether
+  the piece genuinely helps reach the full structured proof, decide.
+* `paper_claim` is an independent transcription of the verbatim paper quote, never an alias of
+  `formal_claim`, and the correspondence is never `rfl`/`Iff.rfl`.
+
+Locked claim under review: jacobianDeg12_finrank_eq (dimension clause of Theorem thm:r12)
+
+Why it is reopened:
+* Partial lock. Only the dimension clause of Theorem thm:r12 (dim_ℚ R₁₂ = 1751) is locked. Its second clause ("the classes of the 1751 standard monomials of degree 12 form a basis of R₁₂") is not.
+* The objects are real: the actual chain sextic F, its Jacobian ideal and the degree-12 piece of ℚ[x]/J. The step is genuine. The kernel audit's definitional-equality check hit its heartbeat cap (inconclusive); the alias, syntactic and transport checks passed.
+* Scope: this is not the Hodge conjecture, for this fourfold or in general.
+
+What would re-certify it: Re-lock the complete Theorem thm:r12, dimension and basis. Lean already has `stdMonomial_linearIndependent` and `jacobianDeg12_eq_span`.
