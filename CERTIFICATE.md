@@ -79,8 +79,12 @@ artifact `excluded-status.txt`):
 - `Hodge.JacobianGenerators` — compiles on its own (unused-variable warnings only), but all 14 of its declarations
   redeclare, in the same namespace `Hodge.SpecialSextic`, the declarations of `Hodge.SpecialSexticJacobian` (certified),
   so it cannot be imported alongside it.
-- `Hodge.OpenCase` — does not compile: its open-case goal `∃ z, X.cl z = γ` is left unsolved (placeholder `_`). It
-  is an open-case skeleton, not a proof.
+- `drafts/OpenCase.lean` — the original `Hodge.OpenCase` skeleton, moved unchanged (`git mv`). It does not compile:
+  its goal `∃ z, X.cl z = γ` is left unsolved (placeholder `?z_of`). That goal cannot be closed, because
+  `ExtraRational22` is false for the abstract structure `Fourfold`: the rebuilt module `Hodge.OpenCase` (now in the
+  default build and in `AxiomAudit.lean`) proves `OpenCase.not_extraRational22 : ¬ OpenCase.ExtraRational22` with a
+  record that has no cycles and one extra class. This refutes only that abstract formulation; it says nothing about
+  the Hodge conjecture for any variety.
 - `ResidueAxiomAudit.lean` and `AxiomAudit.lean` are audit scripts, run by CI as described above, not library modules.
 
 ## Scope (what the certificate does and does not say)

@@ -65,6 +65,7 @@ import Hodge.ChainSexticR12Bridge
 import Hodge.ChainSexticCharacterCore
 import Hodge.ChainSexticCharacterModel
 import Hodge.GeometricCycleClass
+import Hodge.OpenCase
 
 import Hodge.ExplicitJacobianIndependence
 
