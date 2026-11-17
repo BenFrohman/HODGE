@@ -26,7 +26,7 @@ open Lean Meta Elab Command
 namespace TruthGateAudit
 
 def standard : List Name := [``propext, ``Classical.choice, ``Quot.sound]
-def mains : List Name := [`Hodge.ChainSexticR12.jacobianDeg12_finrank_eq]
+def mains : List Name := [`Hodge.ChainSexticR12.jacobianDeg12_finrank_eq, `Hodge.ChainSexticRank.stdTriples12_card, `Hodge.ChainSexticR12.stdMonomial_linearIndependent, `Hodge.ChainSexticR12.jacobianDeg12_eq_span]
 
 partial def reach (env : Environment) (todo : List Name) (seen : NameSet) : NameSet :=
   match todo with
