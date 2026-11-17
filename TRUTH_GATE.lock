@@ -10,5 +10,8 @@
   "draft_dirs": [],
   "lean_roots": [
     "Hodge"
-  ]
+  ],
+  "certifying": false,
+  "reopened_reason": "Partial lock. Only the dimension clause of Theorem thm:r12 (dim_ℚ R₁₂ = 1751) is locked. Its second clause (\"the classes of the 1751 standard monomials of degree 12 form a basis of R₁₂\") is not.",
+  "reopened_on": "2026-11-16"
 }
