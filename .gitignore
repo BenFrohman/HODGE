@@ -4,3 +4,4 @@ lake-packages/
 *.olean
 .lake/
 __pycache__/
+truth-gate-report/
