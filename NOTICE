@@ -20,3 +20,5 @@ relicense dependencies. The archive identifier above is historical provenance,
 not a claim that the new incremental work has been published there.
 The author copyright notice covers original repository contributions only;
 dependency code and cited mathematics retain their respective ownership.
+
+Any use, reproduction, or redistribution, in whole or in part, must retain this NOTICE and credit Benjamin Stanley Frohman as the author. If you use this work in a publication, please cite it (see CITATION.cff / the Zenodo DOI).
