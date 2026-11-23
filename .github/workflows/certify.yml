@@ -56,6 +56,10 @@ jobs:
           cp axioms.txt certificate/axiom-audit.txt
           cp AxiomAudit.lean certificate/AxiomAudit.lean
           cp ResidueAxiomAudit.lean certificate/ResidueAxiomAudit.lean
+          cp lake-manifest.json certificate/lake-manifest.json
+          cp lean-toolchain certificate/lean-toolchain
+          echo "Pin file hashes (repo lake-manifest.json and lean-toolchain):"
+          sha256sum lake-manifest.json lean-toolchain | tee certificate/pin-hashes.txt
           {
             echo "repository: ${{ github.repository }}"
             echo "event: ${{ github.event_name }}"
@@ -64,9 +68,12 @@ jobs:
             if [ -n "$PR_HEAD_SHA" ]; then echo "pull_request_head_commit: $PR_HEAD_SHA"; fi
             echo "run: $RUN_URL"
             echo "date_utc: $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+            echo "elan_version: $(elan --version)"
             echo "lean_toolchain: $(cat lean-toolchain)"
             echo "lean_version: $(lake env lean --version)"
             echo "lake_version: $(lake --version)"
+            echo "lake_manifest_sha256: $(sha256sum lake-manifest.json | awk '{print $1}')"
+            echo "lean_toolchain_sha256: $(sha256sum lean-toolchain | awk '{print $1}')"
             echo "mathlib_rev: $(python3 -c 'import json;print(next(p["rev"]+" (inputRev "+str(p.get("inputRev"))+")" for p in json.load(open("lake-manifest.json"))["packages"] if p["name"]=="mathlib"))')"
             echo "print_axioms_lines_in_AxiomAudit.lean: $(grep -c '^#print axioms' AxiomAudit.lean)"
             echo "print_axioms_lines_in_ResidueAxiomAudit.lean: $(grep -c '^#print axioms' ResidueAxiomAudit.lean)"

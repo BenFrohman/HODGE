@@ -22,11 +22,18 @@ jobs:
       - name: Toolchain and revision
         run: |
           mkdir -p cert-out
+          cp lake-manifest.json cert-out/lake-manifest.json
+          cp lean-toolchain cert-out/lean-toolchain
+          echo "Pin file hashes (repo lake-manifest.json and lean-toolchain):"
+          sha256sum lake-manifest.json lean-toolchain | tee cert-out/pin-hashes.txt
           {
             echo "commit: $(git rev-parse HEAD)"
+            echo "elan --version: $(elan --version)"
             echo "lean-toolchain: $(cat lean-toolchain)"
             echo "lean --version: $(lean --version)"
             echo "lake --version: $(lake --version)"
+            echo "lake_manifest_sha256: $(sha256sum lake-manifest.json | awk '{print $1}')"
+            echo "lean_toolchain_sha256: $(sha256sum lean-toolchain | awk '{print $1}')"
             echo "date (UTC): $(date -u +%Y-%m-%dT%H:%M:%SZ)"
             echo "run: $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID"
           } | tee cert-out/environment.txt
